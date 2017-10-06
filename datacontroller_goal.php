@@ -36,6 +36,10 @@
 <body>
 <?php
 	include('sidebar.php');
+	if( isset($_POST['ajax']) && isset($_POST['goal']) ){
+	 echo $_POST['goal'];
+	 exit;
+}
 ?>
 	<div class="wrapper">
 	
@@ -43,12 +47,13 @@
 	<div class="container content-sm">
 
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
-	<form id="goal">
+	<form action="datacontroller_newstrategy.php" method="post">
 		Goal :</br><input class="form-control" type="text" name="goal[]"></input></br>
 		<div class="input_fields_wrap">	</div></br>
 		<button class="add_field_button">Add More Goals</button>
-		<input type="button" name="next" value="Next" style="float: right;" id="btngoal"></input>	
+		<input type="submit" name="next" value="Next" style="float: right;"></input>	
 	</form>
+	
 
 </div><!--/container-->
 <!--=== End Service Block ===-->
@@ -78,6 +83,7 @@
 		<script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>
 		<script type="text/javascript" src="assets/js/plugins/revolution-slider.js"></script>
 		<script type="text/javascript" src="assets/js/plugins/style-switcher.js"></script>
+		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			jQuery(document).ready(function() {
 				App.init();
@@ -104,22 +110,18 @@
 						e.preventDefault(); $(this).parent('div').remove(); x--;
 					})
 					
-					$("#btngoal").click(function() 
-					{
-					   $.ajax(
-					   {
-						   url: "datacontroller_newstrategy.php",
-						   data: $('#goal').serialize(),
-						   type: 'POST',
-						   async: false
-					   })
-					   .done(function(response) 
-					   {
-						   console.log(response);
+					
+					 $('#goal').keyup(function(){
+     var name = $('#goal').val();
 
-						   var result = JSON.parse(response);      
-					   })
-				   });
+     $.ajax({
+      type: 'post',
+      data: {ajax: 1,name: name},
+      success: function(response){
+       $('#response').text('goal : ' + response);
+      }
+     });
+    });
 					
 			});
 		</script>
