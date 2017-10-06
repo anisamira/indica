@@ -35,7 +35,7 @@
 
 <body>
 <?php
-	include('sidebar.php');
+	include('.../indica/sidebar.php');
 	if( isset($_POST['ajax']) && isset($_POST['goal']) ){
 	 echo $_POST['goal'];
 	 exit;
