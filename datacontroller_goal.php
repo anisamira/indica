@@ -43,11 +43,11 @@
 	<div class="container content-sm">
 
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
-	<form action="datacontroller_newstrategy.php" method="post">
+	<form id="goal">
 		Goal :</br><input class="form-control" type="text" name="goal[]"></input></br>
 		<div class="input_fields_wrap">	</div></br>
 		<button class="add_field_button">Add More Goals</button>
-		<input type="submit" name="next" value="Next" style="float: right;"></input>	
+		<input type="button" name="next" value="Next" style="float: right;" id="btngoal"></input>	
 	</form>
 
 </div><!--/container-->
@@ -96,13 +96,30 @@
 						e.preventDefault();
 						if(x < max_fields){ //max input box allowed
 							x++; //text box increment
-							$(wrapper).append('<div><input class="form-control" type="text" name="goal[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper).append('<div><input class="form-control" type="text" name="goal[]"/><button href="#" class="remove_field">X</button></div>'); //add input box
 						}
 					});
 					
 					$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
 						e.preventDefault(); $(this).parent('div').remove(); x--;
 					})
+					
+					$("#btngoal").click(function() 
+					{
+					   $.ajax(
+					   {
+						   url: "datacontroller_newstrategy.php",
+						   data: $('#goal').serialize(),
+						   type: 'POST',
+						   async: false
+					   })
+					   .done(function(response) 
+					   {
+						   console.log(response);
+
+						   var result = JSON.parse(response);      
+					   })
+				   });
 					
 			});
 		</script>
