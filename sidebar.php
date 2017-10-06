@@ -1,7 +1,3 @@
-<?php
-include_once ('connection.php');
-?>
-
 <!DOCTYPE html>
 <html>
 <title>INDICA UM</title>

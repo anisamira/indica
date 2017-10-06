@@ -26,8 +26,8 @@ include('db.php');
       $_SESSION['login'] = "OK";
       $_SESSION['username'] = $user;
       $_SESSION['password'] = $pass;
-      $sql1= "UPDATE user SET timeStamp=now() WHERE username = '$user' AND password ='$pass'";
-      $rs1= mysql_query($sql1,$conn);
+      // $sql1= "UPDATE user SET timeStamp=now() WHERE username = '$user' AND password ='$pass'";
+      // $rs1= mysql_query($sql1,$conn);
         
 
         if($user=='admin'){     
