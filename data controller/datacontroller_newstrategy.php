@@ -45,6 +45,9 @@
 
 <body>
 <?php
+					header('Cache-Control: no cache'); //no cache
+					session_cache_limiter('private_no_expire');
+					session_start();
 	include('sidebar.php');
 ?>
 
@@ -61,7 +64,7 @@
 		<div class="table-responsive">  
 			<form action="datacontroller_newaction.php" method="post">
 				<table class="table table-bordered"> 
-					<col width="100">
+					<col width="50">
 					<col width="190">
 					<tr>
 						<th>Goal</th>
@@ -72,7 +75,7 @@
 					foreach ($_SESSION['goal'] as $key=>$value)
 					{?>
 						<tr>
-							<td><input class="form-control" type="text" name="goal<?php echo $x;?>" value="<?php echo $value;?>"></input>
+							<td><?php echo $value;?><input class="form-control" type="hidden" name="goal<?php echo $x;?>" value="<?php echo $value;?>"></input>
 							</td>
 							<td><input class="form-control" type="text" name="strategy<?php echo $x;?>[]"></input></br>
 								<div class="wrap<?php echo $x;?>"></div>
@@ -129,7 +132,7 @@
 							
 						$(add_button1).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper1).append('<div><input class="form-control" type="text" name="strategy1[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper1).append('<div><input type="text" name="strategy1[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
 						});
 							
 						$(wrapper1).on("click",".remove_field", function(e){ //user click on remove text
@@ -143,9 +146,9 @@
 						var wrapper2  =  $(".wrap2");//Fields wrapper
 						var add_button2 = $(".add_button2"); //Add button ID
 							
-						$(add_button2).click(function(e){ //on add input button click
+							$(add_button2).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper2).append('<div><input class="form-control" type="text" name="strategy2[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper2).append('<div><input type="text" name="strategy2[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
 						});
 							
 						$(wrapper2).on("click",".remove_field", function(e){ //user click on remove text
@@ -158,9 +161,9 @@
 						var wrapper3  =  $(".wrap3");//Fields wrapper
 						var add_button3 = $(".add_button3"); //Add button ID
 							
-						$(add_button3).click(function(e){ //on add input button click
+							$(add_button3).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper3).append('<div><input class="form-control" type="text" name="strategy3[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper3).append('<div><input type="text" name="strategy3[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
 						});
 							
 						$(wrapper3).on("click",".remove_field", function(e){ //user click on remove text
@@ -174,9 +177,9 @@
 						var wrapper4  =  $(".wrap4");//Fields wrapper
 						var add_button4 = $(".add_button4"); //Add button ID
 							
-						$(add_button4).click(function(e){ //on add input button click
+							$(add_button4).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper4).append('<div><input class="form-control" type="text" name="strategy4[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper4).append('<div><input type="text" name="strategy4[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
 						});
 							
 						$(wrapper4).on("click",".remove_field", function(e){ //user click on remove text
@@ -189,9 +192,9 @@
 						var wrapper5  =  $(".wrap5");//Fields wrapper
 						var add_button5 = $(".add_button5"); //Add button ID
 							
-						$(add_button5).click(function(e){ //on add input button click
+							$(add_button5).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper5).append('<div><input class="form-control" type="text" name="strategy5[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper5).append('<div><input type="text" name="strategy5[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
 						});
 							
 						$(wrapper5).on("click",".remove_field", function(e){ //user click on remove text
@@ -204,9 +207,9 @@
 						var wrapper6  =  $(".wrap6");//Fields wrapper
 						var add_button6 = $(".add_button6"); //Add button ID
 							
-						$(add_button6).click(function(e){ //on add input button click
+							$(add_button6).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper6).append('<div><input class="form-control" type="text" name="strategy6[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper6).append('<div><input type="text" name="strategy6[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
 						});
 							
 						$(wrapper6).on("click",".remove_field", function(e){ //user click on remove text
@@ -216,12 +219,12 @@
 						
 						
 						
-						var wrapper7  =  $(".wrap7");//Fields wrapper
+						var wrapper7 =  $(".wrap7");//Fields wrapper
 						var add_button7 = $(".add_button7"); //Add button ID
 							
-						$(add_button7).click(function(e){ //on add input button click
+							$(add_button7).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper7).append('<div><input class="form-control" type="text" name="strategy7[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper7).append('<div><input type="text" name="strategy7[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
 						});
 							
 						$(wrapper7).on("click",".remove_field", function(e){ //user click on remove text
@@ -230,13 +233,12 @@
 						
 						
 						
-						
 						var wrapper8  =  $(".wrap8");//Fields wrapper
 						var add_button8 = $(".add_button8"); //Add button ID
 							
-						$(add_button8).click(function(e){ //on add input button click
+							$(add_button8).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper8).append('<div><input class="form-control" type="text" name="strategy8[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper8).append('<div><input type="text" name="strategy8[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
 						});
 							
 						$(wrapper8).on("click",".remove_field", function(e){ //user click on remove text
@@ -251,9 +253,9 @@
 						var wrapper9  =  $(".wrap9");//Fields wrapper
 						var add_button9 = $(".add_button9"); //Add button ID
 							
-						$(add_button9).click(function(e){ //on add input button click
+							$(add_button9).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper9).append('<div><input class="form-control" type="text" name="strategy9[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper9).append('<div><input type="text" name="strategy9[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
 						});
 							
 						$(wrapper9).on("click",".remove_field", function(e){ //user click on remove text
@@ -262,13 +264,12 @@
 						
 						
 						
-						
 						var wrapper10  =  $(".wrap10");//Fields wrapper
 						var add_button10 = $(".add_button10"); //Add button ID
 							
-						$(add_button10).click(function(e){ //on add input button click
+							$(add_button10).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper10).append('<div><input class="form-control" type="text" name="strategy10[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper10).append('<div><input type="text" name="strategy10[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
 						});
 							
 						$(wrapper10).on("click",".remove_field", function(e){ //user click on remove text
