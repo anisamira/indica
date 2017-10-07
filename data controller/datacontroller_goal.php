@@ -30,31 +30,44 @@
 	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="assets/css/custom.css">
-	
 </head>
 
 <body>
 <?php
-	include('sidebar.php');
+	 include('sidebar.php');
+
 ?>
 	<div class="wrapper">
-	
+		<div class="container content-sm">
+			<div class="w3-main" style="margin-left:300px;margin-top:20px;">
+			<form action="datacontroller_newstrategy.php" method="post">
+				Insert Goals :</br><input class="form-control" type="text" name="goal[]"></input></br>
+				<div class="input_fields_wrap">	</div>
+				<button class="add_field_button">Add More Goals</button>
+				<input type="submit" name="next" value="Next" style="float: right;"></input>	
+			</form>
+			
+<?php			
+// if (isset($_POST['Next'])){
 
-	<div class="container content-sm">
+	 // require_once 'dbtest.php';
+     // $con=getdb();	
+// foreach ($_POST['goal'] as $key=>$value)
+// {
+// $goal=mysqli_real_escape_string($value);	
+// $sql=("INSERT INTO goli (goals) VALUES ($goal)");
+// $result = mysqli_query($con, $sql) or die(mysqli_error($con));  
+   
+   // if (false === $result) {
+    // echo mysql_error();
 
-<div class="w3-main" style="margin-left:300px;margin-top:43px;">
-	<form id="goal">
-		Goal :</br><input class="form-control" type="text" name="goal[]"></input></br>
-		<div class="input_fields_wrap">	</div></br>
-		<button class="add_field_button">Add More Goals</button>
-		<input type="button" name="next" value="Next" style="float: right;" id="btngoal"></input>	
-	</form>
-
-</div><!--/container-->
-<!--=== End Service Block ===-->
-
-
-		</div><!--/wrapper-->
+   // }
+// } 
+// }?>   	
+			
+		</div>
+		</div>
+	</div><!--/wrapper-->
 
 
 
@@ -96,35 +109,15 @@
 						e.preventDefault();
 						if(x < max_fields){ //max input box allowed
 							x++; //text box increment
-							$(wrapper).append('<div><input class="form-control" type="text" name="goal[]"/><button href="#" class="remove_field">X</button></div>'); //add input box
+							$(wrapper).append('<div><input type="text" name="goal[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>'); //add input box
 						}
 					});
 					
 					$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
 						e.preventDefault(); $(this).parent('div').remove(); x--;
 					})
-					
-					$("#btngoal").click(function() 
-					{
-					   $.ajax(
-					   {
-						   url: "datacontroller_newstrategy.php",
-						   data: $('#goal').serialize(),
-						   type: 'POST',
-						   async: false
-					   })
-					   .done(function(response) 
-					   {
-						   console.log(response);
-
-						   var result = JSON.parse(response);      
-					   })
-				   });
-					
 			});
 		</script>
-
-
 <!--[if lt IE 9]>
 	<script src="assets/plugins/respond.js"></script>
 	<script src="assets/plugins/html5shiv.js"></script>

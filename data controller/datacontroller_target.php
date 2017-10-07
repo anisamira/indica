@@ -90,11 +90,11 @@
 								<tr>  
 									<td><?php echo $_POST['kpi'.$y];?></td>
 										<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $_POST['kpi'.$y];?>"></input></td>
-									<td contenteditable="true"><input type="" name=""/></td>
-									<td contenteditable="true"><input type="" name=""/></td>
-									<td contenteditable="true"><input type="" name=""/></td>
-									<td contenteditable="true"><input type="" name=""/></td>
-									<td contenteditable="true"><input type="" name=""/></td>
+									<td contenteditable="true"><input type="text" name=""/></td>
+									<td contenteditable="true"><input type="text" name=""/></td>
+									<td contenteditable="true"><input type="text" name=""/></td>
+									<td contenteditable="true"><input type="text" name=""/></td>
+									<td contenteditable="true"><input type="text" name=""/></td>
 								</tr><?php
 							$x++;
 							}							
