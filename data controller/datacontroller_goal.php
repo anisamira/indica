@@ -30,36 +30,24 @@
 	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="assets/css/custom.css">
-	
 </head>
 
 <body>
 <?php
-	include('.../indica/sidebar.php');
-	if( isset($_POST['ajax']) && isset($_POST['goal']) ){
-	 echo $_POST['goal'];
-	 exit;
-}
+	 include('sidebar.php');
 ?>
 	<div class="wrapper">
-	
-
-	<div class="container content-sm">
-
-<div class="w3-main" style="margin-left:300px;margin-top:43px;">
-	<form action="datacontroller_newstrategy.php" method="post">
-		Goal :</br><input class="form-control" type="text" name="goal[]"></input></br>
-		<div class="input_fields_wrap">	</div></br>
-		<button class="add_field_button">Add More Goals</button>
-		<input type="submit" name="next" value="Next" style="float: right;"></input>	
-	</form>
-	
-
-</div><!--/container-->
-<!--=== End Service Block ===-->
-
-
-		</div><!--/wrapper-->
+		<div class="container content-sm">
+			<div class="w3-main" style="margin-left:300px;margin-top:20px;">
+			<form action="datacontroller_newstrategy.php" method="post">
+				Insert Goals :</br><input class="form-control" type="text" name="goal[]"></input></br>
+				<div class="input_fields_wrap">	</div>
+				<button class="add_field_button">Add More Goals</button>
+				<input type="submit" name="next" value="Next" style="float: right;"></input>	
+			</form>
+		</div>
+		</div>
+	</div><!--/wrapper-->
 
 
 
@@ -83,7 +71,6 @@
 		<script type="text/javascript" src="assets/js/plugins/owl-carousel.js"></script>
 		<script type="text/javascript" src="assets/js/plugins/revolution-slider.js"></script>
 		<script type="text/javascript" src="assets/js/plugins/style-switcher.js"></script>
-		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<script type="text/javascript">
 			jQuery(document).ready(function() {
 				App.init();
@@ -102,31 +89,15 @@
 						e.preventDefault();
 						if(x < max_fields){ //max input box allowed
 							x++; //text box increment
-							$(wrapper).append('<div><input class="form-control" type="text" name="goal[]"/><button href="#" class="remove_field">X</button></div>'); //add input box
+							$(wrapper).append('<div><input type="text" name="goal[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>'); //add input box
 						}
 					});
 					
 					$(wrapper).on("click",".remove_field", function(e){ //user click on remove text
 						e.preventDefault(); $(this).parent('div').remove(); x--;
 					})
-					
-					
-					 $('#goal').keyup(function(){
-     var name = $('#goal').val();
-
-     $.ajax({
-      type: 'post',
-      data: {ajax: 1,name: name},
-      success: function(response){
-       $('#response').text('goal : ' + response);
-      }
-     });
-    });
-					
 			});
 		</script>
-
-
 <!--[if lt IE 9]>
 	<script src="assets/plugins/respond.js"></script>
 	<script src="assets/plugins/html5shiv.js"></script>

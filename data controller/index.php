@@ -1,5 +1,7 @@
 
-
+<?php
+	include ('sidebar.php');
+?>
 
 
 <!-- !PAGE CONTENT! -->

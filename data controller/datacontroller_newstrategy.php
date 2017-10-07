@@ -57,7 +57,7 @@
 		<?php
 		$_SESSION['goal']=$_POST['goal'];
 	?>
-<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+<div class="w3-main" style="margin-left:300px;margin-top:20px;">
 		<div class="table-responsive">  
 			<form action="datacontroller_newaction.php" method="post">
 				<table class="table table-bordered"> 
@@ -72,8 +72,7 @@
 					foreach ($_SESSION['goal'] as $key=>$value)
 					{?>
 						<tr>
-							<td><?php echo $value;?>
-								<input type="hidden" name="goal<?php echo $x;?>" value="<?php echo $value;?>"></input>
+							<td><input class="form-control" type="text" name="goal<?php echo $x;?>" value="<?php echo $value;?>"></input>
 							</td>
 							<td><input class="form-control" type="text" name="strategy<?php echo $x;?>[]"></input></br>
 								<div class="wrap<?php echo $x;?>"></div>
