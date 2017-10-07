@@ -35,6 +35,7 @@
 <body>
 <?php
 	 include('sidebar.php');
+
 ?>
 	<div class="wrapper">
 		<div class="container content-sm">
@@ -45,6 +46,25 @@
 				<button class="add_field_button">Add More Goals</button>
 				<input type="submit" name="next" value="Next" style="float: right;"></input>	
 			</form>
+			
+<?php			
+// if (isset($_POST['Next'])){
+
+	 // require_once 'dbtest.php';
+     // $con=getdb();	
+// foreach ($_POST['goal'] as $key=>$value)
+// {
+// $goal=mysqli_real_escape_string($value);	
+// $sql=("INSERT INTO goli (goals) VALUES ($goal)");
+// $result = mysqli_query($con, $sql) or die(mysqli_error($con));  
+   
+   // if (false === $result) {
+    // echo mysql_error();
+
+   // }
+// } 
+// }?>   	
+			
 		</div>
 		</div>
 	</div><!--/wrapper-->

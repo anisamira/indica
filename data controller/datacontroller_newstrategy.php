@@ -58,10 +58,30 @@
 
 	
 		<?php
+		
 		$_SESSION['goal']=$_POST['goal'];
+		
 	?>
 <div class="w3-main" style="margin-left:300px;margin-top:20px;">
 		<div class="table-responsive">  
+
+<?php
+
+// require_once 'dbtest.php';
+// $con=getdb();		
+		// foreach ($_POST['goal'] as $key=>$value)
+// {
+// $goal[$key]=mysqli_real_escape_string($con,$value);	
+// $sql=("INSERT INTO goli (goals) VALUES ($goal)");
+// $result = mysqli_query($con, $sql) or die(mysqli_error($con));  
+   
+   // if (false === $result) {
+    // echo mysql_error();
+
+   // }
+// } 
+?>
+		
 			<form action="datacontroller_newaction.php" method="post">
 				<table class="table table-bordered"> 
 					<col width="50">
@@ -71,9 +91,13 @@
 						<th>Strategy</th>
 					</tr>
 					<?php
+					
 					$x = 1;
 					foreach ($_SESSION['goal'] as $key=>$value)
-					{?>
+					{
+
+						?>
+					
 						<tr>
 							<td><?php echo $value;?><input class="form-control" type="hidden" name="goal<?php echo $x;?>" value="<?php echo $value;?>"></input>
 							</td>
@@ -84,11 +108,38 @@
 						</tr>
 						<?php
 						$x++;
-					}?>
+					
+   // $goal=mysqli_real_escape_string($value);	
+// $sql=("INSERT INTO goli (goals) VALUES ($goal)");
+// $result = mysqli_query($con, $sql) or die(mysqli_error($con));  
+   
+   // if (false === $result) {
+    // echo mysql_error();
+
+   }
+   
+					?>
 				</table>
 				</br><input type="submit" name="next" value="Next" style="float: right;"></input>	
 					<input type="button" VALUE="Back" onClick="history.go(-1);"></input>
 			</form>
+			
+			
+<?php		
+// foreach ($_SESSION['goal'] as $key=>$value)
+// {
+// $goal=mysqli_real_escape_string($value);	
+			// if (empty($value)) {continue;} 
+					// $sql=("INSERT INTO goli VALUES ($value)");
+
+   // $result = mysqli_query($con, $sql) or die(mysqli_error($con));  
+   
+   // if (false === $result) {
+    // echo mysql_error();
+
+   // }
+// }   
+	// ?>		
 		</div>
 
 </div><!--/container-->
