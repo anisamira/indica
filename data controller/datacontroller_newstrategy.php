@@ -60,18 +60,22 @@
 		<?php
 		
 		$_SESSION['goal']=$_POST['goal'];
-		
+		$gg=$_SESSION['goal'];
+		print_r ($gg);
 	?>
 <div class="w3-main" style="margin-left:300px;margin-top:20px;">
 		<div class="table-responsive">  
 
 <?php
 
+// $gg=$_SESSION['goal'];
+		// print_r ($gg);
 // require_once 'dbtest.php';
-// $con=getdb();		
-		// foreach ($_POST['goal'] as $key=>$value)
+// $con=getdb();
+// for 		
+// foreach ($_POST['goal'] as $key=>$value)
 // {
-// $goal[$key]=mysqli_real_escape_string($con,$value);	
+// $goal=mysqli_real_escape_string($value);	
 // $sql=("INSERT INTO goli (goals) VALUES ($goal)");
 // $result = mysqli_query($con, $sql) or die(mysqli_error($con));  
    
@@ -80,8 +84,30 @@
 
    // }
 // } 
-?>
-		
+
+// ?>
+	
+	
+ <?php			
+
+	 // require 'dbtest.php';
+ 	
+// if (isset($_POST['goal'])){
+// foreach ($_POST['goal'] as $key=>$value)
+// {
+
+// $goal=mysql_real_escape_string($value);	
+// $sql=("INSERT INTO goli (goals) VALUES ($goal)");
+// $result = mysql_query($sql) or die(mysql_error($conn)); 
+   // if (false === $result) {
+    // echo mysql_error();
+
+   // }
+// }
+// }?> 
+	
+	
+	
 			<form action="datacontroller_newaction.php" method="post">
 				<table class="table table-bordered"> 
 					<col width="50">
