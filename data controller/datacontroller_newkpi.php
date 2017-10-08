@@ -100,6 +100,30 @@
 			// }
 			?>
 			
+			
+			<?php
+
+// $gg=$_SESSION['goal'];
+		// print_r ($gg);
+// require_once 'dbtest.php';
+// foreach ($_POST['goal'] as $key=>$value)
+// {
+// $goal=mysqli_real_escape_string($conn,$value);
+// $st=mysqli_real_escape_string($conn,$key);
+// $ac=mysqli_real_escape_string($conn,$key);
+// $sql=("INSERT INTO goli (goals,st,ac) VALUES ('$goal','$st','$ac')");
+// $result = mysqli_query($conn, $sql) or die(mysqli_error($conn));  
+   
+   // if (false === $result) {
+    // echo mysql_error();
+
+   // }
+// } 
+
+?>
+			
+			
+			
 		
 		
 			<form action="datacontroller_newrecord.php" method="post">

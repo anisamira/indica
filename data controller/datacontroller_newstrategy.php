@@ -70,22 +70,20 @@
 
 // $gg=$_SESSION['goal'];
 		// print_r ($gg);
-// require_once 'dbtest.php';
-// $con=getdb();
-// for 		
-// foreach ($_POST['goal'] as $key=>$value)
-// {
-// $goal=mysqli_real_escape_string($value);	
-// $sql=("INSERT INTO goli (goals) VALUES ($goal)");
-// $result = mysqli_query($con, $sql) or die(mysqli_error($con));  
+require_once 'dbtest.php';
+foreach ($_POST['goal'] as $key=>$value)
+{
+$goal=mysqli_real_escape_string($conn,$value);	
+$sql=("INSERT INTO goli (goals) VALUES ('$goal')");
+$result = mysqli_query($conn, $sql) or die(mysqli_error($conn));  
    
-   // if (false === $result) {
-    // echo mysql_error();
+   if (false === $result) {
+    echo mysql_error();
 
-   // }
-// } 
+   }
+} 
 
-// ?>
+?>
 	
 	
  <?php			
