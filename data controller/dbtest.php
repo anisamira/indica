@@ -15,3 +15,9 @@ catch(exception $e)
     }
     return $conn;
 ?>
+
+<?php 
+$conn = @mysql_connect ("localhost", "id3183055_admin1", "umisone") or die ("Sorry - unable to connect to MySQL database.");
+$rs = @mysql_select_db ("id3183055_indi", $conn) or die ("error");  
+
+?>
