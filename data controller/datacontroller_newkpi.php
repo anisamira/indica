@@ -46,6 +46,32 @@
 <body>
 <?php
 	include('sidebar.php');
+	if(isset($_POST['next']))
+	{
+		for($y=1; $y<=50; $y++)
+		{
+			if (empty($_POST["action".$y]))
+				{
+					$error = 1;
+				}
+				else
+				{
+								
+					foreach ($_POST['action'.$y] as $key=>$value)
+					{
+						$strategy_id=$_POST['strategy_id'.$y];
+						$sql="INSERT INTO actionplan (strategy_id, actionplan_desc) VALUES ('$strategy_id','$value')";
+						$result = mysql_query($sql) or die(mysql_error());  
+								   
+						if (false === $result) 
+						{
+							echo mysql_error();
+						}
+					}	
+								
+				}	
+		}
+	}
 ?>
 
 
@@ -57,6 +83,51 @@
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 	
 		<div class="table-responsive">  
+		
+		
+		 <?php
+		
+			// require_once 'dbtest.php';
+			// if (isset($_POST['next']))
+			// {
+				// $goal=$_SESSION['goal'];
+				// $st=$_SESSION['strategy'];
+				// $ac=$_SESSION['action'];
+				// $query='';
+				// for ($count=0;$count<count($goal);$count++)
+					
+               // foreach ($_POST['goal'] as $key=>$value)
+					// {
+
+			      // $goal_clean=mysqli_real_escape_string($conn,$goal[$value]);
+					// $st_clean=mysqli_real_escape_string($conn,$st[$key]);
+					// $ac_clean=mysqli_real_escape_string($conn,$ac[$key]);
+					
+				// if ($goal!=''&&$st!=''&&$ac=''){
+				
+				// $query.='
+				// INSERT INTO goli (goals,st,ac) VALUES ("'.$goal_clean.'","'.$st_clean.'","'.$ac_clean.'");
+				
+				// ';
+				// }
+				// }
+			
+			// if ($query!='')
+			// {
+			// if (mysqli_multi_query($conn,$query))
+			// {
+			// echo 'Data Inserted';	
+			// }				
+			// }
+			// else 
+			// {
+				// echo 'Error';
+			// }
+			// }
+			?>
+			
+		
+		
 			<form action="datacontroller_newrecord.php" method="post">
 				<table class="table table-bordered"> 
 					<col width="50">
@@ -72,72 +143,29 @@
 				<?php
 
 					$x = 1;
-					$goal=0;
-					$str=1;
-					$countgl=0;
-					$strg=0;
-					
-					for($y=1;  $y<=10; $y++)
+					$sql="SELECT goal.*,strategy.*, actionplan.* FROM goal JOIN strategy ON strategy.goal_id=goal.goal_id JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id WHERE module_id='M01' ORDER BY actionplan.actionplan_id ASC";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					while($row=mysql_fetch_array($result))
 					{
-						if (empty($_POST["goal".$y])){
-							$error = 1;
-						}
-						else
-						{
-							$_SESSION['goal'.$y]=$_POST['goal'.$y];
-							$countgl++;
-							
-						}	
-					}
-					
-					for($strategies=1;  $strategies<=20; $strategies++)
-					{
-						if (empty($_POST["strategy".$strategies])){
-							$error = 1;
-						}
-						else
-						{
-							$_SESSION['strategy'.$strategies]=$_POST['strategy'.$strategies];
-							
-						}	
-					}
-					
-					for($q=1; $q<=30; $q++)
-					{
-						if (empty($_POST["action".$q]))
-						{
-							$error = 1;
-						}
-						else
-						{
-							$_SESSION['action'.$q]=$_POST['action'.$q];
-							$countact=count($_SESSION['action'.$q]);
-							{
-							
-							$goal++;
-							$strg++;
-							?>
-								<tr>
-									<td rowspan="<?php echo $countact;?>"><?php echo $_SESSION['goal'.$q];?></td>
-									<td rowspan="<?php echo $countact;?>"><?php echo $_SESSION['strategy'.$strg];?></td>
-									<?php
-									
-										foreach ($_SESSION['action'.$q] as $key=>$action)
-										{?>
-												
-												<td><?php echo $action;?></td>
-												<td><input class="form-control" type="text"  name="kpi<?php echo $x;?>[]"></input></br>
-													<div class="wrap<?php echo $x;?>"></div>
-													<button class="btn add_button<?php echo $x;?>" style="float: right;">+</button>
-												</td>
-												</tr>
-												<tr>
-										<?php
-										$x++;
-										}															
-							}					
-						}
-					}?>
+						$goal_id			=$row['goal_id'];
+						$goal_desc			=$row['goal_desc'];
+						$strategy_id		=$row['strategy_id'];
+						$strategy_desc		=$row['strategy_desc'];
+						$actionplan_id		=$row['actionplan_id'];
+						$actionplan_desc	=$row['actionplan_desc']; ?>
+						<tr>
+							<td><?php echo $goal_desc;?></td>
+							<td><?php echo $strategy_desc;?></td>
+							<td><?php echo $actionplan_desc;?>
+									<input type="hidden" name="actionplan_id<?php echo $x;?>" value="<?php echo $actionplan_id;?>"></input></td>
+							<td><input class="form-control" type="text"  name="kpi<?php echo $x;?>[]"></input></br>
+								<div class="wrap<?php echo $x;?>"></div>
+								<button class="btn add_button<?php echo $x;?>" style="float: right;">+</button>
+							</td>
+						</tr>
+					<?php
+					$x++;
+					} ?>
 					
 					
 					</table>	
@@ -145,6 +173,8 @@
 				</br><input type="submit" name="next" value="Next" style="float: right;"></input>	
 				<input type="button" VALUE="Back" onClick="history.go(-1);"></input>
 			</form>
+			
+			
 		</div>
 
 	

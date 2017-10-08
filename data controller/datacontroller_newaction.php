@@ -44,14 +44,42 @@
 <body>
 <?php
 	include('sidebar.php');
+	
+					if(isset($_POST['next']))
+					{
+						for($y=1; $y<=30; $y++)
+						{
+							if (empty($_POST["strategy".$y]))
+							{
+								$error = 1;
+							}
+							else
+							{
+								
+								foreach ($_POST['strategy'.$y] as $key=>$value)
+								{
+								
+									$goal_id=$_POST['goal_id'.$y];
+									$sql="INSERT INTO strategy (goal_id, strategy_desc) VALUES ('$goal_id','$value')";
+									$result = mysql_query($sql) or die(mysql_error());  
+								   
+									if (false === $result) 
+									{
+										echo mysql_error();
+									}
+								}	
+								
+							}	
+						}		
+					}
 ?>
 	<div class="wrapper">
 
 <div class="container content-sm">
 	<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 	
-		<div class="table-responsive">  
-			<form action="datacontroller_newkpi.php" method="post">
+		<div class="table-responsive"> 
+<form action="datacontroller_newkpi.php" method="post">
 				<table class="table table-bordered"> 
 					<col width="50">
 					<col width="50">
@@ -62,70 +90,36 @@
 									<th>Action Plan</th>
 								</tr>
 				<?php
-
-					$x = 1;
-					$goal=0;
-					$str=1;
-					$countgl=0;
-					for($y=1;  $y<=10; $y++)
+					$x=1;
+					$sql="SELECT goal.*,strategy.* FROM goal JOIN strategy ON strategy.goal_id=goal.goal_id WHERE module_id='M01' ORDER BY strategy.strategy_id ASC";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					while($row=mysql_fetch_array($result))
 					{
-						if (empty($_POST["goal".$y])){
-							$error = 1;
-						}
-						else
-						{
-							$_SESSION['goal'.$y]=$_POST['goal'.$y];
-							$countgl++;
-							
-						}	
-					}
-					for($q=1; $q<=20; $q++)
-					{
-						if (empty($_POST["strategy".$q])){
-							$error = 1;
-						}
-						else
-						{
-							$_SESSION['strategy'.$q]=$_POST['strategy'.$q];
-							$countstr=count($_SESSION['strategy'.$q]);
-							
-							{
-							
-							$goal++;
-							?>
-								<tr>
-									<td rowspan="<?php echo $countstr;?>"><?php echo $_SESSION['goal'.$goal];?></td>
-									<?php
-										foreach ($_SESSION['strategy'.$q] as $key=>$strategy)
-										{?>
-													<td><?php echo $strategy;?>
-														<input type="hidden" name="strategy<?php echo $str;?>" value="<?php echo $strategy;?>"></input>
-														
-													</td>
-													<td><input class="form-control" type="text"  name="action<?php echo $x;?>[]"></input></br>
-														<div class="wrap<?php echo $x;?>"></div>
-														<button class="btn add_button<?php echo $x;?>" style="float: right;">+</button>
-														<input type="hidden" name="goal<?php echo $x;?>" value="<?php echo $_SESSION['goal'.$goal];?>"></input>
-													</td>
-												</tr>
-												<tr>
-										<?php
-										$x++;
-										$str++;
-										
-										}
-								
-							}
-							
-						}
-					}?>
-					
+						$goal_id		=$row['goal_id'];
+						$goal_desc		=$row['goal_desc'];
+						$strategy_id	=$row['strategy_id'];
+						$strategy_desc	=$row['strategy_desc'];?>
+						<tr>
+							<td><?php echo $goal_desc;?></td>
+							<td><?php echo $strategy_desc;?>
+								<input type="hidden" name="strategy_id<?php echo $x;?>" value="<?php echo $strategy_id;?>"></input></td>
+							<td><input class="form-control" type="text"  name="action<?php echo $x;?>[]"></input></br>
+								<div class="wrap<?php echo $x;?>"></div>
+								<button class="btn add_button<?php echo $x;?>" style="float: right;">+</button>
+							</td>
+						</tr>
+					<?php
+					$x++;
+						
+						
+					} ?>
 					
 					</table>	
 
 				</br><input type="submit" name="next" value="Next" style="float: right;"></input>	
 				<input type="button" VALUE="Back" onClick="history.go(-1);"></input>
-			</form>
+			</form>		
+			
 
 		</div>
 	

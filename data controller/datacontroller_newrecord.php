@@ -45,6 +45,33 @@
 <body>
 <?php
 	include('sidebar.php');
+				if(isset($_POST['next']))
+					{
+						for($y=1; $y<=30; $y++)
+						{
+							if (empty($_POST["kpi".$y]))
+							{
+								$error = 1;
+							}
+							else
+							{
+								
+								foreach ($_POST['kpi'.$y] as $key=>$value)
+								{
+								
+									$actionplan_id=$_POST['actionplan_id'.$y];
+									$sql="INSERT INTO kpi (actionplan_id, kpi_desc) VALUES ('$actionplan_id','$value')";
+									$result = mysql_query($sql) or die(mysql_error());  
+								   
+									if (false === $result) 
+									{
+										echo mysql_error();
+									}
+								}	
+								
+							}	
+						}		
+					}	
 ?>
 	<div class="wrapper">
 
@@ -57,7 +84,7 @@
 
 		</br>
 		<div class="table-responsive">  
-			<form action="datacontroller_target.php" method="post">
+		<form action="datacontroller_target.php" method="post">
 				  <table id ="maintable" class="table"> 
 						<tr>
 							<th colspan="2"></th>
@@ -71,29 +98,26 @@
 						</tr>
 						
 						<?php
-						$x=1;
-						for($y=1;  $y<=20; $y++)
-						{
-							if (empty($_POST["kpi".$y])){
-								$error = 1;
-							}
-							else
-							{
-								$_SESSION['kpi'.$y]=$_POST['kpi'.$y];
-								foreach ($_SESSION['kpi'.$y] as $key=>$kpi)
-								{?>
-								<tr>  
-									<td><?php echo $kpi;?>	
-										<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi;?>"></input></td>
-									<td contenteditable="true"><input type="" name=""/></td>
-									<td contenteditable="true"><input type="" name=""/></td>
-									<td contenteditable="true"><input type="" name=""/></td>
-								</tr><?php
-								
-								$x++;
-							}
-							}							
-						}?>
+					$x=1;
+					$sql="SELECT * FROM kpi ORDER BY kpi_id ASC";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					while($row=mysql_fetch_array($result))
+					{
+						$kpi_id		=$row['kpi_id'];
+						$kpi_desc	=$row['kpi_desc'];?>
+						<tr>  
+							<td><?php echo $kpi_desc;?>	
+								<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
+							</td>
+							<td><input class="form-control" type="text" name="operation_def<?php echo $x;?>"/></td>
+							<td><input class="form-control" type="text" name="baseline1"<?php echo $x;?>/></td>
+							<td><input class="form-control" type="text" name="baseline2"<?php echo $x;?>/></td>
+						</tr>
+						<?php
+						
+					$x++;
+					} ?>
+						
 						
 					</table>
 				<input type="submit" name="next" value="Next" style="float: right;"></input>
@@ -140,11 +164,6 @@
 				StyleSwitcher.initStyleSwitcher();
 				RevolutionSlider.initRSfullWidth();
 			
-					
-					    $("#addRows").click(function(e) {
-					e.preventDefault();
-        $("#maintable").append("<tr><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td><td contenteditable='true'></td></tr>")
-    });		
 					
 					
 			});

@@ -44,6 +44,38 @@
 <body>
 <?php
 	include('sidebar.php');
+	if(isset($_POST['next']))
+					{
+						for($y=1; $y<=50; $y++)
+						{
+							if (empty($_POST["kpi".$y]))
+							{
+								$error = 1;
+							}
+							else
+							{
+								
+								 $value=$_POST['kpi'.$y];
+								{
+								
+									$target1	=$_POST['target1'.$y];
+									$target2	=$_POST['target2'.$y];
+									$target3	=$_POST['target3'.$y];
+									$target4	=$_POST['target4'.$y];
+									$target5	=$_POST['target5'.$y];
+									
+									$sql="INSERT INTO target (kpi_id, target1, target2, target3, target4, target5) VALUES ('$value','$target1','$target2','$target3', '$target4', '$target5')";
+									$result = mysql_query($sql) or die(mysql_error());  
+								   
+									if (false === $result) 
+									{
+										echo mysql_error();
+									}
+								}	
+								
+							}	
+						}		
+					}
 ?>
 
 
@@ -61,38 +93,34 @@
 			<form action="datacontroller_submit.php" method="post">
 				  <table id ="maintable" class="table"> 
 						<tr>
-							<th colspan="2"></th>
-							<th colspan="5">References</th>
+							<th></th>
+							<th colspan="4">References</th>
 						</tr>
 						<tr>
 							<th>Key Performance Indicator (KPI)</th>
 							<th>Ownership</th>
 							<th>Data Source</th>
-							<th>Notes</th>
 							<th>Estimated Cost (RM)</th>
 							<th>Expected Financial Return</th>
 						</tr>
 						
 						<?php
-						for($y=1;  $y<=20; $y++)
-						{
-							if (empty($_POST["kpi".$y])){
-								$error = 1;
-							}
-							else
-							{
-								$_SESSION['kpi'.$y]=$_POST['kpi'.$y];
-								?>
+						$x=1;
+					$sql="SELECT * FROM kpi ORDER BY kpi_id ASC";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					while($row=mysql_fetch_array($result))
+					{
+						$kpi_id		=$row['kpi_id'];
+						$kpi_desc	=$row['kpi_desc'];?>
 								<tr>  
-									<td><?php echo $_POST['kpi'.$y];?></td>
-									<td contenteditable="true"><input type="" name=""/></td>
-									<td contenteditable="true"><input type="" name=""/></td>
-									<td contenteditable="true"><input type="" name=""/></td>
-									<td contenteditable="true"><input type="" name=""/></td>
-									<td contenteditable="true"><input type="" name=""/></td>
+									<td><?php echo $kpi_desc;?></td>
+										<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input></td>
+									<td><input class="form-control" type="" name="ownership<?php echo $x;?>"/></td>
+									<td><input class="form-control" type="" name="data_source<?php echo $x;?>"/></td>
+									<td><input class="form-control" type="" name="estimated_cost<?php echo $x;?>"/></td>
+									<td><input class="form-control" type="" name="exp_fin_return<?php echo $x;?>"/></td>
 								</tr><?php
-							
-							}							
+						$x++;				
 						}?>
 						
 					</table>

@@ -49,12 +49,12 @@
 			   <table class="table table-bordered"> 
 					<tr>
 						<th></th>
-						<th colspan="5">Academic </br> Ovearching goal: To be the Preferred University for Staff and Students</th>						
+						<th colspan="5"> </br> </th>						
 						<th colspan="2">BASELINE</th>
 						<th colspan="5">TARGET</th>
 						<th colspan="4">REFERENCE</th>
 					</tr>
-					<tr>  
+					<tr> 
 						<th>No.</th>  
 						<th>Goals</th>  
 						<th>Strategies</th>
@@ -73,69 +73,70 @@
 						<th>Estimated Cost (RM)</th> 
 						<th>Expected Financial Returns</th> 											
 					</tr>
+					<?php
+					$x=1;
+					$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						WHERE module_id='M01'";
+						$result = mysql_query($sql) or die(mysql_error()); 
+						while($row=mysql_fetch_array($result))
+						{
+							$goal_desc		=$row['goal_desc'];
+							$strategy_desc	=$row['strategy_desc'];
+							$actionplan_desc=$row['actionplan_desc'];
+							$kpi_desc		=$row['kpi_desc'];
+							$operation_def	=$row['operation_def'];
+							$baseline1		=$row['baseline1'];
+							$baseline2		=$row['baseline2'];
+							$target1		=$row['target1'];
+							$target2		=$row['target2'];
+							$target3		=$row['target3'];
+							$target4		=$row['target4'];
+							$target5		=$row['target5'];
+							$ownership		=$row['ownership'];
+							$data_source	=$row['data_source'];
+							$estimated_cost	=$row['estimated_cost'];
+							$exp_fin_return	=$row['exp_fin_return'];
+						
+					
+					?>
+					
 					<tr>  
-						<td>1</td>
-						<td>Vibrant campus living of the 21st Century</td>
-						<td>Provide suitable accommodation for students</td>
-						<td>Provide on campus accommodation to the students</td>
-						<td>% of undergraduates living in campus accommodation</td>
-						<td>To fulfill the minimum requirements for blended learning, a course in SPeCTRUM</td>
-						<td>70.87%</td>
-						<td>74.3%</td>
-						<td>70%</td>
-						<td>70%</td>
-						<td>70%</td>
-						<td>75%</td>
-						<td>75%</td>
-						<td>HEPA (Accommodation)</td>
-						<td>ISIS</td>
-						<td>RM450 Million</td>
-						<td></td>
+						<td><?php echo $x;?></td>
+						<td><?php echo $goal_desc;?></td>
+						<td><?php echo $strategy_desc;?></td>
+						<td><?php echo $actionplan_desc;?></td>
+						<td><?php echo $kpi_desc;?></td>
+						<td><?php echo $operation_def;?></td>
+						<td><?php echo $baseline1;?></td>
+						<td><?php echo $baseline2;?></td>
+						<td><?php echo $target1;?></td>
+						<td><?php echo $target2;?></td>
+						<td><?php echo $target3;?></td>
+						<td><?php echo $target4;?></td>
+						<td><?php echo $targett5;?></td>
+						<td><?php echo $ownership;?></td>
+						<td><?php echo $data_source;?></td>
+						<td><?php echo $estimated_cost;?></td>
+						<td><?php echo $exp_fin_return;?></td>
 					</tr>
-					<tr>
-						<td>2</td>
-						<td>Vibrant campus living of the 21st Century</td>
-						<td>Provide suitable accommodation for students</td>
-						<td>Provide accommodation for the disabled</td>
-						<td>% of students with disabilities living in campus accommodation</td>
-						<td></td>
-						<td>50%</td>
-						<td>62.5%</td>
-						<td>65%</td>
-						<td>70%</td>
-						<td>75%</td>
-						<td>80%</td>
-						<td>85%</td>
-						<td>HEPA (SKK)</td>
-						<td>Survey by SKK</td>
-						<td>RM450 Million</td>		
-						<td></td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>Global citizens with global mindedness and entrepreneurial values</td>
-						<td>Encourage community engagement at international level </td>
-						<td>Provide volunteering based programs</td>
-						<td>Number of activities/ programs per year</td>
-						<td></td>
-						<td>2</td>
-						<td>5</td>
-						<td>6</td>
-						<td>7</td>
-						<td>8</td>
-						<td>9</td>
-						<td>10</td>
-						<td>HEPA (Unit Kesukarelawanan- ULK)</td>
-						<td></td>
-						<td>RM200,000/ 5 years</td>
-						<td></td>
-					</tr>
+					
+							<?php
+					$x++;
+					}
+							?>
 				</table>
 				
 			</div>
 			<div style="margin:20px;">
 				<form action="index.php" method="post">
-					<input type="checkbox" name="check" value="yes"> I hereby admit that all records / information submitted are true.</input></br></br>
+					<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
 					<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit this form?');" /></input>
 				</form>
 			</div>
