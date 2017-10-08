@@ -57,8 +57,9 @@
 	
 		<?php
 		
-		$_SESSION['goal']=$_POST['goal'];
-		
+	//	$_SESSION['goal']=$_POST['goal'];
+	//	$gg=$_SESSION['goal'];
+	//	print_r ($gg);
 	?>
 <div class="w3-main" style="margin-left:300px;margin-top:20px;">
 		<div class="table-responsive">  
@@ -76,12 +77,51 @@
 		if (false === $result) {
 		 echo mysql_error();
 
+
     }
 	 }
+// $gg=$_SESSION['goal'];
+		// print_r ($gg);
+// require_once 'dbtest.php';
+// $con=getdb();
+// for 		
+// foreach ($_POST['goal'] as $key=>$value)
+// {
+// $goal=mysqli_real_escape_string($value);	
+// $sql=("INSERT INTO goli (goals) VALUES ($goal)");
+// $result = mysqli_query($con, $sql) or die(mysqli_error($con));  
+   
+   // if (false === $result) {
+    // echo mysql_error();
+
+   // }
+// } 
+
+// ?>
 
 
-		?>
-			<form action="datacontroller_newaction.php" method="post">
+	
+	
+ <?php			
+
+	 // require 'dbtest.php';
+ 	
+// if (isset($_POST['goal'])){
+// foreach ($_POST['goal'] as $key=>$value)
+// {
+
+// $goal=mysql_real_escape_string($value);	
+// $sql=("INSERT INTO goli (goals) VALUES ($goal)");
+// $result = mysql_query($sql) or die(mysql_error($conn)); 
+   // if (false === $result) {
+    // echo mysql_error();
+
+   // }
+// }
+// }?>
+		
+			
+		<form action="datacontroller_newaction.php" method="post">
 				<table class="table table-bordered"> 
 					<col width="50">
 					<col width="190">
@@ -89,24 +129,33 @@
 						<th>Goal</th>
 						<th>Strategy</th>
 					</tr>
-					<?php
+		<?php
 					
-					$x = 1;
-					foreach ($_SESSION['goal'] as $key=>$value)
-					{
+		$x = 1;
 
-						?>
+		$sql="SELECT * FROM goal";
+		$result = mysql_query($sql) or die(mysql_error()); 
+		while($row=mysql_fetch_array($result))
+		{
+			$goal_id=$row['goal_id'];
+			$goal_desc=$row['goal_desc'];?>
+			
+			<tr>
+				<td><?php echo $goal_desc;?>
+					<input class="form-control" type="hidden" name="goal_id" value="<?php echo $goal_id;?>"></input>
+				</td>
+				<td><input class="form-control" type="text" name="strategy<?php echo $x;?>[]"></input></br>
+					<div class="wrap<?php echo $x;?>"></div>
+						<button class="btn add_button<?php echo $x;?>" style="float: right;">+</button>
+				</td>
+			</tr>
+			<?php
+			$x++;
+			
+		}
+
 					
-						<tr>
-							<td><?php echo $value;?><input class="form-control" type="hidden" name="goal<?php echo $x;?>" value="<?php echo $value;?>"></input>
-							</td>
-							<td><input class="form-control" type="text" name="strategy<?php echo $x;?>[]"></input></br>
-								<div class="wrap<?php echo $x;?>"></div>
-								<button class="btn add_button<?php echo $x;?>" style="float: right;">+</button>
-							</td>
-						</tr>
-						<?php
-						$x++;
+						
 					
    // $goal=mysqli_real_escape_string($value);	
 // $sql=("INSERT INTO goli (goals) VALUES ($goal)");
@@ -115,7 +164,7 @@
    // if (false === $result) {
     // echo mysql_error();
 
-   }
+   
    
 					?>
 				</table>

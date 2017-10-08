@@ -10,7 +10,7 @@ session_start();
 			$row=mysql_fetch_array($result,MYSQL_ASSOC);		
 			if(is_array($row)) 
 			{
-				$_SESSION['user_id'] 	= $row['user_id'];
+				$_SESSION['user_id'] 	= $row['userid'];
 				$_SESSION['username'] 	= $row['username'];
 				$_SESSION['password'] = $row['password'];
 				$_SESSION['role']	=$row['role'];
