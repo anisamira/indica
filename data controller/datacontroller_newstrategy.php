@@ -40,12 +40,14 @@
 
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="assets/css/custom.css">
-
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
 
 <body>
 <?php
-
+					header('Cache-Control: no cache'); //no cache
+					session_cache_limiter('private_no_expire');
+					session_start();
 	include('sidebar.php');
 ?>
 
@@ -57,14 +59,21 @@
 	
 		<?php
 		
+<<<<<<< HEAD
 	//	$_SESSION['goal']=$_POST['goal'];
 	//	$gg=$_SESSION['goal'];
 	//	print_r ($gg);
+=======
+		$_SESSION['goal']=$_POST['goal'];
+		$gg=$_SESSION['goal'];
+		print_r ($gg);
+>>>>>>> ab3210830b50391b77110fc2f44b7c3d388527e8
 	?>
 <div class="w3-main" style="margin-left:300px;margin-top:20px;">
 		<div class="table-responsive">  
 
 <?php
+<<<<<<< HEAD
  if (($_SESSION['username']) == 'usera') 
 		 {
 			 $module_id="M01";
@@ -80,6 +89,9 @@
 
     }
 	 }
+=======
+
+>>>>>>> ab3210830b50391b77110fc2f44b7c3d388527e8
 // $gg=$_SESSION['goal'];
 		// print_r ($gg);
 // require_once 'dbtest.php';
@@ -98,8 +110,11 @@
 // } 
 
 // ?>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ab3210830b50391b77110fc2f44b7c3d388527e8
 	
 	
  <?php			
@@ -118,10 +133,18 @@
 
    // }
 // }
+<<<<<<< HEAD
 // }?>
 		
 			
 		<form action="datacontroller_newaction.php" method="post">
+=======
+// }?> 
+	
+	
+	
+			<form action="datacontroller_newaction.php" method="post">
+>>>>>>> ab3210830b50391b77110fc2f44b7c3d388527e8
 				<table class="table table-bordered"> 
 					<col width="50">
 					<col width="190">
