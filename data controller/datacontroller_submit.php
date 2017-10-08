@@ -38,6 +38,40 @@
 <body>
 <?php
 	include('sidebar.php');
+	
+	if(isset($_POST['next']))
+					{
+						for($y=1; $y<=50; $y++)
+						{
+							if (empty($_POST["kpi".$y]))
+							{
+								$error = 1;
+							}
+							else
+							{
+								
+								 $value=$_POST['kpi'.$y];
+								{
+								
+									$ownership	=$_POST['ownership'.$y];
+									$data_source	=$_POST['data_source'.$y];
+									$estimated_cost	=$_POST['estimated_cost'.$y];
+									$exp_fin_return	=$_POST['exp_fin_return'.$y];
+									
+									$sql="INSERT INTO reference (kpi_id, ownership, data_source, estimated_cost, exp_fin_return) VALUES ('$value','$ownership','$data_source','$estimated_cost', '$exp_fin_return')";
+									$result = mysql_query($sql) or die(mysql_error());  
+								   
+									if (false === $result) 
+									{
+										echo mysql_error();
+									}
+								}	
+								
+							}	
+						}		
+					}
+	
+	
 ?>
 	<div class="wrapper">
 		<div class="container">
@@ -120,7 +154,7 @@
 						<td><?php echo $target2;?></td>
 						<td><?php echo $target3;?></td>
 						<td><?php echo $target4;?></td>
-						<td><?php echo $targett5;?></td>
+						<td><?php echo $target5;?></td>
 						<td><?php echo $ownership;?></td>
 						<td><?php echo $data_source;?></td>
 						<td><?php echo $estimated_cost;?></td>

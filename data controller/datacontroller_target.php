@@ -60,26 +60,27 @@
 							{
 								
 									$value			=$_POST['kpi'.$y];
+								{
 									$operation_def	=$_POST['operation_def'.$y];
-									$baseline1		=$_POST['bseline1'.$y];
+									$baseline1		=$_POST['baseline1'.$y];
 									$baseline2		=$_POST['baseline2'.$y];
 									
-									$sql="UPDATE kpi SET operation_def='$operation_def' WHERE kpi_id='$value'";
-									$result = mysql_query($sql) or die(mysql_error());  
+									$sql1="UPDATE kpi SET operation_def='$operation_def' WHERE kpi_id='$value'";
+									$result = mysql_query($sql1) or die(mysql_error());  
 								   
 									if (false === $result) 
 									{
 										echo mysql_error();
 									}
 									
-									$sql="INSERT INTO baseline (baseline1, baseline2, kpi_id) VALUES ('$baseline1','$baseline2','$value')";
-									$result = mysql_query($sql) or die(mysql_error());  
+									$sql2="INSERT INTO baseline (baseline1, baseline2, kpi_id) VALUES ('$baseline1','$baseline2','$value')";
+									$result = mysql_query($sql2) or die(mysql_error());  
 								   
 									if (false === $result) 
 									{
 										echo mysql_error();
 									}
-									
+								}
 								
 							}	
 						}		
