@@ -1,90 +1,154 @@
-
 <?php
-	include ('sidebar.php');
+include ('db.php');
+session_start();	
+	if($_SERVER["REQUEST_METHOD"]=="POST")
+		{
+			$myusername=mysql_real_escape_string($_POST['username'],$conn);
+			$mypassword=mysql_real_escape_string($_POST['password'],$conn);
+			$sql="SELECT * from user WHERE username='$myusername' AND password='$mypassword'";
+			$result=mysql_query($sql,$conn);
+			$row=mysql_fetch_array($result,MYSQL_ASSOC);		
+			if(is_array($row)) 
+			{
+				$_SESSION['user_id'] 	= $row['user_id'];
+				$_SESSION['username'] 	= $row['username'];
+				$_SESSION['password'] = $row['password'];
+				$_SESSION['role']	=$row['role'];
+					
+						$_SESSION['login_user']=$myusername;	
+						if($myusername=='admin'){     
+						header("location:admin.php ");
+						}elseif($myusername=='usera'){
+						header("location:indexbc.php ");
+						 }elseif($myusername=='userb'){
+						header("location:userb.php ");
+						 }elseif($myusername=='tnc'){
+						header("location:tnc.php ");
+						 }
+
+						
+			
+			} 
+		}
 ?>
 
 
-<!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-  <!-- Header -->
-  <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i>Your Modules</b></h5>
-  </header>
+	
+	
+<html>
+  <head>
+    <title>INDICA UM</title>
+  </head>
 
-  <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
-      <div class="w3-container w3-red w3-padding-16">
-        <div class="w3-left"><i class="fa fa-comment w3-xxxlarge"></i></div>
-        <div class="w3-right"><h3></h3></div>
-        <div class="w3-clear"></div>
-        <h4><a href="main.php" >Academic</a></h4>
-        </div>
-    </div>
-    </div>
+<style>
+  @charset "UTF-8";
+/*A Flat Design Login Page by Codelator.com*/
 
-  <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> Available Modules</b></h5>
-  </header>
+body{
+	background-color:#2c3335;
+	color:#f5f5f5;
+	text-align:center;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+}
 
-  <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
-      <div class="w3-container w3-blue w3-padding-16">
-        <div class="w3-left"><i class="fa fa-eye w3-xxxlarge"></i></div>
-        <div class="w3-right"><h3></h3></div>
-        <div class="w3-clear"></div>
-        <h4>Student Life</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-teal w3-padding-16">
-        <div class="w3-left"><i class="fa fa-share-alt w3-xxxlarge"></i></div>
-        <div class="w3-right"><h3></h3></div>
-        <div class="w3-clear"></div>
-        <h4>Excellent Research</h4>
-      </div>
-    </div>
-    <div class="w3-quarter">
-      <div class="w3-container w3-orange w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-        <div class="w3-right"><h3></h3></div>
-        <div class="w3-clear"></div>
-        <h4>Internalization and Branding</h4>
-      </div>
-    </div>
-    </div>
+a{
+	color:#fff;
+	text-decoration:none;
+}
+	
+#loginform{
+	margin-top:150px;
+  margin-left:auto;
+  margin-right:auto;
+	width:270px;
+}
+	
+.input{
+	width:270px;
+    padding:15px 25px;
+    font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	background: #f5f5f5;
+	border:none;
+	border-radius: 5px;
+	color: #333;
+	font-size: 14px;
+	margin-top:15px;
+}
 
-     <div class="w3-row-padding w3-margin-bottom">
-    <div class="w3-quarter">
-      <div class="w3-container w3-green w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-        <div class="w3-right"><h3></h3></div>
-        <div class="w3-clear"></div>
-        <h4>Infrastructure Planning and Development</h4>
-      </div>
-    </div>
-     <div class="w3-quarter">
-      <div class="w3-container w3-brown w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-        <div class="w3-right"><h3></h3></div>
-        <div class="w3-clear"></div>
-        <h4>Financial Sustainability and Wealth Creation</h4>
-      </div>
-    </div>
-     <div class="w3-quarter">
-      <div class="w3-container w3-purple w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-        <div class="w3-right"><h3></h3></div>
-        <div class="w3-clear"></div>
-        <h4>Faculty and Staff Recruitment and Development</h4>
-      </div>
-    </div>
-  </div>
+.loginbutton{
+	background-color:#ffdd00;
+	border-radius:5px/5px;
+	-webkit-border-radius:5px/5px;
+	-moz-border-radius:5px/5px;
+	color:#333;
+	display:inline-block;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+	font-size:18px;
+	font-weight:bold;
+	width:270px;
+	text-align:center;
+	line-height:50px;
+	text-decoration:none;
+	height:50px;
+	margin-top:20px;
+	margin-bottom:20px;
+	border:none;
+	outline:0;
+	cursor: pointer;
+}
 
+.loginbutton:active {
+	position:relative;
+	top:1px;
+}
 
-  <!-- End page content -->
-</div>
+.loginbutton:hover{
+	background-color:#e5bf05;
+}
 
+.alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+}
 
-</body>
-</html>
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}
+  </style>
+
+  <body style="margin-top:5%">
+
+  <?php 
+   if(!empty($_GET['status'])){?>
+          <div class="alert">
+          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+          <strong>You have successfully logged out</strong> 
+          </div>
+  <?php }
+  ?>
+
+    <h1>Login Page</h1>
+    <p>Please enter your username and password:</p>
+    <form action="" method="post">
+
+    <input type="text" class="input" placeholder="E-mail" name="username" /> <br>
+    <input type="password" class="input" placeholder="Password" name="password" /><br>
+    <input type="submit" class="loginbutton" value="Login" /><br>
+    </form>
+
+  </body>
+</html> 
+

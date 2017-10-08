@@ -40,14 +40,12 @@
 
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="assets/css/custom.css">
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
 
 <body>
 <?php
-					header('Cache-Control: no cache'); //no cache
-					session_cache_limiter('private_no_expire');
-					session_start();
+
 	include('sidebar.php');
 ?>
 
@@ -66,22 +64,23 @@
 		<div class="table-responsive">  
 
 <?php
+ if (($_SESSION['username']) == 'usera') 
+		 {
+			 $module_id="M01";
+		 }
+ foreach ($_POST['goal'] as $key=>$value)
+	 {
+	 $sql="INSERT INTO goal (module_id,goal_desc) VALUES ('$module_id','$value')";
+	 $result = mysql_query($sql) or die(mysql_error());  
+	   
+		if (false === $result) {
+		 echo mysql_error();
 
-// require_once 'dbtest.php';
-// $con=getdb();		
-		// foreach ($_POST['goal'] as $key=>$value)
-// {
-// $goal[$key]=mysqli_real_escape_string($con,$value);	
-// $sql=("INSERT INTO goli (goals) VALUES ($goal)");
-// $result = mysqli_query($con, $sql) or die(mysqli_error($con));  
-   
-   // if (false === $result) {
-    // echo mysql_error();
+    }
+	 }
 
-   // }
-// } 
-?>
-		
+
+		?>
 			<form action="datacontroller_newaction.php" method="post">
 				<table class="table table-bordered"> 
 					<col width="50">

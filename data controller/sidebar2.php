@@ -1,8 +1,3 @@
-<?php
-include_once ('connection.php');
-include_once('db.php');
-?>
-
 <!DOCTYPE html>
 <html>
 <title>INDICA UM</title>
@@ -13,10 +8,12 @@ include_once('db.php');
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
+html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
 <body>
-
+<?php
+	include('db.php')
+?>
 <!-- Top container -->
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
@@ -26,44 +23,28 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
 </div>
 
 <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-collapse w3-white" style="z-index:3;width:300px;" id="mySidebar"></br>
+<nav class="w3-sidebar w3-collapse w3-white" style="z-index:3;width:300px;" id="mySidebar"><br>
   <div class="w3-container w3-row">
     <div class="w3-col s4">
       <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
     </div>
     <div class="w3-col s8 w3-bar">
-      <span>Welcome, <?php echo $_SESSION['username'];?></strong></span><br>
-
-  
+      <span>Welcome, <strong> ANIS  </strong></span><br>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-user"></i></a>
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-cog"></i></a>
     </div>
-  
   </div>
   <hr> 
   <div class="w3-container">
     <!--<h5>Dashboard</h5>-->
   </div>
   <div class="w3-bar-block">
-   <!-- <a href="admin.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-dashboard fa-fw"></i>  Home</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>-->
-    </br>
-    <?php 
-    if (($_SESSION['username']) == 'admin') {?>
-	<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cogs fa-fw"></i>  Site Administration</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-universal-access fa-fw"></i>  Manage Users</a>
-    <a href="logtrails.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>  Log Trails</a>
-    
-    <?php
-	} 
-	 if (($_SESSION['username']) == 'usera') {?>
-		 <a href="main.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-dashboard fa-fw"></i>  Home</a>
-	<?php
-	}?>
-    </br>
-    <a href="logout.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-power-off fa-fw"></i>  Log Out</a>
+    <!--<a href="#" class="w3-bar-item w3-button w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>-->
+    <a href="index.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-users fa-fw"></i>  Overview</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>Status</a>
+    <!--<a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cog fa-fw"></i>  Settings</a><br><br>-->
   </div>
 </nav>
 
@@ -71,8 +52,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
+
   <!-- End page content -->
-  </div>
+</div>
 
 <script>
 // Get the Sidebar
