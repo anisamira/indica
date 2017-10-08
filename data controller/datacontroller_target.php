@@ -48,6 +48,42 @@
 
 <?php
 	include('sidebar.php');
+				if(isset($_POST['next']))
+					{
+						for($y=1; $y<=50; $y++)
+						{
+							if (empty($_POST["kpi".$y]))
+							{
+								$error = 1;
+							}
+							else
+							{
+								
+									$value			=$_POST['kpi'.$y];
+									$operation_def	=$_POST['operation_def'.$y];
+									$baseline1		=$_POST['bseline1'.$y];
+									$baseline2		=$_POST['baseline2'.$y];
+									
+									$sql="UPDATE kpi SET operation_def='$operation_def' WHERE kpi_id='$value'";
+									$result = mysql_query($sql) or die(mysql_error());  
+								   
+									if (false === $result) 
+									{
+										echo mysql_error();
+									}
+									
+									$sql="INSERT INTO baseline (baseline1, baseline2, kpi_id) VALUES ('$baseline1','$baseline2','$value')";
+									$result = mysql_query($sql) or die(mysql_error());  
+								   
+									if (false === $result) 
+									{
+										echo mysql_error();
+									}
+									
+								
+							}	
+						}		
+					}
 ?>
 	
 	<div class="wrapper">
@@ -78,26 +114,22 @@
 						
 						<?php
 						$x=1;
-						for($y=1;  $y<=20; $y++)
-						{
-							if (empty($_POST["kpi".$y])){
-								$error = 1;
-							}
-							else
-							{
-								$_SESSION['kpi'.$y]=$_POST['kpi'.$y];
-								?>
+					$sql="SELECT * FROM kpi ORDER BY kpi_id ASC";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					while($row=mysql_fetch_array($result))
+					{
+						$kpi_id		=$row['kpi_id'];
+						$kpi_desc	=$row['kpi_desc'];?>
 								<tr>  
-									<td><?php echo $_POST['kpi'.$y];?></td>
-										<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $_POST['kpi'.$y];?>"></input></td>
-									<td contenteditable="true"><input type="text" name=""/></td>
-									<td contenteditable="true"><input type="text" name=""/></td>
-									<td contenteditable="true"><input type="text" name=""/></td>
-									<td contenteditable="true"><input type="text" name=""/></td>
-									<td contenteditable="true"><input type="text" name=""/></td>
+									<td><?php echo $kpi_desc;?></td>
+										<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input></td>
+									<td><input class="form-control" type="text" name="target1<?php echo $x;?>"/></td>
+									<td><input class="form-control" type="text" name="target2<?php echo $x;?>"/></td>
+									<td><input class="form-control" type="text" name="target3<?php echo $x;?>"/></td>
+									<td><input class="form-control" type="text" name="target4<?php echo $x;?>"/></td>
+									<td><input class="form-control" type="text" name="target5<?php echo $x;?>"/></td>
 								</tr><?php
-							$x++;
-							}							
+							$x++;							
 						}?>
 						
 					</table>

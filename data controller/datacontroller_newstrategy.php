@@ -45,9 +45,6 @@
 
 <body>
 <?php
-					header('Cache-Control: no cache'); //no cache
-					session_cache_limiter('private_no_expire');
-					session_start();
 	include('sidebar.php');
 ?>
 
@@ -59,39 +56,33 @@
 	
 		<?php
 		
-<<<<<<< HEAD
+
 	//	$_SESSION['goal']=$_POST['goal'];
 	//	$gg=$_SESSION['goal'];
 	//	print_r ($gg);
-=======
-		$_SESSION['goal']=$_POST['goal'];
-		$gg=$_SESSION['goal'];
-		print_r ($gg);
->>>>>>> ab3210830b50391b77110fc2f44b7c3d388527e8
+
 	?>
 <div class="w3-main" style="margin-left:300px;margin-top:20px;">
 		<div class="table-responsive">  
 
 <?php
-<<<<<<< HEAD
- if (($_SESSION['username']) == 'usera') 
-		 {
-			 $module_id="M01";
-		 }
- foreach ($_POST['goal'] as $key=>$value)
-	 {
-	 $sql="INSERT INTO goal (module_id,goal_desc) VALUES ('$module_id','$value')";
-	 $result = mysql_query($sql) or die(mysql_error());  
-	   
-		if (false === $result) {
-		 echo mysql_error();
-
-
-    }
-	 }
-=======
-
->>>>>>> ab3210830b50391b77110fc2f44b7c3d388527e8
+	if(isset($_POST['next']))
+	{
+		if (($_SESSION['username']) == 'usera') 
+				{
+					$module_id="M01";
+				}
+		foreach ($_POST['goal'] as $key=>$value)
+			 {
+				$sql="INSERT INTO goal (module_id,goal_desc) VALUES ('$module_id','$value')";
+				$result = mysql_query($sql) or die(mysql_error());  
+			   
+				if (false === $result)
+					{
+						echo mysql_error();
+					}
+			 }
+	}
 // $gg=$_SESSION['goal'];
 		// print_r ($gg);
 // require_once 'dbtest.php';
@@ -110,11 +101,7 @@
 // } 
 
 // ?>
-<<<<<<< HEAD
 
-
-=======
->>>>>>> ab3210830b50391b77110fc2f44b7c3d388527e8
 	
 	
  <?php			
@@ -133,18 +120,14 @@
 
    // }
 // }
-<<<<<<< HEAD
+
 // }?>
 		
 			
 		<form action="datacontroller_newaction.php" method="post">
-=======
-// }?> 
-	
-	
+
 	
 			<form action="datacontroller_newaction.php" method="post">
->>>>>>> ab3210830b50391b77110fc2f44b7c3d388527e8
 				<table class="table table-bordered"> 
 					<col width="50">
 					<col width="190">
@@ -156,7 +139,7 @@
 					
 		$x = 1;
 
-		$sql="SELECT * FROM goal";
+		$sql="SELECT * FROM goal where module_id='M01' ORDER BY goal_id ASC";
 		$result = mysql_query($sql) or die(mysql_error()); 
 		while($row=mysql_fetch_array($result))
 		{
@@ -165,7 +148,7 @@
 			
 			<tr>
 				<td><?php echo $goal_desc;?>
-					<input class="form-control" type="hidden" name="goal_id" value="<?php echo $goal_id;?>"></input>
+					<input class="form-control" type="hidden" name="goal_id<?php echo $x;?>" value="<?php echo $goal_id;?>"></input>
 				</td>
 				<td><input class="form-control" type="text" name="strategy<?php echo $x;?>[]"></input></br>
 					<div class="wrap<?php echo $x;?>"></div>

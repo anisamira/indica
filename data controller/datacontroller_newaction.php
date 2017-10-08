@@ -45,43 +45,81 @@
 <?php
 	include('sidebar.php');
 	
-					$x = 1;
-					$goal=0;
-					$str=1;
-					$countgl=0;
-					
-					for($y=1;  $y<=10; $y++)
+					if(isset($_POST['next']))
 					{
-						if (empty($_POST["strategy".$y]))
+						for($y=1; $y<=30; $y++)
 						{
-							$error = 1;
-						}
-						else
-						{
-							
-							foreach ($_POST['strategy'.$y] as $key=>$value)
+							if (empty($_POST["strategy".$y]))
 							{
-								$goal_id=$_POST['goal_id'];
-								$sql="INSERT INTO strategy (goal_id, strategy_desc) VALUES ('$goal_id','$value')";
-								$result = mysql_query($sql) or die(mysql_error());  
-							   
-								if (false === $result) 
+								$error = 1;
+							}
+							else
+							{
+								
+								foreach ($_POST['strategy'.$y] as $key=>$value)
 								{
-									echo mysql_error();
-								}
+								
+									$goal_id=$_POST['goal_id'.$y];
+									$sql="INSERT INTO strategy (goal_id, strategy_desc) VALUES ('$goal_id','$value')";
+									$result = mysql_query($sql) or die(mysql_error());  
+								   
+									if (false === $result) 
+									{
+										echo mysql_error();
+									}
+								}	
+								
 							}	
-							
-						}	
-					}				
-	
+						}		
+					}
 ?>
 	<div class="wrapper">
 
 <div class="container content-sm">
 	<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 	
-		<div class="table-responsive">  
-		
+		<div class="table-responsive"> 
+<form action="datacontroller_newkpi.php" method="post">
+				<table class="table table-bordered"> 
+					<col width="50">
+					<col width="50">
+					<col width="190">
+								<tr>
+									<th>Goal</th>
+									<th>Strategy</th>
+									<th>Action Plan</th>
+								</tr>
+				<?php
+					$x=1;
+					$sql="SELECT goal.*,strategy.* FROM goal JOIN strategy ON strategy.goal_id=goal.goal_id WHERE module_id='M01' ORDER BY strategy.strategy_id ASC";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					while($row=mysql_fetch_array($result))
+					{
+						$goal_id		=$row['goal_id'];
+						$goal_desc		=$row['goal_desc'];
+						$strategy_id	=$row['strategy_id'];
+						$strategy_desc	=$row['strategy_desc'];?>
+						<tr>
+							<td><?php echo $goal_desc;?></td>
+							<td><?php echo $strategy_desc;?>
+								<input type="hidden" name="strategy_id<?php echo $x;?>" value="<?php echo $strategy_id;?>"></input></td>
+							<td><input class="form-control" type="text"  name="action<?php echo $x;?>[]"></input></br>
+								<div class="wrap<?php echo $x;?>"></div>
+								<button class="btn add_button<?php echo $x;?>" style="float: right;">+</button>
+							</td>
+						</tr>
+					<?php
+					$x++;
+						
+						
+					} ?>
+					
+					</table>	
+
+				</br><input type="submit" name="next" value="Next" style="float: right;"></input>	
+				<input type="button" VALUE="Back" onClick="history.go(-1);"></input>
+			</form>		
+			
 
 		</div>
 	
