@@ -1,0 +1,24 @@
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        $('#checkbox1').change(function() {
+            if ($(this).is(":checked"))
+                $('#autoUpdate').fadeIn('slow');
+            else
+                $('#autoUpdate').fadeOut('slow');
+
+        });
+    });
+</script>
+
+
+<html>
+
+Add another director <input type="checkbox" id="checkbox1" />
+<div id="autoUpdate" class="autoUpdate">
+    content
+</div>
+
+
+</html>

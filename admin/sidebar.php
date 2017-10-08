@@ -31,7 +31,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
       <img src="https://www.w3schools.com/w3images/avatar2.png" class="w3-circle w3-margin-right" style="width:46px">
     </div>
     <div class="w3-col s8 w3-bar">
-      <span>Welcome, <?php echo $_SESSION['login']; ?><strong> <?php echo $_SESSION['username']; ?> </strong></span><br>
+      <span>Welcome,<strong> <?php echo $_SESSION['username']; ?> </strong></span><br>
 
   
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
@@ -45,14 +45,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
     <!--<h5>Dashboard</h5>-->
   </div>
   <div class="w3-bar-block">
-    <a href="admin.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-dashboard fa-fw"></i>  Home</a>
+    <a href="main.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-dashboard fa-fw"></i>  Home</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
     </br>
     <?php 
     if (($_SESSION['username']) == 'admin') {?>
     <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cogs fa-fw"></i>  Site Administration</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-universal-access fa-fw"></i>  Manage Users</a>
+    <a href="admin_manageuser.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-universal-access fa-fw"></i>  Manage Users</a>
     <a href="logtrails.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>  Log Trails</a>
     
     <?php } ?>

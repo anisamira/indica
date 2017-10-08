@@ -4,43 +4,19 @@ include ('sidebar.php');
 
 <!DOCTYPE html>
 <html>
+
+<head>
+<link rel="stylesheet" type="text/css" href="table.css" />
+</head>
+
 <style>
-html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
-   #myTable {
-        border-collapse: collapse;
-        width: 80%;
-        border: 1px solid #ddd;
-        font-size: 14px;
-        margin-bottom: 0px;
-    }
-    
-    #myTable th,
-    #myTable td {
-        text-align: left;
-        padding: 14px;
-    }
-    
-    #myTable tr {
-        border-bottom: 1px solid goldenrod;
-        background-color: #ddd;
-        color: black;
-    }
-    
-    #myTable tr.header,
-    #myTable tr:hover {
-        background-color: #f1f1f1;
-        cursor: default;
-    }
-
-    #myTable.fixed { table-layout:fixed; }
-#myTable.fixed td { overflow: hidden; }
-
+  html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 </style>
 
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px;margin-top:43px;">
 <br>
-<strong>Log Trails</strong>
+<strong><center>Log Trails</strong>
       <br><br><table id='myTable' style= " margin: 0 auto;" >
       <thead>
         <tr>
@@ -71,7 +47,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
 
       </tbody>
     </table>
-
+<br>
   <!-- End page content -->
 </div>
 </body>

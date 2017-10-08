@@ -29,9 +29,8 @@ include('db.php');
       $sql1= "UPDATE user SET login_time=now() WHERE username = '$user' AND password ='$pass'";
       $rs1= mysql_query($sql1,$conn);
         
-
         if($user=='admin'){     
-        header("location:admin.php ");
+        header("location:main.php ");
         }elseif($user=='usera'){
         header("location:usera.php ");
          }elseif($user=='userb'){
