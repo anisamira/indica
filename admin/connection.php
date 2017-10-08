@@ -1,53 +1,24 @@
 <?php
 include('db.php');
 
-  $user = "";
-  $pass = "";
-  $validated = false;
-
-  if ($_POST)
-  {
-    $user = $_POST['username'];
-    $pass = $_POST['password'];
-  }
-
   session_start();
-  $_SESSION['login'] = "";
-  if($user!="" && $pass!="")
-  {
-    
-    $sql = "SELECT * FROM user WHERE username = '$user' AND password = '$pass'";
-    $rs = mysql_query($sql,$conn);
-    $result = mysql_num_rows($rs);
+  
+  $user_check=$_SESSION['login_user'];
+	$ses_sql=mysql_query("SELECT * FROM user WHERE username ='$user_check'");
+	$result = mysql_num_rows($ses_sql);
+	$login_session=$result['username'];	
 
-    if ($result > 0) $validated = true;
-    if($validated)
-    {
-      $_SESSION['login'] = "OK";
-      $_SESSION['username'] = $user;
-      $_SESSION['password'] = $pass;
-      $sql1= "UPDATE user SET login_time=now() WHERE username = '$user' AND password ='$pass'";
-      $rs1= mysql_query($sql1,$conn);
-        
-        if($user=='admin'){     
-        header("location:main.php ");
-        }elseif($user=='usera'){
-        header("location:usera.php ");
-         }elseif($user=='userb'){
-        header("location:userb.php ");
-         }elseif($user=='tnc'){
-        header("location:tnc.php ");
-         }
-        
-       
-    }
-    else
-    {
-      $_SESSION['login'] = "";
-      echo "Invalid username or password.";
-    }
-  }
-  else $_SESSION['login'] = "";
+	$myusername = $_SESSION['username'];
+	$mypassword = $_SESSION['password'];
+
+	$sql1= mysql_query("UPDATE user SET login_time=now() WHERE username = '$myusername' AND password ='$mypassword'");
+
+	if(!isset($_SESSION['login_user']))
+		{
+			
+			header("location:index.php");
+			echo "Invalid username or password.";
+		}  
 
 
 
