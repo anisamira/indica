@@ -47,6 +47,35 @@
 	
 					if(isset($_POST['next']))
 					{
+						if (($_SESSION['username']) == 'usera') 
+								{
+									$module_id="M01";
+								}
+						else if (($_SESSION['username']) == 'tnci') 
+								{
+									$module_id="M02";
+								}
+						else if (($_SESSION['username']) == 'tncpi') 
+								{
+									$module_id="M03";
+								}
+						else if (($_SESSION['username']) == 'hepa') 
+								{
+									$module_id="M04";
+								}
+						else if (($_SESSION['username']) == 'tncpid') 
+								{
+									$module_id="M05";
+								}
+						else if (($_SESSION['username']) == 'fac') 
+								{
+									$module_id="M06";
+								}
+						else 
+								{
+									$module_id="M07";
+								}
+				
 						for($y=1; $y<=30; $y++)
 						{
 							if (empty($_POST["strategy".$y]))
@@ -81,9 +110,9 @@
 		<div class="table-responsive"> 
 <form action="datacontroller_newkpi.php" method="post">
 				<table class="table table-bordered"> 
-					<col width="50">
-					<col width="50">
-					<col width="190">
+					<col width="30">
+					<col width="30">
+					<col width="200">
 								<tr>
 									<th>Goal</th>
 									<th>Strategy</th>
@@ -91,7 +120,7 @@
 								</tr>
 				<?php
 					$x=1;
-					$sql="SELECT goal.*,strategy.* FROM goal JOIN strategy ON strategy.goal_id=goal.goal_id WHERE module_id='M01' ORDER BY strategy.strategy_id ASC";
+					$sql="SELECT goal.*,strategy.* FROM goal JOIN strategy ON strategy.goal_id=goal.goal_id WHERE module_id='$module_id' ORDER BY strategy.strategy_id ASC";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					while($row=mysql_fetch_array($result))
 					{
@@ -167,7 +196,7 @@
 							
 						$(add_button1).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper1).append('<div><input class="form-control" type="text" name="action1[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper1).append('<div><input type="text" name="action1[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
 						});
 							
 						$(wrapper1).on("click",".remove_field", function(e){ //user click on remove text
@@ -183,7 +212,7 @@
 							
 						$(add_button2).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper2).append('<div><input class="form-control" type="text" name="action2[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper2).append('<div><input type="text" name="action2[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
 						});
 							
 						$(wrapper2).on("click",".remove_field", function(e){ //user click on remove text
@@ -198,7 +227,7 @@
 							
 						$(add_button3).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper3).append('<div><input class="form-control" type="text" name="action3[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper3).append('<div><input type="text" name="action3[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
 						});
 							
 						$(wrapper3).on("click",".remove_field", function(e){ //user click on remove text
@@ -214,7 +243,7 @@
 							
 						$(add_button4).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper4).append('<div><input class="form-control" type="text" name="action4[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper4).append('<div><input type="text" name="action4[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
 						});
 							
 						$(wrapper4).on("click",".remove_field", function(e){ //user click on remove text
@@ -229,7 +258,7 @@
 							
 						$(add_button5).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper5).append('<div><input class="form-control" type="text" name="action5[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper5).append('<div><input type="text" name="action5[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>'); //add input box
 						});
 							
 						$(wrapper5).on("click",".remove_field", function(e){ //user click on remove text
@@ -244,7 +273,7 @@
 							
 						$(add_button6).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper6).append('<div><input class="form-control" type="text" name="action6[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper6).append('<div><input type="text" name="action6[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
 						});
 							
 						$(wrapper6).on("click",".remove_field", function(e){ //user click on remove text
@@ -259,7 +288,7 @@
 							
 						$(add_button7).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper7).append('<div><input class="form-control" type="text" name="action7[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper7).append('<div><input type="text" name="action7[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
 						});
 							
 						$(wrapper7).on("click",".remove_field", function(e){ //user click on remove text
@@ -274,7 +303,7 @@
 							
 						$(add_button8).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper8).append('<div><input class="form-control" type="text" name="action8[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper8).append('<div><input type="text" name="action8[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
 						});
 							
 						$(wrapper8).on("click",".remove_field", function(e){ //user click on remove text
@@ -291,7 +320,7 @@
 							
 						$(add_button9).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper9).append('<div><input class="form-control" type="text" name="action9[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper9).append('<div><input type="text" name="action9[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
 						});
 							
 						$(wrapper9).on("click",".remove_field", function(e){ //user click on remove text
@@ -306,7 +335,7 @@
 							
 						$(add_button10).click(function(e){ //on add input button click
 							e.preventDefault();
-							$(wrapper10).append('<div><input class="form-control" type="text" name="action10[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+							$(wrapper10).append('<div><input type="text" name="action10[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
 						});
 							
 						$(wrapper10).on("click",".remove_field", function(e){ //user click on remove text

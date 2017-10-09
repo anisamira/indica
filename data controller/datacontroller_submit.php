@@ -38,6 +38,70 @@
 <body>
 <?php
 	include('sidebar.php');
+	
+	if(isset($_POST['next']))
+					{
+						
+						if (($_SESSION['username']) == 'usera') 
+				{
+					$module_id="M01";
+				}
+		else if (($_SESSION['username']) == 'tnci') 
+				{
+					$module_id="M02";
+				}
+		else if (($_SESSION['username']) == 'tncpi') 
+				{
+					$module_id="M03";
+				}
+		else if (($_SESSION['username']) == 'hepa') 
+				{
+					$module_id="M04";
+				}
+		else if (($_SESSION['username']) == 'tncpid') 
+				{
+					$module_id="M05";
+				}
+		else if (($_SESSION['username']) == 'fac') 
+				{
+					$module_id="M06";
+				}
+		else 
+				{
+					$module_id="M07";
+				}
+				
+						for($y=1; $y<=50; $y++)
+						{
+							if (empty($_POST["kpi".$y]))
+							{
+								$error = 1;
+							}
+							else
+							{
+								
+								 $value=$_POST['kpi'.$y];
+								{
+								
+									$ownership	=$_POST['ownership'.$y];
+									$data_source	=$_POST['data_source'.$y];
+									$estimated_cost	=$_POST['estimated_cost'.$y];
+									$exp_fin_return	=$_POST['exp_fin_return'.$y];
+									
+									$sql="INSERT INTO reference (kpi_id, ownership, data_source, estimated_cost, exp_fin_return) VALUES ('$value','$ownership','$data_source','$estimated_cost', '$exp_fin_return')";
+									$result = mysql_query($sql) or die(mysql_error());  
+								   
+									if (false === $result) 
+									{
+										echo mysql_error();
+									}
+								}	
+								
+							}	
+						}		
+					}
+	
+	
 ?>
 	<div class="wrapper">
 		<div class="container">
@@ -83,7 +147,7 @@
 						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						WHERE module_id='M01'";
+						WHERE module_id='$module_id'";
 						$result = mysql_query($sql) or die(mysql_error()); 
 						while($row=mysql_fetch_array($result))
 						{
@@ -120,7 +184,7 @@
 						<td><?php echo $target2;?></td>
 						<td><?php echo $target3;?></td>
 						<td><?php echo $target4;?></td>
-						<td><?php echo $targett5;?></td>
+						<td><?php echo $target5;?></td>
 						<td><?php echo $ownership;?></td>
 						<td><?php echo $data_source;?></td>
 						<td><?php echo $estimated_cost;?></td>
@@ -135,7 +199,7 @@
 				
 			</div>
 			<div style="margin:20px;">
-				<form action="index.php" method="post">
+				<form action="main.php" method="post">
 					<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
 					<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit this form?');" /></input>
 				</form>

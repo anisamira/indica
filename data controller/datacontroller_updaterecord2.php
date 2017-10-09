@@ -36,89 +36,65 @@
 </head>
 
 <body>
+<?php
+	include('sidebar.php');
+?>
 	<div class="wrapper">
-		<div class="container">
-			<div class="header">
-				<div class="topbar">
-					<ul class="loginbar pull-right">
-						<li><a href="#">Logout</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
 		<div class="container content-sm">
-			<div class="row" style="margin-bottom:20px;">
-				<h5> Session : 2016 - 2020 </br>
-					Module : Student Life TNC (HEPA) </br>
-				</h5>
-			</div>
+			<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 			<div class="table-responsive">  
-			   <table class="table table-bordered"> 
-					<tr>
-						<th>No.</th>
-						<th>Goal</th>						
-						<th>Key Performance Indicator (KPI)</th>
-						<th>Target 2016</th>
-						<th>Achievement 2016</th>
-						<th>Status</th>						
-						<th>Ownerhip</th>
-						<th>Data Source</th>
-					</tr>
-					<tr>  
-						<td>1</td>
-						<td rowspan="4">Outstanding  teaching and learning experiences through high quality (technologically enhanced) academic programmes </td>
-						<td>% of lecturers with TPACK knowledge</td>
-						<td>15%</td>
-						<td contenteditable='true'></td>
-						<td contenteditable='true'></td>
-						<td>ADeC</td>
-						<td>ADeC</td>
-					</tr>
-					<tr>  
-						<td>2</td>
-						<td>International academic practice certification programme</td>
-						<td>2 </br>initiation programme</td>
-						<td contenteditable='true'></td>
-						<td contenteditable='true'></td>
-						<td>ADeC</td>
-						<td>ADeC</td>
-					</tr>
-					<tr>  
-						<td>3</td>
-						<td>Ensure all academic programme been reviewed periodically based on curriculum review cycle</td>
-						<td>80%</td>
-						<td contenteditable='true'></td>
-						<td contenteditable='true'></td>
-						<td>BA/IPS</td>
-						<td>BA/IPS</td>
-					</tr>
-					<tr>  
-						<td>4</td>
-						<td>Annual monitoring of all  academic programmes</td>
-						<td>100%</td>
-						<td contenteditable='true'></td>
-						<td contenteditable='true'></td>
-						<td>QMEC</td>
-						<td>QMEC</td>
-					</tr>
-					<tr>  
-						<td>5</td>
-						<td>High quality graduates (holistic, globally influential, entrepreneurial and balanced graduates) </td>
-						<td>Employability rates based on tracer study</td>
-						<td>82%</td>
-						<td contenteditable='true'></td>
-						<td contenteditable='true'></td>
-						<td>CITra</td>
-						<td>CITra</td>
-					</tr>
-				</table>
-				
+				<form action="datacontroller_target.php" method="post">
+				   <table class="table table-bordered"> 
+						<tr>
+							<th>No.</th>
+							<th>Goal</th>						
+							<th>Key Performance Indicator (KPI)</th>
+							<th>Achievement 2016</th>						
+							<th>Ownerhip</th>
+							<th>Data Source</th>
+						</tr>
+						<?php
+						$x=1;
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						WHERE module_id='M01'";
+						$result = mysql_query($sql) or die(mysql_error()); 
+						while($row=mysql_fetch_array($result))
+						{
+							$goal_desc		=$row['goal_desc'];
+							$kpi_desc		=$row['kpi_desc'];
+							$ownership		=$row['ownership'];
+							$data_source	=$row['data_source'];
+
+						?>
+
+							<tr>  
+								<td><?php echo $x;?></td>
+								<td><?php echo $goal_desc;?></td>
+								<td><?php echo $kpi_desc;?></td>
+								<td></td>
+								<td><?php echo $ownership;?></td>
+								<td><?php echo $data_source;?></td>
+							</tr>
+							<?php
+						$x++;
+						}
+						?>
+					</table>
+				</form>	
 			</div>
 			<div style="margin:20px;">
 				<form action="index.php" method="post">
-					<input type="checkbox" name="check" value="yes"> I hereby admit that all records / information submitted are true.</input></br></br>
+					<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
 					<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>
 				</form>
+			</div>
 			</div>
 		</div>
 	</div>

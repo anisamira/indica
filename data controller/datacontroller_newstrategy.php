@@ -72,6 +72,30 @@
 				{
 					$module_id="M01";
 				}
+		else if (($_SESSION['username']) == 'tnci') 
+				{
+					$module_id="M02";
+				}
+		else if (($_SESSION['username']) == 'tncpi') 
+				{
+					$module_id="M03";
+				}
+		else if (($_SESSION['username']) == 'hepa') 
+				{
+					$module_id="M04";
+				}
+		else if (($_SESSION['username']) == 'tncpid') 
+				{
+					$module_id="M05";
+				}
+		else if (($_SESSION['username']) == 'fac') 
+				{
+					$module_id="M06";
+				}
+		else 
+				{
+					$module_id="M07";
+				}
 		foreach ($_POST['goal'] as $key=>$value)
 			 {
 				$sql="INSERT INTO goal (module_id,goal_desc) VALUES ('$module_id','$value')";
@@ -139,7 +163,7 @@
 					
 		$x = 1;
 
-		$sql="SELECT * FROM goal where module_id='M01' ORDER BY goal_id ASC";
+		$sql="SELECT * FROM goal where module_id='$module_id' ORDER BY goal_id ASC";
 		$result = mysql_query($sql) or die(mysql_error()); 
 		while($row=mysql_fetch_array($result))
 		{

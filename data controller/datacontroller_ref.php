@@ -48,6 +48,34 @@
 					{
 						for($y=1; $y<=50; $y++)
 						{
+								if (($_SESSION['username']) == 'usera') 
+							{
+								$module_id="M01";
+							}
+						else if (($_SESSION['username']) == 'tnci') 
+								{
+									$module_id="M02";
+								}
+						else if (($_SESSION['username']) == 'tncpi') 
+								{
+									$module_id="M03";
+								}
+						else if (($_SESSION['username']) == 'hepa') 
+								{
+									$module_id="M04";
+								}
+						else if (($_SESSION['username']) == 'tncpid') 
+								{
+									$module_id="M05";
+								}
+						else if (($_SESSION['username']) == 'fac') 
+								{
+									$module_id="M06";
+								}
+						else 
+								{
+									$module_id="M07";
+								}
 							if (empty($_POST["kpi".$y]))
 							{
 								$error = 1;
@@ -106,7 +134,13 @@
 						
 						<?php
 						$x=1;
-					$sql="SELECT * FROM kpi ORDER BY kpi_id ASC";
+					$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						WHERE goal.module_id='$module_id'
+						ORDER BY kpi_id ASC";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					while($row=mysql_fetch_array($result))
 					{
