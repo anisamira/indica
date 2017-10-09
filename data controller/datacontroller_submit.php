@@ -41,6 +41,7 @@
 	
 	if(isset($_POST['next']))
 					{
+<<<<<<< HEAD
 						
 						if (($_SESSION['username']) == 'usera') 
 				{
@@ -71,6 +72,8 @@
 					$module_id="M07";
 				}
 				
+=======
+>>>>>>> 8ad3559fa33623ce33544ddc460377fb8587e0ab
 						for($y=1; $y<=50; $y++)
 						{
 							if (empty($_POST["kpi".$y]))
