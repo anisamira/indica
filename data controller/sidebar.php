@@ -20,7 +20,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
 <div class="w3-bar w3-top w3-black w3-large" style="z-index:4">
   <button class="w3-bar-item w3-button w3-hide-large w3-hover-none w3-hover-text-light-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
   <button class="w3-button w3-right" onclick=""><i class="fa fa-bell-o"></i></button>
-  <button class="w3-button w3-right" onclick=""><i class="fa fa-envelope-o"></i></button>
+ <!-- <button class="w3-button w3-right" onclick=""><i class="fa fa-envelope-o"></i></button>-->
   <span class="w3-bar-item w3-left">INDICA UM</span>
 </div>
 
@@ -32,6 +32,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
     </div>
     <div class="w3-col s8 w3-bar">
       <span>Welcome,<strong> <?php echo $_SESSION['username']; ?> </strong></span><br>
+	    <span>Session : 2016-2020</span>
 
   
       <a href="#" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i></a>
@@ -46,8 +47,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
   </div>
   <div class="w3-bar-block">
     <a href="main.php" class="w3-bar-item w3-button w3-padding w3-blue"><i class="fa fa-dashboard fa-fw"></i>  Home</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-bank fa-fw"></i>  General</a>
-    <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-history fa-fw"></i>  History</a>
     </br>
     <?php 
     if (($_SESSION['username']) == 'admin') {?>
@@ -57,6 +56,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
     
     <?php } ?>
     </br>
+	<a href="" class="datacontroller_updaterecord2.php"><i class="fa fa-book fa-fw"></i>  Achievement</a>
     <a href="logout.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-power-off fa-fw"></i>  Log Out</a>
   </div>
 </nav>

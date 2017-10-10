@@ -146,7 +146,7 @@
 					</table>	
 
 				</br><input type="submit" name="next" value="Next" style="float: right;"></input>	
-				<input type="button" VALUE="Back" onClick="history.go(-1);"></input>
+				<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
 			</form>		
 			
 
