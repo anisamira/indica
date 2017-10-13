@@ -52,6 +52,35 @@
 					{
 						for($y=1; $y<=50; $y++)
 						{
+								if (($_SESSION['username']) == 'usera') 
+							{
+								$module_id="M01";
+							}
+						else if (($_SESSION['username']) == 'tnci') 
+								{
+									$module_id="M02";
+								}
+						else if (($_SESSION['username']) == 'tncpi') 
+								{
+									$module_id="M03";
+								}
+						else if (($_SESSION['username']) == 'hepa') 
+								{
+									$module_id="M04";
+								}
+						else if (($_SESSION['username']) == 'tncpid') 
+								{
+									$module_id="M05";
+								}
+						else if (($_SESSION['username']) == 'fac') 
+								{
+									$module_id="M06";
+								}
+						else 
+								{
+									$module_id="M07";
+								}
+								
 							if (empty($_POST["kpi".$y]))
 							{
 								$error = 1;
@@ -60,26 +89,27 @@
 							{
 								
 									$value			=$_POST['kpi'.$y];
+								{
 									$operation_def	=$_POST['operation_def'.$y];
-									$baseline1		=$_POST['bseline1'.$y];
+									$baseline1		=$_POST['baseline1'.$y];
 									$baseline2		=$_POST['baseline2'.$y];
 									
-									$sql="UPDATE kpi SET operation_def='$operation_def' WHERE kpi_id='$value'";
-									$result = mysql_query($sql) or die(mysql_error());  
+									$sql1="UPDATE kpi SET operation_def='$operation_def' WHERE kpi_id='$value'";
+									$result = mysql_query($sql1) or die(mysql_error());  
 								   
 									if (false === $result) 
 									{
 										echo mysql_error();
 									}
 									
-									$sql="INSERT INTO baseline (baseline1, baseline2, kpi_id) VALUES ('$baseline1','$baseline2','$value')";
-									$result = mysql_query($sql) or die(mysql_error());  
+									$sql2="INSERT INTO baseline (baseline1, baseline2, kpi_id) VALUES ('$baseline1','$baseline2','$value')";
+									$result = mysql_query($sql2) or die(mysql_error());  
 								   
 									if (false === $result) 
 									{
 										echo mysql_error();
 									}
-									
+								}
 								
 							}	
 						}		
@@ -114,7 +144,13 @@
 						
 						<?php
 						$x=1;
-					$sql="SELECT * FROM kpi ORDER BY kpi_id ASC";
+					$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						WHERE goal.module_id='$module_id'
+						ORDER BY kpi_id ASC";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					while($row=mysql_fetch_array($result))
 					{
@@ -134,7 +170,7 @@
 						
 					</table>
 				<input type="submit" name="next" value="Next" style="float: right;"></input>
-				<input type="button" VALUE="Back" onClick="history.go(-1);"></input>
+				<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
 			</form>
 		</div>
 </div><!--/row-->

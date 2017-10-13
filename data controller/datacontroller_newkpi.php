@@ -48,6 +48,34 @@
 	include('sidebar.php');
 	if(isset($_POST['next']))
 	{
+		if (($_SESSION['username']) == 'usera') 
+				{
+					$module_id="M01";
+				}
+		else if (($_SESSION['username']) == 'tnci') 
+				{
+					$module_id="M02";
+				}
+		else if (($_SESSION['username']) == 'tncpi') 
+				{
+					$module_id="M03";
+				}
+		else if (($_SESSION['username']) == 'hepa') 
+				{
+					$module_id="M04";
+				}
+		else if (($_SESSION['username']) == 'tncpid') 
+				{
+					$module_id="M05";
+				}
+		else if (($_SESSION['username']) == 'fac') 
+				{
+					$module_id="M06";
+				}
+		else 
+				{
+					$module_id="M07";
+				}
 		for($y=1; $y<=50; $y++)
 		{
 			if (empty($_POST["action".$y]))
@@ -130,9 +158,9 @@
 		
 			<form action="datacontroller_newrecord.php" method="post">
 				<table class="table table-bordered"> 
-					<col width="50">
-					<col width="50">
-					<col width="50">
+					<col width="30">
+					<col width="30">
+					<col width="30">
 					<col width="200">
 								<tr>
 									<th>Goal</th>
@@ -143,7 +171,7 @@
 				<?php
 
 					$x = 1;
-					$sql="SELECT goal.*,strategy.*, actionplan.* FROM goal JOIN strategy ON strategy.goal_id=goal.goal_id JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id WHERE module_id='M01' ORDER BY actionplan.actionplan_id ASC";
+					$sql="SELECT goal.*,strategy.*, actionplan.* FROM goal JOIN strategy ON strategy.goal_id=goal.goal_id JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id WHERE module_id='$module_id' ORDER BY actionplan.actionplan_id ASC";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					while($row=mysql_fetch_array($result))
 					{
@@ -171,7 +199,7 @@
 					</table>	
 
 				</br><input type="submit" name="next" value="Next" style="float: right;"></input>	
-				<input type="button" VALUE="Back" onClick="history.go(-1);"></input>
+				<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
 			</form>
 			
 			

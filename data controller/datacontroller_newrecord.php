@@ -47,6 +47,34 @@
 	include('sidebar.php');
 				if(isset($_POST['next']))
 					{
+						if (($_SESSION['username']) == 'usera') 
+							{
+								$module_id="M01";
+							}
+						else if (($_SESSION['username']) == 'tnci') 
+								{
+									$module_id="M02";
+								}
+						else if (($_SESSION['username']) == 'tncpi') 
+								{
+									$module_id="M03";
+								}
+						else if (($_SESSION['username']) == 'hepa') 
+								{
+									$module_id="M04";
+								}
+						else if (($_SESSION['username']) == 'tncpid') 
+								{
+									$module_id="M05";
+								}
+						else if (($_SESSION['username']) == 'fac') 
+								{
+									$module_id="M06";
+								}
+						else 
+								{
+									$module_id="M07";
+								}
 						for($y=1; $y<=30; $y++)
 						{
 							if (empty($_POST["kpi".$y]))
@@ -85,7 +113,7 @@
 		</br>
 		<div class="table-responsive">  
 		<form action="datacontroller_target.php" method="post">
-				  <table id ="maintable" class="table"> 
+				  <table class="table-bordered"> 
 						<tr>
 							<th colspan="2"></th>
 							<th colspan="2">Baseline</th>
@@ -99,7 +127,13 @@
 						
 						<?php
 					$x=1;
-					$sql="SELECT * FROM kpi ORDER BY kpi_id ASC";
+					$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						WHERE goal.module_id='$module_id'
+						ORDER BY kpi_id ASC";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					while($row=mysql_fetch_array($result))
 					{
@@ -110,8 +144,8 @@
 								<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
 							</td>
 							<td><input class="form-control" type="text" name="operation_def<?php echo $x;?>"/></td>
-							<td><input class="form-control" type="text" name="baseline1"<?php echo $x;?>/></td>
-							<td><input class="form-control" type="text" name="baseline2"<?php echo $x;?>/></td>
+							<td><input class="form-control" type="text" name="baseline1<?php echo $x;?>"/></td>
+							<td><input class="form-control" type="text" name="baseline2<?php echo $x;?>"/></td>
 						</tr>
 						<?php
 						
@@ -121,7 +155,7 @@
 						
 					</table>
 				<input type="submit" name="next" value="Next" style="float: right;"></input>
-				<input type="button" VALUE="Back" onClick="history.go(-1);"></input>
+				<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
 			</form>
 		</div>
 </div><!--/row-->

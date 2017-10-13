@@ -48,47 +48,6 @@
 <body>
 <?php
 	include('sidebar.php');
-	
-		if (($_SESSION['username']) == 'usera') 
-				{
-					$module_id="M01";
-				}
-		else if (($_SESSION['username']) == 'tnci') 
-				{
-					$module_id="M02";
-				}
-		else if (($_SESSION['username']) == 'tncpi') 
-				{
-					$module_id="M03";
-				}
-		else if (($_SESSION['username']) == 'hepa') 
-				{
-					$module_id="M04";
-				}
-		else if (($_SESSION['username']) == 'tncpid') 
-				{
-					$module_id="M05";
-				}
-		else if (($_SESSION['username']) == 'fac') 
-				{
-					$module_id="M06";
-				}
-		else 
-				{
-					$module_id="M07";
-				}
-				
-				
-	if(isset($_POST['submit']))
-	{
-					$sql="UPDATE status SET status='pending' WHERE module_id='$module_id'";
-				$result = mysql_query($sql) or die(mysql_error());  
-			   
-				if (false === $result)
-					{
-						echo mysql_error();
-					}
-	}
 ?>
 
 
@@ -100,41 +59,18 @@
 		<!-- !PAGE CONTENT! -->
 			<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-		
-			
+			  
+
+
+				
 		<div class="row" style="margin:0 auto;">
-		<?php
-			
-		$sql="SELECT * FROM status WHERE module_id='$module_id'";
-			$result = mysql_query($sql) or die(mysql_error());  
-			  while($row=mysql_fetch_array($result))
-					{
-						$status		=$row['status'];
-						if($status=='pending')
-							{ ?>
-								<!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
-									<button class="col-md-4 content-boxes-v6">
-										<i class="rounded-x  icon-notebook"></i>
-										
-										<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
-										<p></p>
-									</button>
-								</a><?php
-							}
-						else
-							{?>
-									<a href="datacontroller_goal.php" style="text-decoration:none;">
-									<button class="col-md-4 content-boxes-v6">
-										<i class="rounded-x  icon-notebook"></i>
-										
-										<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
-										<p></p>
-									</button>
-								</a><?php
-							}
-					}?>
-					
-		
+			<a href="datacontroller_goal.php" style="text-decoration:none;">
+				<button class="col-md-4 content-boxes-v6">
+					<i class="rounded-x  icon-notebook"></i>
+					<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
+					<p></p>
+				</button>
+			</a>
 		
 	<!--	<a href="datacontroller_updaterecord2.php" style="text-decoration:none;">-->
 			<button class="col-md-4 content-boxes-v6">		
@@ -144,7 +80,7 @@
 			</button>
 		</a> 
 		
-		<!--<a href="datacontroller_viewupdated.php" style="text-decoration:none;">-->
+		<a href="datacontroller_viewupdated.php" style="text-decoration:none;">
 			<button class="col-md-4 content-boxes-v6">
 				<i class="rounded-x icon-docs"></i>
 				<h3 class="title-v3-md text-uppercase margin-bottom-10">View Status</h3>
