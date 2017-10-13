@@ -43,7 +43,7 @@
 		<div class="container content-sm">
 			<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 			<div class="table-responsive">  
-				<form action="datacontroller_target.php" method="post">
+				<form action="" method="post" enctype="multipart/form-data">
 				   <table class="table table-bordered"> 
 						<tr>
 							<th>No.</th>
@@ -68,6 +68,7 @@
 						$result = mysql_query($sql) or die(mysql_error()); 
 						while($row=mysql_fetch_array($result))
 						{
+							$kpi_id			=$row['kpi_id'];
 							$goal_desc		=$row['goal_desc'];
 							$kpi_desc		=$row['kpi_desc'];
 							$ownership		=$row['ownership'];
@@ -79,7 +80,8 @@
 								<td><?php echo $x;?></td>
 								<td><?php echo $goal_desc;?></td>
 								<td><?php echo $kpi_desc;?></td>
-								<td></td>
+								<td><input class="form-control" type="text" name="achievement" required/>
+									<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"/></td>
 								<td><?php echo $ownership;?></td>
 								<td><?php echo $data_source;?></td>
 							</tr>
@@ -87,13 +89,19 @@
 						$x++;
 						}
 						?>
+						<tr>
+							<td colspan="6"><input type="hidden" name="MAX_FILE_SIZE" value="8000000"/>Upload Evidence :</input>
+											<input type="file" name="data"/></br></br>
+											<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
+											<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>
+							</td>
+							
 					</table>
 				</form>	
 			</div>
 			<div style="margin:20px;">
 				<form action="index.php" method="post">
-					<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
-					<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>
+					
 				</form>
 			</div>
 			</div>

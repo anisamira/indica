@@ -30,7 +30,7 @@ include ('sidebar.php');
       <tbody>
 
         <?php
-          //$result = mysql_query("SELECT logtrails.*, user.* FROM logtrails JOIN user WHERE user.user_id = logtrails.user_id");
+          // $result = mysql_query("SELECT logtrails.*, user.* FROM logtrails JOIN user WHERE user.user_id = logtrails.user_id");
 		  $result = mysql_query ("SELECT * FROM logtrails");
           while($row = mysql_fetch_assoc($result))
           {

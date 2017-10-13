@@ -41,7 +41,7 @@
 		<div class="container content-sm">
 			<div class="w3-main" style="margin-left:300px;margin-top:20px;">
 			<form action="datacontroller_newstrategy.php" method="post">
-				Insert Goals :</br><input class="form-control" type="text" name="goal[]"></input></br>
+				Insert Goals :</br><input class="form-control" type="text" name="goal[]" required></input></br>
 				<div class="input_fields_wrap">	</div>
 				<button class="add_field_button">Add More Goals</button>
 				<input type="submit" name="next" value="Next" style="float: right;"></input>	
