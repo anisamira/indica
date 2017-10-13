@@ -48,34 +48,7 @@
 	include('sidebar.php');
 	if(isset($_POST['next']))
 	{
-		if (($_SESSION['username']) == 'usera') 
-				{
-					$module_id="M01";
-				}
-		else if (($_SESSION['username']) == 'tnci') 
-				{
-					$module_id="M02";
-				}
-		else if (($_SESSION['username']) == 'tncpi') 
-				{
-					$module_id="M03";
-				}
-		else if (($_SESSION['username']) == 'hepa') 
-				{
-					$module_id="M04";
-				}
-		else if (($_SESSION['username']) == 'tncpid') 
-				{
-					$module_id="M05";
-				}
-		else if (($_SESSION['username']) == 'fac') 
-				{
-					$module_id="M06";
-				}
-		else 
-				{
-					$module_id="M07";
-				}
+		$module_id=$_SESSION['module_id'];
 		for($y=1; $y<=50; $y++)
 		{
 			if (empty($_POST["action".$y]))
