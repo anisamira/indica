@@ -4,69 +4,39 @@ include ('sidebar.php');
 
 <!DOCTYPE html>
 <html>
-
 <head>
-<link rel="stylesheet" type="text/css" href="table.css" />
-<link rel="stylesheet" type="text/css" href="alert.css" />
+<link rel="stylesheet" type="text/css" href="ulbreadcrumb.css" />
+
 </head>
-
-<style>  
-</style>  
-
 <body>
-    <div class="w3-container" style="margin-left:300px;margin-top:43px; ">
-    <br>
-    <?php 
-   if(!empty($_GET['deleted'])){?>
-          <div class="alert">
-          <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-          <strong>User has been deleted</strong> 
-          </div>
-  <?php }
-  ?>
 
-    <strong><center>View All User</strong></center>
+<div class="w3-container" style="margin-left:300px;margin-top:43px;border-left:solid; border-height:100%; ">
 
-      <br><table id='myTable' style= " margin: 0 auto;" >
-      <thead>
-        <tr>
-          <th>User ID</th>
-          <th>User Name</th>
-          <th>User Password</th>
-          <th>Delete User</th>
-        </tr>
-      </thead>
-      <tbody>
+<h2>Breadcrumb Pagination</h2>
+<ul class="breadcrumb">
+  <li><a href="#">Home</a></li>
+  <li><a href="#">Pictures</a></li>
+  <li><a href="#">Summer 15</a></li>
+  <li>Italy</li>
+</ul>
 
-            <?php  
-            
-            $result = mysql_query("SELECT * FROM user");
+        <ul>
+            <li><a href="#">Coffee</li>
+            <li><a href="#">Tea
+                <ul>
+                <li><a href="#">Black tea</li>
+                <li><a href="#">Green tea</li>
+                </ul>
+            </li>
+            <li<a href="#">Milk</li>
+        </ul>
+        </div>
 
-            while($row = mysql_fetch_assoc($result))//while look to fetch the result and store in a array $row.  
-            {  
-                $userid=$row['userid'];  
-                $username=$row['username'];  
-                $password=$row['password'];   
-                
-                echo  " <table id='myTable' style='margin: 0 auto' class='fixed'>
-                <tr>
-                    <td>$userid</td>
-                    <td>$username</td>
-                    <td>$password</td>";?>
-                
-                <td><a href="delete.php?del=<?php echo $userid ?>"><button class="btn btn-danger">Delete</button></a></td>
-                </tr>
-                </table>
-            <?php } ?>
-        </table>  
-            </div>  
-    </div>
-    <br>
     
   <!-- End page content -->
-</div></div>
+</div>
     
-    </body>
+</body>
 
 
 

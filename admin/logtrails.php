@@ -20,6 +20,7 @@ include ('sidebar.php');
       <br><br><table id='myTable' style= " margin: 0 auto;" >
       <thead>
         <tr>
+          
           <th>Username</th>
           <th>Login Time</th>
           <th>Logout Time</th>
@@ -28,16 +29,18 @@ include ('sidebar.php');
       <tbody>
 
         <?php
-          $result = mysql_query("SELECT * FROM trail");
+          $result = mysql_query("SELECT * FROM logtrails");
           while($row = mysql_fetch_assoc($result))
           {
 
+          // $user_id=$row['user_id'];
           $username=$row['username'];
           $login_time=$row['login_time'];
           $logout_time=$row['logout_time'];
 
                   echo  " <table id='myTable' style='margin: 0 auto' class='fixed'>
                   <tr>
+                      
                       <td>$username</td>
                       <td>$login_time</td>
                       <td>$logout_time</td>
