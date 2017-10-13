@@ -10,23 +10,26 @@ session_start();
 			$row=mysql_fetch_array($result,MYSQL_ASSOC);		
 			if(is_array($row)) 
 			{
-				$_SESSION['user_id'] 	= $row['userid'];
+				$_SESSION['user_id'] 	= $row['user_id'];
 				$_SESSION['username'] 	= $row['username'];
 				$_SESSION['password'] = $row['password'];
-				$_SESSION['role']	=$row['role'];
+				$_SESSION['module_id'] = $row['module_id'];
+				$_SESSION['role_id']	=$row['role_id'];
+				$_SESSION['login_user']=$myusername;	
 					
-						$_SESSION['login_user']=$myusername;	
-						if($myusername=='admin'){     
-						header("location:main.php ");
-						}elseif($myusername=='usera'||$myusername=='tnci'||$myusername=='tncpi'||$myusername=='hepa'||$myusername=='tncpid'||$myusername=='fac'){
-						header("location:main.php ");
-						 }elseif($myusername=='userb'){
-						header("location:userb.php ");
-						 }elseif($myusername=='tnc'){
-						header("location:tnc.php ");
-						 }
+				// admin=1, data_controller=2, data_manager=3, tnc=4
 
-						
+						if(	$_SESSION['role_id']=='1'){     
+						header("location:main_admin.php ");
+						}elseif(	$_SESSION['role_id']=='2'){
+						header("location:main_dc.php ");
+						 }elseif(	$_SESSION['role_id']=='3'){
+						header("location:userb.php ");
+						 }elseif(	$_SESSION['role_id']=='4'){
+						header("location:tnc.php ");
+						 }else{
+							 
+						 }					
 			
 			} 
 		}
