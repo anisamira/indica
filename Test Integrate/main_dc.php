@@ -57,7 +57,7 @@
 	{
 
 
-		$sql="UPDATE status SET status='pending' WHERE module_id='$module_id'";
+		$sql="UPDATE form SET form_status='pending' WHERE module_id='$module_id'";
 				$result = mysql_query($sql) or die(mysql_error());  
 			   
 				if (false === $result)
@@ -95,24 +95,24 @@
 		<div class="row" style="margin:0 auto;">
 		<?php
 		
-		$sql="SELECT * FROM status WHERE module_id='$module_id'";
-			$result = mysql_query($sql) or die(mysql_error());  
-			  while($row=mysql_fetch_array($result))
-					{
-						$status		=$row['status'];
-						if($status=='pending')
-							{ ?>
-								<!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
-									<button class="col-md-4 content-boxes-v6">
+		// $sql="SELECT * FROM form WHERE module_id='$module_id'";
+			// $result = mysql_query($sql) or die(mysql_error());  
+			  // while($row=mysql_fetch_array($result))
+					// {
+						// $status		=$row['form_status'];
+						// if($status=='pending')
+							// { ?>
+								 <!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
+								<!--	<button class="col-md-4 content-boxes-v6">
 										<i class="rounded-x  icon-notebook"></i>
 										
 										<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
 										<p></p>
-									</button>
-								</a><?php
-							}
-						else
-							{?>
+									 </button>
+								</a> --><?php
+							// }
+						// else
+							// {?>
 									<a href="datacontroller_goal.php" style="text-decoration:none;">
 									<button class="col-md-4 content-boxes-v6">
 										<i class="rounded-x  icon-notebook"></i>
@@ -121,8 +121,8 @@
 										<p></p>
 									</button>
 								</a><?php
-							}
-					}?>
+							//}
+					//}?>
 					
 		
 		
