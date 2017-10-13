@@ -19,13 +19,13 @@ session_start();
 					
 				// admin=1, data_controller=2, data_manager=3, tnc=4
 
-						if(	$_SESSION['role_id']=='1'){     
+						if(	$_SESSION['role_id']=='R01'){     
 						header("location:main_admin.php ");
-						}elseif(	$_SESSION['role_id']=='2'){
+						}elseif(	$_SESSION['role_id']=='R02'){
 						header("location:main_dc.php ");
-						 }elseif(	$_SESSION['role_id']=='3'){
+						 }elseif(	$_SESSION['role_id']=='R03'){
 						header("location:userb.php ");
-						 }elseif(	$_SESSION['role_id']=='4'){
+						 }elseif(	$_SESSION['role_id']=='R04'){
 						header("location:tnc.php ");
 						 }else{
 							 

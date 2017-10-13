@@ -8,7 +8,7 @@ if(isset($_POST['create'])){
     $y = 1;
     $session_id="Sesi ".$start_year."-".$end_year;
 
-    $sql1 = "INSERT INTO session (session_id) VALUES ('$session_id')";
+    $sql1 = "INSERT INTO session (session_id, session_status) VALUES ('$session_id', TRUE)";
     $result1=mysql_query($sql1,$conn);
 
     for($x=$start_year; $x<=$end_year; $x++ ){
