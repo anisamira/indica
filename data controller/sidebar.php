@@ -56,7 +56,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
     
     <?php } ?>
     </br>
-	<a href="" class="datacontroller_updaterecord2.php"><i class="fa fa-book fa-fw"></i>  Achievement</a>
+	<!--<a href="datacontroller_updaterecord2.php" class=""><i class="fa fa-book fa-fw"></i>  Achievement</a>-->
     <a href="logout.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-power-off fa-fw"></i>  Log Out</a>
   </div>
 </nav>

@@ -136,7 +136,7 @@
 					
 		
 		
-	<!--	<a href="datacontroller_updaterecord2.php" style="text-decoration:none;">-->
+		<a href="datacontroller_updaterecord2.php" style="text-decoration:none;">
 			<button class="col-md-4 content-boxes-v6">		
 				<i class="rounded-x icon-docs"></i>
 				<h3 class="title-v3-md text-uppercase margin-bottom-10">Update Records</h3>
@@ -144,7 +144,7 @@
 			</button>
 		</a> 
 		
-		<!--<a href="datacontroller_viewupdated.php" style="text-decoration:none;">-->
+		<a href="datacontroller_viewupdated.php" style="text-decoration:none;">
 			<button class="col-md-4 content-boxes-v6">
 				<i class="rounded-x icon-docs"></i>
 				<h3 class="title-v3-md text-uppercase margin-bottom-10">View Status</h3>
