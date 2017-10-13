@@ -10,7 +10,7 @@ session_start();
 		$sql2= "UPDATE user SET logout_time=now() WHERE username = '$myusername'";    
 		$rs2= mysql_query($sql2);
 
-		unset($_SESSION['username'], $_SESSION['userid']);
+		unset($_SESSION['username'], $_SESSION['user_id']);
 		header('location: index.php?status=loggedout');
 	
 		}
