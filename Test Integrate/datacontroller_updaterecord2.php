@@ -90,7 +90,7 @@
 						}
 						?>
 						<tr>
-							<td colspan="6"><input type="hidden" name="MAX_FILE_SIZE" value="8000000"/>Upload Evidence :</input>
+							<td colspan="6"><input type="hidden" name="MAX_FILE_SIZE" value="8000000">Upload Evidence : </input>
 											<input type="file" name="data"/></br></br>
 											<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
 											<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>

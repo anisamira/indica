@@ -44,38 +44,12 @@
 <body>
 <?php
 	include('sidebar.php');
+	$module_id=$_SESSION['module_id'];
 	if(isset($_POST['next']))
 					{
 						for($y=1; $y<=50; $y++)
 						{
-								if (($_SESSION['username']) == 'usera') 
-							{
-								$module_id="M01";
-							}
-						else if (($_SESSION['username']) == 'tnci') 
-								{
-									$module_id="M02";
-								}
-						else if (($_SESSION['username']) == 'tncpi') 
-								{
-									$module_id="M03";
-								}
-						else if (($_SESSION['username']) == 'hepa') 
-								{
-									$module_id="M04";
-								}
-						else if (($_SESSION['username']) == 'tncpid') 
-								{
-									$module_id="M05";
-								}
-						else if (($_SESSION['username']) == 'fac') 
-								{
-									$module_id="M06";
-								}
-						else 
-								{
-									$module_id="M07";
-								}
+						
 							if (empty($_POST["kpi".$y]))
 							{
 								$error = 1;
@@ -83,9 +57,7 @@
 							else
 							{
 								
-								 $value=$_POST['kpi'.$y];
-								{
-								
+									$value=$_POST['kpi'.$y];
 									$target1	=$_POST['target1'.$y];
 									$target2	=$_POST['target2'.$y];
 									$target3	=$_POST['target3'.$y];
@@ -98,8 +70,7 @@
 									if (false === $result) 
 									{
 										echo mysql_error();
-									}
-								}	
+									}	
 								
 							}	
 						}		
