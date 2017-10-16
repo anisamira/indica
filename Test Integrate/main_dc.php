@@ -14,7 +14,6 @@
 						$_SESSION['session_name']	=$row['session_name'];
 					}
 	$session_name	=$_SESSION['session_name'];
-	$session_status	=$_SESSION['session_status'];
 	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					while($row=mysql_fetch_array($result))
