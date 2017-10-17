@@ -6,16 +6,16 @@ if(isset($_POST['create'])){
     $start_year=$_POST['start_year'];
     $end_year=$_POST['end_year'];
     $y = 1;
-    $session_id="Sesi ".$start_year."-".$end_year;
+    $session_name="Sesi ".$start_year."-".$end_year;
 
-    $sql1 = "INSERT INTO session (session_id, session_status) VALUES ('$session_id', TRUE)";
+    $sql1 = "INSERT INTO session (session_name, session_status) VALUES ('$session_name', TRUE)";
     $result1=mysql_query($sql1,$conn);
 
     for($x=$start_year; $x<=$end_year; $x++ ){
         $year="year".$y;
-        $sql2 = "UPDATE session SET $year = $x WHERE session_id = '$session_id'";
+        $sql2 = "UPDATE session SET $year = $x WHERE session_name = '$session_name'";
         $result2=mysql_query($sql2,$conn);
-        $sql3 = "INSERT INTO year (year_name, year_status, session_id) VALUES ('$x', TRUE, '$session_id')"; 
+        $sql3 = "INSERT INTO year (year_name, session_name) VALUES ('$x','$session_name')"; 
         $result3=mysql_query($sql3,$conn);
         $y++;
 
