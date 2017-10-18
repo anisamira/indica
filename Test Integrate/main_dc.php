@@ -60,7 +60,7 @@
 				else
 					{							
 						$kpi	=$_POST['kpi'.$y];	
-						$sql	="INSERT INTO master_status (kpi_id, form_id) VALUES ('$kpi','$form_id')";
+						$sql	="INSERT INTO master_status (kpi_id, form_id,action_date) VALUES ('$kpi','$form_id', Now())";
 						$result = mysql_query($sql) or die(mysql_error());  
 						if (false === $result)
 							{
