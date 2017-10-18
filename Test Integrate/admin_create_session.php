@@ -20,7 +20,7 @@ include ('sidebar.php');
 
     <?php 
    if(!empty($_GET['status'])){?>
-          <div class="alert">
+          <div class="success_alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
           <strong>You have created a new session</strong> 
           </div>

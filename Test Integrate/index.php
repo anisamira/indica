@@ -49,7 +49,7 @@ session_start();
 
   <?php 
    if(!empty($_GET['status'])){?>
-          <div class="alert">
+          <div class="error_alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
           <strong>You have successfully logged out</strong> 
           </div>
