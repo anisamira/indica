@@ -21,7 +21,8 @@ include ('sidebar.php');
       <thead>
         <tr>
           
-          <th>Username</th>
+          <th>User ID</th>
+		  <th>Username</th>
           <th>Login Time</th>
           <th>Logout Time</th>
         </tr>
@@ -29,19 +30,20 @@ include ('sidebar.php');
       <tbody>
 
         <?php
-          $result = mysql_query("SELECT * FROM logtrails");
+          // $result = mysql_query("SELECT logtrails.*, user.* FROM logtrails JOIN user WHERE user.user_id = logtrails.user_id");
+		  $result = mysql_query ("SELECT * FROM logtrails");
           while($row = mysql_fetch_assoc($result))
           {
-
-          // $user_id=$row['user_id'];
-          $username=$row['username'];
+          $user_id=$row['user_id'];
+          //$username=$row['username'];
           $login_time=$row['login_time'];
           $logout_time=$row['logout_time'];
 
                   echo  " <table id='myTable' style='margin: 0 auto' class='fixed'>
                   <tr>
                       
-                      <td>$username</td>
+					  <td>$user_id</td>
+                      
                       <td>$login_time</td>
                       <td>$logout_time</td>
                   </tr>

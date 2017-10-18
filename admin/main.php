@@ -27,7 +27,7 @@ include ('sidebar.php');
                 <div class="w3-left"><i class="fa fa-graduation-cap w3-xxxlarge"></i></div>
                 <div class="w3-right"><h3></h3></div>
                 <div class="w3-clear"></div>
-                <a href="dcmain.php"<h4>Academic</h4>>
+                <a href="main_dc.php"<h4>Academic</h4>>
             </div>
         </div>
     </div>
