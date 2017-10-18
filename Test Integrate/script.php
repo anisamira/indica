@@ -2,6 +2,8 @@
 		jQuery(document).ready(function() {
 			App.init();
 			StyleSwitcher.initStyleSwitcher();
+
+					
 			
 					var max_fields      = 10; 
 					var wrapper         = $(".input_fields_wrap");
@@ -12,7 +14,7 @@
 						e.preventDefault();
 						if(x < max_fields){ 
 							x++;
-							$(wrapper).append('<div><input type="text" name="goal[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>'); //add input box
+							$(wrapper).append('<div><input type="text" name="goal[]" style="width:94%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>'); //add input box
 						}
 					});
 					
@@ -26,7 +28,7 @@
 							
 						$(add_strategy1).click(function(e){ 
 							e.preventDefault();
-							$(wrapperstrategy1).append('<div><input type="text" name="strategy1[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
+							$(wrapperstrategy1).append('<div><input type="text" name="strategy1[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
 						});
 							
 						$(wrapperstrategy1).on("click",".remove_field", function(e){ 
@@ -42,7 +44,7 @@
 							
 							$(add_strategy2).click(function(e){ 
 							e.preventDefault();
-							$(wrapperstrategy2).append('<div><input type="text" name="strategy2[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
+							$(wrapperstrategy2).append('<div><input type="text" name="strategy2[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
 						});
 							
 						$(wrapperstrategy2).on("click",".remove_field", function(e){ 
@@ -57,7 +59,7 @@
 							
 							$(add_strategy3).click(function(e){ 
 							e.preventDefault();
-							$(wrapperstrategy3).append('<div><input type="text" name="strategy3[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
+							$(wrapperstrategy3).append('<div><input type="text" name="strategy3[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
 						});
 							
 						$(wrapperstrategy3).on("click",".remove_field", function(e){ 
@@ -73,7 +75,7 @@
 							
 							$(add_strategy4).click(function(e){ 
 							e.preventDefault();
-							$(wrapperstrategy4).append('<div><input type="text" name="strategy4[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
+							$(wrapperstrategy4).append('<div><input type="text" name="strategy4[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
 						});
 							
 						$(wrapperstrategy4).on("click",".remove_field", function(e){ 
@@ -88,7 +90,7 @@
 							
 							$(add_strategy5).click(function(e){ 
 							e.preventDefault();
-							$(wrapperstrategy5).append('<div><input type="text" name="strategy5[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
+							$(wrapperstrategy5).append('<div><input type="text" name="strategy5[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
 						});
 							
 						$(wrapperstrategy5).on("click",".remove_field", function(e){ 
@@ -103,7 +105,7 @@
 							
 							$(add_strategy6).click(function(e){ 
 							e.preventDefault();
-							$(wrapperstrategy6).append('<div><input type="text" name="strategy6[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
+							$(wrapperstrategy6).append('<div><input type="text" name="strategy6[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
 						});
 							
 						$(wrapperstrategy6).on("click",".remove_field", function(e){ 
@@ -118,7 +120,7 @@
 							
 							$(add_strategy7).click(function(e){ 
 							e.preventDefault();
-							$(wrapperstrategy7).append('<div><input type="text" name="strategy7[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
+							$(wrapperstrategy7).append('<div><input type="text" name="strategy7[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
 						});
 							
 						$(wrapperstrategy7).on("click",".remove_field", function(e){
@@ -132,7 +134,7 @@
 							
 							$(add_strategy8).click(function(e){ 
 							e.preventDefault();
-							$(wrapperstrategy8).append('<div><input type="text" name="strategy8[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
+							$(wrapperstrategy8).append('<div><input type="text" name="strategy8[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
 						});
 							
 						$(wrapperstrategy8).on("click",".remove_field", function(e){ 
@@ -149,7 +151,7 @@
 							
 							$(add_strategy9).click(function(e){
 							e.preventDefault();
-							$(wrapperstrategy9).append('<div><input type="text" name="strategy9[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
+							$(wrapperstrategy9).append('<div><input type="text" name="strategy9[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
 						});
 							
 						$(wrapperstrategy9).on("click",".remove_field", function(e){
@@ -163,7 +165,7 @@
 							
 							$(add_strategy10).click(function(e){ 
 							e.preventDefault();
-							$(wrapperstrategy10).append('<div><input type="text" name="strategy10[]" style="width:93%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button></div>'); //add input box
+							$(wrapperstrategy10).append('<div><input type="text" name="strategy10[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
 						});
 							
 						$(wrapperstrategy10).on("click",".remove_field", function(e){ 
@@ -176,7 +178,7 @@
 							
 						$(add_action1).click(function(e){
 							e.preventDefault();
-							$(wrapperaction1).append('<div><input type="text" name="action1[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperaction1).append('<div><input type="text" name="action1[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperaction1).on("click",".remove_field", function(e){ 
@@ -192,7 +194,7 @@
 							
 						$(add_action2).click(function(e){
 							e.preventDefault();
-							$(wrapperaction2).append('<div><input type="text" name="action2[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperaction2).append('<div><input type="text" name="action2[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperaction2).on("click",".remove_field", function(e){ 
@@ -207,7 +209,7 @@
 							
 						$(add_action3).click(function(e){ 
 							e.preventDefault();
-							$(wrapperaction3).append('<div><input type="text" name="action3[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperaction3).append('<div><input type="text" name="action3[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperaction3).on("click",".remove_field", function(e){ 
@@ -223,7 +225,7 @@
 							
 						$(add_action4).click(function(e){
 							e.preventDefault();
-							$(wrapperaction4).append('<div><input type="text" name="action4[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperaction4).append('<div><input type="text" name="action4[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperaction4).on("click",".remove_field", function(e){ 
@@ -238,7 +240,7 @@
 							
 						$(add_action5).click(function(e){
 							e.preventDefault();
-							$(wrapperaction5).append('<div><input type="text" name="action5[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>'); //add input box
+							$(wrapperaction5).append('<div><input type="text" name="action5[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>'); //add input box
 						});
 							
 						$(wrapperaction5).on("click",".remove_field", function(e){ 
@@ -253,7 +255,7 @@
 							
 						$(add_action6).click(function(e){ 
 							e.preventDefault();
-							$(wrapperaction6).append('<div><input type="text" name="action6[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperaction6).append('<div><input type="text" name="action6[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperaction6).on("click",".remove_field", function(e){ 
@@ -268,7 +270,7 @@
 							
 						$(add_action7).click(function(e){ 
 							e.preventDefault();
-							$(wrapperaction7).append('<div><input type="text" name="action7[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperaction7).append('<div><input type="text" name="action7[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperaction7).on("click",".remove_field", function(e){ 
@@ -283,7 +285,7 @@
 							
 						$(add_action8).click(function(e){ 
 							e.preventDefault();
-							$(wrapperaction8).append('<div><input type="text" name="action8[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperaction8).append('<div><input type="text" name="action8[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperaction8).on("click",".remove_field", function(e){ 
@@ -300,7 +302,7 @@
 							
 						$(add_action9).click(function(e){ 
 							e.preventDefault();
-							$(wrapperaction9).append('<div><input type="text" name="action9[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperaction9).append('<div><input type="text" name="action9[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperaction9).on("click",".remove_field", function(e){ 
@@ -315,7 +317,7 @@
 							
 						$(add_action10).click(function(e){ 
 							e.preventDefault();
-							$(wrapperaction10).append('<div><input type="text" name="action10[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperaction10).append('<div><input type="text" name="action10[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperaction10).on("click",".remove_field", function(e){ 
@@ -329,7 +331,7 @@
 							
 						$(add_kpi1).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi1).append('<div><input type="text" name="kpi1[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi1).append('<div><input type="text" name="kpi1[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi1).on("click",".remove_field", function(e){ 
@@ -345,7 +347,7 @@
 							
 						$(add_kpi2).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi2).append('<div><input type="text" name="kpi2[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi2).append('<div><input type="text" name="kpi2[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi2).on("click",".remove_field", function(e){ 
@@ -360,7 +362,7 @@
 							
 						$(add_kpi3).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi3).append('<div><input type="text" name="kpi3[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi3).append('<div><input type="text" name="kpi3[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi3).on("click",".remove_field", function(e){ 
@@ -376,7 +378,7 @@
 							
 						$(add_kpi4).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi4).append('<div><input type="text" name="kpi4[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi4).append('<div><input type="text" name="kpi4[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi4).on("click",".remove_field", function(e){ 
@@ -390,7 +392,7 @@
 						var add_kpi5 = $(".add_kpi5"); 
 						$(add_kpi5).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi5).append('<div><input type="text" name="kpi5[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi5).append('<div><input type="text" name="kpi5[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi5).on("click",".remove_field", function(e){ 
@@ -405,7 +407,7 @@
 							
 						$(add_kpi6).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi6).append('<div><input type="text" name="kpi6[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi6).append('<div><input type="text" name="kpi6[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi6).on("click",".remove_field", function(e){ 
@@ -420,7 +422,7 @@
 							
 						$(add_kpi7).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi7).append('<div><input type="text" name="kpi7[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi7).append('<div><input type="text" name="kpi7[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi7).on("click",".remove_field", function(e){ 
@@ -435,7 +437,7 @@
 							
 						$(add_kpi8).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi8).append('<div><input type="text" name="kpi8[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi8).append('<div><input type="text" name="kpi8[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi8).on("click",".remove_field", function(e){ 
@@ -452,7 +454,7 @@
 							
 						$(add_kpi9).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi9).append('<div><input type="text" name="kpi9[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi9).append('<div><input type="text" name="kpi9[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi9).on("click",".remove_field", function(e){ 
@@ -467,7 +469,7 @@
 							
 						$(add_kpi10).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi10).append('<div><input type="text" name="kpi10[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi10).append('<div><input type="text" name="kpi10[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi10).on("click",".remove_field", function(e){ 
@@ -480,7 +482,7 @@
 							
 						$(add_kpi11).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi11).append('<div><input type="text" name="kpi11[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi11).append('<div><input type="text" name="kpi11[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi11).on("click",".remove_field", function(e){ 
@@ -493,7 +495,7 @@
 							
 						$(add_kpi12).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi12).append('<div><input type="text" name="kpi12[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi12).append('<div><input type="text" name="kpi12[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi12).on("click",".remove_field", function(e){ 
@@ -508,7 +510,7 @@
 							
 						$(add_kpi13).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi13).append('<div><input type="text" name="kpi13[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi13).append('<div><input type="text" name="kpi13[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi13).on("click",".remove_field", function(e){ 
@@ -522,7 +524,7 @@
 							
 						$(add_kpi14).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi14).append('<div><input type="text" name="kpi14[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi14).append('<div><input type="text" name="kpi14[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi14).on("click",".remove_field", function(e){ 
@@ -536,7 +538,7 @@
 							
 						$(add_kpi15).click(function(e){ 
 							e.preventDefault();
-							$(wrapperkpi15).append('<div><input type="text" name="kpi15[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field">X</button</div></br>');
+							$(wrapperkpi15).append('<div><input type="text" name="kpi15[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
 						});
 							
 						$(wrapperkpi15).on("click",".remove_field", function(e){ 
