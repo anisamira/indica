@@ -9,20 +9,36 @@
 	$user_id		=$_SESSION['user_id'];
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
-					while($row=mysql_fetch_array($result))
+					if(mysql_num_rows($result)>0)
 					{
-						$_SESSION['session_name']	=$row['session_name'];
+						while($row=mysql_fetch_array($result))
+						{
+							$_SESSION['session_name']	=$row['session_name'];
+						}
+						$session_name	=$_SESSION['session_name'];
 					}
-	$session_name	=$_SESSION['session_name'];
+					else
+					{
+						echo "no data found";
+					}
+	
 	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
 					$result = mysql_query($sql) or die(mysql_error()); 
-					while($row=mysql_fetch_array($result))
+					if(mysql_num_rows($result)>0)
 					{
-						$_SESSION['form_status']	=$row['form_status'];
-						$_SESSION['form_id']		=$row['form_id'];
+						while($row=mysql_fetch_array($result))
+						{
+							$_SESSION['form_status']	=$row['form_status'];
+							$_SESSION['form_id']		=$row['form_id'];
+						}
+						$form_status	=$_SESSION['form_status'];
+						$form_id		=$_SESSION['form_id'];
 					}
-	$form_status	=$_SESSION['form_status'];
-	$form_id		=$_SESSION['form_id'];
+					else
+					{
+						echo "no data found";
+					}
+	
 	
 	if(isset($_POST['submit']))		
 	{
