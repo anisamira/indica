@@ -106,8 +106,8 @@ else
 									    <th>No.</th>
 									    <th>Goal</th>
 									    <th>KPI</th>
-										<th>Target</th>
-										<th>Achievement</th>
+										<th>Target <?php echo $curyear-1;?></th>
+										<th>Achievement <?php echo $curyear;?></th>
 									</tr>
 <?php
 						$module_id=$_SESSION['module_id'];
@@ -149,7 +149,7 @@ else
 <td>
 <input type="submit" name="Insert" value="Insert">
 </td>
-<tr>
+</tr>
 </form>
 
 <?php
