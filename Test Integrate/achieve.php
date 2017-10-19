@@ -6,6 +6,17 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
+	
+	$curyear=date ('Y');
+    $date_now=date ("m/d/Y");
+ $date_q= date ("06/30/Y");
+ if ($date_now<=$date_q)
+{
+	$quater=1;
+}
+else
+    $quater=2;	
+	
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	$sql			="SELECT * FROM session where session_status='1'";
@@ -40,6 +51,25 @@
 						echo "no data found";
 					}
 	
+		$sql			= "SELECT * FROM year WHERE year_name='$curyear'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$year= $row['year_name'];
+							$year_id=$row['year_id'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}
+		
+
+		
 
 	
 	?>
@@ -68,8 +98,92 @@
 <body>
 
 
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="achievement">
+<table class="table table-bordered">
+									<col width="40%">
+									<col width="60%">
+									<tr>
+									    <th>No.</th>
+									    <th>Goal</th>
+									    <th>KPI</th>
+										<th>Target</th>
+										<th>Achievement</th>
+									</tr>
+<?php
+						$module_id=$_SESSION['module_id'];
+						$x=1;
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						WHERE module_id='$module_id'";
+						$result = mysql_query($sql) or die(mysql_error()); 
+						while($row=mysql_fetch_array($result))
+						{
+							$kpi_id			=$row['kpi_id'];
+							$goal_desc		=$row['goal_desc'];
+							$kpi_desc		=$row['kpi_desc'];
+							$target		    =$row['target4'];
+							$target_id		=$row['target_id'];
+
+						?>
+
+							<tr>  
+								<td><?php echo $x;?></td>
+								<td><?php echo $goal_desc;?></td>
+								<td><?php echo $kpi_desc;?></td>
+								<td><?php echo $target;?></td>
+								<td><input class="form-control" type="text" name="achievement<?php echo $x;?>" required/>
+									<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"/></td>
+							</tr>
+							<?php
+						$x++;
+						}
+						?>
+
+<tr>
+<td>
+<input type="submit" name="Insert" value="Insert">
+</td>
+<tr>
+</form>
+
+<?php
+
+?>
 </body>
 
+<?php
+
+
+if (isset($_POST['Insert'])){
+ 
+ 
+ for($y=1; $y<=50; $y++)
+								{
+									if (empty($_POST["achievement".$y]))
+									{
+										$error = 1;
+									}
+									else
+									{	
+	$achievement =$_POST["achievement".$y];
+       
+ 
+$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc) VALUES ('$year_id','$target_id','$quater','$achievement')";
+$result = mysql_query($sql) or die(mysql_error());  											   
+												if (false === $result) 
+												{
+													echo mysql_error();
+												}							
+}
+								}
+}
+?>
 
 	</div>
 		</div>
@@ -130,5 +244,3 @@ body {margin:0;}
 </style>
 
 </html>
-
-
