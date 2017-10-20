@@ -4,6 +4,7 @@
 <?php
 	include('style_dc.php');
 	include('sidebar.php');
+	include('script.php');
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	$sql			="SELECT * FROM session where session_status='1'";
@@ -94,52 +95,39 @@
 										
 										<tr>
 											<td><?php echo $x;?></td>
-											<td><?php echo $goal_desc;?></td>
-											<td><?php echo $strategy_desc;?></td>
-											<td><?php echo $actionplan_desc;?></td>
-											<td><?php echo $kpi_desc;?></td>
-											<td><?php echo $operation_def;?></td>
-											<td><?php echo $baseline1;?></td>
-											<td><?php echo $baseline2;?></td>
-											<td><?php echo $target1;?></td>
-											<td><?php echo $target2;?></td>
-											<td><?php echo $target3;?></td>
-											<td><?php echo $target4;?></td>
-											<td><?php echo $target5;?></td>
-											<td><?php echo $ownership;?></td>
-											<td><?php echo $data_source;?></td>
-											<td><?php echo $estimated_cost;?></td>
-											<td><?php echo $exp_fin_return;?></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $goal_desc;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $strategy_desc;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $actionplan_desc;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $kpi_desc;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $operation_def;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $baseline1;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $baseline2;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $target1;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $target2;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $target3;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $target4;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $target5;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $ownership;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $data_source;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $estimated_cost;?>"></input></td>
+											<td><input class="form-control" type="text" name="" value="<?php echo $exp_fin_return;?>"></input></td>
 											<td><?php echo $action_type;?>ed</td>
 											<td><?php echo $action_comment;?></td>
 										</tr>
 										<?php $x++;
 									}
 							?>
+			
 						</table>
+						<div style="margin:20px;">
+							<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
+							<input type="submit" name="submit_updated" value="Submit" onclick="return confirm('Are you sure you want to submit this form?');" /></input>
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-	<!-- JS Global Compulsory -->
-	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<!-- JS Implementing Plugins -->
-	<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-	<script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
-	<!-- JS Customization -->
-	<script type="text/javascript" src="assets/js/custom.js"></script>
-	<!-- JS Page Level -->
-	<script type="text/javascript" src="assets/js/plugins/style-switcher.js"></script>
-	<script type="text/javascript" src="assets/js/app.js"></script>
-	<script type="text/javascript">
-		jQuery(document).ready(function() {
-			App.init();
-			StyleSwitcher.initStyleSwitcher();
-		});
-	</script>
 
 
 	
