@@ -67,8 +67,11 @@
   <body>
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
 <table class="table table-bordered">
-									<col width="40%">
-									<col width="60%">
+									<col width="10%">
+									<col width="20%">
+									<col width="20%">
+									<col width="20%">
+									<col width="30%">
 									<tr>
 									    <th>No.</th>
 									    <th>Goal</th>
@@ -116,8 +119,12 @@
 						?>
 
 
-<input type="submit" name="Upload" value="Upload">
+</table>
 
+<br>
+<td>
+<input type="submit" name="Upload" value="Upload">
+</td>
 </form>
 
 </body>

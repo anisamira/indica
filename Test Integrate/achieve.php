@@ -100,8 +100,11 @@ else
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="achievement1">
 <table class="table table-bordered">
-									<col width="40%">
-									<col width="60%">
+									<col width="10%">
+									<col width="20%">
+									<col width="20%">
+									<col width="20%">
+									<col width="30%">
 									<tr>
 									    <th>No.</th>
 									    <th>Goal</th>
