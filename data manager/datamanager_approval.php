@@ -85,8 +85,8 @@ include ('sidebar.php');
 									<td><?php echo $ownership;?></td>
 									<td><?php echo $data_source;?></td>
 								<!--<td><?php echo $action;?></td>-->
-									<td><input type="radio" name="reject" value="approved"> Ap
-										<input type="radio" name="reject" value="rejected"> Rej<br></td>
+									<td><input type="radio" name="reject" value="approved"> Approve
+										<input type="radio" name="reject" value="rejected"> Reject<br></td>
 								   <td></td>
 							
 								</tr>

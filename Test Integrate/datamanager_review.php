@@ -1,42 +1,10 @@
-<!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-<head>
-	<title>INDICA UM</title>
 
-	<!-- Meta -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
-
-	<!-- Favicon -->
-	<link rel="shortcut icon" href="faviconn.png">
-
-	<!-- Web Fonts -->
-	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600&amp;subset=cyrillic,latin">
-
-	<!-- CSS Global Compulsory -->
-	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" href="assets/css/style.css">
-
-	<!-- CSS Header and Footer -->
-	<link rel="stylesheet" href="assets/css/headers/header-default.css">
-	<link rel="stylesheet" href="assets/css/footers/footer-v1.css">
-
-	<!-- CSS Implementing Plugins -->
-	<link rel="stylesheet" href="assets/plugins/animate.css">
-	<link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
-	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
-
-	<!-- CSS Customization -->
-	<link rel="stylesheet" href="assets/css/custom.css">
-</head>
 
 <body>
 <?php
 	include('sidebar.php');
+	include('style_dc.php');
+	include('script.php');
 ?>
 	<div class="wrapper">
 		<div class="container content-sm">
@@ -57,8 +25,8 @@
 						$_SESSION['session_name']=$row['session_name'];
 						$_SESSION['form_id']=$row['form_id'];
 					}
-						$session_name=$_SESSION['session_name'];
-						$form_id=$_SESSION['form_id'];
+						$session_name	=$_SESSION['session_name'];
+						$form_id		=$_SESSION['form_id'];
 						
 			
 			
@@ -73,10 +41,13 @@
 								}
 								else
 								{
-									$kpi_id		=($_POST["kpi_id".$y]);
-									$approval 	= ($_POST["approval".$y]);
-									$sql		="UPDATE master_status SET action_type='$approval' WHERE kpi_id='$kpi_id'";
-									$result		=mysql_query($sql) or die (mysql_error());
+									$kpi_id			=($_POST["kpi_id".$y]);
+									$approval 		= ($_POST["approval".$y]);
+									$action_comment = mysql_real_escape_string($_POST["action_comment".$y]); 
+									$sql			="UPDATE master_status 
+														SET action_type='$approval', action_comment='$action_comment', action_date=NOW()
+														WHERE kpi_id='$kpi_id'";
+									$result			=mysql_query($sql) or die (mysql_error());
 									if (false===$result)
 									{
 										echo mysql_error();
@@ -114,6 +85,7 @@
 								<th>Estimated Cost (RM)</th> 
 								<th>Expected Financial Returns</th> 	
 								<th>Action</th>
+								<th>Comment</th>
 							</tr>
 							<?php
 							$x=1;
@@ -174,11 +146,9 @@
 								<label class="radio-inline"><input type="radio" name="approval<?php echo $x;?>" value="approve" required> Approve</input></label>
 								<input type="radio" name="approval<?php echo $x;?>" value="reject"> Reject</input>
 							</td>
+							<td><textarea cols="20" name="action_comment<?php echo $x;?>"></textarea></td>
 						</tr>
-									<!--<td><?php// echo $action_type;?></td>
-									<td><?php// echo $action_date;?></td>
-									<td><?php// echo $action_comment;?></td>-->
-								</tr>
+
 								<?php
 							$x++;
 							}
@@ -196,24 +166,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- JS Global Compulsory -->
-	<script type="text/javascript" src="assets/plugins/jquery/jquery.min.js"></script>
-	<script type="text/javascript" src="assets/plugins/jquery/jquery-migrate.min.js"></script>
-	<script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<!-- JS Implementing Plugins -->
-	<script type="text/javascript" src="assets/plugins/back-to-top.js"></script>
-	<script type="text/javascript" src="assets/plugins/smoothScroll.js"></script>
-	<!-- JS Customization -->
-	<script type="text/javascript" src="assets/js/custom.js"></script>
-	<!-- JS Page Level -->
-	<script type="text/javascript" src="assets/js/plugins/style-switcher.js"></script>
-	<script type="text/javascript" src="assets/js/app.js"></script>
-	<script type="text/javascript">
-		jQuery(document).ready(function() {
-			App.init();
-			StyleSwitcher.initStyleSwitcher();
-		});
-	</script>
 
 
 	

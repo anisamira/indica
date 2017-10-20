@@ -101,6 +101,8 @@
 							$action	          =$row['action'];
                             $action_type	  =$row['action_type'];
 							$action_date	  =$row['action_date'];
+							if ($date <> "") 
+								$date=substr($date,8,2)."-".substr($date,5,2)."-".substr($date,0,4);
 							$action_comment   =$row['action_comment'];
 							
 						?>
@@ -126,6 +128,8 @@
 								<td><?php echo $exp_fin_return;?></td>
 								<td><?php echo $action;?></td>
 								<td><?php echo $action_type;?></td>
+								<td><input type="radio" name="reject" value="approved"> Approve
+								<input type="radio" name="reject" value="rejected"> Reject<br></td>
 								<td><?php echo $action_date;?></td>
 								<td><?php echo $action_comment;?></td>
 							</tr>

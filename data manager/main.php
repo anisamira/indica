@@ -49,46 +49,20 @@
 <?php
 	include('sidebar.php');
 	
-		
-		 if (($_SESSION['username']) == 'userb') 
-				{
-					$module_id="M01";
-				}
-		else if (($_SESSION['username']) == 'tnci') 
-				{
-					$module_id="M02";
-				}
-		else if (($_SESSION['username']) == 'tncpi') 
-				{
-					$module_id="M03";
-				}
-		else if (($_SESSION['username']) == 'hepa') 
-				{
-					$module_id="M04";
-				}
-		else if (($_SESSION['username']) == 'tncpid') 
-				{
-					$module_id="M05";
-				}
-		else if (($_SESSION['username']) == 'fac') 
-				{
-					$module_id="M06";
-				}
-		else 
-				{
-					$module_id="M07";
-				}
-				
+	$module_id=$_SESSION['module_id'];
+	
 				
 	if(isset($_POST['submit']))
+		
 	{
-					$sql="UPDATE status SET status='pending' WHERE module_id='$module_id'";
+		$sql="UPDATE status SET status='pending' WHERE module_id='$module_id'";
 				$result = mysql_query($sql) or die(mysql_error());  
 			   
 				if (false === $result)
 					{
 						echo mysql_error();
 					}
+					
 	}
 ?>
 
@@ -100,12 +74,22 @@
 		<div class="container content-sm">		
 		<!-- !PAGE CONTENT! -->
 			<div class="w3-main" style="margin-left:300px;margin-top:43px;">
-
-		
+			<?php
 			
+			$sql="SELECT * FROM module WHERE module_id='$module_id'";
+			$result = mysql_query($sql) or die(mysql_error());  
+			  while($row=mysql_fetch_array($result))
+			{
+				
+				$_SESSION['module_name'] = $row['module_name'];
+			}
+		
+			echo $_SESSION['module_name'];
+		
+		?>	
 		<div class="row" style="margin:0 auto;">
 		<?php
-			
+		
 		$sql="SELECT * FROM status WHERE module_id='$module_id'";
 			$result = mysql_query($sql) or die(mysql_error());  
 			  while($row=mysql_fetch_array($result))
@@ -113,11 +97,11 @@
 						$status		=$row['status'];
 						if($status=='pending')
 							{ ?>
-								<!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
+								<a href="datamanager_approval.php" style="text-decoration:none;">
 									<button class="col-md-4 content-boxes-v6">
 										<i class="rounded-x  icon-notebook"></i>
 										
-										<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
+										<h3 class="title-v3-md text-uppercase margin-bottom-10">Approval</h3>
 										<p></p>
 									</button>
 								</a><?php
@@ -128,7 +112,7 @@
 									<button class="col-md-4 content-boxes-v6">
 										<i class="rounded-x  icon-notebook"></i>
 										
-										<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
+										<h3 class="title-v3-md text-uppercase margin-bottom-10">Achievement Approval</h3>
 										<p></p>
 									</button>
 								</a><?php
@@ -137,7 +121,7 @@
 					
 		
 		
-	<!--	<a href="datacontroller_updaterecord2.php" style="text-decoration:none;">-->
+	<!--	<a href="datacontroller_updaterecord2.php" style="text-decoration:none;">
 			<button class="col-md-4 content-boxes-v6">		
 				<i class="rounded-x icon-docs"></i>
 				<h3 class="title-v3-md text-uppercase margin-bottom-10">Update Records</h3>
@@ -145,7 +129,7 @@
 			</button>
 		</a> 
 		
-		<!--<a href="datacontroller_viewupdated.php" style="text-decoration:none;">-->
+		<a href="datacontroller_viewupdated.php" style="text-decoration:none;">
 			<button class="col-md-4 content-boxes-v6">
 				<i class="rounded-x icon-docs"></i>
 				<h3 class="title-v3-md text-uppercase margin-bottom-10">View Status</h3>

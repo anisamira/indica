@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
@@ -21,10 +22,6 @@
 	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 
-	<!-- CSS Header and Footer -->
-	<link rel="stylesheet" href="assets/css/headers/header-default.css">
-	<link rel="stylesheet" href="assets/css/footers/footer-v1.css">
-
 	<!-- CSS Implementing Plugins -->
 	<link rel="stylesheet" href="assets/plugins/animate.css">
 	<link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
@@ -33,113 +30,77 @@
 	<!-- CSS Customization -->
 	<link rel="stylesheet" href="assets/css/custom.css">
 </head>
-
-<body>
 <?php
-	include('db.php');
-	include('sidebar.php');
+include ('sidebar.php');
 ?>
+<body>
 	<div class="wrapper">
+
 		<div class="container content-sm">
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">
-			<div class="table-responsive">  
-				<form action="datacontroller_target.php" method="post">
-				<form action="datamanager_process.php" method="post">
+			<div class="w3-main" style="margin-left:300px;margin-top:20px;">
+				<div class="table-responsive">  
+				<form action="" method="post">
 				   <table class="table table-bordered"> 
 						<tr>
 							<th>No.</th>
-							<th>Goal</th>	
-                            <th>Strategy</th>
-                            <th>Action Plan</th>							
+							<th>Goal</th>						
 							<th>Key Performance Indicator (KPI)</th>
-							<th>Operation Definition</th>
-							<th>Achievement 2014</th>
-                            <th>Achievement 2015</th>	
-                            <th>2016</th>
-							<th>2017</th>
-							<th>2018</th>
-							<th>2019</th>
-							<th>2020</th>
+							<th>Target </th>
+							<th>Achievement </th>
+							<th>Status</th>						
 							<th>Ownerhip</th>
 							<th>Data Source</th>
-							<th>Notes</th>
-							<th>Estimated Cost(RM)</th>
-							<th>Expected Financial Return</th>
-							<th>Action</th>
+							<!--<th>Action</th>
+							<th>Approval</th>
+							<th>Action Date</th>-->
+							<th>Comment</th>
 						</tr>
 						<?php
-						$x=1;
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* ,master_status.*
-						FROM goal 
-						JOIN strategy ON strategy.goal_id=goal.goal_id 
-						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
-						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
-						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
-						JOIN target ON target.kpi_id=kpi.kpi_id 
-						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						JOIN master_status ON master_status.kpi_id=kpi.kpi_id
-						WHERE module_id='M01'
-						WHERE approvedd='0'";
-						$result = mysql_query($sql) or die(mysql_error()); 
-						while($row=mysql_fetch_array($result))
-						{
-							$goal_desc		  =$row['goal_desc'];
-							$strategy_desc    =$row['strategy_desc'];
-							$actionplan_desc  =$row['actionplan_desc'];
-							$kpi_desc		  =$row['kpi_desc'];
-							$ope_definition   =$row['ope_definition'];
-							$baseline1        =$row['baseline1'];
-							$baseline2        =$row['baseline2'];
-							$target1          =$row['target1'];
-							$target2          =$row['target2'];
-							$target3          =$row['target3'];
-							$target4          =$row['target4'];
-							$target5          =$row['target5'];
-							$ownership		  =$row['ownership'];
-							$data_source	  =$row['data_source'];
-							$notes      	  =$row['notes'];
-							$estimated_cost	  =$row['estimated_cost'];
-							$exp_fin_return	  =$row['exp_fin_return'];
-							$action	          =$row['action'];
-							
+							$x=1;
+							$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
+							FROM goal 
+							JOIN strategy ON strategy.goal_id=goal.goal_id 
+							JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+							JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+							JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+							JOIN target ON target.kpi_id=kpi.kpi_id 
+							JOIN reference ON reference.kpi_id=kpi.kpi_id 
+							WHERE module_id='M01'";
+							$result = mysql_query($sql) or die(mysql_error()); 
+							while($row=mysql_fetch_array($result))
+							{
+								$goal_desc		=$row['goal_desc'];
+								$kpi_desc		=$row['kpi_desc'];
+								$ownership		=$row['ownership'];
+								$data_source	=$row['data_source'];
+							   
+							?>
 
+								<tr>  
+									<td><?php echo $x;?></td>
+									<td><?php echo $goal_desc;?></td>
+									<td><?php echo $kpi_desc;?></td>
+									<td></td>
+									<td></td>
+									<td><?php echo $ownership;?></td>
+									<td><?php echo $data_source;?></td>
+								<!--<td><?php echo $action;?></td>-->
+									<td><input type="radio" name="reject" value="approved"> Approve
+										<input type="radio" name="reject" value="rejected"> Reject<br></td>
+								   <td></td>
 							
-						?>
-
-							<tr>  
-								<td><?php echo $x;?></td>
-								<td><?php echo $goal_desc;?></td>
-								<td><?php echo $strategy_desc; ?></td>
-								<td><?php echo $actionplan_desc; ?></td>
-								<td><?php echo $kpi_desc;?></td>
-								<td><?php echo $ope_definition; ?></td>
-								<td><?php echo $baseline1;?></td>
-								<td><?php echo $baseline2;?></td>
-								<td><?php echo $target1;?></td>
-								<td><?php echo $target2;?></td>
-								<td><?php echo $target3;?></td>
-								<td><?php echo $target4;?></td>
-								<td><?php echo $target5;?></td>
-								<td><?php echo $ownership;?></td>
-								<td><?php echo $data_source;?></td>
-								<td><?php echo $notes;?></td>
-								<td><?php echo $estimated_cost;?></td>
-								<td><?php echo $exp_fin_return;?></td>
-								<td><?php echo $action;?></td>
-								
-							</tr>
-							<?php
-						$x++;
-						}
-						?>
-					</table>
-				</form>	
-			</div>
-			<div style="margin:20px;">
+								</tr>
+								<?php
+							$x++;
+							}
+							?>
+						</table>
+					</form>
+				</div>
+				<div style="margin:20px;">
 				<form action="index.php" method="post">
-					<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
-					<input class='action' type="button" name="approve" value="Approve" onclick="return confirm('Are you sure you want to approve?');" /></input>
-					<input class='action' type="button" name="reject" value="Reject" onclick="return confirm('Are you sure you want to reject?');" /></input>
+					<input type="checkbox" name="check" value="yes"> I hereby admit that all records / information submitted are true.</input></br></br>
+					<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>
 				</form>
 			</div>
 			</div>
@@ -158,16 +119,6 @@
 	<script type="text/javascript" src="assets/js/plugins/style-switcher.js"></script>
 	<script type="text/javascript" src="assets/js/app.js"></script>
 	<script type="text/javascript">
-   
-            $(document).ready(function(){
-                $('.action').click(function(){
-                    var action = $(this).attr('name');
-                    $('#action').val(action);
-                    $(this).closest('form').submit();
-
-                })
-            })
-    
 		jQuery(document).ready(function() {
 			App.init();
 			StyleSwitcher.initStyleSwitcher();
@@ -184,3 +135,7 @@
 
 </body>
 </html>
+
+
+
+
