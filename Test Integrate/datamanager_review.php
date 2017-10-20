@@ -169,14 +169,14 @@
 							}
 							?>
 						</table>
-						<input type="submit" name="submit" value="Submit"></input>
+						<!--<input type="submit" name="submit" value="Submit"></input>-->
 					</form>	
 				</div>
 				<div style="margin:20px;">
-					<!--<form action="index.php" method="post">
+					<form action="main_dm.php" method="post">
 						<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
 						<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>
-					</form>-->
+					</form>
 				</div>
 			</div>
 		</div>
