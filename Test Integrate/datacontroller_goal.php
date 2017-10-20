@@ -10,6 +10,7 @@
 	$active=0;
 							if(isset($_POST['submit_goal']))
 								{	
+									$active=1;
 									foreach ($_POST['goal'] as $key=>$value)
 										{
 											$sql="INSERT INTO goal (module_id,session_name,goal_desc) VALUES ('$module_id','$session_name','$value')";
@@ -24,6 +25,7 @@
 							
 							if(isset($_POST['submit_strategy']))
 							{			
+								$active=2;
 								for($y=1; $y<=30; $y++)
 								{
 									if (empty($_POST["strategy".$y]))
@@ -48,6 +50,7 @@
 							
 							if(isset($_POST['submit_action']))
 							{
+								$active=3;
 								for($y=1; $y<=50; $y++)
 								{
 									if (empty($_POST["action".$y]))
@@ -73,6 +76,7 @@
 
 							if(isset($_POST['submit_kpi']))
 							{
+								$active=4;
 								for($y=1; $y<=30; $y++)
 								{
 									if (empty($_POST["kpi".$y]))
@@ -100,6 +104,7 @@
 
 							if(isset($_POST['submit_op_def']))
 								{
+									$active=5;
 									for($y=1; $y<=50; $y++)
 									{							
 										if (empty($_POST["kpi".$y]))
@@ -133,6 +138,7 @@
 
 							if(isset($_POST['submit_target']))
 							{
+								$active=6;
 								for($y=1; $y<=50; $y++)
 								{							
 									if (empty($_POST["kpi".$y]))
@@ -158,6 +164,33 @@
 									}	
 								}		
 							}
+							if(isset($_POST['submit_reference']))
+							{
+								$active=7;
+								for($y=1; $y<=50; $y++)
+								{
+									if (empty($_POST["kpi".$y]))
+									{
+										$error = 1;
+									}
+									else
+									{									
+										$value			=$_POST['kpi'.$y];
+										$ownership		=$_POST['ownership'.$y];
+										$data_source	=$_POST['data_source'.$y];
+										$estimated_cost	=$_POST['estimated_cost'.$y];
+										$exp_fin_return	=$_POST['exp_fin_return'.$y];
+											
+										$sql="INSERT INTO reference (kpi_id, ownership, data_source, estimated_cost, exp_fin_return) VALUES ('$value','$ownership','$data_source','$estimated_cost', '$exp_fin_return')";
+										$result = mysql_query($sql) or die(mysql_error());  
+										   
+										if (false === $result) 
+										{
+											echo mysql_error();
+										}						
+									}	
+								}		
+							}
 							
 								
 
@@ -169,19 +202,22 @@
 				<div class="tab-v1">
 					<ul class="nav nav-tabs" id="myTab">
 						
-						<li class="active"><a href="#goal" data-toggle="tab">Goals</a></li>
-						<li><a href="#strategy" data-toggle="tab">Strategies</a></li>
-						<li><a href="#action" data-toggle="tab">Action Plan</a></li>
-						<li><a href="#kpi" data-toggle="tab">KPI</a></li>
-						<li><a href="#op_def" data-toggle="tab">Baseline</a></li>
-						<li><a href="#target" data-toggle="tab">Target</a></li>
-						<li><a href="#reference" data-toggle="tab">Reference</a></li>
-						<li><a href="#submit_record" data-toggle="tab">Submit Records</a></li>
+						<li <?php if ($active==0) echo 'class="active"'?>><a href="#goal" data-toggle="tab">Goals</a></li>
+						<li <?php if ($active==1) echo 'class="active"'?>><a href="#strategy" data-toggle="tab">Strategies</a></li>
+						<li <?php if ($active==2) echo 'class="active"'?>><a href="#action" data-toggle="tab">Action Plan</a></li>
+						<li <?php if ($active==3) echo 'class="active"'?>><a href="#kpi" data-toggle="tab">KPI</a></li>
+						<li <?php if ($active==4) echo 'class="active"'?>><a href="#op_def" data-toggle="tab">Baseline</a></li>
+						<li <?php if ($active==5) echo 'class="active"'?>><a href="#target" data-toggle="tab">Target</a></li>
+						<li <?php if ($active==6) echo 'class="active"'?>><a href="#reference" data-toggle="tab">Reference</a></li>
+						<li <?php if ($active==7) echo 'class="active"'?>><a href="#submit_record" data-toggle="tab">Submit Records</a></li>
 					</ul>
-					
+					<?php 
+					$pane="tab-pane fade in active";
+					$notpane="tab-pane fade";
+					?>
 					<div class="tab-content"> 
 						<!--GOAL FORM-->
-						<div class="tab-pane fade in active" id="goal">
+						<div class="<?php if ($active==0) echo $pane; else echo $notpane;?>" id="goal">
 							<form action="datacontroller_goal.php" method="post">
 								Insert Goals :</br><input class="form-control" type="text" name="goal[]" required></input></br>
 								<div class="input_fields_wrap">	</div>
@@ -192,7 +228,7 @@
 						<!-- END GOAL FORM -->
 						
 						<!--STRATEGY FORM-->
-						<div class="tab-pane fade" id="strategy">
+						<div class="<?php if ($active==1) echo $pane; else echo $notpane;?>" id="strategy">
 							<form action="datacontroller_goal.php" method="post">
 								<table class="table table-bordered">
 									<col width="40%">
@@ -234,7 +270,7 @@
 						<!--END STRATEGY FORM-->
 						
 						<!-- ACTION FORM -->
-						<div class="tab-pane fade" id="action"> 
+						<div class="<?php if ($active==2) echo $pane; else echo $notpane;?>" id="action"> 
 							<form action="datacontroller_goal.php" method="post">
 								<table class="table table-bordered"> 
 									<col width="20%">
@@ -286,7 +322,7 @@
 						<!--END ACTION FORM-->
 						
 						<!-- KPI FORM -->
-						<div class="tab-pane fade" id="kpi">
+						<div class="<?php if ($active==3) echo $pane; else echo $notpane;?>" id="kpi">
 							<form action="datacontroller_goal.php" method="post">
 								<table class="table table-bordered"> 
 									<col width="10%">
@@ -340,7 +376,7 @@
 						<!-- END KPI FORM -->
 						
 						<!-- BASELINE / OPERATION DEFINITION FORM -->
-						<div class="tab-pane fade" id="op_def">
+						<div class="<?php if ($active==4) echo $pane; else echo $notpane;?>" id="op_def">
 							<form action="datacontroller_goal.php" method="post">
 								<table class="table"> 
 									<tr>
@@ -386,7 +422,7 @@
 						<!-- END BASELINE / OPERATION DEFINITION FORM-->
 						
 						<!-- TARGET FORM-->
-						<div class="tab-pane fade" id="target">
+						<div class="<?php if ($active==5) echo $pane; else echo $notpane;?>" id="target">
 							<form action="datacontroller_goal.php" method="post">
 								<table id ="maintable" class="table"> 
 									<tr>
@@ -440,7 +476,7 @@
 						<!-- END TARGET FORM-->
 						
 						<!-- REFERENCE FORM-->
-						<div class="tab-pane fade" id="reference">
+						<div class="<?php if ($active==6) echo $pane; else echo $notpane;?>" id="reference">
 							<form action="datacontroller_goal.php" method="post">
 							  <table id ="maintable" class="table"> 
 									<tr>
@@ -488,35 +524,7 @@
 						<!-- END REFERENCE FORM-->
 						
 						<!-- SUBMIT RECORDS-->
-						<div class="tab-pane fade" id="submit_record">
-							<?php
-							if(isset($_POST['submit_reference']))
-							{
-								for($y=1; $y<=50; $y++)
-								{
-									if (empty($_POST["kpi".$y]))
-									{
-										$error = 1;
-									}
-									else
-									{									
-										$value			=$_POST['kpi'.$y];
-										$ownership		=$_POST['ownership'.$y];
-										$data_source	=$_POST['data_source'.$y];
-										$estimated_cost	=$_POST['estimated_cost'.$y];
-										$exp_fin_return	=$_POST['exp_fin_return'.$y];
-											
-										$sql="INSERT INTO reference (kpi_id, ownership, data_source, estimated_cost, exp_fin_return) VALUES ('$value','$ownership','$data_source','$estimated_cost', '$exp_fin_return')";
-										$result = mysql_query($sql) or die(mysql_error());  
-										   
-										if (false === $result) 
-										{
-											echo mysql_error();
-										}						
-									}	
-								}		
-							}
-							?>
+						<div class="<?php if ($active==7) echo $pane; else echo $notpane;?>" id="submit_record">
 							<div class="table-responsive">  
 								<form action="main_dc.php" method="post">
 								   <table class="table table-bordered"> 

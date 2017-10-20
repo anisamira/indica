@@ -55,6 +55,21 @@
 								}
 							}
 							
+							$sql2		="SELECT * FROM master_status where form_id='$form_id' AND action_type='reject'";
+							$result		=mysql_query($sql2) or die (mysql_error());
+							if(mysql_num_rows($result)>0)
+								{
+									$sql		="Update form SET form_status='rejected' WHERE form_id='$form_id'";
+									$result		=mysql_query($sql) or die (mysql_error());
+								}
+							else
+									
+								{
+									$sql		="Update form SET form_status='approved' WHERE form_id='$form_id'";
+									$result		=mysql_query($sql) or die (mysql_error());	
+								}
+										
+							
 						}?>
 				
 

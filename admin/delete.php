@@ -9,7 +9,7 @@
     if($run)  
     {  
     //javascript function to open in the same window   
-        echo "<script>window.open('admin_manageuser.php?deleted=user has been deleted','_self')</script>";  
+        echo "<script>window.open('admin_manageuser_viewuser.php?deleted=user has been deleted','_self')</script>";  
     }  
       
     ?>  

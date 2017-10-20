@@ -1,39 +1,44 @@
    #myTable {
-        border-collapse: collapse;
-        width: 80%;
-        border: 1px solid #ddd;
-        font-size: 14px;
-        margin-bottom: 0px;
-    }
-    
-    #myTable thead tr{ 
-	background:#f1c40f;
-    }
-
-    #myTable th,
-    #myTable td {
-        text-align: center;
-        padding: 14px;
-    }
-
-    #myTable tr {
-        border-bottom: 1px solid goldenrod;
-	border-left: 1px solid goldenrod;
-        border-right: 1px solid goldenrod;
-        background-color: #ddd;
-        color: black;
-    }
-    
-    #myTable tr.header,
-    #myTable tr:hover {
-	
-        background-color: #f1f1f1;
-        cursor: default;
-    }
-
-    #myTable.fixed { table-layout:fixed; }
-    #myTable.fixed td { overflow: hidden; }
-
-    #myTable tr:last-child {
-	margin-bottom:10px;
-    }
+       border-collapse: collapse;
+       width: 50%;
+       border: 1px solid #ddd;
+       font-size: 14px;
+       margin-bottom: 0px;
+   }
+   
+   #myTable thead tr {
+       background: #f1c40f;
+   }
+   
+   #myTable th,
+   #myTable td {
+       text-align: center;
+       padding: 10px;
+   }
+   
+   #myTable tr {
+       border-bottom: 1px solid goldenrod;
+       border-left: 1px solid goldenrod;
+       border-right: 1px solid goldenrod;
+       background-color: #ddd;
+       color: black;
+       text-align: center;
+   }
+   
+   #myTable tr.header,
+   #myTable tr:hover {
+       background-color: #f1f1f1;
+       cursor: default;
+   }
+   
+   #myTable.fixed {
+       table-layout: fixed;
+   }
+   
+   #myTable.fixed td {
+       overflow: hidden;
+   }
+   
+   #myTable tr:last-child {
+       margin-bottom: 10px;
+   }
