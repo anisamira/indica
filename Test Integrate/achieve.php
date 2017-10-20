@@ -98,7 +98,7 @@ else
 <body>
 
 
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="achievement">
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="achievement1">
 <table class="table table-bordered">
 									<col width="40%">
 									<col width="60%">
@@ -106,8 +106,8 @@ else
 									    <th>No.</th>
 									    <th>Goal</th>
 									    <th>KPI</th>
-										<th>Target <?php echo $curyear-1;?></th>
-										<th>Achievement <?php echo $curyear;?></th>
+										<th>Target <?php echo $curyear;?></th>
+										<th>Achievement <?php echo $curyear. ' Quater '.$quater;?></th>
 									</tr>
 <?php
 						$module_id=$_SESSION['module_id'];
@@ -127,7 +127,7 @@ else
 							$kpi_id			=$row['kpi_id'];
 							$goal_desc		=$row['goal_desc'];
 							$kpi_desc		=$row['kpi_desc'];
-							$target		    =$row['target4'];
+							$target		    =$row['target2'];
 							$target_id		=$row['target_id'];
 
 						?>
@@ -138,7 +138,7 @@ else
 								<td><?php echo $kpi_desc;?></td>
 								<td><?php echo $target;?></td>
 								<td><input class="form-control" type="text" name="achievement<?php echo $x;?>" required/>
-									<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"/></td>
+								   <input type="hidden" name="target<?php echo $x;?>" value="<?php echo $target_id;?>"/>
 							</tr>
 							<?php
 						$x++;
@@ -152,9 +152,6 @@ else
 </tr>
 </form>
 
-<?php
-
-?>
 </body>
 
 <?php
@@ -165,16 +162,16 @@ if (isset($_POST['Insert'])){
  
  for($y=1; $y<=50; $y++)
 								{
-									if (empty($_POST["achievement".$y]))
+									if (empty($_POST["target".$y]))
 									{
 										$error = 1;
 									}
 									else
 									{	
-	$achievement =$_POST["achievement".$y];
-       
- 
-$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc) VALUES ('$year_id','$target_id','$quater','$achievement')";
+	$achievement =$_POST['achievement'.$y];
+	$value=$_POST['target'.$y];
+	
+$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc) VALUES ('$year_id','$value','$quater','$achievement')";
 $result = mysql_query($sql) or die(mysql_error());  											   
 												if (false === $result) 
 												{
