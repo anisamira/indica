@@ -79,7 +79,7 @@
 <?php
 						$module_id=$_SESSION['module_id'];
 						$x=1;
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -87,7 +87,11 @@
 						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						WHERE module_id='$module_id'";
+						JOIN form ON form.module_id=goal.module_id											
+                        WHERE goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
+						AND form.form_status='Approve'
+						";
 						$result = mysql_query($sql) or die(mysql_error()); 
 						while($row=mysql_fetch_array($result))
 						{
@@ -102,9 +106,9 @@
 								<td><?php echo $goal_desc;?></td>
 								<td><?php echo $kpi_desc;?></td>
 								<td><input class="form-control" type="text" name="evidence_desc<?php echo $x;?>" required/>
-									<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"/></td>
+									<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/></td>
 								<td><input class="form-control" type="file" name="evidence<?php echo $x;?>" required/>
-									<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"/></td>
+									<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/></td>
 							</tr>
 							<?php
 						$x++;
@@ -121,11 +125,30 @@
 
 <?php
 
-$evidence= $_FILES['file']['evidence'];
 
-$tmp_name= $_FILES['file']['tmp_name'];
+if (isset($_POST['Upload'])){
+ 
+ 
+//for start post 
+ for($y=1; $y<=50; $y++)
+								{
+									if (empty($_POST['kpi'.$y]))
+									{
+										$error = 1;
+									}
+									else
+									{	
+	$evidence_desc =$_POST['evidence_desc'.$y];
+	$value= $_POST['kpi'.$y];
+	
+	
+	 
+// start of declare
+ $name= $_FILES['evidence'.$y]['name'];
 
-$submitbutton= $_POST['submit'];
+$tmp_name= $_FILES['evidence'.$y]['tmp_name'];
+
+$submitbutton= $_POST['Upload'];
 
 $position= strpos($name, "."); 
 
@@ -133,7 +156,6 @@ $fileextension= substr($name, $position + 1);
 
 $fileextension= strtolower($fileextension);
 
-$description= $_POST['description_entered'];
 
 if (isset($name)) {
 
@@ -146,22 +168,13 @@ echo 'Uploaded!';
 }
 }
 }
-if (isset($_POST['Upload'])){
  
+// end of this one 
  
- for($y=1; $y<=50; $y++)
-								{
-									if (empty($_POST["evidence".$y]))
-									{
-										$error = 1;
-									}
-									else
-									{	
-	$evidence_desc =$_POST["evidence_desc".$y];
+
 	
-       
- 
-$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc) VALUES ('$year_id','$target_id','$quater','$achievement')";
+	       
+$sql="INSERT INTO evidence (desc_file,filename,kpi_id) VALUES ('$evidence_desc','$name','$value')";
 $result = mysql_query($sql) or die(mysql_error());  											   
 												if (false === $result) 
 												{
