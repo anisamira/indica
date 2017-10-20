@@ -60,7 +60,7 @@
 				else
 					{							
 						$kpi	=$_POST['kpi'.$y];	
-						$sql	="INSERT INTO master_status (kpi_id, form_id) VALUES ('$kpi','$form_id')";
+						$sql	="INSERT INTO master_status (kpi_id, form_id) VALUES ('$kpi','$form_id',Now())";
 						$result = mysql_query($sql) or die(mysql_error());  
 						if (false === $result)
 							{
@@ -73,7 +73,7 @@
 	
 ?>
 
-
+			
 
 <body>
 	<div class="wrapper">
@@ -103,32 +103,9 @@
 								<td>30 / 8 / 2017</td>
 								<td><?php echo $form_status;?></td>
 								<td>
-										<button>View</button>
-										<button data-toggle="modal" data-target="#responsive">Request Edit</button>
-											<div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header">
-															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-															<h4 class="modal-title" id="myModalLabel4">Request to edit <?php echo $session_name;?></h4>
-														</div>
-														<form>
-															<div class="modal-body">
-																<div class="row" style="margin:10px;">
-																		<h4></h4>
-																		<input class="form-control" name="" type="text" placeholder="Name" required></input></br>
-																		<textarea class="form-control" name="" placeholder="Specify the reason to edit" required></textarea>
-																</div>
-															</div>
-															<div class="modal-footer">
-																<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																<input type="submit" class="btn-u btn-u-primary" name="" value="Submit"></submit>
-															</div>
-														</form>
-													</div>
-												</div>
-											</div>
-								</td>
+	                                    <form action="datamanager_review.php" method="post"> 
+										<button data-toggle="modal" data-target="#responsive">Approval</button>
+											
 							</tr><?php
 							
 						}
