@@ -130,7 +130,10 @@
 					</table>
 				</form>	
 			</div>
-			<div style="margin:20px;">
+			<div style="margin:20px;"><form action="main_dm.php" method="post">
+						<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
+						<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>
+					</form>
 				<form action="index.php" method="post">
 					<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
 					<input class='action' type="button" name="approve" value="Approve" onclick="return confirm('Are you sure you want to approve?');" /></input>

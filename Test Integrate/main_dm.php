@@ -75,95 +75,77 @@
 
 
 
+<body>
 	<div class="wrapper">
-
-
-		<div class="container content-sm">		
-		<!-- !PAGE CONTENT! -->
+		<div class="container content-sm">
 			<div class="w3-main" style="margin-left:300px;margin-top:43px;">
-			<?php 
-
-					$sql2="SELECT module.*, user.* 
-							FROM user 
-							JOIN module 
-							ON module.module_id=user.module_id
-							WHERE user.module_id='$module_id' 
-							AND user.user_id='$user_id'";
-					$result2 = mysql_query($sql2) or die(mysql_error());  
-					  while($row=mysql_fetch_array($result2))
+				<table class="table table-bordered"> 
+					<tr>
+						<th>Version</th>						
+						<th>Last Updated</th>
+						<th>Status</th>
+						<th>Action</th>						
+					</tr>
+					<?php
+					$sql= "SELECT * 
+						FROM form 
+						WHERE module_id='$module_id'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
 					{
-						
-						$_SESSION['module_name'] = $row['module_name'];
+						while($row=mysql_fetch_array($result))
+						{
+							$form_status	=$row['form_status'];
+							$form_id		=$row['form_id'];
+							$session_name	=$row['session_name'];?>
+							<tr>  
+								<td>KPI Achievement <?php echo $session_name;?></td>
+								<td>30 / 8 / 2017</td>
+								<td><?php echo $form_status;?></td>
+								<td>
+										<button>View</button>
+										<button data-toggle="modal" data-target="#responsive">Request Edit</button>
+											<div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+															<h4 class="modal-title" id="myModalLabel4">Request to edit <?php echo $session_name;?></h4>
+														</div>
+														<form>
+															<div class="modal-body">
+																<div class="row" style="margin:10px;">
+																		<h4></h4>
+																		<input class="form-control" name="" type="text" placeholder="Name" required></input></br>
+																		<textarea class="form-control" name="" placeholder="Specify the reason to edit" required></textarea>
+																</div>
+															</div>
+															<div class="modal-footer">
+																<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																<input type="submit" class="btn-u btn-u-primary" name="" value="Submit"></submit>
+															</div>
+														</form>
+													</div>
+												</div>
+											</div>
+								</td>
+							</tr><?php
+							
+						}
+					}
+					else
+					{
+						echo "no data found";
 					}?>
-			
-		<div class="row" style="margin-bottom:20px">
-		
-		<span style="float: left;"><?php echo $session_name;?></span> 
-      <span style="float: right;"><?php echo $_SESSION['module_name'];?></span>
-	 
-		</div>
-		
-		
-		<div class="row" style="margin:0 auto;">
-		<?php
-		
-			if($form_status=='pending')
-				{ ?>
-					<!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
-						<button class="col-md-4 content-boxes-v6">
-							<i class="rounded-x  icon-notebook"></i>
-							<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
-						 </button>
-					</a><?php
-				 }
-			else
-				{?>
-					<a href="datacontroller_goal.php" style="text-decoration:none;">
-						<button class="col-md-4 content-boxes-v6">
-							<i class="rounded-x  icon-notebook"></i>
-							<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
-						</button>
-					</a><?php 
-				} ?>
-
 					
-		
-		
-		<a href="datacontroller_updaterecord.php" style="text-decoration:none;">
-			<button class="col-md-4 content-boxes-v6">		
-				<i class="rounded-x icon-docs"></i>
-				<h3 class="title-v3-md text-uppercase margin-bottom-10">Update Records</h3>
-				<p></p>
-			</button>
-		</a> 
-		
-		<a href="datacontroller_viewupdated.php" style="text-decoration:none;">
-			<button class="col-md-4 content-boxes-v6">
-				<i class="rounded-x icon-docs"></i>
-				<h3 class="title-v3-md text-uppercase margin-bottom-10">View Status</h3>
-				<p></p>
-			</button>
-		</a>
-		
-	<!--	<a href="archive.php" style="text-decoration:none;">
-			<button class="col-md-4 content-boxes-v6">
-				<i class="rounded-x icon-folder"></i>
-				<h3 class="title-v3-md text-uppercase margin-bottom-10">Archive</h3>
-				<p></p>
-			</button>
-		</a> -->
+					
+				</table>
+						
+			</div>
+		</div>
+	</div>
 
-	</div><!--/row-->
-</div><!--/container-->
-<!--=== End Service Block ===-->
-
-
-		</div><!--/wrapper-->
-
-
-
-		
-
+	
 <!--[if lt IE 9]>
 	<script src="assets/plugins/respond.js"></script>
 	<script src="assets/plugins/html5shiv.js"></script>
@@ -172,3 +154,4 @@
 
 </body>
 </html>
+
