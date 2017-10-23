@@ -95,17 +95,10 @@ $module_id=$_SESSION['module_id'];
 						
 						?>
 				
-<?php						
-						while($row=mysql_fetch_array($result))
-						{
-							$kpi_id			=$row['kpi_id'];
-							$goal_desc		=$row['goal_desc'];
-							$kpi_desc		=$row['kpi_desc'];
-							$files_field= $row['filename'];
-                            $files_show= "Uploads/files/$files_field";
-                            $descriptionvalue= $row['desc_file'];
+<?php					
+					if(mysql_num_rows($result) > 0)
+					{
 						?>
-
 						<table class="table table-bordered">
 									<col width="10%">
 									<col width="20%">
@@ -121,6 +114,20 @@ $module_id=$_SESSION['module_id'];
 										<th>File</th>
 									</tr>
 						
+						
+						<?php
+						while($row=mysql_fetch_array($result))
+						{
+							$kpi_id			=$row['kpi_id'];
+							$goal_desc		=$row['goal_desc'];
+							$kpi_desc		=$row['kpi_desc'];
+							$files_field= $row['filename'];
+                            $files_show= "Uploads/files/$files_field";
+                            $descriptionvalue= $row['desc_file'];
+						?>
+
+						
+						
 							<tr>  
 								<td><?php echo $x;?></td>
 								<td><?php echo $goal_desc;?></td>
@@ -134,12 +141,13 @@ $module_id=$_SESSION['module_id'];
 						$x++;
 						}
 						
+				
 					
-					
-					
-					
-				    {
+					}
+					else
+					{	
 					?>
+					
 					<form action="upload.php" method="post">
 					<input type="submit" name="Evidence" value="ADD Evidence" target="blank">
 					</form>

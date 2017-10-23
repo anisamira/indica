@@ -173,10 +173,10 @@ $result = mysql_query($sql) or die(mysql_error());
 
 ?>								
 								<head>
-        <meta http-equiv="refresh" content="5;url=doc.php" />
+        <meta http-equiv="refresh" content="3;url=doc.php" />
     </head>
     <body>
-        <h1>Redirecting in 5 seconds...</h1>
+        <h1>Redirecting in 3 seconds...</h1>
     </body>
 								
 								
