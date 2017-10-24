@@ -1,3 +1,4 @@
+
 <?php
 	include('style_dc.php');
 	include('sidebar.php');
@@ -153,9 +154,22 @@ $path= 'Uploads/files/';
 
 if (!empty($name)){
 if (move_uploaded_file($tmp_name, $path.$name)) {
-echo 'Uploaded!';
+//echo 'Uploaded!';
+?>
+<!--
+<head>
 
-
+</head>
+-->  
+	<body>
+	
+	 <div class="alert alert-warning alert-dismissable fade in">
+	 <meta http-equiv="refresh" content="3;url=doc.php" />
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Uploaded!</strong> Redirecting in 3 seconds...
+  </div>
+    </body>
+<?php
 }
 }
 }
@@ -172,12 +186,7 @@ $result = mysql_query($sql) or die(mysql_error());
 								}
 
 ?>								
-								<head>
-        <meta http-equiv="refresh" content="3;url=doc.php" />
-    </head>
-    <body>
-        <h1>Redirecting in 3 seconds...</h1>
-    </body>
+
 								
 								
 								
