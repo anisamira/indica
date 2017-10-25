@@ -60,7 +60,7 @@
 				else
 					{							
 						$kpi	=$_POST['kpi'.$y];	
-						$sql	="INSERT INTO master_status (kpi_id, form_id,action_date) VALUES ('$kpi','$form_id', Now())";
+						$sql	="INSERT INTO master_status (kpi_id, form_id,action_type, action_date) VALUES ('$kpi','$form_id', 'pending', Now())";
 						$result = mysql_query($sql) or die(mysql_error());  
 						if (false === $result)
 							{
@@ -107,7 +107,7 @@
 		<div class="row" style="margin:0 auto;">
 		<?php
 		
-			if($form_status=='pending')
+			if($form_status!='new')
 				{ ?>
 					<!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
 						<button class="col-md-4 content-boxes-v6">
