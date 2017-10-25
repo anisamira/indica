@@ -66,10 +66,33 @@
   
 </div>
 <body>
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
 
 
-
-
+							<table class="table table-bordered">
+								<!--	<col width="5%">
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
+									<col width="15%">
+									<col width="15%">
+									<col width="5%">
+									<col width="15%">
+									<col width="5%">
+									-->
+									<tr>
+									    <th>No.</th>
+									    <th>Goal</th>
+									    <th>KPI</th>
+										<th>Target</th>
+										<th>Achievement</th>
+										<th>Punca tidak capai sasaran</th>
+									    <th>Rancangan Tindakan Pembetulan</th>
+									    <th>Tarikh Siap</th>
+										<th>Rancangan Tindakan Pencegahan</th>
+										<th>Tarikh Siap</th>
+									</tr>
 
 
 <?php
@@ -92,27 +115,96 @@
 						";
 						$result = mysql_query($sql) or die(mysql_error());
 
-						if (mysql_num_rows($result)>0){
+						
+?>
 
+<?php						
+						while($row=mysql_fetch_array($result))
+						{
+							$kpi_id			=$row['kpi_id'];
+							$goal_desc		=$row['goal_desc'];
+							$kpi_desc		=$row['kpi_desc'];
+							$achievement	=$row['ach_desc'];
+							$target		    =$row['target2'];
+							$quater			=$row['quarter'];
 
-						echo "You Have an Issue to be updated";
-							
 						?>
 
-					<form action="add_issue.php" method="post">
-					<input type="submit" name="Issue" value="Add Issue" target="blank">
-					</form>
-<?php
+							<tr>  
+								<td><?php echo $x;?></td>
+								<td><?php echo $goal_desc;?></td>
+								<td><?php echo $kpi_desc;?></td>
+								<td><?php echo $target;?></td>
+							    <td><?php echo $achievement;?></td>
+								<td><input class="form-control" type="text" name="reason<?php echo $x;?>" required/>
+								   <input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/>
+								 <td><input class="form-control" type="text" name="pembetulan<?php echo $x;?>" required/>
+								   <input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/>
+								<td><input class="form-control" type="date" name="date_pembetulan<?php echo $x;?>" required/>
+								   <input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/>   
+							<td><input class="form-control" type="text" name="pencegahan<?php echo $x;?>" required/>
+								   <input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/>
+								<td><input class="form-control" type="date" name="date_pencegahan<?php echo $x;?>" required/>
+								   <input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/>   
+							</tr>
+							<?php
+						$x++;
 						}
-?>
-							
+						
+						?>
 
 
 </table>
 
+<br>
+<td>
+<input type="submit" name="Add" value="Add">
+</td>
+</form>
 
 </body>
+<?php
 
+
+if (isset($_POST['Add'])){
+ 
+ 
+ for($y=1; $y<=50; $y++)
+								{
+									if (empty($_POST["kpi".$y]))
+									{
+										$error = 1;
+									}
+									else
+									{	
+	$value=$_POST['kpi'.$y];
+	$reason =$_POST['reason'.$y];
+	$pembetulan =$_POST['pembetulan'.$y];
+	$date_pembetulan =$_POST['date_pembetulan'.$y];
+	$pencegahan =$_POST['pencegahan'.$y];
+	$date_pencegahan =$_POST['date_pencegahan'.$y];
+	
+$sql="INSERT INTO issue (kpi_id,reason,pembetulan,date_pembetulan,pencegahan,date_pencegahan) VALUES ('$value','$reason','$pembetulan','$date_pembetulan','$pencegahan','$date_pencegahan')";
+$result = mysql_query($sql) or die(mysql_error());  											   
+												if (false === $result) 
+												{
+													echo mysql_error();
+												}							
+}
+								}
+
+?>
+	<div class="alert alert-warning alert-dismissable fade in">
+	 <meta http-equiv="refresh" content="3;url=issue.php" />
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Insert!</strong> Redirecting in 3 seconds...
+  </div>								
+								
+<?php								
+								
+								
+								}
+?>
 
 	</div>
 		</div>

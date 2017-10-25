@@ -84,7 +84,7 @@ else
 
 <div class="topnav">
   <a href="work.php">Information</a>
-  <a class="active" href="achieve.php">Target</a>
+  <a class="active" href="achieve.php">Achievement</a>
   <a href="doc.php">Deliverables</a>
   <a href="issue.php">Issue</a>
   <a href="financial.php">Financial</a>
@@ -97,25 +97,12 @@ else
 </div>
 <body>
 
-
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="achievement1">
-<table class="table table-bordered">
-									<col width="10%">
-									<col width="20%">
-									<col width="20%">
-									<col width="20%">
-									<col width="30%">
-									<tr>
-									    <th>No.</th>
-									    <th>Goal</th>
-									    <th>KPI</th>
-										<th>Target <?php echo $curyear;?></th>
-										<th>Achievement <?php echo $curyear. ' Quater '.$quater;?></th>
-									</tr>
+										
 <?php
 						$module_id=$_SESSION['module_id'];
 						$x=1;
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*
+							
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, evidence.*, achievement.*,year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -123,15 +110,38 @@ else
 						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-					    JOIN form ON form.module_id=goal.module_id											
+						JOIN form ON form.module_id=goal.module_id
+						JOIN evidence ON evidence.kpi_id=kpi.kpi_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
 						
 						";
+						$result = mysql_query($sql) or die(mysql_error()); 
+
 						
 						
-						
+						if(mysql_num_rows($result) > 0)
+					{
+						?>
+						<table class="table table-bordered">
+					<col width="10%">
+									<col width="20%">
+									<col width="20%">
+									<col width="20%">
+									<col width="30%">
+
+					
+					<tr>
+									    <th>No.</th>
+									    <th>Goal</th>
+									    <th>KPI</th>
+										<th>Target <?php echo $curyear;?></th>
+										<th>Achievement <?php echo $curyear. ' Quater '.$quater;?></th>
+									</tr>
+<?php					
 						$result = mysql_query($sql) or die(mysql_error()); 
 						while($row=mysql_fetch_array($result))
 						{
@@ -140,6 +150,7 @@ else
 							$kpi_desc		=$row['kpi_desc'];
 							$target		    =$row['target2'];
 							$target_id		=$row['target_id'];
+							$achievement	=$row['ach_desc'];
 
 						?>
 
@@ -148,50 +159,31 @@ else
 								<td><?php echo $goal_desc;?></td>
 								<td><?php echo $kpi_desc;?></td>
 								<td><?php echo $target;?></td>
-								<td><input class="form-control" type="text" name="achievement<?php echo $x;?>" required/>
-								   <input type="hidden" name="target<?php echo $x;?>" value="<?php echo $target_id;?>"/>
+								<td><?php echo $achievement;?></td>
 							</tr>
 							<?php
 						$x++;
 						}
+					}	
+						else
+						{
+						echo "No Achievement is added yet";
+					?>
+					
+					
+					<form action="add_achieve.php" method="post">
+					<input type="submit" name="Achievement" value="Add Achievement" target="blank">
+					</form>
+					
+					
+					<?php
+					}	
+				    
 						?>
-
-<tr>
-<td>
-<input type="submit" name="Insert" value="Insert">
-</td>
-</tr>
-</form>
 
 </body>
 
-<?php
 
-
-if (isset($_POST['Insert'])){
- 
- 
- for($y=1; $y<=50; $y++)
-								{
-									if (empty($_POST["target".$y]))
-									{
-										$error = 1;
-									}
-									else
-									{	
-	$achievement =$_POST['achievement'.$y];
-	$value=$_POST['target'.$y];
-	
-$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc) VALUES ('$year_id','$value','$quater','$achievement')";
-$result = mysql_query($sql) or die(mysql_error());  											   
-												if (false === $result) 
-												{
-													echo mysql_error();
-												}							
-}
-								}
-}
-?>
 
 	</div>
 		</div>

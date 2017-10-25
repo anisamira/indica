@@ -51,22 +51,28 @@
   
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
 <table class="table table-bordered">
+									<col width="5%">
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
 									<col width="10%">
 									<col width="20%">
-									<col width="20%">
-									<col width="20%">
-									<col width="30%">
+									<col width="25%">									
 									<tr>
 									    <th>No.</th>
 									    <th>Goal</th>
 									    <th>KPI</th>
+										<th>Year</th>	
+										<th>Quater</th>
+										<th>Achievement</th>									
 										<th>Description</th>
 										<th>Upload File</th>
 									</tr>
 <?php
 						$module_id=$_SESSION['module_id'];
 						$x=1;
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -74,7 +80,9 @@
 						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						JOIN form ON form.module_id=goal.module_id											
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
@@ -85,6 +93,12 @@
 							$kpi_id			=$row['kpi_id'];
 							$goal_desc		=$row['goal_desc'];
 							$kpi_desc		=$row['kpi_desc'];
+							$achievement	=$row['ach_desc'];
+							$quater			=$row['quarter'];
+							$year			=$row['year_name'];
+
+
+
 
 						?>
 
@@ -92,6 +106,9 @@
 								<td><?php echo $x;?></td>
 								<td><?php echo $goal_desc;?></td>
 								<td><?php echo $kpi_desc;?></td>
+								<td><?php echo $year;?></td>
+								<td><?php echo $quater;?></td>
+								<td><?php echo $achievement;?></td>								
 								<td><input class="form-control" type="text" name="evidence_desc<?php echo $x;?>" required/>
 									<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/></td>
 								<td><input class="form-control" type="file" name="evidence<?php echo $x;?>" required/>

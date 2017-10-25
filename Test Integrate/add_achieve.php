@@ -6,6 +6,17 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
+	
+	$curyear=date ('Y');
+    $date_now=date ("m/d/Y");
+ $date_q= date ("06/30/Y");
+ if ($date_now<=$date_q)
+{
+	$quater=1;
+}
+else
+    $quater=2;	
+	
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	$sql			="SELECT * FROM session where session_status='1'";
@@ -40,6 +51,25 @@
 						echo "no data found";
 					}
 	
+		$sql			= "SELECT * FROM year WHERE year_name='$curyear'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$year= $row['year_name'];
+							$year_id=$row['year_id'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}
+		
+
+		
 
 	
 	?>
@@ -54,30 +84,40 @@
 
 <div class="topnav">
   <a href="work.php">Information</a>
-  <a href="achieve.php">Achievement</a>
-  <a class="active" href="doc.php">Deliverables</a>
+  <a class="active" href="achieve.php">Achievement</a>
+  <a href="doc.php">Deliverables</a>
   <a href="issue.php">Issue</a>
-  <a  href="financial.php">Financial</a>
+  <a href="financial.php">Financial</a>
 
 </div>
 
 <div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_id;?>
- </div> 
-  <body>
+  &nbsp&nbspWELCOME <?=$module_id;?>
+  
+</div>
+<body>
 
 
+
+<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="achievement1">
+<table class="table table-bordered">
+									
+						<col width="10%">
+									<col width="20%">
+									<col width="20%">
+									<col width="20%">
+									<col width="30%">
+									<tr>
+									    <th>No.</th>
+									    <th>Goal</th>
+									    <th>KPI</th>
+										<th>Target <?php echo $curyear;?></th>
+										<th>Achievement <?php echo $curyear. ' Quater '.$quater;?></th>
+									</tr>
 <?php
-$module_id=$_SESSION['module_id'];
+						$module_id=$_SESSION['module_id'];
 						$x=1;
-						
-						if(isset($_GET['deletedoc']))
-											{
-												$query	=mysql_query("DELETE FROM evidence WHERE ev_id=".$_GET['deletedoc']);
-											}
-						
-						
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, evidence.*, achievement.*,year.*
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -85,106 +125,88 @@ $module_id=$_SESSION['module_id'];
 						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						JOIN form ON form.module_id=goal.module_id
-						JOIN evidence ON evidence.kpi_id=kpi.kpi_id
-						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN year ON achievement.year_id=year.year_id
+					    JOIN form ON form.module_id=goal.module_id											
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
 						";
-						$result = mysql_query($sql) or die(mysql_error()); 
-						
-						
-						?>
-				
-<?php					
-					if(mysql_num_rows($result) > 0)
-					{
-						?>
-						<table class="table table-bordered">
-									<col width="5%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="20%">
-									<col width="25%">															
 
-									<tr>
-									    <th>No.</th>
-									    <th>Goal</th>
-									    <th>KPI</th>
-										<th>Year</th>	
-										<th>Quater</th>
-										<th>Achievement</th>									
-										<th>Description</th>
-										<th>File</th>
-									</tr>
-						
-						
-						<?php
+					
+									
+						$result = mysql_query($sql) or die(mysql_error()); 
 						while($row=mysql_fetch_array($result))
 						{
 							$kpi_id			=$row['kpi_id'];
 							$goal_desc		=$row['goal_desc'];
 							$kpi_desc		=$row['kpi_desc'];
-							$files_field= $row['filename'];
-                            $files_show= "Uploads/files/$files_field";
-                            $descriptionvalue= $row['desc_file'];
-							$achievement	=$row['ach_desc'];
-							$quater			=$row['quarter'];
-							$year			=$row['year_name'];
-							$ev_id          =$row['ev_id'];
+							$target		    =$row['target2'];
+							$target_id		=$row['target_id'];
+
 						?>
 
-						
-						
 							<tr>  
 								<td><?php echo $x;?></td>
 								<td><?php echo $goal_desc;?></td>
 								<td><?php echo $kpi_desc;?></td>
-								<td><?php echo $year;?></td>
-								<td><?php echo $quater;?></td>	
-								<td><?php echo $achievement;?></td>								
-								<td><?php echo $descriptionvalue;?></td>
-								<td><?php echo "<a href='$files_show'>$files_field</a></div>"?></td>
-								<td><input class="form-control" type="hidden" name="ev_id<?php echo $x;?>" value="<?php echo $ev_id;?>"></input><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletedoc(<?php echo  $ev_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
-
-
+								<td><?php echo $target;?></td>
+								<td><input class="form-control" type="text" name="achievement<?php echo $x;?>" required/>
+								   <input type="hidden" name="target<?php echo $x;?>" value="<?php echo $target_id;?>"/>
 							</tr>
 							<?php
 						$x++;
 						}
-						
-				
-					
-					}
-					else
-					{	
-					
-					echo "No evidence is uploaded yet";
-					?>
-					
-					
-					<form action="upload.php" method="post">
-					<input type="submit" name="Evidence" value="Add Evidence" target="blank">
-					</form>
-				
-					
-					<?php
-					}	
+						?>	
 				    
-						?>
-					
+				
 
-</table> 
+<tr>
+<td>
+<input type="submit" name="Insert" value="Insert">
+</td>
+</tr>
+</form>
 
-<form action="upload.php" method="post">
-					<input type="submit" name="Evidence" value="Edit Evidence" target="blank">
-					</form>
-					
+</body>
+
+<?php
+
+
+if (isset($_POST['Insert'])){
+ 
+ 
+ for($y=1; $y<=50; $y++)
+								{
+									if (empty($_POST["target".$y]))
+									{
+										$error = 1;
+									}
+									else
+									{	
+	$achievement =$_POST['achievement'.$y];
+	$value=$_POST['target'.$y];
+	
+$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc) VALUES ('$year_id','$value','$quater','$achievement')";
+$result = mysql_query($sql) or die(mysql_error());  											   
+												if (false === $result) 
+												{
+													echo mysql_error();
+												}							
+}
+								}
+
+?>
+	<div class="alert alert-warning alert-dismissable fade in">
+	 <meta http-equiv="refresh" content="3;url=achieve.php" />
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Insert!</strong> Redirecting in 3 seconds...
+  </div>								
+								
+<?php								
+								
+								
+								}
+?>
+
 	</div>
 		</div>
 	</div><!--/wrapper-->
@@ -212,12 +234,6 @@ $(".swipe-area").swipe({
             }
         }
 });
-
-
-
-
-
-
 </script>
 
 <style>
@@ -249,24 +265,4 @@ body {margin:0;}
 }
 </style>
 
-
-
-<script type="text/javascript">
-	
-				function deletedoc (id)
-					{
-						if(confirm('Sure To Remove This Document?'))
-						{
-							window.location.href='doc.php?deletedoc='+id;
-						return true;
-						}
-						
-					}
-					
-				</script>
-
-
-
 </html>
-
-
