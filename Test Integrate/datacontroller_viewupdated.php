@@ -14,6 +14,7 @@
 <body>
 	<div class="wrapper">
 		<div class="container content-sm">
+		<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
 			<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 				<table class="table table-bordered"> 
 					<tr>

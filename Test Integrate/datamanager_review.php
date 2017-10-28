@@ -30,7 +30,6 @@
 						
 			
 			
-			
 					if ($_SERVER["REQUEST_METHOD"] == "POST")
 						{
 							for($y=1; $y<=50; $y++)
@@ -77,7 +76,7 @@
 					
 					
 					
-		<!--		<div class="w3-main" style="margin-left:300px;margin-top:43px;">-->
+		<!--<div class="w3-main" style="margin-left:300px;margin-top:43px;">-->
 				<div class="table-responsive">  
 					<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
 					   <table class="table table-bordered"> 
@@ -173,10 +172,12 @@
 					</form>	
 				</div>
 				<div style="margin:20px;">
-					<!--<form action="index.php" method="post">-->
+				
 						<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
-						<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>
+						<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>	
+						<!--<form action="index.php" method="post">-->
 					</form>
+					
 				</div>
 			</div>
 		</div>
