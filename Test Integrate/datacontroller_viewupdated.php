@@ -40,7 +40,7 @@
 								<td>30 / 8 / 2017</td>
 								<td><?php echo $form_status;?></td>
 								<td>
-										<button>View</button>
+								<button onclick="location.href='datacontroller_viewrecord.php'" type="button">View Record</button>
 										<button data-toggle="modal" data-target="#responsive">Request Edit</button>
 											<div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 												<div class="modal-dialog">

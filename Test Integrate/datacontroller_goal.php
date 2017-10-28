@@ -218,12 +218,39 @@
 					<div class="tab-content"> 
 						<!--GOAL FORM-->
 						<div class="<?php if ($active==0) echo $pane; else echo $notpane;?>" id="goal">
-							<form action="datacontroller_goal.php" method="post">
-								Insert Goals :</br><input class="form-control" type="text" name="goal[]" required></input></br>
-								<div class="input_fields_wrap">	</div>
-								<button class="add_field_button">Add More Goals</button>
-								<input type="submit" name="submit_goal" value="Next" style="float: right;"></input>	
-							</form></br>
+							<table class="table" style="margin-top:30px;">
+								<?php
+								$y=1;
+									if(isset($_GET['deletegoal']))
+											{
+												$query	=mysql_query("DELETE FROM goal WHERE goal_id=".$_GET['deletegoal']);
+											}	
+									$sql="SELECT * FROM goal 
+												WHERE module_id='$module_id' 
+												AND session_name='$session_name' 
+												ORDER BY goal_id ASC";
+										$result = mysql_query($sql) or die(mysql_error());																		
+										while($row=mysql_fetch_array($result))
+											{
+												$goal_id	=$row['goal_id'];
+												$goal_desc	=$row['goal_desc'];?>	
+											<tr style="font-size:13px">
+												<td><?php echo $y.") ".$goal_desc;?></td>
+												<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletegoal(<?php echo  $goal_id; ?>)'"><i class="fa fa-trash-o"/></button></td>
+											</tr>	
+											<?php
+											$y++;
+												
+											}?>
+							</table>
+							<div class="row" style="margin-top:30px">
+								<form action="datacontroller_goal.php" method="post">
+									Insert New Goals :</br><input class="form-control" type="text" name="goal[]" required></input></br>
+									<div class="input_fields_wrap">	</div>
+									<button class="add_field_button">Add More Goals</button>
+									<input type="submit" name="submit_goal" value="Next" style="float: right;"></input>	
+								</form></br>
+							</div>
 						</div>
 						<!-- END GOAL FORM -->
 						
@@ -239,10 +266,6 @@
 									</tr>
 									<?php
 									$x = 1;
-									if(isset($_GET['deletegoal']))
-											{
-												$query	=mysql_query("DELETE FROM goal WHERE goal_id=".$_GET['deletegoal']);
-											}	
 									$sql="SELECT * FROM goal 
 											WHERE module_id='$module_id' 
 											AND session_name='$session_name' 
@@ -253,14 +276,38 @@
 											$goal_id=$row['goal_id'];
 											$goal_desc=$row['goal_desc'];?>
 											
-											<tr>
-												<td><?php echo $goal_desc;?><input class="form-control" type="hidden" name="goal_id<?php echo $x;?>" value="<?php echo $goal_id;?>"></input><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletegoal(<?php echo  $goal_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
-												<td><input class="form-control" type="text" name="strategy<?php echo $x;?>[]" required></input></br>
+											<tr style="font-size:13px">
+												<td><?php echo $goal_desc;?>
+													<input class="form-control" type="hidden" name="goal_id<?php echo $x;?>" value="<?php echo $goal_id;?>"></input>
+												</td>
+												<td>
+													<table class="table"><?php 
+														$y=1;
+														if(isset($_GET['deletestrategy']))
+															{
+																$query	=mysql_query("DELETE FROM strategy WHERE strategy_id=".$_GET['deletestrategy']);
+															}	
+														$sql2="SELECT * FROM strategy WHERE goal_id='$goal_id'";
+														$result2=mysql_query($sql2) or die (mysql_error());
+														while($row=mysql_fetch_array($result2))
+														{									
+															$strategy_id=$row['strategy_id'];
+															$strategy_desc=$row['strategy_desc'];?>
+															
+															<tr style="font-size:13px">
+																<td><?php echo $y.") ".$strategy_desc;?></td>
+																<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletestrategy(<?php echo  $strategy_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+															</tr><?php
+															$y++;
+														}?>
+													</table>
+													<input class="form-control" type="text" name="strategy<?php echo $x;?>[]" required></input></br>
 													<div class="wrapstrategy<?php echo $x;?>"></div>
 													<button class="btn add_strategy<?php echo $x;?>" style="float: right;"><span class="icon-plus"/></button>
 												</td>
-											</tr>
-											<?php $x++;										
+											</tr><?php
+												
+											 $x++;										
 										}?>
 								</table></br>
 								<input type="submit" name="submit_strategy" value="Next" style="float: right;"></input>	
@@ -301,13 +348,34 @@
 										$goal_desc		=$row['goal_desc'];
 										$strategy_id	=$row['strategy_id'];
 										$strategy_desc	=$row['strategy_desc'];?>
-										<tr>
+										<tr style="font-size:13px">
 											<td><?php echo $goal_desc;?></td>
 											<td>
 												<!--<input type="button" value="Delete" onclick="window.location.href='javascript:deletestrategy( <?php //echo  $strategy_id; ?>)'"></input>-->
 												<?php echo $strategy_desc;?>
 												<input type="hidden" name="strategy_id<?php echo $x;?>" value="<?php echo $strategy_id;?>"></input></td>
-											<td><input class="form-control" type="text"  name="action<?php echo $x;?>[]" required></input></br>
+											<td>
+												<table class="table"><?php 
+														$y=1;
+														if(isset($_GET['deleteaction']))
+															{
+																$query	=mysql_query("DELETE FROM actionplan WHERE actionplan_id=".$_GET['deleteaction']);
+															}	
+														$sql2="SELECT * FROM actionplan WHERE strategy_id='$strategy_id'";
+														$result2=mysql_query($sql2) or die (mysql_error());
+														while($row=mysql_fetch_array($result2))
+														{									
+															$actionplan_id=$row['actionplan_id'];
+															$actionplan_desc=$row['actionplan_desc'];?>
+															
+															<tr style="font-size:13px">
+																<td><?php echo $y.") ".$actionplan_desc;?></td>
+																<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deleteaction(<?php echo  $actionplan_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+															</tr><?php
+															$y++;
+														}?>
+												</table>
+												<input class="form-control" type="text"  name="action<?php echo $x;?>[]" required></input></br>
 												<div class="wrapaction<?php echo $x;?>"></div>
 												<button class="btn add_action<?php echo $x;?>" style="float: right;"><span class="icon-plus"/></button>
 											</td>
@@ -356,12 +424,32 @@
 										$strategy_desc		=$row['strategy_desc'];
 										$actionplan_id		=$row['actionplan_id'];
 										$actionplan_desc	=$row['actionplan_desc']; ?>
-										<tr>
+										<tr style="font-size:13px">
 											<td><?php echo $goal_desc;?></td>
 											<td><?php echo $strategy_desc;?></td>
 											<td><?php echo $actionplan_desc;?>
 													<input type="hidden" name="actionplan_id<?php echo $x;?>" value="<?php echo $actionplan_id;?>"></input></td>
-											<td><input class="form-control" type="text"  name="kpi<?php echo $x;?>[]" required></input></br>
+											<td>
+												<table class="table"><?php 
+														$y=1;
+														if(isset($_GET['deletekpi']))
+															{
+																$query	=mysql_query("DELETE FROM kpi WHERE kpi_id=".$_GET['deletekpi']);
+															}	
+														$sql2="SELECT * FROM kpi WHERE actionplan_id='$actionplan_id'";
+														$result2=mysql_query($sql2) or die (mysql_error());
+														while($row=mysql_fetch_array($result2))
+														{									
+															$kpi_id=$row['kpi_id'];
+															$kpi_desc=$row['kpi_desc'];?>
+															
+															<tr style="font-size:13px">
+																<td><?php echo $y.") ".$kpi_desc;?></td>
+																<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletekpi(<?php echo  $kpi_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+															</tr><?php
+															$y++;
+														}?>
+												</table><input class="form-control" type="text"  name="kpi<?php echo $x;?>[]" required></input></br>
 												<div class="wrapkpi<?php echo $x;?>"></div>
 												<button class="btn add_kpi<?php echo $x;?>" style="float: right;"><span class="icon-plus"/></button>
 											</td>
@@ -404,7 +492,7 @@
 									{
 										$kpi_id		=$row['kpi_id'];
 										$kpi_desc	=$row['kpi_desc'];?>
-										<tr>  
+										<tr style="font-size:13px">  
 											<td><?php echo $kpi_desc;?>	
 												<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
 											</td>
@@ -457,7 +545,7 @@
 								{
 									$kpi_id		=$row['kpi_id'];
 									$kpi_desc	=$row['kpi_desc'];?>
-											<tr>  
+											<tr style="font-size:13px">  
 												<td><?php echo $kpi_desc;?></td>
 												<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input></td>
 												<td><input class="form-control" type="text" name="target1<?php echo $x;?>"/></td>
@@ -506,7 +594,7 @@
 								{
 									$kpi_id		=$row['kpi_id'];
 									$kpi_desc	=$row['kpi_desc'];?>
-											<tr>  
+											<tr style="font-size:13px">  
 												<td><?php echo $kpi_desc;?></td>
 													<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input></td>
 												<td><input class="form-control" type="" name="ownership<?php echo $x;?>"/></td>
@@ -544,11 +632,15 @@
 											<th>Operation Definition</th>
 											<th>Achievement 2014</th>  
 											<th>Achievement 2015</th>
-											<th>Target 2016</th>  
-											<th>Target 2017</th>  
-											<th>Target 2018</th>  
-											<th>Target 2019</th>  
-											<th>Target 2020</th>
+												<?php
+											$sql="SELECT year_name from year where session_name='$session_name'";
+											$result=mysql_query($sql) or die(mysql_error());
+											while($row=mysql_fetch_array($result))
+											{
+												$year_name	=$row['year_name']; ?>
+												<th><?php echo $year_name;?></th>
+												<?php
+											}?>
 											<th>Ownership</th> 
 											<th>Data Source</th> 
 											<th>Estimated Cost (RM)</th> 
@@ -587,7 +679,7 @@
 												$estimated_cost	=$row['estimated_cost'];
 												$exp_fin_return	=$row['exp_fin_return'];								
 												?>									
-												<tr>  
+												<tr style="font-size:13px">  
 													<td><?php echo $x;?></td>
 													<td><?php echo $goal_desc;?></td>
 													<td><?php echo $strategy_desc;?></td>
@@ -646,9 +738,27 @@
 					
 				function deletestrategy(id)
 					{
-						if(confirm('Sure To Remove This Goal?'))
+						if(confirm('Sure To Remove This Strategy?'))
 						{
 							window.location.href='datacontroller_goal.php?deletestrategy='+id;
+						return true;
+						}
+						
+					}
+					function deleteaction(id)
+					{
+						if(confirm('Sure To Remove This Action Plan?'))
+						{
+							window.location.href='datacontroller_goal.php?deleteaction='+id;
+						return true;
+						}
+						
+					}
+					function deletekpi(id)
+					{
+						if(confirm('Sure To Remove This KPI?'))
+						{
+							window.location.href='datacontroller_goal.php?deletekpi='+id;
 						return true;
 						}
 						
