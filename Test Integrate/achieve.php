@@ -100,9 +100,9 @@ else
 										
 <?php
 						$module_id=$_SESSION['module_id'];
-						$x=1;
+						
 							
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, evidence.*, achievement.*,year.*
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -111,7 +111,6 @@ else
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
-						JOIN evidence ON evidence.kpi_id=kpi.kpi_id
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN year ON achievement.year_id=year.year_id
                         WHERE goal.module_id='$module_id'
@@ -119,12 +118,16 @@ else
 						AND form.form_status='Approve'
 						
 						";
+						
 						$result = mysql_query($sql) or die(mysql_error()); 
 
 						
 						
 						if(mysql_num_rows($result) > 0)
 					{
+						
+						$x=1;
+						
 						?>
 						<table class="table table-bordered">
 					<col width="10%">
