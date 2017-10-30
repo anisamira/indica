@@ -15,10 +15,13 @@
 	$quater=1;
 }
 else
-    $quater=2;	
+    $quater=2;
+
+
 	
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
+	
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -26,6 +29,11 @@ else
 						while($row=mysql_fetch_array($result))
 						{
 							$_SESSION['session_name']	=$row['session_name'];
+							$year1=$row['year1'];
+							$year2=$row['year2'];
+							$year3=$row['year3'];
+							$year4=$row['year4'];
+							$year5=$row['year5'];
 						}
 						$session_name	=$_SESSION['session_name'];
 					}
@@ -68,10 +76,6 @@ else
 						echo "no data found";
 					}
 		
-
-		
-
-	
 	?>
 
 <div class="wrapper">
@@ -139,8 +143,41 @@ else
 							$kpi_id			=$row['kpi_id'];
 							$goal_desc		=$row['goal_desc'];
 							$kpi_desc		=$row['kpi_desc'];
-							$target		    =$row['target2'];
 							$target_id		=$row['target_id'];
+							
+							$target1= $row['target1'];
+							$target2= $row['target2'];
+							$target3= $row['target3'];
+							$target4= $row['target4'];
+							$target5= $row['target5'];
+							
+						
+if ($curyear==$year&&$year==$year1)
+{
+	$target=$target1;
+}
+elseif 	($curyear==$year&&$year==$year2)
+{
+	$target=$target2;
+}
+elseif 	($curyear==$year&&$year==$year3)
+{
+	$target=$target3;
+}
+elseif 	($curyear==$year&&$year==$year4)
+{
+	$target=$target4;
+}
+elseif 	($curyear==$year&&$year==$year5)
+{
+	$target=$target5;
+}	
+							
+							
+							
+							
+							
+							
 
 						?>
 
@@ -148,10 +185,11 @@ else
 								<td><?php echo $x;?></td>
 								<td><?php echo $goal_desc;?></td>
 								<td><?php echo $kpi_desc;?></td>
-								<td><?php echo $target;?></td>
+								<td><?php echo $target;?>
 								<td><input class="form-control" type="text" name="achievement<?php echo $x;?>" required/>
 								   <input type="hidden" name="target<?php echo $x;?>" value="<?php echo $target_id;?>"/>
 							</tr>
+							
 							<?php
 						$x++;
 						}

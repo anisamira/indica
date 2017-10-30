@@ -15,6 +15,11 @@
 						while($row=mysql_fetch_array($result))
 						{
 							$_SESSION['session_name']	=$row['session_name'];
+							$year1=$row['year1'];
+							$year2=$row['year2'];
+							$year3=$row['year3'];
+							$year4=$row['year4'];
+							$year5=$row['year5'];
 						}
 						$session_name	=$_SESSION['session_name'];
 					}
