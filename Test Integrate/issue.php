@@ -75,7 +75,7 @@
 <?php
 						$module_id=$_SESSION['module_id'];
 						$x=1;
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*
+						$sql4="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -90,12 +90,120 @@
 						AND form.form_status='Approve'
 						HAVING ach_desc < target2;
 						";
+						
+						$result = mysql_query($sql) or die(mysql_error());
+						
+						if (mysql_num_rows($result)>0)
+						{
+						echo "You have an issue";
+							}
+						
+?>
+                    <form action="add_issue.php" method="post">
+					<input type="submit" name="Issue" value="Check for an Issue" target="blank">
+					</form>
+
+
+
+
+
+							
+
+<?php
+
+						$module_id=$_SESSION['module_id'];
+						$x=1;
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, issue.*
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN issue ON issue.kpi_id=kpi.kpi_id						
+                        WHERE goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
+						AND form.form_status='Approve'
+						HAVING ach_desc < target2
+						";
 						$result = mysql_query($sql) or die(mysql_error());
 
-						if (mysql_num_rows($result)>0){
+						
+?>
+                     
+<?php				
+					if (mysql_num_rows($result)>0)
+					{
+					?>	
+						<table class="table table-bordered">
+									<col width="5%">
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
+									<col width="10%">
+									<col width="15%">
+									<col width="15%">
+									<col width="5%">
+									<col width="15%">
+									<col width="5%">
+									
+									<tr>
+									    <th>No.</th>
+									    <th>Goal</th>
+									    <th>KPI</th>
+										<th>Target</th>
+										<th>Achievement</th>
+										<th>Punca tidak capai sasaran</th>
+									    <th>Rancangan Tindakan Pembetulan</th>
+									    <th>Tarikh Siap</th>
+										<th>Rancangan Tindakan Pencegahan</th>
+										<th>Tarikh Siap</th>
+									</tr>
 
+						
 
-						echo "You Have an Issue to be updated";
+		<?php
+						while($row=mysql_fetch_array($result))
+						{
+							$kpi_id			=$row['kpi_id'];
+							$goal_desc		=$row['goal_desc'];
+							$kpi_desc		=$row['kpi_desc'];
+							$achievement	=$row['ach_desc'];
+							$target		    =$row['target2'];
+							$reason			=$row['reason'];
+							$pembetulan		=$row['pembetulan'];
+							$pembetulan_date			=$row['date_pembetulan'];
+							$pencegahan			=$row['pencegahan'];
+							$pencegahan_date			=$row['date_pencegahan'];
+
+						?>
+
+							<tr>  
+								<td><?php echo $x;?></td>
+								<td><?php echo $goal_desc;?></td>
+								<td><?php echo $kpi_desc;?></td>
+								<td><?php echo $target;?></td>
+							    <td><?php echo $achievement;?></td>
+								<td><?php echo $reason;?></td>
+								<td><?php echo $pembetulan;?></td>
+								<td><?php echo $pembetulan_date;?></td>
+							    <td><?php echo $pencegahan;?></td>
+								<td><?php echo $pencegahan_date;?></td>
+
+								
+							</tr>
+							<?php
+						$x++;
+						}
+					}
+					
+					else
+					{
+					
+					echo "You Have an Issue to be updated";
 							
 						?>
 
@@ -103,12 +211,22 @@
 					<input type="submit" name="Issue" value="Add Issue" target="blank">
 					</form>
 <?php
-						}
-?>
-							
+					
+					}
+						
+						?>
 
 
 </table>
+
+
+
+
+
+
+
+
+
 
 
 </body>

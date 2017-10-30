@@ -69,6 +69,58 @@
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
 
 
+
+<?php
+						$module_id=$_SESSION['module_id'];
+						$x=1;
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id	
+                        WHERE goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
+						AND form.form_status='Approve'
+						HAVING ach_desc < target2
+						";
+						$result = mysql_query($sql) or die(mysql_error());
+
+						
+?>
+
+<?php
+
+						if (mysql_num_rows($result)>0)
+						{
+							
+						$sql2="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, issue.*
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN issue ON issue.kpi_id=kpi.kpi_id
+                        WHERE goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
+						AND form.form_status='Approve'
+						";
+						
+						$result2 = mysql_query($sql2) or die(mysql_error());
+
+						if (mysql_num_rows($result2)>0)
+						{
+
+
+?>
 							<table class="table table-bordered">
 								<!--	<col width="5%">
 									<col width="10%">
@@ -93,32 +145,8 @@
 										<th>Rancangan Tindakan Pencegahan</th>
 										<th>Tarikh Siap</th>
 									</tr>
-
-
 <?php
-						$module_id=$_SESSION['module_id'];
-						$x=1;
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*
-						FROM goal 
-						JOIN strategy ON strategy.goal_id=goal.goal_id 
-						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
-						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
-						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
-						JOIN target ON target.kpi_id=kpi.kpi_id 
-						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						JOIN form ON form.module_id=goal.module_id
-						JOIN achievement ON achievement.target_id=target.target_id						
-                        WHERE goal.module_id='$module_id'
-						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
-						HAVING ach_desc < target2;
-						";
-						$result = mysql_query($sql) or die(mysql_error());
-
-						
-?>
-
-<?php						
+					
 						while($row=mysql_fetch_array($result))
 						{
 							$kpi_id			=$row['kpi_id'];
@@ -149,6 +177,11 @@
 							</tr>
 							<?php
 						$x++;
+						}
+						
+						}
+						else
+							echo "No issue to be added";
 						}
 						
 						?>
