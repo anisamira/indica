@@ -133,35 +133,8 @@ elseif 	($curyear==$year&&$year==$year5)
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
 
 
-
 <?php
-						$module_id=$_SESSION['module_id'];
-						$x=1;
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*
-						FROM goal 
-						JOIN strategy ON strategy.goal_id=goal.goal_id 
-						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
-						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
-						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
-						JOIN target ON target.kpi_id=kpi.kpi_id 
-						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						JOIN form ON form.module_id=goal.module_id
-						JOIN achievement ON achievement.target_id=target.target_id	
-                        WHERE goal.module_id='$module_id'
-						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
-						HAVING ach_desc < '$target'
-						";
-						$result = mysql_query($sql) or die(mysql_error());
-
-						
-?>
-
-<?php
-
-						if (mysql_num_rows($result)>0)
-						{
-							
+						$x=1;	
 						$sql2="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
@@ -172,12 +145,13 @@ elseif 	($curyear==$year&&$year==$year5)
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
-                        WHERE EXISTS(SELECT kpi.*,issue.*
-						FROM kpi INNER JOIN issue ON issue.kpi_id=kpi.kpi_id)
+                        WHERE NOT EXISTS(SELECT issue.*
+						FROM issue WHERE issue.kpi_id=kpi.kpi_id)
                         AND goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
-                        HAVING ach_desc<target2
+                        HAVING ach_desc < '$target'
+                        
 						";
 						
 						$result2 = mysql_query($sql2) or die(mysql_error());
@@ -213,7 +187,7 @@ elseif 	($curyear==$year&&$year==$year5)
 									</tr>
 <?php
 					
-						while($row=mysql_fetch_array($result))
+						while($row=mysql_fetch_array($result2))
 						{
 							$kpi_id			=$row['kpi_id'];
 							$goal_desc		=$row['goal_desc'];
@@ -248,7 +222,7 @@ elseif 	($curyear==$year&&$year==$year5)
 						}
 						else
 							echo "No issue to be added";
-						}
+						
 						
 						?>
 
