@@ -64,6 +64,49 @@
 					{
 						echo "no data found";
 					}
+	$sql			= "SELECT * FROM target";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							
+							$target1= $row['target1'];
+							$target2= $row['target2'];
+							$target3= $row['target3'];
+							$target4= $row['target4'];
+							$target5= $row['target5'];
+							
+						
+if ($curyear==$year&&$year==$year1)
+{
+	$target=$target1;
+}
+elseif 	($curyear==$year&&$year==$year2)
+{
+	$target=$target2;
+}
+elseif 	($curyear==$year&&$year==$year3)
+{
+	$target=$target3;
+}
+elseif 	($curyear==$year&&$year==$year4)
+{
+	$target=$target4;
+}
+elseif 	($curyear==$year&&$year==$year5)
+{
+	$target=$target5;
+}								
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}				
+					
 	
 	?>
 
@@ -111,7 +154,7 @@
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
-						HAVING ach_desc < target2;
+						HAVING ach_desc < '$target';
 						";
 						
 						$result = mysql_query($sql) or die(mysql_error());
@@ -151,7 +194,7 @@
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
-						HAVING ach_desc < target2
+						HAVING ach_desc < '$target'
 						";
 						$result = mysql_query($sql) or die(mysql_error());
 

@@ -181,9 +181,12 @@ $module_id=$_SESSION['module_id'];
 
 </table> 
 
-<form action="upload.php" method="post">
-					<input type="submit" name="Evidence" value="Edit Evidence" target="blank">
+<form action="upload.php" method="post" name="addevidence">
+					<input type="submit" name="Evidence" value="Add Evidence" target="_blank">
 					</form>
+<form action="upload.php" method="post" name="editevidence">
+					<input type="submit" name="editevidence" value="Edit Evidence" target="_blank">
+					</form>					
 					
 	</div>
 		</div>

@@ -6,6 +6,7 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
+	$curyear=date ('Y');
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	$sql			="SELECT * FROM session where session_status='1'";
@@ -44,8 +45,66 @@
 					{
 						echo "no data found";
 					}
+					
+	$sql			= "SELECT * FROM year WHERE year_name='$curyear'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$year= $row['year_name'];
+							$year_id=$row['year_id'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}				
 	
-
+$sql			= "SELECT * FROM target";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							
+							$target1= $row['target1'];
+							$target2= $row['target2'];
+							$target3= $row['target3'];
+							$target4= $row['target4'];
+							$target5= $row['target5'];
+							
+						
+if ($curyear==$year&&$year==$year1)
+{
+	$target=$target1;
+}
+elseif 	($curyear==$year&&$year==$year2)
+{
+	$target=$target2;
+}
+elseif 	($curyear==$year&&$year==$year3)
+{
+	$target=$target3;
+}
+elseif 	($curyear==$year&&$year==$year4)
+{
+	$target=$target4;
+}
+elseif 	($curyear==$year&&$year==$year5)
+{
+	$target=$target5;
+}								
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}				
 	
 	?>
 
@@ -91,7 +150,7 @@
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
-						HAVING ach_desc < target2
+						HAVING ach_desc < '$target'
 						";
 						$result = mysql_query($sql) or die(mysql_error());
 
@@ -113,9 +172,12 @@
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
-                        WHERE goal.module_id='$module_id'
+                        WHERE EXISTS(SELECT kpi.*,issue.*
+						FROM kpi INNER JOIN issue ON issue.kpi_id=kpi.kpi_id)
+                        AND goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
+                        HAVING ach_desc<target2
 						";
 						
 						$result2 = mysql_query($sql2) or die(mysql_error());
@@ -232,9 +294,9 @@ $result = mysql_query($sql) or die(mysql_error());
 
 ?>
 	<div class="alert alert-warning alert-dismissable fade in">
-	 <meta http-equiv="refresh" content="3;url=issue.php" />
+	 <meta http-equiv="refresh" content="1;url=issue.php" />
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Insert!</strong> Redirecting in 3 seconds...
+    <strong>Insert!</strong> Redirecting in 1 seconds...
   </div>								
 								
 <?php								

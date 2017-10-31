@@ -234,9 +234,9 @@ $result = mysql_query($sql) or die(mysql_error());
 
 ?>
 	<div class="alert alert-warning alert-dismissable fade in">
-	 <meta http-equiv="refresh" content="3;url=achieve.php" />
+	 <meta http-equiv="refresh" content="1;url=achieve.php" />
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Insert!</strong> Redirecting in 3 seconds...
+    <strong>Insert!</strong> Redirecting in 1 seconds...
   </div>								
 								
 <?php								
