@@ -5,6 +5,7 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
+	$curyear=date ('Y');
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	$sql			="SELECT * FROM session where session_status='1'";
@@ -39,7 +40,22 @@
 						echo "no data found";
 					}
 	
-
+	$sql			= "SELECT * FROM year WHERE year_name='$curyear'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$year= $row['year_name'];
+							$year_id=$row['year_id'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}				
 	
 	?>
 
@@ -58,7 +74,10 @@
   <a  href="financial.php">Financial</a>
 
 </div>	
-			
+		
+<div style="padding-left:16px">
+  &nbsp&nbspWELCOME TO <?=$module_id;?>
+ </div> 		
  
 <?php
 
@@ -69,6 +88,32 @@ if (isset($_POST['Evidence']))
 
  
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
+
+<?php
+						$module_id=$_SESSION['module_id'];
+						$x=1;
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, year.*
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
+                        WHERE NOT EXISTS (SELECT evidence.* FROM evidence WHERE evidence.ach_id=achievement.ach_id)
+						AND goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
+						AND form.form_status='Approve'
+						AND achievement.year_id='$year_id'
+						";
+						$result = mysql_query($sql) or die(mysql_error());
+						
+if (mysql_num_rows($result)>0)
+{						
+?>
 <table class="table table-bordered">
 									<col width="5%">
 									<col width="10%">
@@ -87,26 +132,9 @@ if (isset($_POST['Evidence']))
 										<th>Achievement</th>									
 										<th>Description</th>
 										<th>Upload File</th>
-									</tr>
+										</tr>
+
 <?php
-						$module_id=$_SESSION['module_id'];
-						$x=1;
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, year.*
-						FROM goal 
-						JOIN strategy ON strategy.goal_id=goal.goal_id 
-						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
-						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
-						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
-						JOIN target ON target.kpi_id=kpi.kpi_id 
-						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						JOIN form ON form.module_id=goal.module_id
-						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN year ON achievement.year_id=year.year_id
-                        WHERE goal.module_id='$module_id'
-						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
-						";
-						$result = mysql_query($sql) or die(mysql_error()); 
 						while($row=mysql_fetch_array($result))
 						{
 							$ach_id			=$row['ach_id'];
@@ -152,6 +180,17 @@ if (isset($_POST['Evidence']))
   
 <?php
 }
+else
+?>
+
+<div class="alert alert-warning alert-dismissable fade in">
+	 <meta http-equiv="refresh" content="1;url=doc.php" />
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>NO evidence need to be added!</strong> Redirecting in 1 seconds...
+  </div>
+<?php
+}
+//
 
 if (isset($_POST['Upload'])){
  
@@ -235,6 +274,32 @@ if (isset($_POST['editevidence']))
 	
 ?>	
 	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
+
+<?php
+						$module_id=$_SESSION['module_id'];
+						$x=1;
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, year.*,evidence.*
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
+						JOIN evidence ON evidence.ach_id=achievement.ach_id
+                        WHERE goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
+						AND form.form_status='Approve'
+						";
+						$result = mysql_query($sql) or die(mysql_error());
+
+
+if (mysql_num_rows($result)>0)
+{
+?>	
 <table class="table table-bordered">
 									<col width="5%">
 									<col width="10%">
@@ -255,25 +320,6 @@ if (isset($_POST['editevidence']))
 										<th>Upload File</th>
 									</tr>
 <?php
-						$module_id=$_SESSION['module_id'];
-						$x=1;
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, year.*,evidence.*
-						FROM goal 
-						JOIN strategy ON strategy.goal_id=goal.goal_id 
-						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
-						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
-						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
-						JOIN target ON target.kpi_id=kpi.kpi_id 
-						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						JOIN form ON form.module_id=goal.module_id
-						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN year ON achievement.year_id=year.year_id
-						JOIN evidence ON evidence.kpi_id=kpi.kpi_id
-                        WHERE goal.module_id='$module_id'
-						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
-						";
-						$result = mysql_query($sql) or die(mysql_error()); 
 						while($row=mysql_fetch_array($result))
 						{
 							$ach_id			=$row['ach_id'];
@@ -319,8 +365,24 @@ if (isset($_POST['editevidence']))
     
   
 <?php
+}
 
+else{
+?>
 
+<div class="alert alert-warning alert-dismissable fade in">
+	 <meta http-equiv="refresh" content="1;url=doc.php" />
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>NO evidence need to be added!</strong> Redirecting in 1 seconds...
+  </div>
+<?php
+}	
+	
+}
+// end of if isset edit
+?>
+
+<?php
 //if isset cancel
 if (isset($_POST['cancel']))
 {
@@ -396,7 +458,7 @@ if (move_uploaded_file($tmp_name, $path.$name)) {
  
 // end of this one 
  
-$sql="UPDATE evidence SET desc_file='$evidence_desc', filename='$name' WHERE kpi_id='$value'";
+$sql="UPDATE evidence SET desc_file='$evidence_desc', filename='$name' WHERE ach_id='$value'";
 $result = mysql_query($sql) or die(mysql_error());  											   
 												if (false === $result) 
 												{
@@ -419,13 +481,7 @@ $result = mysql_query($sql) or die(mysql_error());
 
 
 ?>
-<?php	
-	
-}
-
-
-
-?>	</div>
+	</div>
 		</div>
 	</div><!--/wrapper-->
 	

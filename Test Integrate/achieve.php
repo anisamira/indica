@@ -56,7 +56,7 @@ else
 						echo "no data found";
 					}
 	
-		$sql			= "SELECT * FROM year WHERE year_name='$curyear'";
+  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
@@ -72,11 +72,49 @@ else
 					{
 						echo "no data found";
 					}
-		
-
-		
-
-	
+	$sql			= "SELECT * FROM target";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							
+							$target1= $row['target1'];
+							$target2= $row['target2'];
+							$target3= $row['target3'];
+							$target4= $row['target4'];
+							$target5= $row['target5'];
+							
+						
+if ($year==$year1)
+{
+	$target=$target1;
+}
+elseif 	($year==$year2)
+{
+	$target=$target2;
+}
+elseif 	($year==$year3)
+{
+	$target=$target3;
+}
+elseif 	($year==$year4)
+{
+	$target=$target4;
+}
+elseif 	($year==$year5)
+{
+	$target=$target5;
+}								
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}				
+						
 	?>
 
 <div class="wrapper">
@@ -121,7 +159,7 @@ else
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
-						
+						ORDER BY (kpi.kpi_id AND achievement.year_id)
 						";
 						
 						$result = mysql_query($sql) or die(mysql_error()); 
@@ -146,8 +184,10 @@ else
 									    <th>No.</th>
 									    <th>Goal</th>
 									    <th>KPI</th>
-										<th>Target <?php echo $curyear;?></th>
-										<th>Achievement <?php echo $curyear. ' Quater '.$quater;?></th>
+										<th>Year</th>
+										<th>Quater</th>
+										<th>Target</th>
+										<th>Achievement</th>
 									</tr>
 <?php					
 						$result = mysql_query($sql) or die(mysql_error()); 
@@ -158,6 +198,9 @@ else
 							$kpi_desc		=$row['kpi_desc'];
 							$target_id		=$row['target_id'];
 							$achievement	=$row['ach_desc'];
+							$year           =$row['year_name'];
+							$quarterq       =$row['quarter'];
+							$yearid         =$row['year_id'];
 							
 							$target1= $row['target1'];
 							$target2= $row['target2'];
@@ -166,23 +209,23 @@ else
 							$target5= $row['target5'];
 							
 						
-if ($curyear==$year&&$year==$year1)
+if ($year==$year1)
 {
 	$target=$target1;
 }
-elseif 	($curyear==$year&&$year==$year2)
+elseif 	($year==$year2)
 {
 	$target=$target2;
 }
-elseif 	($curyear==$year&&$year==$year3)
+elseif 	($year==$year3)
 {
 	$target=$target3;
 }
-elseif 	($curyear==$year&&$year==$year4)
+elseif 	($year==$year4)
 {
 	$target=$target4;
 }
-elseif 	($curyear==$year&&$year==$year5)
+elseif 	($year==$year5)
 {
 	$target=$target5;
 }	
@@ -194,6 +237,8 @@ elseif 	($curyear==$year&&$year==$year5)
 								<td><?php echo $x;?></td>
 								<td><?php echo $goal_desc;?></td>
 								<td><?php echo $kpi_desc;?></td>
+								<td><?php echo $year;?></td>
+								<td><?php echo $quarterq;?></td>
 								<td><?php echo $target;?></td>
 								<td><?php echo $achievement;?></td>
 							</tr>
@@ -208,7 +253,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					
 					
 					<form action="add_achieve.php" method="post">
-					<input type="submit" name="Achievement" value="Add Achievement" target="blank">
+					<input type="submit" name="Achievement" value="Add Achievement" >
 					</form>
 					
 					
@@ -222,7 +267,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 
 					<form action="add_achieve.php" method="post">
-					<input type="submit" name="Achievement" value="Add Achievement" target="blank">
+					<input type="submit" name="Achievement1" value="Check for an Achievement" >
 					</form>
 					
 

@@ -135,7 +135,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 <?php
 						$x=1;	
-						$sql2="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*
+						$sql2="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*,year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -145,11 +145,13 @@ elseif 	($curyear==$year&&$year==$year5)
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
                         WHERE NOT EXISTS(SELECT issue.*
 						FROM issue WHERE issue.ach_id=achievement.ach_id)
                         AND goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
+						AND achievement.year_id='$year_id'
                         HAVING ach_desc < '$target'
                         
 						";
@@ -218,22 +220,32 @@ elseif 	($curyear==$year&&$year==$year5)
 							<?php
 						$x++;
 						}
-						
-						}
-						else
-							echo "No issue to be added";
-						
-						
-						?>
-
-
-</table>
+?>						
+						</table>
 
 <br>
 <td>
 <input type="submit" name="Add" value="Add">
 </td>
 </form>
+						
+						
+<?php					
+	}
+						else{
+			?>			
+						<div class="alert alert-warning alert-dismissable fade in">
+	 <meta http-equiv="refresh" content="1;url=issue.php" />
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>No issue to be added</strong> Redirecting in 1 seconds...
+  </div>	
+				<?php		
+						
+						}
+						?>
+
+
+
 
 </body>
 <?php

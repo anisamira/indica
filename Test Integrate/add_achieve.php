@@ -7,7 +7,7 @@
 	include('sidebar.php');
 	
 	
-	$curyear=date ('Y');
+	$curyear=date ('2016');
     $date_now=date ("m/d/Y");
  $date_q= date ("06/30/Y");
  if ($date_now<=$date_q)
@@ -101,9 +101,38 @@ else
 </div>
 <body>
 
+<?php
+if (isset($_POST['Achievement1']))
+{ 
+?>
 
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="achievement1">
+
+<?php
+						$module_id=$_SESSION['module_id'];
+						$x=1;
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+					    JOIN form ON form.module_id=goal.module_id
+						WHERE NOT EXISTS(SELECT achievement.* FROM achievement 
+						WHERE achievement.target_id=target.target_id AND achievement.year_id='$year_id') 
+						AND goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
+						AND form.form_status='Approve'
+						";
+
+					$result = mysql_query($sql) or die(mysql_error());
+					
+	if (mysql_num_rows($result)>0)
+	{
+?>
 <table class="table table-bordered">
 									
 						<col width="10%">
@@ -118,25 +147,8 @@ else
 										<th>Target <?php echo $curyear;?></th>
 										<th>Achievement <?php echo $curyear. ' Quater '.$quater;?></th>
 									</tr>
-<?php
-						$module_id=$_SESSION['module_id'];
-						$x=1;
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*
-						FROM goal 
-						JOIN strategy ON strategy.goal_id=goal.goal_id 
-						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
-						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
-						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
-						JOIN target ON target.kpi_id=kpi.kpi_id 
-						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-					    JOIN form ON form.module_id=goal.module_id											
-                        WHERE goal.module_id='$module_id'
-						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
-						";
-
-					
 									
+<?php
 						$result = mysql_query($sql) or die(mysql_error()); 
 						while($row=mysql_fetch_array($result))
 						{
@@ -173,11 +185,6 @@ elseif 	($curyear==$year&&$year==$year5)
 	$target=$target5;
 }	
 							
-							
-							
-							
-							
-							
 
 						?>
 
@@ -193,21 +200,36 @@ elseif 	($curyear==$year&&$year==$year5)
 							<?php
 						$x++;
 						}
-						?>	
-				    
-				
 
+?>					
 <tr>
 <td>
 <input type="submit" name="Insert" value="Insert">
 </td>
 </tr>
-</form>
+</form>					
 
+<?php						
+	}
+					
+		else 
+		{
+			
+	?>
+ <div class="alert alert-warning alert-dismissable fade in">
+	 <meta http-equiv="refresh" content="1;url=achieve.php" />
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>No achievement to be added</strong> Redirecting in 1 seconds...
+  </div>
+
+<?php	
+		}
+
+					?>	
 </body>
 
 <?php
-
+}
 
 if (isset($_POST['Insert'])){
  
