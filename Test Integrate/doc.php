@@ -170,13 +170,6 @@ $module_id=$_SESSION['module_id'];
 					
 					echo "No evidence is uploaded yet";
 					?>
-					
-					
-					<form action="test_upload.php" method="post" name="evidence">
-					<input type="submit" name="evidence" value="Addaa Evidence">
-					</form>
-				
-					
 					<?php
 					}	
 				    
