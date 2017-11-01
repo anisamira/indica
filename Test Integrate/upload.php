@@ -109,7 +109,7 @@ if (isset($_POST['Evidence']))
 						$result = mysql_query($sql) or die(mysql_error()); 
 						while($row=mysql_fetch_array($result))
 						{
-							$kpi_id			=$row['kpi_id'];
+							$ach_id			=$row['ach_id'];
 							$goal_desc		=$row['goal_desc'];
 							$kpi_desc		=$row['kpi_desc'];
 							$achievement	=$row['ach_desc'];
@@ -129,9 +129,9 @@ if (isset($_POST['Evidence']))
 								<td><?php echo $quater;?></td>
 								<td><?php echo $achievement;?></td>								
 								<td><input class="form-control" type="text" name="evidence_desc<?php echo $x;?>" required/>
-									<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/></td>
+									<input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/></td>
 								<td><input class="form-control" type="file" name="evidence<?php echo $x;?>" required/>
-									<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/></td>
+									<input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/></td>
 							</tr>
 							<?php
 						$x++;
@@ -159,14 +159,14 @@ if (isset($_POST['Upload'])){
 //for start post 
  for($y=1; $y<=50; $y++)
 								{
-									if (empty($_POST['kpi'.$y]))
+									if (empty($_POST['ach'.$y]))
 									{
 										$error = 1;
 									}
 									else
 									{	
 	$evidence_desc =$_POST['evidence_desc'.$y];
-	$value= $_POST['kpi'.$y];
+	$value= $_POST['ach'.$y];
 	
 	
 	 
@@ -212,7 +212,7 @@ if (move_uploaded_file($tmp_name, $path.$name)) {
  
 // end of this one 
  
-$sql="INSERT INTO evidence (desc_file,filename,kpi_id) VALUES ('$evidence_desc','$name','$value')";
+$sql="INSERT INTO evidence (desc_file,filename,ach_id) VALUES ('$evidence_desc','$name','$value')";
 $result = mysql_query($sql) or die(mysql_error());  											   
 												if (false === $result) 
 												{
@@ -276,7 +276,7 @@ if (isset($_POST['editevidence']))
 						$result = mysql_query($sql) or die(mysql_error()); 
 						while($row=mysql_fetch_array($result))
 						{
-							$kpi_id			=$row['kpi_id'];
+							$ach_id			=$row['ach_id'];
 							$goal_desc		=$row['goal_desc'];
 							$kpi_desc		=$row['kpi_desc'];
 							$achievement	=$row['ach_desc'];
@@ -296,9 +296,9 @@ if (isset($_POST['editevidence']))
 								<td><?php echo $quater;?></td>
 								<td><?php echo $achievement;?></td>								
 								<td><input class="form-control" type="text" name="evidence_desc<?php echo $x;?>" />
-									<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/></td>
+									<input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/></td>
 								<td><input class="form-control" type="file" name="evidence<?php echo $x;?>"/>
-									<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/></td>
+									<input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/></td>
 							</tr>
 							<?php
 						$x++;
@@ -343,14 +343,14 @@ if (isset($_POST['editevidence'])){
 //for start post 
  for($y=1; $y<=50; $y++)
 								{
-									if (empty($_POST['kpi'.$y]))
+									if (empty($_POST['ach'.$y]))
 									{
 										$error = 1;
 									}
 									else
 									{	
 	$evidence_desc =$_POST['evidence_desc'.$y];
-	$value= $_POST['kpi'.$y];
+	$value= $_POST['ach'.$y];
 	
 	
 	 

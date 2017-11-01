@@ -146,7 +146,7 @@ elseif 	($curyear==$year&&$year==$year5)
 						JOIN form ON form.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
                         WHERE NOT EXISTS(SELECT issue.*
-						FROM issue WHERE issue.kpi_id=kpi.kpi_id)
+						FROM issue WHERE issue.ach_id=achievement.ach_id)
                         AND goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
@@ -189,7 +189,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					
 						while($row=mysql_fetch_array($result2))
 						{
-							$kpi_id			=$row['kpi_id'];
+							$ach_id			=$row['ach_id'];
 							$goal_desc		=$row['goal_desc'];
 							$kpi_desc		=$row['kpi_desc'];
 							$achievement	=$row['ach_desc'];
@@ -205,15 +205,15 @@ elseif 	($curyear==$year&&$year==$year5)
 								<td><?php echo $target;?></td>
 							    <td><?php echo $achievement;?></td>
 								<td><input class="form-control" type="text" name="reason<?php echo $x;?>" required/>
-								   <input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/>
+								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
 								 <td><input class="form-control" type="text" name="pembetulan<?php echo $x;?>" required/>
-								   <input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/>
+								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
 								<td><input class="form-control" type="date" name="date_pembetulan<?php echo $x;?>" required/>
-								   <input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/>   
+								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>   
 							<td><input class="form-control" type="text" name="pencegahan<?php echo $x;?>" required/>
-								   <input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/>
+								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
 								<td><input class="form-control" type="date" name="date_pencegahan<?php echo $x;?>" required/>
-								   <input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"/>   
+								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>   
 							</tr>
 							<?php
 						$x++;
@@ -244,20 +244,20 @@ if (isset($_POST['Add'])){
  
  for($y=1; $y<=50; $y++)
 								{
-									if (empty($_POST["kpi".$y]))
+									if (empty($_POST["ach".$y]))
 									{
 										$error = 1;
 									}
 									else
 									{	
-	$value=$_POST['kpi'.$y];
+	$value=$_POST['ach'.$y];
 	$reason =$_POST['reason'.$y];
 	$pembetulan =$_POST['pembetulan'.$y];
 	$date_pembetulan =$_POST['date_pembetulan'.$y];
 	$pencegahan =$_POST['pencegahan'.$y];
 	$date_pencegahan =$_POST['date_pencegahan'.$y];
 	
-$sql="INSERT INTO issue (kpi_id,reason,pembetulan,date_pembetulan,pencegahan,date_pencegahan) VALUES ('$value','$reason','$pembetulan','$date_pembetulan','$pencegahan','$date_pencegahan')";
+$sql="INSERT INTO issue (ach_id,reason,pembetulan,date_pembetulan,pencegahan,date_pencegahan) VALUES ('$value','$reason','$pembetulan','$date_pembetulan','$pencegahan','$date_pencegahan')";
 $result = mysql_query($sql) or die(mysql_error());  											   
 												if (false === $result) 
 												{

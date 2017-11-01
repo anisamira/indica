@@ -78,7 +78,7 @@ $module_id=$_SESSION['module_id'];
 											}
 						
 						
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, evidence.*, achievement.*,year.*
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, evidence.*, year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -87,13 +87,13 @@ $module_id=$_SESSION['module_id'];
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
-						JOIN evidence ON evidence.kpi_id=kpi.kpi_id
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN year ON achievement.year_id=year.year_id
+						JOIN evidence ON evidence.ach_id=achievement.ach_id
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
-						ORDER BY evidence.kpi_id
+						ORDER BY evidence.ach_id AND achievement.year_id
 						";
 						$result = mysql_query($sql) or die(mysql_error()); 
 						
