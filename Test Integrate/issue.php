@@ -162,7 +162,7 @@ elseif 	($curyear==$year&&$year==$year5)
 						
 						if (mysql_num_rows($result)>0)
 						{
-						echo "You have an issue";
+						
 							}
 						
 ?>
