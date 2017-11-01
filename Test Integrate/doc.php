@@ -66,6 +66,7 @@
  </div> 
   <body>
 
+  
 
 <?php
 $module_id=$_SESSION['module_id'];
@@ -92,17 +93,20 @@ $module_id=$_SESSION['module_id'];
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
+						ORDER BY evidence.kpi_id
 						";
 						$result = mysql_query($sql) or die(mysql_error()); 
 						
 						
 						?>
 				
+				
+				
 <?php					
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						<table class="table table-bordered">
+						  <table class="table table-bordered">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -168,8 +172,8 @@ $module_id=$_SESSION['module_id'];
 					?>
 					
 					
-					<form action="upload.php" method="post">
-					<input type="submit" name="Evidence" value="Add Evidence" target="blank">
+					<form action="test_upload.php" method="post" name="evidence">
+					<input type="submit" name="evidence" value="Addaa Evidence">
 					</form>
 				
 					
@@ -182,12 +186,10 @@ $module_id=$_SESSION['module_id'];
 </table> 
 
 <form action="upload.php" method="post" name="addevidence">
-					<input type="submit" name="Evidence" value="Add Evidence" target="_blank">
+					<input type="submit" name="Evidence" value="Add Evidence">
+					<input type="submit" name="editevidence" value="Edit Evidence">
 					</form>
-<form action="upload.php" method="post" name="editevidence">
-					<input type="submit" name="editevidence" value="Edit Evidence" target="_blank">
-					</form>					
-					
+
 	</div>
 		</div>
 	</div><!--/wrapper-->

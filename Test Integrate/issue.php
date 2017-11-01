@@ -166,7 +166,7 @@ elseif 	($curyear==$year&&$year==$year5)
 						
 ?>
                     <form action="add_issue.php" method="post">
-					<input type="submit" name="Issue" value="Check for an Issue" target="blank">
+					<input type="submit" name="Issue" value="Check for an Issue">
 					</form>
 
 
