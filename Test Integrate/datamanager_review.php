@@ -77,9 +77,9 @@
 					
 					
 		<!--<div class="w3-main" style="margin-left:300px;margin-top:43px;">-->
-				<div class="table-responsive">  
-					<table class="table table-bordered"> 
-						<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+				<div class="table-responsive"> 
+					<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+						<table class="table table-bordered"> 						
 							<tr>
 								<th>No.</th>  
 								<th>Goals</th>  
@@ -167,17 +167,13 @@
 							$x++;
 							}
 							?>
-					
-						<!--<input type="submit" name="submit" value="Submit"></input>-->
-			
-						<div style="margin:20px;">			
-								<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
-								<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>	
-						</div>		<!--<form action="index.php" method="post">-->
-							
-					</form>
 					</table>
-					
+					<div style="margin:20px;">			
+							<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
+							<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>	
+					</div>		<!--<form action="index.php" method="post">-->			
+				</form>
+		
 				</div>
 			</div>
 		</div>

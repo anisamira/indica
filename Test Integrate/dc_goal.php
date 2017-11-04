@@ -29,6 +29,7 @@
 									if(isset($_GET['deletegoal']))
 											{
 												$query	=mysql_query("DELETE FROM goal WHERE goal_id=".$_GET['deletegoal']);
+												$query	=mysql_query("DELETE FROM strategy WHERE goal_id=".$_GET['deletegoal']);
 											}	
 									$sql="SELECT * FROM goal 
 												WHERE module_id='$module_id' 

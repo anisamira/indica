@@ -95,6 +95,9 @@
 														if(isset($_GET['deletekpi']))
 															{
 																$query	=mysql_query("DELETE FROM kpi WHERE kpi_id=".$_GET['deletekpi']);
+																$query	=mysql_query("DELETE FROM baseline WHERE kpi_id=".$_GET['deletekpi']);
+																$query	=mysql_query("DELETE FROM target WHERE kpi_id=".$_GET['deletekpi']);
+																$query	=mysql_query("DELETE FROM reference WHERE kpi_id=".$_GET['deletekpi']);
 															}	
 														$sql2="SELECT * FROM kpi WHERE actionplan_id='$actionplan_id'";
 														$result2=mysql_query($sql2) or die (mysql_error());

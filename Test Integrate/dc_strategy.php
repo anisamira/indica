@@ -70,6 +70,7 @@
 														if(isset($_GET['deletestrategy']))
 															{
 																$query	=mysql_query("DELETE FROM strategy WHERE strategy_id=".$_GET['deletestrategy']);
+																$query	=mysql_query("DELETE FROM actionplan WHERE strategy_id=".$_GET['deletestrategy']);
 															}	
 														$sql2="SELECT * FROM strategy WHERE goal_id='$goal_id'";
 														$result2=mysql_query($sql2) or die (mysql_error());
