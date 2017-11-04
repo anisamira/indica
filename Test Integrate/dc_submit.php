@@ -54,8 +54,8 @@
 						
 						<!-- SUBMIT RECORDS-->
 							<div class="table-responsive">  
-								<form action="main_dc.php" method="post">
-								   <table class="table table-bordered"> 
+								<table class="table table-bordered">
+									<form action="main_dc.php" method="post"> 
 										<tr>
 											<th></th>
 											<th colspan="5"> </br> </th>						
@@ -142,12 +142,13 @@
 												</tr>
 												<?php $x++;
 											} ?>
-									</table>								
+																	
 									<div style="margin:20px;">
 										<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
 										<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit this form?');" /></input>
 									</div>
-								</form>								
+								</form>	
+								</table>
 							</div>
 						</div>
 

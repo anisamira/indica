@@ -59,7 +59,7 @@
 				</div>
 						
 						<!-- TARGET FORM-->
-							<form action="datacontroller_goal.php" method="post">
+							<form action="dc_reference.php" method="post">
 								<table id ="maintable" class="table"> 
 									<tr>
 										<th colspan="2"></th>

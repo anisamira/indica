@@ -210,7 +210,7 @@
 				</div>
 						
 						<!-- REFERENCE FORM-->
-							<form action="datacontroller_goal.php" method="post">
+							<form action="dc_submit.php" method="post">
 							  <table id ="maintable" class="table"> 
 									<tr>
 										<th></th>

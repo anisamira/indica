@@ -53,7 +53,7 @@
 				</div>
 
 						<!-- BASELINE / OPERATION DEFINITION FORM -->
-							<form action="datacontroller_goal.php" method="post">
+							<form action="dc_target.php" method="post">
 								<table class="table"> 
 									<tr>
 										<th colspan="2"></th>

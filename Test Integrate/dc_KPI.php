@@ -51,7 +51,7 @@
 				</div>
 					
 						<!-- KPI FORM -->
-							<form action="datacontroller_goal.php" method="post">
+							<form action="dc_baseline.php" method="post">
 								<table class="table table-bordered"> 
 									<col width="10%">
 									<col width="15%">

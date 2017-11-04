@@ -118,7 +118,7 @@
 				 }
 			else
 				{?>
-					<a href="datacontroller_goal.php" style="text-decoration:none;">
+					<a href="dc_goal.php" style="text-decoration:none;">
 						<button class="col-md-4 content-boxes-v6">
 							<i class="rounded-x  icon-notebook"></i>
 							<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
