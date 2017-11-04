@@ -43,7 +43,34 @@
 
 	
 	?>
+<style>
+body {margin:0;}
 
+.topnav {
+  overflow: hidden;
+  background-color: #332;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
 <div class="wrapper">
 
 
@@ -63,31 +90,51 @@
 
 <div style="padding-left:16px">
   &nbsp&nbspWELCOME <?=$module_id;?>
+ 
   
+ 
 </div>
 <body>
 <?php
 $module_id=$_SESSION['module_id'];
 						$x=1;
 							
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, evidence.*, achievement.*,year.*
-						FROM goal 
-						JOIN strategy ON strategy.goal_id=goal.goal_id 
-						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
-						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
-						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
-						JOIN target ON target.kpi_id=kpi.kpi_id 
-						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						JOIN form ON form.module_id=goal.module_id
-						JOIN evidence ON evidence.kpi_id=kpi.kpi_id
-						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN year ON achievement.year_id=year.year_id
-                        WHERE goal.module_id='$module_id'
-						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
-						HAVING count 
-						";
-						$result = mysql_query($sql) or die(mysql_error());
+					$x=1;
+										$sql="
+											SELECT  goal.*, strategy.*, actionplan.*, kpi.*, baseline.*, target.*,form.*, SUM(reference.estimated_cost) AS cost
+											FROM goal 
+											JOIN strategy ON strategy.goal_id=goal.goal_id 
+											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+											JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+											JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+											JOIN target ON target.kpi_id=kpi.kpi_id 
+                                            JOIN form ON form.module_id=goal.module_id
+											JOIN reference ON reference.kpi_id=kpi.kpi_id
+											WHERE goal.module_id='$module_id'
+											AND goal.session_name='$session_name'
+											";
+											$result = mysql_query($sql) or die(mysql_error()); 
+											while($row=mysql_fetch_array($result))
+											{
+											
+											$cost=$row['cost'];
+											?>
+											
+											
+												<div class="card">
+												  <div class="card-header">
+													Total Estimated Cost
+												  </div>
+												  <div class="card-block">
+													<h4 class="card-title">RM  <?php echo $cost;?></h4>
+													<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+													<a href="#" class="btn btn-primary">Go somewhere</a>
+												  </div>
+												</div>
+											
+											
+										<?php	
+											}
 						
 
 						
@@ -124,34 +171,7 @@ $(".swipe-area").swipe({
 });
 </script>
 
-<style>
-body {margin:0;}
 
-.topnav {
-  overflow: hidden;
-  background-color: #332;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-</style>
 
 </html>
 
