@@ -180,7 +180,7 @@ if (mysql_num_rows($result)>0)
   
 <?php
 }
-else
+else{
 ?>
 
 <div class="alert alert-warning alert-dismissable fade in">
@@ -188,9 +188,17 @@ else
     <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
     <strong>NO evidence need to be added!</strong> Redirecting in 1 seconds...
   </div>
-<?php
+
+  <?php	
+		}
+
+					?>
+  
+  <?php
 }
 //
+
+	
 
 if (isset($_POST['Upload'])){
  

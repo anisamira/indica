@@ -7,7 +7,7 @@
 	include('sidebar.php');
 	
 	
-	$curyear=date ('2016');
+	$curyear=date ('Y');
     $date_now=date ("m/d/Y");
  $date_q= date ("06/30/Y");
  if ($date_now<=$date_q)

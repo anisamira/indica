@@ -64,6 +64,27 @@
 <div style="padding-left:16px">
   &nbsp&nbspWELCOME <?=$module_id;?>
 
+										<?php
+										$x=1;
+										$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* , form.*
+											FROM goal 
+											JOIN strategy ON strategy.goal_id=goal.goal_id 
+											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+											JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+											JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+											JOIN target ON target.kpi_id=kpi.kpi_id 
+											JOIN reference ON reference.kpi_id=kpi.kpi_id
+                                            JOIN form ON form.module_id=goal.module_id											
+											WHERE goal.module_id='$module_id'
+											AND goal.session_name='$session_name'
+											AND form.form_status='Approve' ";
+											$result = mysql_query($sql) or die(mysql_error());
+
+if (mysql_num_rows($result)>0){				
+
+?>
+
+
 <div class="table-responsive">  
 								   <table class="table table-bordered"> 
 										<tr>
@@ -92,21 +113,10 @@
 											<th>Estimated Cost (RM)</th> 
 											<th>Expected Financial Returns</th> 											
 										</tr>
-										<?php
-										$x=1;
-										$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* , form.*
-											FROM goal 
-											JOIN strategy ON strategy.goal_id=goal.goal_id 
-											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
-											JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
-											JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
-											JOIN target ON target.kpi_id=kpi.kpi_id 
-											JOIN reference ON reference.kpi_id=kpi.kpi_id
-                                            JOIN form ON form.module_id=goal.module_id											
-											WHERE goal.module_id='$module_id'
-											AND goal.session_name='$session_name'
-											AND form.form_status='Approve' ";
-											$result = mysql_query($sql) or die(mysql_error()); 
+
+
+<?php
+							
 											while($row=mysql_fetch_array($result))
 											{
 												$goal_desc		=$row['goal_desc'];
@@ -149,7 +159,9 @@
 													<td><?php echo $exp_fin_return;?></td>
 												</tr>
 												<?php $x++;
-											} ?>
+											} 
+}
+											?>
 									</table>								
 
 </div>

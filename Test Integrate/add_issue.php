@@ -130,7 +130,14 @@ elseif 	($curyear==$year&&$year==$year5)
   
 </div>
 <body>
+
+<?php
+if (isset($_POST['Issue']))
+{
+?>
+
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
+
 
 
 <?php
@@ -163,18 +170,19 @@ elseif 	($curyear==$year&&$year==$year5)
 
 
 ?>
+<div class="table-responsive"> 
 							<table class="table table-bordered">
-								<!--	<col width="5%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="15%">
-									<col width="15%">
-									<col width="5%">
-									<col width="15%">
-									<col width="5%">
-									-->
+								<col width:"14px">
+								<col width=14px;>
+								<col width=14px;>
+								<col width=14px;>
+								<col width=14px;>
+									<col width:"174px">
+									<col width=174px;>
+									<col width=134px;>
+									<col width=174px;>
+									<col width=134px;>
+									
 									<tr>
 									    <th>No.</th>
 									    <th>Goal</th>
@@ -206,13 +214,13 @@ elseif 	($curyear==$year&&$year==$year5)
 								<td><?php echo $kpi_desc;?></td>
 								<td><?php echo $target;?></td>
 							    <td><?php echo $achievement;?></td>
-								<td><input class="form-control" type="text" name="reason<?php echo $x;?>" required/>
+								<td><input class="form-control" style="width:156px;" type="text" name="reason<?php echo $x;?>" required/>
 								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
-								 <td><input class="form-control" type="text" name="pembetulan<?php echo $x;?>" required/>
+								 <td><input class="form-control" style="width:156px;" type="text" name="pembetulan<?php echo $x;?>" required/>
 								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
 								<td><input class="form-control" type="date" name="date_pembetulan<?php echo $x;?>" required/>
 								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>   
-							<td><input class="form-control" type="text" name="pencegahan<?php echo $x;?>" required/>
+							<td><input class="form-control" style="width:156px;" type="text" name="pencegahan<?php echo $x;?>" required/>
 								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
 								<td><input class="form-control" type="date" name="date_pencegahan<?php echo $x;?>" required/>
 								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>   
@@ -222,6 +230,7 @@ elseif 	($curyear==$year&&$year==$year5)
 						}
 ?>						
 						</table>
+						</div>
 
 <br>
 <td>
@@ -242,6 +251,7 @@ elseif 	($curyear==$year&&$year==$year5)
 				<?php		
 						
 						}
+}
 						?>
 
 
