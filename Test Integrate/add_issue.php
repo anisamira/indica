@@ -159,6 +159,7 @@ if (isset($_POST['Issue']))
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
 						AND achievement.year_id='$year_id'
+						AND achievement.quarter='2'
                         HAVING ach_desc < '$target'
                         
 						";

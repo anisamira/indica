@@ -122,7 +122,7 @@ if (isset($_POST['Achievement1']))
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 					    JOIN form ON form.module_id=goal.module_id
 						WHERE NOT EXISTS(SELECT achievement.* FROM achievement 
-						WHERE achievement.target_id=target.target_id AND achievement.year_id='$year_id') 
+						WHERE achievement.target_id=target.target_id AND achievement.year_id='$year_id' AND achievement.quarter=$quater) 
 						AND goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'

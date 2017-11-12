@@ -159,7 +159,7 @@ elseif 	($year==$year5)
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
-						ORDER BY (kpi.kpi_id AND achievement.year_id)
+						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						
 						$result = mysql_query($sql) or die(mysql_error()); 
