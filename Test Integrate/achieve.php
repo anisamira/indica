@@ -72,49 +72,7 @@ else
 					{
 						echo "no data found";
 					}
-	$sql			= "SELECT * FROM target";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							
-							$target1= $row['target1'];
-							$target2= $row['target2'];
-							$target3= $row['target3'];
-							$target4= $row['target4'];
-							$target5= $row['target5'];
-							
-						
-if ($year==$year1)
-{
-	$target=$target1;
-}
-elseif 	($year==$year2)
-{
-	$target=$target2;
-}
-elseif 	($year==$year3)
-{
-	$target=$target3;
-}
-elseif 	($year==$year4)
-{
-	$target=$target4;
-}
-elseif 	($year==$year5)
-{
-	$target=$target5;
-}								
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}				
-						
+
 	?>
 
 <div class="wrapper">
@@ -173,11 +131,13 @@ elseif 	($year==$year5)
 						
 						?>
 						<table class="table table-bordered">
-					<col width="10%">
+					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
-									<col width="20%">
-									<col width="30%">
+									<col width="10%">
+									<col width="10%">
+									<col width="15%">
+									<col width="15%">
 
 					
 					<tr>
@@ -201,6 +161,8 @@ elseif 	($year==$year5)
 							$year           =$row['year_name'];
 							$quarterq       =$row['quarter'];
 							$yearid         =$row['year_id'];
+							
+							
 							
 							$target1= $row['target1'];
 							$target2= $row['target2'];
@@ -234,7 +196,7 @@ elseif 	($year==$year5)
 						?>
 
 							<tr>  
-								<td><?php echo $x;?></td>
+								<td height="56px"><?php echo $x;?></td>
 								<td><?php echo $goal_desc;?></td>
 								<td><?php echo $kpi_desc;?></td>
 								<td><?php echo $year;?></td>
@@ -253,7 +215,7 @@ elseif 	($year==$year5)
 					
 					
 					<form action="add_achieve.php" method="post">
-					<input type="submit" name="Achievement" value="Add Achievement" >
+					<input type="submit" name="Achievement1" value="Add Achievement" >
 					</form>
 					
 					

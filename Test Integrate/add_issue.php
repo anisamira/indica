@@ -62,8 +62,55 @@
 					{
 						echo "no data found";
 					}				
+
+	?>
+
+<div class="wrapper">
+
+
+		<div class="container content-sm">		
+		<!-- !PAGE CONTENT! -->
+			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
+
+
+<div class="topnav">
+  <a href="work.php">Information</a>
+  <a href="achieve.php">Achievement</a>
+  <a  href="doc.php">Deliverables</a>
+  <a class="active" href="issue.php">Issue</a>
+  <a  href="financial.php">Financial</a>
+
+</div>
+
+<div style="padding-left:16px">
+  &nbsp&nbspWELCOME TO <?=$module_id;?>
+  
+</div>
+<body>
+
+<?php
+if (isset($_POST['Issue']))
+{
 	
-$sql			= "SELECT * FROM target";
+	$sql			= "SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*,year.*
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
+                        WHERE NOT EXISTS(SELECT issue.*
+						FROM issue WHERE issue.ach_id=achievement.ach_id)
+                        AND goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
+						AND form.form_status='Approve'
+						AND achievement.year_id='$year_id'
+						AND achievement.quarter='2'
+						";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
@@ -96,7 +143,10 @@ elseif 	($curyear==$year&&$year==$year4)
 elseif 	($curyear==$year&&$year==$year5)
 {
 	$target=$target5;
-}								
+}
+
+$year= $row['year_name'];
+$year_id=$row['year_id'];								
 							
 						}
 						
@@ -106,34 +156,6 @@ elseif 	($curyear==$year&&$year==$year5)
 						echo "no data found";
 					}				
 	
-	?>
-
-<div class="wrapper">
-
-
-		<div class="container content-sm">		
-		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
-
-
-<div class="topnav">
-  <a href="work.php">Information</a>
-  <a href="achieve.php">Achievement</a>
-  <a  href="doc.php">Deliverables</a>
-  <a class="active" href="issue.php">Issue</a>
-  <a  href="financial.php">Financial</a>
-
-</div>
-
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_id;?>
-  
-</div>
-<body>
-
-<?php
-if (isset($_POST['Issue']))
-{
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
@@ -160,7 +182,7 @@ if (isset($_POST['Issue']))
 						AND form.form_status='Approve'
 						AND achievement.year_id='$year_id'
 						AND achievement.quarter='2'
-                        HAVING ach_desc < '$target'
+                        HAVING achievement.ach_desc < '$target'
                         
 						";
 						
@@ -173,12 +195,12 @@ if (isset($_POST['Issue']))
 ?>
 <div class="table-responsive"> 
 							<table class="table table-bordered">
-								<col width:"14px">
 								<col width=14px;>
 								<col width=14px;>
 								<col width=14px;>
 								<col width=14px;>
-									<col width:"174px">
+								<col width=14px;>
+									<col width=174px;>
 									<col width=174px;>
 									<col width=134px;>
 									<col width=174px;>
@@ -204,9 +226,9 @@ if (isset($_POST['Issue']))
 							$goal_desc		=$row['goal_desc'];
 							$kpi_desc		=$row['kpi_desc'];
 							$achievement	=$row['ach_desc'];
-							$target		    =$row['target2'];
 							$quater			=$row['quarter'];
-
+							
+					
 						?>
 
 							<tr>  
