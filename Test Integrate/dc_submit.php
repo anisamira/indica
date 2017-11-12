@@ -9,7 +9,6 @@
 	
 							if(isset($_POST['submit_reference']))
 							{
-								$active=7;
 								for($y=1; $y<=50; $y++)
 								{
 									if (empty($_POST["kpi".$y]))
@@ -53,23 +52,22 @@
 				</div>
 						
 						<!-- SUBMIT RECORDS-->
+						<br></br>
 							<div class="table-responsive">  
 								<form action="main_dc.php" method="post">
 								   <table class="table table-bordered"> 
-										<tr>
-											<th></th>
-											<th colspan="5"> </br> </th>						
+										<tr style="font-size:14px">
+											<th rowspan="2"></br>No.</th>  											
+											<th rowspan="2"></br>Goals</th>  
+											<th rowspan="2"></br>Strategies</th>
+											<th rowspan="2"></br>Action Plan</th>  
+											<th rowspan="2"></br>KPI</th>
+											<th rowspan="2"></br>Operation Definition</th>											
 											<th colspan="2">BASELINE</th>
 											<th colspan="5">TARGET</th>
 											<th colspan="4">REFERENCE</th>
 										</tr>
-										<tr> 
-											<th>No.</th>  
-											<th>Goals</th>  
-											<th>Strategies</th>
-											<th>Action Plan</th>  
-											<th>KPI</th>
-											<th>Operation Definition</th>
+										<tr  style="font-size:14px"> 
 											<th>Achievement 2014</th>  
 											<th>Achievement 2015</th>
 												<?php

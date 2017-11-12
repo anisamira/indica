@@ -6,139 +6,9 @@
 	include('script.php');
 	$module_id=$_SESSION['module_id'];
 	$session_name=$_SESSION['session_name'];
-	
-	$active=0;
-							if(isset($_POST['submit_goal']))
-								{	
-									$active=1;
-									foreach ($_POST['goal'] as $key=>$value)
-										{
-											$sql="INSERT INTO goal (module_id,session_name,goal_desc) VALUES ('$module_id','$session_name','$value')";
-											$result = mysql_query($sql) or die(mysql_error());  									   
-											if (false === $result)
-												{
-													echo mysql_error();
-												}
-										}
-								} 
-								
-							
-							if(isset($_POST['submit_strategy']))
-							{			
-								$active=2;
-								for($y=1; $y<=30; $y++)
-								{
-									if (empty($_POST["strategy".$y]))
-									{
-										$error = 1;
-									}
-									else
-									{										
-										foreach ($_POST['strategy'.$y] as $key=>$value)
-										{										
-											$goal_id=$_POST['goal_id'.$y];
-											$sql="INSERT INTO strategy (goal_id, strategy_desc) VALUES ('$goal_id','$value')";
-											$result = mysql_query($sql) or die(mysql_error());  										   
-											if (false === $result) 
-											{
-												echo mysql_error();
-											}
-										}										
-									}	
-								}		
-							}
-							
-							if(isset($_POST['submit_action']))
-							{
-								$active=3;
-								for($y=1; $y<=50; $y++)
-								{
-									if (empty($_POST["action".$y]))
-										{
-											$error = 1;
-										}
-										else
-										{													
-											foreach ($_POST['action'.$y] as $key=>$value)
-											{
-												$strategy_id=$_POST['strategy_id'.$y];
-												$sql="INSERT INTO actionplan (strategy_id, actionplan_desc) VALUES ('$strategy_id','$value')";
-												$result = mysql_query($sql) or die(mysql_error());  
-														   
-												if (false === $result) 
-												{
-													echo mysql_error();
-												}
-											}														
-										}	
-								}
-							}
-
-							if(isset($_POST['submit_kpi']))
-							{
-								$active=4;
-								for($y=1; $y<=30; $y++)
-								{
-									if (empty($_POST["kpi".$y]))
-									{
-										$error = 1;
-									}
-									else
-									{									
-										foreach ($_POST['kpi'.$y] as $key=>$value)
-										{
-										
-											$actionplan_id=$_POST['actionplan_id'.$y];
-											$sql="INSERT INTO kpi (actionplan_id, kpi_desc,session_name) VALUES ('$actionplan_id','$value','$session_name')";
-											$result = mysql_query($sql) or die(mysql_error());  
-										   
-											if (false === $result) 
-											{
-												echo mysql_error();
-											}
-										}											
-									}	
-								}		
-							}	
-							
-
-							if(isset($_POST['submit_op_def']))
-								{
-									$active=5;
-									for($y=1; $y<=50; $y++)
-									{							
-										if (empty($_POST["kpi".$y]))
-										{
-											$error = 1;
-										}
-										else
-										{										
-												$value			=$_POST['kpi'.$y];
-												$operation_def	=$_POST['operation_def'.$y];
-												$baseline1		=$_POST['baseline1'.$y];
-												$baseline2		=$_POST['baseline2'.$y];
-												
-												$sql1="UPDATE kpi SET operation_def='$operation_def' WHERE kpi_id='$value'";
-												$result = mysql_query($sql1) or die(mysql_error());  											   
-												if (false === $result) 
-												{
-													echo mysql_error();
-												}	
-												
-												$sql2="INSERT INTO baseline (baseline1, baseline2, kpi_id) VALUES ('$baseline1','$baseline2','$value')";
-												$result2 = mysql_query($sql2) or die(mysql_error());  											   
-												if (false === $result2) 
-												{
-													echo mysql_error();
-												}											
-										}	
-									}		
-								}
-								
 
 							if(isset($_POST['submit_target']))
 							{
-								$active=6;
 								for($y=1; $y<=50; $y++)
 								{							
 									if (empty($_POST["kpi".$y]))
@@ -164,33 +34,23 @@
 									}	
 								}		
 							}
-							if(isset($_POST['submit_reference']))
+							if ($_SERVER["REQUEST_METHOD"] == "POST")
 							{
-								$active=7;
-								for($y=1; $y<=50; $y++)
-								{
-									if (empty($_POST["kpi".$y]))
+								$kpi_id	=$_POST["kpi_id"];
+								$ownership = mysql_real_escape_string($_POST["ownership"]); 
+								$data_source = mysql_real_escape_string($_POST["data_source"]); 
+								$estimated_cost = mysql_real_escape_string($_POST["estimated_cost"]); 
+								$exp_fin_return = mysql_real_escape_string($_POST["exp_fin_return"]); 
+								$sql		="UPDATE reference
+												SET ownership='$ownership', data_source='$data_source', estimated_cost='$estimated_cost', exp_fin_return='$exp_fin_return'
+												WHERE kpi_id='$kpi_id'";
+								$result			=mysql_query($sql) or die (mysql_error());
+								if (false===$result)
 									{
-										$error = 1;
+										echo mysql_error();
 									}
-									else
-									{									
-										$value			=$_POST['kpi'.$y];
-										$ownership		=$_POST['ownership'.$y];
-										$data_source	=$_POST['data_source'.$y];
-										$estimated_cost	=$_POST['estimated_cost'.$y];
-										$exp_fin_return	=$_POST['exp_fin_return'.$y];
-											
-										$sql="INSERT INTO reference (kpi_id, ownership, data_source, estimated_cost, exp_fin_return) VALUES ('$value','$ownership','$data_source','$estimated_cost', '$exp_fin_return')";
-										$result = mysql_query($sql) or die(mysql_error());  
-										   
-										if (false === $result) 
-										{
-											echo mysql_error();
-										}						
-									}	
-								}		
 							}
+						
 							
 								
 
@@ -210,22 +70,30 @@
 				</div>
 						
 						<!-- REFERENCE FORM-->
+						<br></br>
 							<form action="dc_submit.php" method="post">
-							  <table id ="maintable" class="table"> 
-									<tr>
-										<th></th>
+							  <table id ="maintable" class="table table-bordered"> 
+									<tr style="font-size:14px">
+										<th rowspan="2">Key Performance Indicator (KPI)</th>
 										<th colspan="4">References</th>
+										<th colspan="2" rowspan="2">Action</th>
 									</tr>
-									<tr>
-										<th>Key Performance Indicator (KPI)</th>
+									<tr style="font-size:14px">
+										
 										<th>Ownership</th>
 										<th>Data Source</th>
 										<th>Estimated Cost (RM)</th>
 										<th>Expected Financial Return</th>
+										
 									</tr>
 									
 									<?php
 									$x=1;
+									if(isset($_GET['deletereference']))
+										{
+											$query	=mysql_query("DELETE FROM reference WHERE kpi_id=".$_GET['deletereference']);
+
+										}
 								$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*
 									FROM goal 
 									JOIN strategy ON strategy.goal_id=goal.goal_id 
@@ -241,19 +109,70 @@
 									$kpi_desc	=$row['kpi_desc'];?>
 											<tr style="font-size:13px">  
 												<td><?php echo $kpi_desc;?></td>
+												<?php
+												$sql2	="SELECT * from reference
+															WHERE kpi_id='$kpi_id'";
+												$result2=mysql_query($sql2) or die (mysql_error());
+												if(mysql_num_rows($result2)===0)
+												{?>
 													<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input></td>
-												<td><input class="form-control" type="" name="ownership<?php echo $x;?>"/></td>
-												<td><input class="form-control" type="" name="data_source<?php echo $x;?>"/></td>
-												<td><input class="form-control" type="" name="estimated_cost<?php echo $x;?>"/></td>
-												<td><input class="form-control" type="" name="exp_fin_return<?php echo $x;?>"/></td>
-											</tr><?php
+													<td><input class="form-control" type="" name="ownership<?php echo $x;?>"/></td>
+													<td><input class="form-control" type="" name="data_source<?php echo $x;?>"/></td>
+													<td><input class="form-control" type="" name="estimated_cost<?php echo $x;?>"/></td>
+													<td><input class="form-control" type="" name="exp_fin_return<?php echo $x;?>"/></td>
+													<td><button class="btn-u btn-u-red" type="button" style="float:right" disabled><i class="fa fa-trash-o"/></button></td>
+													<td><button class="btn-u btn-u-red" type="button" disabled><i class="fa fa-pencil"/></button></td>
+												</tr><?php
+												}
+												else
+												{
+													while($row=mysql_fetch_array($result2))
+													{
+															$ownership			=$row['ownership'];
+															$data_source		=$row['data_source'];
+															$estimated_cost		=$row['estimated_cost'];
+															$exp_fin_return		=$row['exp_fin_return'];?>
+															<td><?php echo $ownership;?></td>
+															<td><?php echo $data_source;?></td>
+															<td><?php echo $estimated_cost;?></td>
+															<td><?php echo $exp_fin_return;?></td>
+															<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletereference(<?php echo  $kpi_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+															<td><button data-toggle="modal" data-target="#<?php echo $kpi_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
+															<div class="modal fade" id="<?php echo $kpi_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																	<div class="modal-dialog">
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																				<h4 class="modal-title" id="<?php echo $kpi_id;?>">Edit Reference</h4>
+																			</div>
+																			<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+																				<div class="modal-body">
+																					<div class="row" style="margin:10px;">
+																							<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>
+																							Ownership :<textarea class="form-control" name="ownership" required><?php echo $ownership;?></textarea></br>
+																							Data Source : <textarea class="form-control" name="data_source" required><?php echo $data_source;?></textarea></br>
+																							Estimated Cost :<textarea class="form-control" name="estimated_cost" required><?php echo $estimated_cost;?></textarea>
+																							Expected Financial Return :<textarea class="form-control" name="exp_fin_return" required><?php echo $exp_fin_return;?></textarea>
+																					</div>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																					<input type="submit" class="btn-u btn-u-primary" name="submit" value="Submit"></input>
+																				</div>
+																			</form>
+																		</div>
+																	</div>
+																</div>
+														</tr><?php		
+													}
+												}
 									$x++;				
 								}?>								
 								</table>
 								<input type="submit" name="submit_reference" value="Next" style="float: right;"></input>
 								<input type="button" VALUE="Back" onClick="history.go(-1);"disabled></input>
 							</form>
-						<!-- END REFERENCE FORM-->
+			</div>			<!-- END REFERENCE FORM-->
 		</div>
 	</div><!--/wrapper-->
 
@@ -265,6 +184,15 @@
 	<![endif]-->
 
 <script>
+	function deletereference(id)
+					{
+						if(confirm('Sure To Remove This Reference?'))
+						{
+							window.location.href='dc_reference.php?deletereference='+id;
+						return true;
+						}
+						
+					}
 var acc = document.getElementsByClassName("accordion");
 var i;
 

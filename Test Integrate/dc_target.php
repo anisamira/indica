@@ -10,10 +10,9 @@
 
 							if(isset($_POST['submit_op_def']))
 								{
-									$active=5;
 									for($y=1; $y<=50; $y++)
 									{							
-										if (empty($_POST["kpi".$y]))
+								if (empty($_POST["kpi".$y]))
 										{
 											$error = 1;
 										}
@@ -40,6 +39,23 @@
 										}	
 									}		
 								}
+								if ($_SERVER["REQUEST_METHOD"] == "POST")
+								{
+									$kpi_id	=$_POST["kpi_id"];
+									$target1 = mysql_real_escape_string($_POST["target1"]); 
+									$target2 = mysql_real_escape_string($_POST["target2"]); 
+									$target3 = mysql_real_escape_string($_POST["target3"]); 
+									$target4 = mysql_real_escape_string($_POST["target4"]); 
+									$target5 = mysql_real_escape_string($_POST["target5"]); 	
+									$sql		="UPDATE target
+													SET target1='$target1', target2='$target2', target3='$target3', target4='$target4', target5='$target5'
+													WHERE kpi_id='$kpi_id'";
+									$result			=mysql_query($sql) or die (mysql_error());
+									if (false===$result)
+										{
+											echo mysql_error();
+										}
+								}
 	
 								
 
@@ -59,14 +75,15 @@
 				</div>
 						
 						<!-- TARGET FORM-->
+						<br></br>
 							<form action="dc_reference.php" method="post">
-								<table id ="maintable" class="table"> 
-									<tr>
-										<th colspan="2"></th>
+								<table id ="maintable" class="table table-bordered"> 
+									<tr style="font-size:14px">
+										<th rowspan="2">Key Performance Indicator (KPI)</th>
 										<th colspan="5">Target</th>
+										<th colspan="2" rowspan="2">Action</th>
 									</tr>
-									<tr>
-										<th>Key Performance Indicator (KPI)</th>
+									<tr style="font-size:14px">
 										<?php
 										$sql="SELECT year_name from year where session_name='$session_name'";
 										$result=mysql_query($sql) or die(mysql_error());
@@ -80,6 +97,10 @@
 									
 									<?php
 									$x=1;
+									if(isset($_GET['deletetarget']))
+										{
+											$query	=mysql_query("DELETE FROM target WHERE kpi_id=".$_GET['deletetarget']);
+										}
 								$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*
 									FROM goal 
 									JOIN strategy ON strategy.goal_id=goal.goal_id 
@@ -95,13 +116,67 @@
 									$kpi_desc	=$row['kpi_desc'];?>
 											<tr style="font-size:13px">  
 												<td><?php echo $kpi_desc;?></td>
-												<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input></td>
-												<td><input class="form-control" type="text" name="target1<?php echo $x;?>"/></td>
-												<td><input class="form-control" type="text" name="target2<?php echo $x;?>"/></td>
-												<td><input class="form-control" type="text" name="target3<?php echo $x;?>"/></td>
-												<td><input class="form-control" type="text" name="target4<?php echo $x;?>"/></td>
-												<td><input class="form-control" type="text" name="target5<?php echo $x;?>"/></td>
-											</tr><?php
+												<?php
+												$sql2	="SELECT * from target
+															WHERE kpi_id='$kpi_id'";
+												$result2=mysql_query($sql2) or die (mysql_error());
+												if(mysql_num_rows($result2)===0)
+												{?>
+													<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input></td>
+													<td><input class="form-control" type="text" name="target1<?php echo $x;?>"/></td>
+													<td><input class="form-control" type="text" name="target2<?php echo $x;?>"/></td>
+													<td><input class="form-control" type="text" name="target3<?php echo $x;?>"/></td>
+													<td><input class="form-control" type="text" name="target4<?php echo $x;?>"/></td>
+													<td><input class="form-control" type="text" name="target5<?php echo $x;?>"/></td>
+													<td><button class="btn-u btn-u-red" type="button" style="float:right" disabled><i class="fa fa-trash-o"/></button></td>
+													<td><button class="btn-u btn-u-red" type="button" disabled><i class="fa fa-pencil"/></button></td>
+												</tr><?php
+												}
+												else
+												{
+													while($row=mysql_fetch_array($result2))
+													{
+															$target1		=$row['target1'];
+															$target2		=$row['target2'];
+															$target3		=$row['target3'];
+															$target4		=$row['target4'];
+															$target5		=$row['target5'];?>
+															<td><?php echo $target1;?></td>
+															<td><?php echo $target2;?></td>
+															<td><?php echo $target3;?></td>
+															<td><?php echo $target4;?></td>
+															<td><?php echo $target5;?></td>
+															<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletetarget(<?php echo  $kpi_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+															<td><button data-toggle="modal" data-target="#<?php echo $kpi_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
+															<div class="modal fade" id="<?php echo $kpi_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																	<div class="modal-dialog">
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																				<h4 class="modal-title" id="<?php echo $kpi_id;?>">Edit Target </h4>
+																			</div>
+																			<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+																				<div class="modal-body">
+																					<div class="row" style="margin:10px;">
+																							<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>
+																							Target 1 : <textarea class="form-control" name="target1" required><?php echo $target1;?></textarea></br>	
+																							Target 2 : <textarea class="form-control" name="target2" required><?php echo $target2;?></textarea></br>	
+																							Target 3 : <textarea class="form-control" name="target3" required><?php echo $target3;?></textarea></br>	
+																							Target 4 : <textarea class="form-control" name="target4" required><?php echo $target4;?></textarea></br>	
+																							Target 5 : <textarea class="form-control" name="target5" required><?php echo $target5;?></textarea></br>	
+																					</div>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																					<input type="submit" class="btn-u btn-u-primary" name="submit" value="Submit"></input>
+																				</div>
+																			</form>
+																		</div>
+																	</div>
+																</div>
+														</tr><?php		
+													}
+												}
 										$x++;							
 									}?>								
 								</table>
@@ -109,7 +184,7 @@
 								<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
 							</form>
 						<!-- END TARGET FORM-->
-
+			</div>
 		</div>
 	</div><!--/wrapper-->
 
@@ -121,6 +196,15 @@
 	<![endif]-->
 
 <script>
+function deletetarget(id)
+					{
+						if(confirm('Sure To Remove This Target?'))
+						{
+							window.location.href='dc_target.php?deletetarget='+id;
+						return true;
+						}
+						
+					}
 var acc = document.getElementsByClassName("accordion");
 var i;
 

@@ -32,6 +32,19 @@
 										}	
 								}
 							}
+							if ($_SERVER["REQUEST_METHOD"] == "POST")
+							{
+								$kpi_id	=$_POST["kpi_id"];
+								$kpi_desc = mysql_real_escape_string($_POST["kpi_desc"]); 
+								$sql		="UPDATE kpi
+												SET kpi_desc='$kpi_desc'
+												WHERE kpi_id='$kpi_id'";
+								$result			=mysql_query($sql) or die (mysql_error());
+								if (false===$result)
+									{
+										echo mysql_error();
+									}
+							}
 
 								
 
@@ -51,13 +64,14 @@
 				</div>
 					
 						<!-- KPI FORM -->
+						<br></br>
 							<form action="dc_baseline.php" method="post">
 								<table class="table table-bordered"> 
 									<col width="10%">
 									<col width="15%">
 									<col width="15%">
 									<col width="60%">
-												<tr>
+												<tr style="font-size:14px">
 													<th>Goal</th>
 													<th>Strategy</th>
 													<th>Action Plan</th>
@@ -109,6 +123,29 @@
 															<tr style="font-size:13px">
 																<td><?php echo $y.") ".$kpi_desc;?></td>
 																<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletekpi(<?php echo  $kpi_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+																<td><button data-toggle="modal" data-target="#<?php echo $kpi_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
+																<div class="modal fade" id="<?php echo $kpi_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																	<div class="modal-dialog">
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																				<h4 class="modal-title" id="<?php echo $kpi_id;?>">Edit KPI</h4>
+																			</div>
+																			<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+																				<div class="modal-body">
+																					<div class="row" style="margin:10px;">
+																							<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>
+																							<textarea class="form-control" name="kpi_desc" required><?php echo $kpi_desc;?></textarea>
+																					</div>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																					<input type="submit" class="btn-u btn-u-primary" name="submit" value="Submit"></input>
+																				</div>
+																			</form>
+																		</div>
+																	</div>
+																</div>
 															</tr><?php
 															$y++;
 														}?>

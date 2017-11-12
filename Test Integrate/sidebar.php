@@ -68,8 +68,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
 	 }
 	 if (($_SESSION['role_id']) == 'R03') {?>
 	<a href="main_dm.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-dashboard fa-fw"></i>  Home</a>
-	<a href="datamanager_review.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plus-square fa-fw"></i>Approval</a> 
-	<a href="datacontroller_updaterecord2.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i> Achievement</a>
+<!--<a href="datamanager_review.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plus-square fa-fw"></i>Approval</a> 
+	<a href="datacontroller_updaterecord2.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i> Achievement</a>-->
 	<?php
 	 }
 	?>

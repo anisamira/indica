@@ -21,7 +21,20 @@
 												}
 										}
 								} 
-					
+								
+							if ($_SERVER["REQUEST_METHOD"] == "POST")
+							{
+								$strategy_id	=$_POST["strategy_id"];
+								$strategy_desc = mysql_real_escape_string($_POST["strategy_desc"]); 
+								$sql		="UPDATE strategy
+												SET strategy_desc='$strategy_desc'
+												WHERE strategy_id='$strategy_id'";
+								$result			=mysql_query($sql) or die (mysql_error());
+								if (false===$result)
+									{
+										echo mysql_error();
+									}
+							}
 								
 
 ?>
@@ -39,12 +52,12 @@
 					<a href="dc_submit.php">Submit Records</a>
 				</div>
 			<!-- Tabs -->
-				
+							<br></br>
 							<form action="dc_actionplan.php" method="post">
 								<table class="table table-bordered">
 									<col width="40%">
 									<col width="60%">
-									<tr>
+									<tr style="font-size:14px">
 										<th>Goal</th>
 										<th>Strategy</th>
 									</tr>
@@ -82,6 +95,29 @@
 															<tr style="font-size:13px">
 																<td><?php echo $y.") ".$strategy_desc;?></td>
 																<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletestrategy(<?php echo  $strategy_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+																<td><button data-toggle="modal" data-target="#<?php echo $strategy_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
+																<div class="modal fade" id="<?php echo $strategy_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																	<div class="modal-dialog">
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																				<h4 class="modal-title" id="<?php echo $strategy_id;?>">Edit Strategy</h4>
+																			</div>
+																			<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+																				<div class="modal-body">
+																					<div class="row" style="margin:10px;">
+																							<input type="hidden" name="strategy_id" value="<?php echo $strategy_id;?>"></input>
+																							<textarea class="form-control" name="strategy_desc" required><?php echo $strategy_desc;?></textarea>
+																					</div>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																					<input type="submit" class="btn-u btn-u-primary" name="submit" value="Submit"></input>
+																				</div>
+																			</form>
+																		</div>
+																	</div>
+																</div>
 															</tr><?php
 															$y++;
 														}?>

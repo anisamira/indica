@@ -7,6 +7,19 @@
 	$module_id=$_SESSION['module_id'];
 	$session_name=$_SESSION['session_name'];
 
+	if ($_SERVER["REQUEST_METHOD"] == "POST")
+	{
+		$goal_id	=$_POST["goal_id"];
+		$goal_desc = mysql_real_escape_string($_POST["goal_desc"]); 
+		$sql		="UPDATE goal
+						SET goal_desc='$goal_desc'
+						WHERE goal_id='$goal_id'";
+		$result			=mysql_query($sql) or die (mysql_error());
+		if (false===$result)
+			{
+				echo mysql_error();
+			}
+	}
 ?>
 	<div class="wrapper">
 		<div class="container content-sm">
@@ -40,13 +53,37 @@
 											{
 												$goal_id	=$row['goal_id'];
 												$goal_desc	=$row['goal_desc'];?>	
-											<tr style="font-size:13px">
-												<td><?php echo $y.") ".$goal_desc;?></td>
-												<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletegoal(<?php echo  $goal_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
-											</tr>	
-											<?php
-											$y++;
-												
+												<tr style="font-size:13px">
+													<td><?php echo $y.") ".$goal_desc;?></td>
+													<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletegoal(<?php echo  $goal_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+													<td><button data-toggle="modal" data-target="#<?php echo $goal_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
+													<div class="modal fade" id="<?php echo $goal_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+														<div class="modal-dialog">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																	<h4 class="modal-title" id="myModalLabel4">Edit goal</h4>
+																</div>
+																<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+																	<div class="modal-body">
+																		<div class="row" style="margin:10px;">
+																				<input type="hidden" name="goal_id" value="<?php echo $goal_id;?>"></input>
+																				<textarea class="form-control" name="goal_desc" required><?php echo $goal_desc;?></textarea>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																		<input type="submit" class="btn-u btn-u-primary" name="submit" value="Submit"></input>
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div>
+												</tr>
+											
+												<?php
+												$y++;
+													
 											}?>
 							</table>
 							<div class="row" style="margin-top:30px">
@@ -56,9 +93,10 @@
 									<button class="add_field_button">Add More Goals</button>
 									<input type="submit" name="submit_goal" value="Next" style="float: right;"></input>	
 								</form></br>
-							</div>
+							</div><!-- END GOAL FORM -->
 
-						<!-- END GOAL FORM -->
+				
+			</div>
 		</div>
 	</div><!--/wrapper-->
 

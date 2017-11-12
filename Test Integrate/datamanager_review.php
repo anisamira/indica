@@ -12,75 +12,34 @@
 				<?php 
 					$module_id=$_SESSION['module_id'];
 					$user_id=$_SESSION['user_id'];
-					$sql="SELECT session.* , form.* 
-						FROM session 
-						JOIN form 
-						ON session.session_name=form.session_name 
-						WHERE session.session_status='1' 
-						AND form.form_status='pending'
-						AND form.module_id='$module_id'";
+					if(isset($_POST['approval']))
+					{
+						$form_id	=$_POST['form_id'];						
+					}
+					
+					$form_id		=$_SESSION['form_id'];
+					
+					$sql="SELECT session_name from form where form_id='$form_id'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					while($row=mysql_fetch_array($result))
 					{
 						$_SESSION['session_name']=$row['session_name'];
-						$_SESSION['form_id']=$row['form_id'];
 					}
-						$session_name	=$_SESSION['session_name'];
-						$form_id		=$_SESSION['form_id'];
+					$session_name	=$_SESSION['session_name'];
+						
 						
 			
 			
-					if ($_SERVER["REQUEST_METHOD"] == "POST")
-						{
-							for($y=1; $y<=50; $y++)
-							{
-								if (empty($_POST["kpi_id".$y]))
-								{
-									$error = 1;
-								}
-								else
-								{
-									$kpi_id			=($_POST["kpi_id".$y]);
-									$approval 		= ($_POST["approval".$y]);
-									$action_comment = mysql_real_escape_string($_POST["action_comment".$y]); 
-									$sql			="UPDATE master_status 
-														SET action_type='$approval', action_comment='$action_comment', action_date=NOW()
-														WHERE kpi_id='$kpi_id'";
-									$result			=mysql_query($sql) or die (mysql_error());
-									if (false===$result)
-									{
-										echo mysql_error();
-									}
-								}
-							}
 							
-							$sql2		="SELECT * FROM master_status where form_id='$form_id' AND action_type='reject'";
-							$result		=mysql_query($sql2) or die (mysql_error());
-							if(mysql_num_rows($result)>0)
-								{
-									$sql		="Update form SET form_status='rejected' WHERE form_id='$form_id'";
-									$result		=mysql_query($sql) or die (mysql_error());
-								}
-							else
-									
-								{
-									$sql		="Update form SET form_status='approved' WHERE form_id='$form_id'";
-									$result		=mysql_query($sql) or die (mysql_error());	
-								}
-										
-							
-						}?>
+							?>
 				
-
-					
-					
-					
-					
+				
+				
 		<!--<div class="w3-main" style="margin-left:300px;margin-top:43px;">-->
 				<div class="table-responsive"> 
-					<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+					<form action="main_dm.php" method="post">
 						<table class="table table-bordered"> 						
-							<tr>
+							<tr style="font-size:13px">
 								<th>No.</th>  
 								<th>Goals</th>  
 								<th>Strategies</th>
@@ -138,7 +97,7 @@
 						
 						?>
 						
-						<tr>  
+						<tr style="font-size:13px">  
 							<td><?php echo $x;?></td>
 							<td><?php echo $goal_desc;?></td>
 							<td><?php echo $strategy_desc;?></td>
@@ -170,7 +129,8 @@
 					</table>
 					<div style="margin:20px;">			
 							<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
-							<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>	
+							<input type="hidden" name="form_id" value="<?php echo $form_id;?>">
+							<input type="submit" name="submit_approval" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>	
 					</div>		<!--<form action="index.php" method="post">-->			
 				</form>
 		

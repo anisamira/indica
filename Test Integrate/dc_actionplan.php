@@ -10,7 +10,6 @@
 							
 							if(isset($_POST['submit_strategy']))
 							{			
-								$active=2;
 								for($y=1; $y<=30; $y++)
 								{
 									if (empty($_POST["strategy".$y]))
@@ -32,14 +31,24 @@
 									}	
 								}		
 							}
-
-
-	
-	
-
+							if ($_SERVER["REQUEST_METHOD"] == "POST")
+							{
+								$actionplan_id	=$_POST["actionplan_id"];
+								$actionplan_desc = mysql_real_escape_string($_POST["actionplan_desc"]); 
+								$sql		="UPDATE actionplan
+												SET actionplan_desc='$actionplan_desc'
+												WHERE actionplan_id='$actionplan_id'";
+								$result			=mysql_query($sql) or die (mysql_error());
+								if (false===$result)
+									{
+										echo mysql_error();
+									}
+							}
 							
-								
 
+
+	
+	
 ?>
 	<div class="wrapper">
 		<div class="container content-sm">
@@ -56,12 +65,13 @@
 				</div>
 						
 						<!-- ACTION FORM -->
+						<br></br>
 							<form action="dc_KPI.php" method="post">
 								<table class="table table-bordered"> 
 									<col width="20%">
 									<col width="20%">
 									<col width="60%">
-												<tr>
+												<tr style="font-size:14px">
 													<th>Goal</th>
 													<th>Strategy</th>
 													<th>Action Plan</th>
@@ -110,6 +120,29 @@
 															<tr style="font-size:13px">
 																<td><?php echo $y.") ".$actionplan_desc;?></td>
 																<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deleteaction(<?php echo  $actionplan_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+																<td><button data-toggle="modal" data-target="#<?php echo $actionplan_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
+																<div class="modal fade" id="<?php echo $actionplan_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																	<div class="modal-dialog">
+																		<div class="modal-content">
+																			<div class="modal-header">
+																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																				<h4 class="modal-title" id="<?php echo $strategy_id;?>">Edit Action Plan</h4>
+																			</div>
+																			<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+																				<div class="modal-body">
+																					<div class="row" style="margin:10px;">
+																							<input type="hidden" name="actionplan_id" value="<?php echo $actionplan_id;?>"></input>
+																							<textarea class="form-control" name="actionplan_desc" required><?php echo $actionplan_desc;?></textarea>
+																					</div>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																					<input type="submit" class="btn-u btn-u-primary" name="submit" value="Submit"></input>
+																				</div>
+																			</form>
+																		</div>
+																	</div>
+																</div>
 															</tr><?php
 															$y++;
 														}?>
@@ -127,7 +160,7 @@
 							</form>		
 
 						<!--END ACTION FORM-->
-
+			</div>
 		</div>
 	</div><!--/wrapper-->
 
@@ -149,7 +182,6 @@
 						
 					}
 
-<script>
 var acc = document.getElementsByClassName("accordion");
 var i;
 
