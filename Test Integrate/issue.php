@@ -64,48 +64,48 @@
 					{
 						echo "no data found";
 					}
-	$sql			= "SELECT * FROM target";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
+	// $sql			= "SELECT * FROM target";
+					// $result = mysql_query($sql) or die(mysql_error()); 
+					// if(mysql_num_rows($result)>0)
+					// {
+						// while($row=mysql_fetch_array($result))
+						// {
 							
-							$target1= $row['target1'];
-							$target2= $row['target2'];
-							$target3= $row['target3'];
-							$target4= $row['target4'];
-							$target5= $row['target5'];
+							// $target1= $row['target1'];
+							// $target2= $row['target2'];
+							// $target3= $row['target3'];
+							// $target4= $row['target4'];
+							// $target5= $row['target5'];
 							
 						
-if ($curyear==$year&&$year==$year1)
-{
-	$target=$target1;
-}
-elseif 	($curyear==$year&&$year==$year2)
-{
-	$target=$target2;
-}
-elseif 	($curyear==$year&&$year==$year3)
-{
-	$target=$target3;
-}
-elseif 	($curyear==$year&&$year==$year4)
-{
-	$target=$target4;
-}
-elseif 	($curyear==$year&&$year==$year5)
-{
-	$target=$target5;
-}								
+// if ($curyear==$year&&$year==$year1)
+// {
+	// $target=$target1;
+// }
+// elseif 	($curyear==$year&&$year==$year2)
+// {
+	// $target=$target2;
+// }
+// elseif 	($curyear==$year&&$year==$year3)
+// {
+	// $target=$target3;
+// }
+// elseif 	($curyear==$year&&$year==$year4)
+// {
+	// $target=$target4;
+// }
+// elseif 	($curyear==$year&&$year==$year5)
+// {
+	// $target=$target5;
+// }								
 							
-						}
+						// }
 						
-					}
-					else
-					{
-						echo "no data found";
-					}				
+					// }
+					// else
+					// {
+						// echo "no data found";
+					// }				
 					
 	
 	?>
@@ -160,7 +160,7 @@ elseif 	($curyear==$year&&$year==$year5)
 						AND goal.session_name='$session_name'
 						AND form.form_status='Approve'
 						AND achievement.year_id='$year_id'
-						HAVING achievement.ach_desc < '$target'
+						HAVING achievement.ach_desc < achievement.target
 						";
 						$result = mysql_query($sql) or die(mysql_error());
 
@@ -170,18 +170,10 @@ elseif 	($curyear==$year&&$year==$year5)
 <?php				
 					if (mysql_num_rows($result)>0)
 					{
-					?>	
+					?>
+<div class="table-responsive"> 					
 						<table class="table table-bordered">
-									<col width="5%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="10%">
-									<col width="15%">
-									<col width="15%">
-									<col width="5%">
-									<col width="15%">
-									<col width="5%">
+									
 									
 									<tr>
 									    <th>No.</th>
@@ -243,23 +235,31 @@ elseif 	($curyear==$year&&$year==$year5)
 						?>
 
 							<tr>  
-								<td><?php echo $x;?></td>
-								<td><?php echo $goal_desc;?></td>
-								<td><?php echo $kpi_desc;?></td>
-								<td><?php echo $target;?></td>
-							    <td><?php echo $achievement;?></td>
-								<td><?php echo $reason;?></td>
-								<td><?php echo $pembetulan;?></td>
-								<td><?php echo $pembetulan_date;?></td>
-							    <td><?php echo $pencegahan;?></td>
-								<td><?php echo $pencegahan_date;?></td>
+								<td style="width:25px;"><?php echo $x;?></td>
+								<td style="width:165px;"><?php echo $goal_desc;?></td>
+								<td style="width:165px;"><?php echo $kpi_desc;?></td>
+								<td style="width:165px;"><?php echo $target;?></td>
+							    <td style="width:165px;"> <?php echo $achievement;?></td>
+								<td style="width:165px;"><?php echo $reason;?></td>
+								<td style="width:165px;"><?php echo $pembetulan;?></td>
+								<td style="width:190px;"><?php echo $pembetulan_date;?></td>
+							    <td style="width:165px;"><?php echo $pencegahan;?></td>
+								<td style="width:190px;"><?php echo $pencegahan_date;?></td>
 
 								
 							</tr>
 							<?php
 						$x++;
-						}
+		
+		}
+
+?>
+		</table>
+</div>
+<?php					
 					}
+
+
 					
 					else
 					{
@@ -268,7 +268,7 @@ elseif 	($curyear==$year&&$year==$year5)
 							
 						?>
 
-					<form action="test_issue.php" method="post">
+					<form action="add_issue.php" method="post">
 					<input type="submit" name="Issue" value="Add Issue" target="blank">
 					</form>
 <?php
@@ -278,7 +278,6 @@ elseif 	($curyear==$year&&$year==$year5)
 						?>
 
 
-</table>
 
 
 
