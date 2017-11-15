@@ -193,6 +193,7 @@ elseif 	($curyear==$year&&$year==$year5)
 								<td><?php echo $goal_desc;?></td>
 								<td><?php echo $kpi_desc;?></td>
 								<td><?php echo $target;?>
+								<input type="hidden" name="tar<?php echo $x;?>" value="<?php echo $target;?>"/>
 								<td><input class="form-control" type="text" name="achievement<?php echo $x;?>" required/>
 								   <input type="hidden" name="target<?php echo $x;?>" value="<?php echo $target_id;?>"/>
 							</tr>
@@ -243,9 +244,10 @@ if (isset($_POST['Insert'])){
 									else
 									{	
 	$achievement =$_POST['achievement'.$y];
+	$targett=$_POST['tar'.$y];
 	$value=$_POST['target'.$y];
 	
-$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc) VALUES ('$year_id','$value','$quater','$achievement')";
+$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc,target) VALUES ('$year_id','$value','$quater','$achievement','$targett')";
 $result = mysql_query($sql) or die(mysql_error());  											   
 												if (false === $result) 
 												{

@@ -168,7 +168,7 @@ elseif 	($curyear==$year&&$year==$year5)
 						AND form.form_status='Approve'
 						AND achievement.year_id='$year_id'
 						AND achievement.quarter='2'
-                        HAVING achievement.ach_desc < '$target'
+                        HAVING achievement.ach_desc < achievement.target
                         
 						";
 						
@@ -206,14 +206,43 @@ elseif 	($curyear==$year&&$year==$year5)
 									</tr>
 <?php
 					
-						while($row=mysql_fetch_array($result2))
+						while($row2=mysql_fetch_array($result2))
 						{
-							$ach_id			=$row['ach_id'];
-							$goal_desc		=$row['goal_desc'];
-							$kpi_desc		=$row['kpi_desc'];
-							$achievement	=$row['ach_desc'];
-							$quater			=$row['quarter'];
+							$ach_id			=$row2['ach_id'];
+							$goal_desc		=$row2['goal_desc'];
+							$kpi_desc		=$row2['kpi_desc'];
+							$achievement	=$row2['ach_desc'];
+							$quater			=$row2['quarter'];
+							$targett		=$row2['target'];
 							
+								
+							$target1= $row['target1'];
+							$target2= $row['target2'];
+							$target3= $row['target3'];
+							$target4= $row['target4'];
+							$target5= $row['target5'];
+							
+						
+if ($curyear==$year&&$year==$year1)
+{
+	$target=$target1;
+}
+elseif 	($curyear==$year&&$year==$year2)
+{
+	$target=$target2;
+}
+elseif 	($curyear==$year&&$year==$year3)
+{
+	$target=$target3;
+}
+elseif 	($curyear==$year&&$year==$year4)
+{
+	$target=$target4;
+}
+elseif 	($curyear==$year&&$year==$year5)
+{
+	$target=$target5;
+}								
 					
 						?>
 
@@ -221,7 +250,7 @@ elseif 	($curyear==$year&&$year==$year5)
 								<td><?php echo $x;?></td>
 								<td><?php echo $goal_desc;?></td>
 								<td><?php echo $kpi_desc;?></td>
-								<td><?php echo $target;?></td>
+								<td><?php echo $targett;?></td>
 							    <td><?php echo $achievement;?></td>
 								<td><input class="form-control" style="width:156px;" type="text" name="reason<?php echo $x;?>" required/>
 								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
