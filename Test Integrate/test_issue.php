@@ -135,9 +135,44 @@ mysql_free_result($result)
 <body>
 
 <?php
+$sql			= "SELECT * FROM target";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							
+							$target1= $row['target1'];
+							$target2= $row['target2'];
+							$target3= $row['target3'];
+							$target4= $row['target4'];
+							$target5= $row['target5'];
+					if ($curyear==$year&&$year==$year1)
+{
+	$target=$target1;
+}
+elseif 	($curyear==$year&&$year==$year2)
+{
+	$target=$target2;
+}
+elseif 	($curyear==$year&&$year==$year3)
+{
+	$target=$target3;
+}
+elseif 	($curyear==$year&&$year==$year4)
+{
+	$target=$target4;
+}
+elseif 	($curyear==$year&&$year==$year5)
+{
+	$target=$target5;
+}
+						}
 
+$myobj->all='$result';						
+$myjson=json_encode($myobj);
+echo $myjson;						
 
-					
 ?>
 
 <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
@@ -259,6 +294,22 @@ mysql_free_result($result)
 						}
 
 						?>
+
+	
+
+<?php
+// end of testing
+						
+					}
+					else
+					{
+						echo "no data found";
+					}				
+
+					
+?>
+
+
 
 
 
