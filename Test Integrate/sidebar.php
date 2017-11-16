@@ -55,6 +55,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
     <a href="admin_manageuser_viewuser.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-universal-access fa-fw"></i>  Manage Users</a>
     <a href="admin_create_session.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plus-square fa-fw"></i>  Create Session</a>    
     <a href="logtrails.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>  Log Trails</a>
+	<a href="workbench_view.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>Module Workbench</a>
+
     
     <?php } 
 	
