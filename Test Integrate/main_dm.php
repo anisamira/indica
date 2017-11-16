@@ -1,10 +1,17 @@
-
-
 <body>
 <?php
 	include('sidebar.php');
 	include('style_dc.php');
 	include('script.php');
+ $curyear=date ('Y');
+ $date_now=date ("m/d/Y");
+ $date_q= date ("06/30/Y");
+ if ($date_now<=$date_q)
+{
+	$quater=1;
+}
+else
+    $quater=2;	
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	
@@ -56,7 +63,7 @@
 	<div class="wrapper">
 		<div class="container content-sm">
 			<div class="w3-main" style="margin-left:300px;margin-top:43px;">
-			<form action="datamanager_review.php" method="post">
+			<!--<form action="datamanager_review.php" method="post">-->
 				<table class="table table-bordered"> 
 					<tr style="font-size:13px">
 						<th>Version</th>						
@@ -96,6 +103,27 @@
 									</form>
 										
 											
+							</tr>
+							<tr style="font-size:13px">  
+								<td>KPI Quater Achievement <?php echo $curyear;?></td>
+								<td></td>
+								<td><?php echo $form_status;?></td>
+								<td>
+									<form action="datamanager_achieve.php" method="post">
+										<input type="hidden" name="form_id" value="<?php echo $form_id;?>"></input>
+										<?php
+										if ($form_status == 'approved' || $form_status == 'rejected')
+										{?>
+											<input type="submit" name="approval" value="Approval" disabled></input><?php
+										}
+										else
+										{?>
+											<input type="submit" name="approval" value="Approval"></input><?php
+										}?>
+										
+									</form>
+										
+											
 							</tr><?php
 							
 						}
@@ -121,4 +149,3 @@
 
 </body>
 </html>
-

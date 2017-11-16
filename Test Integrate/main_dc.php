@@ -71,6 +71,43 @@
 	}
 	
 	
+	if(isset($_POST['submit_updated']))		
+	{
+		$sql	="UPDATE form 
+					SET form_status='pending' 
+					WHERE module_id='$module_id' 
+					AND session_name='$session_name'";
+		$result = mysql_query($sql) or die(mysql_error());  
+		if (false === $result)
+			{
+				echo mysql_error();
+			}
+		for($y=1; $y<=50; $y++)
+								{
+									if (empty($_POST["kpi".$y]))
+									{
+										$error = 1;
+									}
+									else
+									{									
+										$value			=$_POST['kpi'.$y];
+										$ownership		=$_POST['ownership'.$y];
+										$data_source	=$_POST['data_source'.$y];
+										$estimated_cost	=$_POST['estimated_cost'.$y];
+										$exp_fin_return	=$_POST['exp_fin_return'.$y];
+											
+										$sql="INSERT INTO reference (kpi_id, ownership, data_source, estimated_cost, exp_fin_return) VALUES ('$value','$ownership','$data_source','$estimated_cost', '$exp_fin_return')";
+										$result = mysql_query($sql) or die(mysql_error());  
+										   
+										if (false === $result) 
+										{
+											echo mysql_error();
+										}						
+									}	
+								}
+	}
+	
+	
 ?>
 
 
