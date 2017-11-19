@@ -32,7 +32,7 @@
 										}	
 								}
 							}
-							if ($_SERVER["REQUEST_METHOD"] == "POST")
+							if (isset($_POST['edit_kpi']))
 							{
 								$kpi_id	=$_POST["kpi_id"];
 								$kpi_desc = mysql_real_escape_string($_POST["kpi_desc"]); 
@@ -65,7 +65,21 @@
 					
 						<!-- KPI FORM -->
 						<br></br>
-							<form action="dc_baseline.php" method="post">
+						<?php
+							$x = 1;
+							$sql="SELECT goal.*,strategy.*, actionplan.* 
+									FROM goal 
+									JOIN strategy 
+									ON strategy.goal_id=goal.goal_id 
+									JOIN actionplan 
+									ON actionplan.strategy_id=strategy.strategy_id 
+									WHERE goal.module_id='$module_id' 
+									AND goal.session_name='$session_name'
+									ORDER BY actionplan.actionplan_id ASC";
+							$result3 = mysql_query($sql) or die(mysql_error()); 
+							if (mysql_num_rows($result3)>0)
+							{?>
+								<form action="dc_baseline.php" method="post">
 								<table class="table table-bordered"> 
 									<col width="10%">
 									<col width="15%">
@@ -76,21 +90,9 @@
 													<th>Strategy</th>
 													<th>Action Plan</th>
 													<th>KPI</th>
-												</tr>
-								<?php
-
-									$x = 1;
-									$sql="SELECT goal.*,strategy.*, actionplan.* 
-										FROM goal 
-										JOIN strategy 
-										ON strategy.goal_id=goal.goal_id 
-										JOIN actionplan 
-										ON actionplan.strategy_id=strategy.strategy_id 
-										WHERE goal.module_id='$module_id' 
-										AND goal.session_name='$session_name'
-										ORDER BY actionplan.actionplan_id ASC";
-									$result = mysql_query($sql) or die(mysql_error()); 
-									while($row=mysql_fetch_array($result))
+												</tr><?php
+								
+									while($row=mysql_fetch_array($result3))
 									{
 										$goal_id			=$row['goal_id'];
 										$goal_desc			=$row['goal_desc'];
@@ -131,7 +133,7 @@
 																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																				<h4 class="modal-title" id="<?php echo $kpi_id;?>">Edit KPI</h4>
 																			</div>
-																			<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+																			<form action="" method="post">
 																				<div class="modal-body">
 																					<div class="row" style="margin:10px;">
 																							<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>
@@ -140,7 +142,7 @@
 																				</div>
 																				<div class="modal-footer">
 																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																					<input type="submit" class="btn-u btn-u-primary" name="submit" value="Submit"></input>
+																					<input type="submit" class="btn-u btn-u-primary" name="edit_kpi" value="Submit"></input>
 																				</div>
 																			</form>
 																		</div>
@@ -159,7 +161,17 @@
 								</table>	
 								</br><input type="submit" name="submit_kpi" value="Next" style="float: right;"></input>	
 								<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
-							</form>									
+							</form>	<?php
+							}
+							else
+							{?>
+								<div class="alert alert-warning alert-dismissable fade in">
+									<meta http-equiv="refresh" content="1;url=dc_actionplan.php" />
+									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									<strong>You need to fill in previous page first</strong> Redirecting in 1 seconds...
+								</div><?php	
+							}?>
+															
 						<!-- END KPI FORM -->
 
 		</div>

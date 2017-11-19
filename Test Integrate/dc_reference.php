@@ -34,7 +34,7 @@
 									}	
 								}		
 							}
-							if ($_SERVER["REQUEST_METHOD"] == "POST")
+							if (isset($_POST['edit_reference']))
 							{
 								$kpi_id	=$_POST["kpi_id"];
 								$ownership = mysql_real_escape_string($_POST["ownership"]); 
@@ -71,30 +71,13 @@
 						
 						<!-- REFERENCE FORM-->
 						<br></br>
-							<form action="dc_submit.php" method="post">
-							  <table id ="maintable" class="table table-bordered"> 
-									<tr style="font-size:14px">
-										<th rowspan="2">Key Performance Indicator (KPI)</th>
-										<th colspan="4">References</th>
-										<th colspan="2" rowspan="2">Action</th>
-									</tr>
-									<tr style="font-size:14px">
-										
-										<th>Ownership</th>
-										<th>Data Source</th>
-										<th>Estimated Cost (RM)</th>
-										<th>Expected Financial Return</th>
-										
-									</tr>
-									
-									<?php
-									$x=1;
-									if(isset($_GET['deletereference']))
-										{
-											$query	=mysql_query("DELETE FROM reference WHERE kpi_id=".$_GET['deletereference']);
-
-										}
-								$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*
+						<?php
+							$x=1;
+							if(isset($_GET['deletereference']))
+								{
+									$query	=mysql_query("DELETE FROM reference WHERE kpi_id=".$_GET['deletereference']);
+								}
+							$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*
 									FROM goal 
 									JOIN strategy ON strategy.goal_id=goal.goal_id 
 									JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -102,76 +85,104 @@
 									WHERE goal.module_id='$module_id'
 									AND goal.session_name='$session_name'
 									ORDER BY kpi_id ASC";
-								$result = mysql_query($sql) or die(mysql_error()); 
-								while($row=mysql_fetch_array($result))
-								{
-									$kpi_id		=$row['kpi_id'];
-									$kpi_desc	=$row['kpi_desc'];?>
-											<tr style="font-size:13px">  
-												<td><?php echo $kpi_desc;?></td>
-												<?php
-												$sql2	="SELECT * from reference
-															WHERE kpi_id='$kpi_id'";
-												$result2=mysql_query($sql2) or die (mysql_error());
-												if(mysql_num_rows($result2)===0)
-												{?>
-													<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input></td>
-													<td><input class="form-control" type="" name="ownership<?php echo $x;?>"/></td>
-													<td><input class="form-control" type="" name="data_source<?php echo $x;?>"/></td>
-													<td><input class="form-control" type="" name="estimated_cost<?php echo $x;?>"/></td>
-													<td><input class="form-control" type="" name="exp_fin_return<?php echo $x;?>"/></td>
-													<td><button class="btn-u btn-u-red" type="button" style="float:right" disabled><i class="fa fa-trash-o"/></button></td>
-													<td><button class="btn-u btn-u-red" type="button" disabled><i class="fa fa-pencil"/></button></td>
-												</tr><?php
-												}
-												else
-												{
-													while($row=mysql_fetch_array($result2))
-													{
-															$ownership			=$row['ownership'];
-															$data_source		=$row['data_source'];
-															$estimated_cost		=$row['estimated_cost'];
-															$exp_fin_return		=$row['exp_fin_return'];?>
-															<td><?php echo $ownership;?></td>
-															<td><?php echo $data_source;?></td>
-															<td><?php echo $estimated_cost;?></td>
-															<td><?php echo $exp_fin_return;?></td>
-															<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletereference(<?php echo  $kpi_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
-															<td><button data-toggle="modal" data-target="#<?php echo $kpi_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
-															<div class="modal fade" id="<?php echo $kpi_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																	<div class="modal-dialog">
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-																				<h4 class="modal-title" id="<?php echo $kpi_id;?>">Edit Reference</h4>
-																			</div>
-																			<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
-																				<div class="modal-body">
-																					<div class="row" style="margin:10px;">
-																							<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>
-																							Ownership :<textarea class="form-control" name="ownership" required><?php echo $ownership;?></textarea></br>
-																							Data Source : <textarea class="form-control" name="data_source" required><?php echo $data_source;?></textarea></br>
-																							Estimated Cost :<textarea class="form-control" name="estimated_cost" required><?php echo $estimated_cost;?></textarea>
-																							Expected Financial Return :<textarea class="form-control" name="exp_fin_return" required><?php echo $exp_fin_return;?></textarea>
+							$result = mysql_query($sql) or die(mysql_error()); 
+							if (mysql_num_rows($result)>0)
+							{?>
+								<form action="dc_submit.php" method="post">
+									<table id ="maintable" class="table table-bordered"> 
+										<tr style="font-size:14px">
+											<th rowspan="2">Key Performance Indicator (KPI)</th>
+											<th colspan="4">References</th>
+											<th colspan="2" rowspan="2">Action</th>
+										</tr>
+										<tr style="font-size:14px">
+											
+											<th>Ownership</th>
+											<th>Data Source</th>
+											<th>Estimated Cost (RM)</th>
+											<th>Expected Financial Return</th>										
+										</tr><?php
+										while($row=mysql_fetch_array($result))
+										{
+											$kpi_id		=$row['kpi_id'];
+											$kpi_desc	=$row['kpi_desc'];?>
+													<tr style="font-size:13px">  
+														<td><?php echo $kpi_desc;?></td>
+														<?php
+														$sql2	="SELECT * from reference
+																	WHERE kpi_id='$kpi_id'";
+														$result2=mysql_query($sql2) or die (mysql_error());
+														if(mysql_num_rows($result2)===0)
+														{?>
+															<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input></td>
+															<td><input class="form-control" type="" name="ownership<?php echo $x;?>"/></td>
+															<td><input class="form-control" type="" name="data_source<?php echo $x;?>"/></td>
+															<td><input class="form-control" type="" name="estimated_cost<?php echo $x;?>"/></td>
+															<td><input class="form-control" type="" name="exp_fin_return<?php echo $x;?>"/></td>
+															<td><button class="btn-u btn-u-red" type="button" style="float:right" disabled><i class="fa fa-trash-o"/></button></td>
+															<td><button class="btn-u btn-u-red" type="button" disabled><i class="fa fa-pencil"/></button></td>
+														</tr><?php
+														}
+														else
+														{
+															while($row=mysql_fetch_array($result2))
+															{
+																	$ownership			=$row['ownership'];
+																	$data_source		=$row['data_source'];
+																	$estimated_cost		=$row['estimated_cost'];
+																	$exp_fin_return		=$row['exp_fin_return'];?>
+																	<td><?php echo $ownership;?></td>
+																	<td><?php echo $data_source;?></td>
+																	<td><?php echo $estimated_cost;?></td>
+																	<td><?php echo $exp_fin_return;?></td>
+																	<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletereference(<?php echo  $kpi_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+																	<td><button data-toggle="modal" data-target="#<?php echo $kpi_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
+																	<div class="modal fade" id="<?php echo $kpi_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																			<div class="modal-dialog">
+																				<div class="modal-content">
+																					<div class="modal-header">
+																						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																						<h4 class="modal-title" id="<?php echo $kpi_id;?>">Edit Reference</h4>
 																					</div>
+																					<form action="" method="post">
+																						<div class="modal-body">
+																							<div class="row" style="margin:10px;">
+																									<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>
+																									Ownership :<textarea class="form-control" name="ownership" required><?php echo $ownership;?></textarea></br>
+																									Data Source : <textarea class="form-control" name="data_source" required><?php echo $data_source;?></textarea></br>
+																									Estimated Cost :<textarea class="form-control" name="estimated_cost" required><?php echo $estimated_cost;?></textarea>
+																									Expected Financial Return :<textarea class="form-control" name="exp_fin_return" required><?php echo $exp_fin_return;?></textarea>
+																							</div>
+																						</div>
+																						<div class="modal-footer">
+																							<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																							<input type="submit" class="btn-u btn-u-primary" name="edit_reference" value="Submit"></input>
+																						</div>
+																					</form>
 																				</div>
-																				<div class="modal-footer">
-																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																					<input type="submit" class="btn-u btn-u-primary" name="submit" value="Submit"></input>
-																				</div>
-																			</form>
+																			</div>
 																		</div>
-																	</div>
-																</div>
-														</tr><?php		
-													}
-												}
-									$x++;				
-								}?>								
-								</table>
-								<input type="submit" name="submit_reference" value="Next" style="float: right;"></input>
-								<input type="button" VALUE="Back" onClick="history.go(-1);"disabled></input>
-							</form>
+																</tr><?php		
+															}
+														}
+											$x++;				
+										}?>								
+									</table>
+									<input type="submit" name="submit_reference" value="Next" style="float: right;"></input>
+									<input type="button" VALUE="Back" onClick="history.go(-1);"disabled></input>
+								</form><?php					
+							}
+							else
+							{?>
+								<div class="alert alert-warning alert-dismissable fade in">
+									<meta http-equiv="refresh" content="1;url=dc_target.php" />
+									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									<strong>You need to fill in previous page first</strong> Redirecting in 1 seconds...
+								</div><?php	
+							}?>				
+									
+									
+								
 			</div>			<!-- END REFERENCE FORM-->
 		</div>
 	</div><!--/wrapper-->

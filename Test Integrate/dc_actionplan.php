@@ -31,7 +31,7 @@
 									}	
 								}		
 							}
-							if ($_SERVER["REQUEST_METHOD"] == "POST")
+							if (isset($_POST['edit_actionplan']))
 							{
 								$actionplan_id	=$_POST["actionplan_id"];
 								$actionplan_desc = mysql_real_escape_string($_POST["actionplan_desc"]); 
@@ -66,31 +66,34 @@
 						
 						<!-- ACTION FORM -->
 						<br></br>
+						<?php
+						$x=1;
+						if(isset($_GET['deleteaction']))
+							{
+								$query	=mysql_query("DELETE FROM actionplan WHERE actionplan_id=".$_GET['deleteaction']);
+								$query	=mysql_query("DELETE FROM KPI WHERE actionplan_id=".$_GET['deleteaction']);
+							}
+						$sql="SELECT goal.*,strategy.* 
+								FROM goal 
+								JOIN strategy 
+								ON strategy.goal_id=goal.goal_id
+								WHERE goal.module_id='$module_id'
+								AND goal.session_name='$session_name' 
+								ORDER BY strategy.strategy_id ASC";
+						$result3 = mysql_query($sql) or die(mysql_error());
+						if (mysql_num_rows($result3)>0)
+						{?>
 							<form action="dc_KPI.php" method="post">
 								<table class="table table-bordered"> 
 									<col width="20%">
 									<col width="20%">
 									<col width="60%">
-												<tr style="font-size:14px">
-													<th>Goal</th>
-													<th>Strategy</th>
-													<th>Action Plan</th>
-												</tr>
-								<?php
-								//	if(isset($_GET['deletestrategy']))
-									//		{
-									//			$query	=mysql_query("DELETE FROM strategy WHERE strategy_id=".$_GET['deletestrategy']);
-									//		}
-									$x=1;
-									$sql="SELECT goal.*,strategy.* 
-											FROM goal 
-											JOIN strategy 
-											ON strategy.goal_id=goal.goal_id
-											WHERE goal.module_id='$module_id'
-											AND goal.session_name='$session_name' 
-											ORDER BY strategy.strategy_id ASC";
-									$result = mysql_query($sql) or die(mysql_error()); 
-									while($row=mysql_fetch_array($result))
+									<tr style="font-size:14px">
+										<th>Goal</th>
+										<th>Strategy</th>
+										<th>Action Plan</th>
+									</tr><?php
+									while($row=mysql_fetch_array($result3))
 									{
 										$goal_id		=$row['goal_id'];
 										$goal_desc		=$row['goal_desc'];
@@ -99,17 +102,11 @@
 										<tr style="font-size:13px">
 											<td><?php echo $goal_desc;?></td>
 											<td>
-												<!--<input type="button" value="Delete" onclick="window.location.href='javascript:deletestrategy( <?php //echo  $strategy_id; ?>)'"></input>-->
 												<?php echo $strategy_desc;?>
 												<input type="hidden" name="strategy_id<?php echo $x;?>" value="<?php echo $strategy_id;?>"></input></td>
 											<td>
 												<table class="table"><?php 
-														$y=1;
-														if(isset($_GET['deleteaction']))
-															{
-																$query	=mysql_query("DELETE FROM actionplan WHERE actionplan_id=".$_GET['deleteaction']);
-																$query	=mysql_query("DELETE FROM KPI WHERE actionplan_id=".$_GET['deleteaction']);
-															}	
+														$y=1;	
 														$sql2="SELECT * FROM actionplan WHERE strategy_id='$strategy_id'";
 														$result2=mysql_query($sql2) or die (mysql_error());
 														while($row=mysql_fetch_array($result2))
@@ -128,7 +125,7 @@
 																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																				<h4 class="modal-title" id="<?php echo $strategy_id;?>">Edit Action Plan</h4>
 																			</div>
-																			<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+																			<form action="" method="post">
 																				<div class="modal-body">
 																					<div class="row" style="margin:10px;">
 																							<input type="hidden" name="actionplan_id" value="<?php echo $actionplan_id;?>"></input>
@@ -137,7 +134,7 @@
 																				</div>
 																				<div class="modal-footer">
 																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																					<input type="submit" class="btn-u btn-u-primary" name="submit" value="Submit"></input>
+																					<input type="submit" class="btn-u btn-u-primary" name="edit_actionplan" value="Submit"></input>
 																				</div>
 																			</form>
 																		</div>
@@ -157,7 +154,19 @@
 									</table>	
 								</br><input type="submit" name="submit_action" value="Next" style="float: right;"></input>	
 								<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
-							</form>		
+							</form>	<?php
+						}
+						else
+						{?>
+							<div class="alert alert-warning alert-dismissable fade in">
+								<meta http-equiv="refresh" content="1;url=dc_strategy.php" />
+								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								<strong>You need to fill in previous page first</strong> Redirecting in 1 seconds...
+							</div><?php	
+						}?>
+							
+								 
+										
 
 						<!--END ACTION FORM-->
 			</div>

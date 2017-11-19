@@ -32,7 +32,7 @@
 									}	
 								}		
 							}
-							if ($_SERVER["REQUEST_METHOD"] == "POST")
+							if (isset($_POST['edit_opdef']))
 							{
 								$kpi_id	=$_POST["kpi_id"];
 								$operation_def = mysql_real_escape_string($_POST["operation_def"]); 
@@ -78,106 +78,118 @@
 
 						<!-- BASELINE / OPERATION DEFINITION FORM -->
 						<br></br>
-							<form action="dc_target.php" method="post">
-								<table class="table table-bordered"> 
-									<tr style="font-size:14px">
-										<th rowspan="2">Key Performance Indicator (KPI)</th>
-										<th rowspan="2">Operation Definition</th>
-										<th colspan="2">Baseline</th>
-										<th colspan="2" rowspan="2">Action</th>
-									</tr>
-									<tr style="font-size:14px">
-										<th>Achievement 2014</th>
-										<th>Achievement 2015</th>
-									</tr>										
-									<?php
-									$x=1;
-									if(isset($_GET['deletebaseline']))
+						<?php
+							$x=1;
+							if(isset($_GET['deletebaseline']))
+								{
+									$query	=mysql_query("DELETE FROM baseline WHERE kpi_id=".$_GET['deletebaseline']);
+									$query	=mysql_query("UPDATE baseline  SET operation_def= '' WHERE kpi_id=".$_GET['deletebaseline']);
+								}
+							$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*
+								FROM goal 
+								JOIN strategy ON strategy.goal_id=goal.goal_id 
+								JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+								JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+								WHERE goal.module_id='$module_id'
+								AND goal.session_name='$session_name'
+								ORDER BY kpi_id ASC";
+							$result = mysql_query($sql) or die(mysql_error());
+							if (mysql_num_rows($result)>0)
+							{?>
+								<form action="dc_target.php" method="post">
+									<table class="table table-bordered"> 
+										<tr style="font-size:14px">
+											<th rowspan="2">Key Performance Indicator (KPI)</th>
+											<th rowspan="2">Operation Definition</th>
+											<th colspan="2">Baseline</th>
+											<th colspan="2" rowspan="2">Action</th>
+										</tr>
+										<tr style="font-size:14px">
+											<th>Achievement 2014</th>
+											<th>Achievement 2015</th>
+										</tr><?php
+										while($row=mysql_fetch_array($result))
 										{
-											$query	=mysql_query("DELETE FROM baseline WHERE kpi_id=".$_GET['deletebaseline']);
-											$query	=mysql_query("UPDATE baseline  SET operation_def= '' WHERE kpi_id=".$_GET['deletebaseline']);
-
-										}
-									$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*
-										FROM goal 
-										JOIN strategy ON strategy.goal_id=goal.goal_id 
-										JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
-										JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
-										WHERE goal.module_id='$module_id'
-										AND goal.session_name='$session_name'
-										ORDER BY kpi_id ASC";
-									$result = mysql_query($sql) or die(mysql_error()); 
-									while($row=mysql_fetch_array($result))
-									{
-										$kpi_id		=$row['kpi_id'];
-										$kpi_desc	=$row['kpi_desc'];?>
-										<tr style="font-size:13px">  
-											<td><?php echo $kpi_desc;?>											
-											</td>
-											<?php
-											$sql2	="SELECT kpi.operation_def, baseline.*
-														FROM kpi join baseline 
-														ON kpi.kpi_id=baseline.kpi_id
-														WHERE kpi.kpi_id='$kpi_id'";
-											$result2=mysql_query($sql2) or die (mysql_error());
-											if(mysql_num_rows($result2)===0)
-											{?>
-													<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
-													<td><input class="form-control" type="text" name="operation_def<?php echo $x;?>" required></input></td>
-													<td><input class="form-control" type="text" name="baseline1<?php echo $x;?>" required></input></td>
-													<td><input class="form-control" type="text" name="baseline2<?php echo $x;?>" required></input></td>
-													<td><button class="btn-u btn-u-red" type="button" style="float:right" disabled><i class="fa fa-trash-o"/></button></td>
-													<td><button class="btn-u btn-u-red" type="button" disabled><i class="fa fa-pencil"/></button></td>
-												</tr>	<?php										
-											}
-											else
-											{
-												while($row=mysql_fetch_array($result2))
+											$kpi_id		=$row['kpi_id'];
+											$kpi_desc	=$row['kpi_desc'];?>
+											<tr style="font-size:13px">  
+												<td><?php echo $kpi_desc;?>											
+												</td>
+												<?php
+												$sql2	="SELECT kpi.operation_def, baseline.*
+															FROM kpi join baseline 
+															ON kpi.kpi_id=baseline.kpi_id
+															WHERE kpi.kpi_id='$kpi_id'";
+												$result2=mysql_query($sql2) or die (mysql_error());
+												if(mysql_num_rows($result2)===0)
+												{?>
+														<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
+														<td><input class="form-control" type="text" name="operation_def<?php echo $x;?>" required></input></td>
+														<td><input class="form-control" type="text" name="baseline1<?php echo $x;?>" required></input></td>
+														<td><input class="form-control" type="text" name="baseline2<?php echo $x;?>" required></input></td>
+														<td><button class="btn-u btn-u-red" type="button" style="float:right" disabled><i class="fa fa-trash-o"/></button></td>
+														<td><button class="btn-u btn-u-red" type="button" disabled><i class="fa fa-pencil"/></button></td>
+													</tr>	<?php										
+												}
+												else
 												{
-														$base_id			=$row['base_id'];
-														$operation_def		=$row['operation_def'];
-														$baseline1			=$row['baseline1'];
-														$baseline2			=$row['baseline2'];?>
-														<td><?php echo $operation_def;?></td>
-														<td><?php echo $baseline1;?></td>
-														<td><?php echo $baseline2;?></td>
-														<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletebaseline(<?php echo  $kpi_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
-														<td><button data-toggle="modal" data-target="#<?php echo $base_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
-															<div class="modal fade" id="<?php echo $base_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																	<div class="modal-dialog">
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-																				<h4 class="modal-title" id="<?php echo $base_id;?>">Edit Baseline & Operation Definition</h4>
-																			</div>
-																			<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
-																				<div class="modal-body">
-																					<div class="row" style="margin:10px;">
-																							<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>
-																							Operation Definition :<textarea class="form-control" name="operation_def" required><?php echo $operation_def;?></textarea></br>
-																							Achievement Year ? : <textarea class="form-control" name="baseline1" required><?php echo $baseline1;?></textarea></br>
-																							Achievement Year ? :<textarea class="form-control" name="baseline2" required><?php echo $baseline2;?></textarea>
+													while($row=mysql_fetch_array($result2))
+													{
+															$base_id			=$row['base_id'];
+															$operation_def		=$row['operation_def'];
+															$baseline1			=$row['baseline1'];
+															$baseline2			=$row['baseline2'];?>
+															<td><?php echo $operation_def;?></td>
+															<td><?php echo $baseline1;?></td>
+															<td><?php echo $baseline2;?></td>
+															<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletebaseline(<?php echo  $kpi_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+															<td><button data-toggle="modal" data-target="#<?php echo $base_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
+																<div class="modal fade" id="<?php echo $base_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																		<div class="modal-dialog">
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																					<h4 class="modal-title" id="<?php echo $base_id;?>">Edit Baseline & Operation Definition</h4>
+																				</div>
+																				<form action="" method="post">
+																					<div class="modal-body">
+																						<div class="row" style="margin:10px;">
+																								<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>
+																								Operation Definition :<textarea class="form-control" name="operation_def" required><?php echo $operation_def;?></textarea></br>
+																								Achievement Year ? : <textarea class="form-control" name="baseline1" required><?php echo $baseline1;?></textarea></br>
+																								Achievement Year ? :<textarea class="form-control" name="baseline2" required><?php echo $baseline2;?></textarea>
+																						</div>
 																					</div>
-																				</div>
-																				<div class="modal-footer">
-																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																					<input type="submit" class="btn-u btn-u-primary" name="submit" value="Submit"></input>
-																				</div>
-																			</form>
+																					<div class="modal-footer">
+																						<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																						<input type="submit" class="btn-u btn-u-primary" name="edit_opdef" value="Submit"></input>
+																					</div>
+																				</form>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-													</tr><?php		
+														</tr><?php		
+													}
 												}
-											}
+												
 											
-										
-										$x++;
-									}?>
-								</table>
-							<input type="submit" name="submit_op_def" value="Next" style="float: right;"></input>
-							<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
-						</form>
+											$x++;
+										}?>
+									</table>
+									<input type="submit" name="submit_op_def" value="Next" style="float: right;"></input>
+									<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
+								</form><?php					
+							}
+							else
+							{?>
+								<div class="alert alert-warning alert-dismissable fade in">
+									<meta http-equiv="refresh" content="1;url=dc_kpi.php" />
+									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									<strong>You need to fill in previous page first</strong> Redirecting in 1 seconds...
+								</div><?php	
+							}?>										
+									
+									
 						<!-- END BASELINE / OPERATION DEFINITION FORM-->
 			</div>
 		</div>
