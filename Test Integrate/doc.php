@@ -92,7 +92,7 @@ $module_id=$_SESSION['module_id'];
 						JOIN evidence ON evidence.ach_id=achievement.ach_id
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
+						AND form.form_status='approved'
 						ORDER BY evidence.ach_id AND achievement.year_id
 						";
 						$result = mysql_query($sql) or die(mysql_error()); 

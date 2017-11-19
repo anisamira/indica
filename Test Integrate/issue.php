@@ -157,7 +157,7 @@
 						JOIN year ON achievement.year_id=year.year_id						
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
+						AND form.form_status='approved'
 						AND achievement.year_id='$year_id'
 						HAVING achievement.ach_desc < achievement.target
 						";

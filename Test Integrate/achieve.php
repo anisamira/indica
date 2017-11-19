@@ -115,7 +115,7 @@ else
 						JOIN year ON achievement.year_id=year.year_id
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
+						AND form.form_status='approved'
 						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						

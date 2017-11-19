@@ -77,7 +77,7 @@
                                             JOIN form ON form.module_id=goal.module_id											
 											WHERE goal.module_id='$module_id'
 											AND goal.session_name='$session_name'
-											AND form.form_status='Approve' ";
+											AND form.form_status='approved' ";
 											$result = mysql_query($sql) or die(mysql_error());
 
 if (mysql_num_rows($result)>0){				

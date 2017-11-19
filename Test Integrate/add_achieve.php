@@ -125,7 +125,7 @@ if (isset($_POST['Achievement1']))
 						WHERE achievement.target_id=target.target_id AND achievement.year_id='$year_id' AND achievement.quarter=$quater) 
 						AND goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
+						AND form.form_status='approved'
 						";
 
 					$result = mysql_query($sql) or die(mysql_error());
