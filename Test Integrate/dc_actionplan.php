@@ -104,56 +104,72 @@
 											<td>
 												<?php echo $strategy_desc;?>
 												<input type="hidden" name="strategy_id<?php echo $x;?>" value="<?php echo $strategy_id;?>"></input></td>
-											<td>
-												<table class="table"><?php 
+											<td><?php 
 														$y=1;	
 														$sql2="SELECT * FROM actionplan WHERE strategy_id='$strategy_id'";
 														$result2=mysql_query($sql2) or die (mysql_error());
-														while($row=mysql_fetch_array($result2))
-														{									
-															$actionplan_id=$row['actionplan_id'];
-															$actionplan_desc=$row['actionplan_desc'];?>
-															
-															<tr style="font-size:13px">
-																<td><?php echo $y.") ".$actionplan_desc;?></td>
-																<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deleteaction(<?php echo  $actionplan_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
-																<td><button data-toggle="modal" data-target="#<?php echo $actionplan_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
-																<div class="modal fade" id="<?php echo $actionplan_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																	<div class="modal-dialog">
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-																				<h4 class="modal-title" id="<?php echo $strategy_id;?>">Edit Action Plan</h4>
-																			</div>
-																			<form action="" method="post">
-																				<div class="modal-body">
-																					<div class="row" style="margin:10px;">
-																							<input type="hidden" name="actionplan_id" value="<?php echo $actionplan_id;?>"></input>
-																							<textarea class="form-control" name="actionplan_desc" required><?php echo $actionplan_desc;?></textarea>
+														if (mysql_num_rows($result2)>0)
+														{?>
+															<table class="table">
+															<col width="80%">
+															<col width="10%">
+															<col width="10%"><?php							
+															while($row=mysql_fetch_array($result2))
+															{									
+																$actionplan_id=$row['actionplan_id'];
+																$actionplan_desc=$row['actionplan_desc'];?>
+																
+																<tr style="font-size:13px">
+																	<td><?php echo $y.") ".$actionplan_desc;?></td>
+																	<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deleteaction(<?php echo  $actionplan_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
+																	<td><button data-toggle="modal" data-target="#<?php echo $actionplan_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
+																	<div class="modal fade" id="<?php echo $actionplan_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																		<div class="modal-dialog">
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																					<h4 class="modal-title" id="<?php echo $strategy_id;?>">Edit Action Plan</h4>
+																				</div>
+																				<form action="" method="post">
+																					<div class="modal-body">
+																						<div class="row" style="margin:10px;">
+																								<input type="hidden" name="actionplan_id" value="<?php echo $actionplan_id;?>"></input>
+																								<textarea class="form-control" name="actionplan_desc" required><?php echo $actionplan_desc;?></textarea>
+																						</div>
 																					</div>
-																				</div>
-																				<div class="modal-footer">
-																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																					<input type="submit" class="btn-u btn-u-primary" name="edit_actionplan" value="Submit"></input>
-																				</div>
-																			</form>
+																					<div class="modal-footer">
+																						<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																						<input type="submit" class="btn-u btn-u-primary" name="edit_actionplan" value="Submit"></input>
+																					</div>
+																				</form>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															</tr><?php
-															$y++;
-														}?>
-												</table>
-												<input class="form-control" type="text"  name="action<?php echo $x;?>[]" required></input></br>
-												<div class="wrapaction<?php echo $x;?>"></div>
-												<button class="btn add_action<?php echo $x;?>" style="float: right;"><span class="icon-plus"/></button>
+																</tr><?php
+																$y++;
+															}?>
+																<tr style="font-size:13px">
+																	<td colspan="3"><input type="button" name="edit_actionplan" value="Add Action Plan"></input></td>
+																</tr>
+															</table><?php
+															
+														}
+														else
+														{?>
+															<input class="form-control" type="text"  name="action<?php echo $x;?>[]" required></input></br>
+															<div class="wrapaction<?php echo $x;?>"></div>
+															<button class="btn add_action<?php echo $x;?>" style="float: right;"><span class="icon-plus"/></button><?php
+														}
+														?>
+												
+												
 											</td>
 										</tr>
 										<?php $x++;	
 									} ?>									
 									</table>	
 								</br><input type="submit" name="submit_action" value="Next" style="float: right;"></input>	
-								<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
+								<!--<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>-->
 							</form>	<?php
 						}
 						else

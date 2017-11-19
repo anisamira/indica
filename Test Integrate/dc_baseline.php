@@ -97,7 +97,13 @@
 							if (mysql_num_rows($result)>0)
 							{?>
 								<form action="dc_target.php" method="post">
-									<table class="table table-bordered"> 
+									<table class="table table-bordered">
+									<col width="10%">
+									<col width="30%">
+									<col width="25%">
+									<col width="25%">
+									<col width="5%">
+									<col width="5%">
 										<tr style="font-size:14px">
 											<th rowspan="2">Key Performance Indicator (KPI)</th>
 											<th rowspan="2">Operation Definition</th>
@@ -177,7 +183,7 @@
 										}?>
 									</table>
 									<input type="submit" name="submit_op_def" value="Next" style="float: right;"></input>
-									<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
+									<!--<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>-->
 								</form><?php					
 							}
 							else

@@ -169,7 +169,7 @@
 										}?>								
 									</table>
 									<input type="submit" name="submit_reference" value="Next" style="float: right;"></input>
-									<input type="button" VALUE="Back" onClick="history.go(-1);"disabled></input>
+									<!--<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>-->
 								</form><?php					
 							}
 							else

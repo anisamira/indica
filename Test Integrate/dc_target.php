@@ -95,6 +95,14 @@
 							{?>
 								<form action="dc_reference.php" method="post">
 								<table id ="maintable" class="table table-bordered"> 
+									<col width="15%">
+									<col width="15%">
+									<col width="15%">
+									<col width="15%">
+									<col width="15%">
+									<col width="15%">
+									<col width="5%">
+									<col width="5%">
 									<tr style="font-size:14px">
 										<th rowspan="2">Key Performance Indicator (KPI)</th>
 										<th colspan="5">Target</th>
@@ -182,7 +190,7 @@
 									}?>								
 								</table>
 								<input type="submit" name="submit_target" value="Next" style="float: right;"></input>
-								<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>
+								<!--<input type="button" VALUE="Back" onClick="history.go(-1);" disabled></input>-->
 							</form><?php					
 							}
 							else

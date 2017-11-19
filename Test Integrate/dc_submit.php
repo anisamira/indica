@@ -87,9 +87,9 @@
 														<th>Achievement 2014</th>  
 														<th>Achievement 2015</th>
 															<?php
-														$sql="SELECT year_name from year where session_name='$session_name'";
-														$result=mysql_query($sql) or die(mysql_error());
-														while($row=mysql_fetch_array($result))
+														$sql2="SELECT year_name from year where session_name='$session_name'";
+														$result2=mysql_query($sql2) or die(mysql_error());
+														while($row=mysql_fetch_array($result2))
 														{
 															$year_name	=$row['year_name']; ?>
 															<th><?php echo $year_name;?></th>
