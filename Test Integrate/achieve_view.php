@@ -6,6 +6,8 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
+$moduleid=$_SESSION['module_id'];
+	$sesi=$_SESSION['session_name'];
 	
 	$curyear=date ('Y');
     $date_now=date ("m/d/Y");
@@ -17,44 +19,25 @@
 else
     $quater=2;	
 	
-	$module_id		=$_SESSION['module_id'];
-	$user_id		=$_SESSION['user_id'];
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
 						while($row=mysql_fetch_array($result))
 						{
-							$_SESSION['session_name']	=$row['session_name'];
 							$year1=$row['year1'];
 							$year2=$row['year2'];
 							$year3=$row['year3'];
 							$year4=$row['year4'];
 							$year5=$row['year5'];
 						}
-						$session_name	=$_SESSION['session_name'];
 					}
 					else
 					{
 						echo "no data found";
 					}
 	
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
-						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
-					}
-					else
-					{
-						echo "no data found";
-					}
+
 	
   $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
 					$result = mysql_query($sql) or die(mysql_error()); 
@@ -72,6 +55,12 @@ else
 					{
 						echo "no data found";
 					}
+	
+if (!isset($_SESSION['code'])){
+	
+	header("location:workbench_view.php");
+}
+else{
 
 	?>
 
@@ -84,16 +73,14 @@ else
 
 
 <div class="topnav">
-  <a href="work.php">Information</a>
-  <a class="active" href="achieve.php">Achievement</a>
-  <a href="doc.php">Deliverables</a>
-  <a href="issue.php">Issue</a>
-  <a href="financial.php">Financial</a>
+  <a href="work_view.php">Information</a>
+  <a class="active" href="achieve_view.php">Achievement</a>
+  <a href="doc_view.php">Deliverables</a>
+  <a href="issue_view.php">Issue</a>
+  <a href="financial_view.php">Financial</a>
 
 </div>
-
 <div style="padding-left:16px">
-  &nbsp&nbspWELCOME <?=$module_id;?>
   
 </div>
 <body>
@@ -113,9 +100,9 @@ else
 						JOIN form ON form.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN year ON achievement.year_id=year.year_id
-                        WHERE goal.module_id='$module_id'
-						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
+                        WHERE goal.module_id='$moduleid'
+						AND goal.session_name='$sesi'
+						AND form.form_status='approved'
 						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						
@@ -207,30 +194,9 @@ elseif 	($year==$year5)
 						$x++;
 						}
 					}	
-						else
-						{
-						echo "No Achievement is added yet";
-					?>
-					
-					
-					<form action="add_achieve.php" method="post">
-					<input type="submit" name="Achievement1" value="Add Achievement" >
-					</form>
-					
-					
-					<?php
-					}	
-				    
-						?>
-
+?>
 </body>
 
-
-
-					<form action="add_achieve.php" method="post">
-					<input type="submit" name="Achievement1" value="Check for an Achievement" >
-					</form>
-					
 
 
 	</div>
@@ -292,3 +258,9 @@ body {margin:0;}
 </style>
 
 </html>
+
+<!-- this the end>
+<?php
+
+}
+?>

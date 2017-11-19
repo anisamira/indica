@@ -142,7 +142,6 @@
 
 <?php
 
-						$module_id=$_SESSION['module_id'];
 						$x=1;
 						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, issue.*, year.*
 						FROM goal 
