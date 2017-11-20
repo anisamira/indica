@@ -40,7 +40,7 @@
 					}
 	
 	
-	if(isset($_POST['submit']))		
+	if(isset($_POST['submit_master']))		
 	{
 		$sql	="UPDATE form 
 					SET form_status='pending' 
@@ -82,29 +82,11 @@
 			{
 				echo mysql_error();
 			}
-		for($y=1; $y<=50; $y++)
-								{
-									if (empty($_POST["kpi".$y]))
-									{
-										$error = 1;
-									}
-									else
-									{									
-										$value			=$_POST['kpi'.$y];
-										$ownership		=$_POST['ownership'.$y];
-										$data_source	=$_POST['data_source'.$y];
-										$estimated_cost	=$_POST['estimated_cost'.$y];
-										$exp_fin_return	=$_POST['exp_fin_return'.$y];
-											
-										$sql="INSERT INTO reference (kpi_id, ownership, data_source, estimated_cost, exp_fin_return) VALUES ('$value','$ownership','$data_source','$estimated_cost', '$exp_fin_return')";
-										$result = mysql_query($sql) or die(mysql_error());  
-										   
-										if (false === $result) 
-										{
-											echo mysql_error();
-										}						
-									}	
-								}
+		$sql2	="UPDATE master_status
+					SET action_type='pending'
+					WHERE form_id='$form_id'";
+		$result2 = mysql_query($sql2) or die(mysql_error());  
+
 	}
 	
 	

@@ -146,7 +146,7 @@
 												</table>								
 												<div style="margin:20px;">
 													<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
-													<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit this form?');" /></input>
+													<input type="submit" name="submit_master" value="Submit" onclick="return confirm('Are you sure you want to submit this form?');" /></input>
 												</div>
 											</form>
 										</div><?php					
