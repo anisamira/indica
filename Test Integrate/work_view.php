@@ -6,10 +6,10 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
-	$moduleid=$_SESSION['module_id'];
-	$sesi=$_SESSION['session_name'];
+	$moduleid=$_POST['module_id'];
+	$sesi=$_POST['session_name'];
 	
-if (!isset($_SESSION['module_id'])&&!isset($_SESSION['session_name'])){
+if (!isset($_POST['module_id'])&&!isset($_POST['session_name'])){
 header("location:workbench_view.php");
 }
 else{

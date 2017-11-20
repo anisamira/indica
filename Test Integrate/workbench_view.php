@@ -47,30 +47,46 @@ if(isset($_POST["search"])){
 
  if(mysql_num_rows($result)>0){
   {
-		//print HTML table
-		echo '<table style="width:100%">';
-		echo
-		'<tr><td><b>Code</b></td><td><b>Nama</b></td></tr>';
-		
-		// iterate over record set
-		// print each field
+	  ?>
+	  
+	  <div class="table-responsive">  
+								   <table class="table table-bordered"> 
+
+										<tr> 
+											<th>CODE</th>  
+											<th>SESSION</th>  
+											<th>NAME</th>
+										</tr>
+	  
+	  
+<?php		
 		while($row=mysql_fetch_array($result))
 		{
 			$moduleid= $row['module_id'];
 			$sesi=$row['session_name'];
 			$name=$row['module_name'];
-			$_SESSION['module_id']=$moduleid;
-			$_SESSION['session_name']=$sesi;
+			$_POST['module_id']=$moduleid;
+			$_POST['session_name']=$sesi;
+?>			
+                            <td><?php echo $x;?></td>
+								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>   
+							<td><input class="form-control" style="width:156px;" type="text" name="pencegahan<?php echo $x;?>" required/>
+								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
+							<td><?php echo $name;?></td>
 
-			
-			
-		echo '<tr>';
-		echo '<td class="td1"><a href="work_view.php">'.$moduleid.' '.$sesi.'</a></td>';
-	
+								   
+								   
+								   
+												</tr>
+												<?php $x++;
+											} 
+}
+											?>
+									</table>								
 
-		echo '<td class="td1">' . $name . '</td>';
-		}
-		echo '</table>';
+</div>
+
+<?php		
 	}
  }
   
