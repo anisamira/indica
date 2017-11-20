@@ -59,22 +59,17 @@ if(isset($_POST["search"])){
 			$moduleid= $row['module_id'];
 			$sesi=$row['session_name'];
 			$name=$row['module_name'];
-			$_GET['module_id']=$moduleid;
-			$_GET['session_name']=$sesi;
-			$vm=$_GET['module_id'];
-			$vsesi=$_GET['session_name'];
+			$_SESSION['module_id']=$moduleid;
+			$_SESSION['session_name']=$sesi;
+
+			
 			
 		echo '<tr>';
-		echo '<td class="td1"><form action="work_view.php" method="get" name="coded"><button type="submit" name="coded" value="GO" class="btn-link">'.$vm.' '.$vsesi.'</button></form></td>';
+		echo '<td class="td1"><a href="work_view.php" target="_blank">'.$moduleid.' '.$sesi.'</a></td>';
 	
 
 		echo '<td class="td1">' . $name . '</td>';
 		}
-		
-		
-		
-
-			
 		echo '</table>';
 	}
  }
