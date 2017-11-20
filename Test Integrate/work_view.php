@@ -6,13 +6,32 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
-	$moduleid=$_POST['module_id'];
-	$sesi=$_POST['session_name'];
+
 	
-if (!isset($_POST['module_id'])&&!isset($_POST['session_name'])){
-header("location:workbench_view.php");
-}
+if (!isset($_POST['Go'])){
+	?>
+<div class="alert alert-warning alert-dismissable fade in">
+	 <meta http-equiv="refresh" content="1;url=workbench_view.php" />
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong></strong> Redirecting in 1 seconds...
+  </div>
+  
+<?php
+  }
 else{
+	
+	
+ for($y=1; $y<=50; $y++)
+								
+									if (empty($_POST["module".$y]))
+									{
+										$error = 1;
+									}
+									else
+									{
+	
+	$moduleid=$_POST['module'.$y];
+	$sesi=$_POST['sesi'.$y];
 	
 	?>
 
@@ -206,6 +225,7 @@ $(document).ready(function() {
 <!-- this is the end of this doc  >
 <?php
 // end 
+}
 }
 ?>
 

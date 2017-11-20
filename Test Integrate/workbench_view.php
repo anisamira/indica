@@ -18,10 +18,6 @@
 
 
 
-<div style="padding-left:16px">
-
-<div class="content">
-
 <html>
 <form name="find" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
 
@@ -39,14 +35,14 @@ Module Code: <input type="text" name="code">
 if(isset($_POST["search"])){
 	$code=$_POST['code'];
 	
-
+  $x=1;
   $sql=("SELECT goal.*, module.* FROM goal JOIN module ON goal.module_id=module.module_id WHERE module.module_id='$code' GROUP BY module.module_id");
   	
 	$result = mysql_query($sql) or die(mysql_error());
 
 
  if(mysql_num_rows($result)>0){
-  {
+  
 	  ?>
 	  
 	  <div class="table-responsive">  
@@ -65,31 +61,30 @@ if(isset($_POST["search"])){
 			$moduleid= $row['module_id'];
 			$sesi=$row['session_name'];
 			$name=$row['module_name'];
-			$_POST['module_id']=$moduleid;
-			$_POST['session_name']=$sesi;
+			
 ?>			
-                            <td><?php echo $x;?></td>
-								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>   
-							<td><input class="form-control" style="width:156px;" type="text" name="pencegahan<?php echo $x;?>" required/>
-								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
+<tr>
+                           <form action="work_view.php" method="post">
+                            <td><?php echo $moduleid;?></td>
+								   <input type="hidden" name="module<?php echo $x;?>" value="<?php echo $moduleid;?>"/>   
+							<td><?php echo $sesi;?></td>
+								   <input type="hidden" name="sesi<?php echo $x;?>" value="<?php echo $sesi;?>"/>
 							<td><?php echo $name;?></td>
+							<td><button type="submit" name="Go" class="btn btn-primary">Go</button></td>
+							</form>
 
-								   
-								   
-								   
-												</tr>
-												<?php $x++;
-											} 
-}
+</tr>								   
+												<?php
+											}
+	$x++;											
+
 											?>
 									</table>								
 
 </div>
 
 <?php		
-	}
- }
-  
+ }	 
   else{
  	{
 		//print error message
@@ -99,8 +94,8 @@ if(isset($_POST["search"])){
 	// free result set
 	
 }
-	
 }
+
 
 
 ?>		
