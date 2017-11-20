@@ -165,7 +165,7 @@ elseif 	($curyear==$year&&$year==$year5)
 						FROM issue WHERE issue.ach_id=achievement.ach_id)
                         AND goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
-						AND form.form_status='Approve'
+						AND form.form_status='approved'
 						AND achievement.year_id='$year_id'
 						AND achievement.quarter='2'
                         HAVING achievement.ach_desc < achievement.target

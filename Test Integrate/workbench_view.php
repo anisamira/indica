@@ -17,14 +17,6 @@
 			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
 
 
-<div class="topnav">
-  <a class="active" href="work_view.php">Information</a>
-  <a href="achieve_view.php">Achievement</a>
-  <a href="doc_view.php">Deliverables</a>
-  <a href="issue_view.php">Issue</a>
-  <a href="financial_view.php">Financial</a>
-
-</div>
 
 <div style="padding-left:16px">
 
@@ -67,10 +59,13 @@ if(isset($_POST["search"])){
 			$moduleid= $row['module_id'];
 			$sesi=$row['session_name'];
 			$name=$row['module_name'];
+			$_SESSION['module_id']=$moduleid;
+			$_SESSION['session_name']=$sesi;
+
 			
 			
 		echo '<tr>';
-		echo '<td class="td1"><a href="work.php" target="_blank">'.$moduleid.' '.$sesi.'</a></td>';
+		echo '<td class="td1"><a href="work_view.php" target="_blank">'.$moduleid.' '.$sesi.'</a></td>';
 	
 
 		echo '<td class="td1">' . $name . '</td>';

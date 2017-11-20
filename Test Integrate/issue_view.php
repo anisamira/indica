@@ -6,49 +6,41 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
-	$curyear=date ('Y');
 	
-	$module_id		=$_SESSION['module_id'];
-	$user_id		=$_SESSION['user_id'];
+	$moduleid=$_SESSION['module_id'];
+	$sesi=$_SESSION['session_name'];
+	
+	$curyear=date ('Y');
+    $date_now=date ("m/d/Y");
+ $date_q= date ("06/30/Y");
+ if ($date_now<=$date_q)
+{
+	$quater=1;
+}
+else
+    $quater=2;	
+	
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
 						while($row=mysql_fetch_array($result))
 						{
-							$_SESSION['session_name']	=$row['session_name'];
 							$year1=$row['year1'];
 							$year2=$row['year2'];
 							$year3=$row['year3'];
 							$year4=$row['year4'];
 							$year5=$row['year5'];
+						}
+					}
+					else
+					{
+						echo "no data found";
+					}
+	
 
-						}
-						$session_name	=$_SESSION['session_name'];
-					}
-					else
-					{
-						echo "no data found";
-					}
 	
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
-						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
-					}
-					else
-					{
-						echo "no data found";
-					}
-	
-    $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
+  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
@@ -64,49 +56,14 @@
 					{
 						echo "no data found";
 					}
-	// $sql			= "SELECT * FROM target";
-					// $result = mysql_query($sql) or die(mysql_error()); 
-					// if(mysql_num_rows($result)>0)
-					// {
-						// while($row=mysql_fetch_array($result))
-						// {
-							
-							// $target1= $row['target1'];
-							// $target2= $row['target2'];
-							// $target3= $row['target3'];
-							// $target4= $row['target4'];
-							// $target5= $row['target5'];
-							
-						
-// if ($curyear==$year&&$year==$year1)
-// {
-	// $target=$target1;
-// }
-// elseif 	($curyear==$year&&$year==$year2)
-// {
-	// $target=$target2;
-// }
-// elseif 	($curyear==$year&&$year==$year3)
-// {
-	// $target=$target3;
-// }
-// elseif 	($curyear==$year&&$year==$year4)
-// {
-	// $target=$target4;
-// }
-// elseif 	($curyear==$year&&$year==$year5)
-// {
-	// $target=$target5;
-// }								
-							
-						// }
-						
-					// }
-					// else
-					// {
-						// echo "no data found";
-					// }				
-					
+	
+if (!isset($_SESSION['code'])){
+	
+	header("location:workbench_view.php");
+}
+else{
+
+	
 	
 	?>
 
@@ -119,29 +76,25 @@
 
 
 <div class="topnav">
-  <a href="work.php">Information</a>
-  <a href="achieve.php">Achievement</a>
-  <a  href="doc.php">Deliverables</a>
-  <a class="active" href="issue.php">Issue</a>
-  <a  href="financial.php">Financial</a>
+  <a href="work_view.php">Information</a>
+  <a href="achieve_view.php">Achievement</a>
+  <a href="doc_view.php">Deliverables</a>
+  <a class="active" href="issue_view.php">Issue</a>
+  <a href="financial_view.php">Financial</a>
 
 </div>
 
 <div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_id;?>
+  &nbsp&nbspWELCOME TO <?=$moduleid;?>
   
 </div>
 <body>
-
-
-                    <form action="add_issue.php" method="post">
-					<input type="submit" name="Issue" value="Check for an Issue">
-					</form>
 
 							
 
 <?php
 
+						
 						$x=1;
 						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, issue.*, year.*
 						FROM goal 
@@ -155,10 +108,9 @@
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN issue ON issue.ach_id=achievement.ach_id
 						JOIN year ON achievement.year_id=year.year_id						
-                        WHERE goal.module_id='$module_id'
-						AND goal.session_name='$session_name'
+                        WHERE goal.module_id='$moduleid'
+						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
-						AND achievement.year_id='$year_id'
 						HAVING achievement.ach_desc < achievement.target
 						";
 						$result = mysql_query($sql) or die(mysql_error());
@@ -257,24 +209,8 @@ elseif 	($curyear==$year&&$year==$year5)
 </div>
 <?php					
 					}
-
-
-					
-					else
-					{
-					
-					echo "You Have an Issue to be updated";
-							
-						?>
-
-					<form action="add_issue.php" method="post">
-					<input type="submit" name="Issue" value="Add Issue" target="blank">
-					</form>
-<?php
-					
-					}
 						
-						?>
+?>
 
 
 
@@ -342,5 +278,8 @@ body {margin:0;}
 </style>
 
 </html>
-
+<?php
+// the end
+}
+?>
 

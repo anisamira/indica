@@ -6,40 +6,61 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
-	$module_id		=$_SESSION['module_id'];
-	$user_id		=$_SESSION['user_id'];
+	$moduleid=$_SESSION['module_id'];
+	$sesi=$_SESSION['session_name'];
+	
+	$curyear=date ('Y');
+    $date_now=date ("m/d/Y");
+ $date_q= date ("06/30/Y");
+ if ($date_now<=$date_q)
+{
+	$quater=1;
+}
+else
+    $quater=2;	
+	
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
 						while($row=mysql_fetch_array($result))
 						{
-							$_SESSION['session_name']	=$row['session_name'];
+							$year1=$row['year1'];
+							$year2=$row['year2'];
+							$year3=$row['year3'];
+							$year4=$row['year4'];
+							$year5=$row['year5'];
 						}
-						$session_name	=$_SESSION['session_name'];
 					}
 					else
 					{
 						echo "no data found";
 					}
 	
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
+
+	
+  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
 						while($row=mysql_fetch_array($result))
 						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
+							$year= $row['year_name'];
+							$year_id=$row['year_id'];
+							
 						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
+						
 					}
 					else
 					{
 						echo "no data found";
 					}
 	
+if (!isset($_SESSION['code'])){
+	
+	header("location:workbench_view.php");
+}
+else{
 
 	
 	?>
@@ -51,18 +72,17 @@
 		<!-- !PAGE CONTENT! -->
 			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
 
-
 <div class="topnav">
-  <a href="work.php">Information</a>
-  <a href="achieve.php">Achievement</a>
-  <a class="active" href="doc.php">Deliverables</a>
-  <a href="issue.php">Issue</a>
-  <a  href="financial.php">Financial</a>
+  <a href="work_view.php">Information</a>
+  <a  href="achieve_view.php">Achievement</a>
+  <a class="active" href="doc_view.php">Deliverables</a>
+  <a href="issue_view.php">Issue</a>
+  <a href="financial_view.php">Financial</a>
 
 </div>
 
 <div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_id;?>
+  &nbsp&nbspWELCOME TO <?=$moduleid;?>
  </div> 
   <body>
 
@@ -71,12 +91,7 @@
 <?php
 $module_id=$_SESSION['module_id'];
 						$x=1;
-						
-						if(isset($_GET['deletedoc']))
-											{
-												$query	=mysql_query("DELETE FROM evidence WHERE ev_id=".$_GET['deletedoc']);
-											}
-						
+					
 						
 						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, evidence.*, year.*
 						FROM goal 
@@ -90,8 +105,8 @@ $module_id=$_SESSION['module_id'];
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN year ON achievement.year_id=year.year_id
 						JOIN evidence ON evidence.ach_id=achievement.ach_id
-                        WHERE goal.module_id='$module_id'
-						AND goal.session_name='$session_name'
+                        WHERE goal.module_id='$moduleid'
+						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
 						ORDER BY evidence.ach_id AND achievement.year_id
 						";
@@ -154,7 +169,6 @@ $module_id=$_SESSION['module_id'];
 								<td><?php echo $achievement;?></td>								
 								<td><?php echo $descriptionvalue;?></td>
 								<td><?php echo "<a href='$files_show'>$files_field</a></div>"?></td>
-								<td><input class="form-control" type="hidden" name="ev_id<?php echo $x;?>" value="<?php echo $ev_id;?>"></input><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletedoc(<?php echo  $ev_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
 
 
 							</tr>
@@ -165,24 +179,9 @@ $module_id=$_SESSION['module_id'];
 				
 					
 					}
-					else
-					{	
-					
-					echo "No evidence is uploaded yet";
 					?>
-					<?php
-					}	
-				    
-						?>
-					
 
 </table> 
-
-<form action="upload.php" method="post" name="addevidence">
-					<input type="submit" name="Evidence" value="Add Evidence">
-					<input type="submit" name="editevidence" value="Edit Evidence">
-					</form>
-
 	</div>
 		</div>
 	</div><!--/wrapper-->
@@ -249,22 +248,10 @@ body {margin:0;}
 
 
 
-<script type="text/javascript">
-	
-				function deletedoc (id)
-					{
-						if(confirm('Sure To Remove This Document?'))
-						{
-							window.location.href='doc.php?deletedoc='+id;
-						return true;
-						}
-						
-					}
-					
-				</script>
-
-
-
 </html>
+<?php
+// end
+}
 
+?>
 
