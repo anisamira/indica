@@ -9,9 +9,8 @@
 	$moduleid=$_SESSION['module_id'];
 	$sesi=$_SESSION['session_name'];
 	
-if (!isset($_SESSION['code'])){
-	
-	header("location:workbench_view.php");
+if (!isset($_SESSION['module_id'])&&!isset($_SESSION['session_name'])){
+header("location:workbench_view.php");
 }
 else{
 	

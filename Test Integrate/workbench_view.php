@@ -65,7 +65,7 @@ if(isset($_POST["search"])){
 			
 			
 		echo '<tr>';
-		echo '<td class="td1"><a href="work_view.php" target="_blank">'.$moduleid.' '.$sesi.'</a></td>';
+		echo '<td class="td1"><a href="work_view.php">'.$moduleid.' '.$sesi.'</a></td>';
 	
 
 		echo '<td class="td1">' . $name . '</td>';
