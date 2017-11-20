@@ -21,7 +21,7 @@
 										foreach ($_POST['strategy'.$y] as $key=>$value)
 										{										
 											$goal_id=$_POST['goal_id'.$y];
-											$sql="INSERT INTO strategy (goal_id, strategy_desc) VALUES ('$goal_id','$value')";
+											$sql	="INSERT INTO strategy (goal_id, strategy_desc) VALUES ('$goal_id','$value')";
 											$result = mysql_query($sql) or die(mysql_error());  										   
 											if (false === $result) 
 											{
@@ -33,12 +33,23 @@
 							}
 							if (isset($_POST['edit_actionplan']))
 							{
-								$actionplan_id	=$_POST["actionplan_id"];
-								$actionplan_desc = mysql_real_escape_string($_POST["actionplan_desc"]); 
-								$sql		="UPDATE actionplan
-												SET actionplan_desc='$actionplan_desc'
-												WHERE actionplan_id='$actionplan_id'";
-								$result			=mysql_query($sql) or die (mysql_error());
+								$actionplan_id		=$_POST["actionplan_id"];
+								$actionplan_desc	= mysql_real_escape_string($_POST["actionplan_desc"]); 
+								$sql				="UPDATE actionplan
+														SET actionplan_desc='$actionplan_desc'
+														WHERE actionplan_id='$actionplan_id'";
+								$result				=mysql_query($sql) or die (mysql_error());
+								if (false===$result)
+									{
+										echo mysql_error();
+									}
+							}
+							if (isset($_POST['add_actionplan']))
+							{
+								$strategy_id		=$_POST["strategy_id"];
+								$actionplan_desc 	= mysql_real_escape_string($_POST["actionplan_desc"]); 
+								$sql				="INSERT INTO actionplan (strategy_id, actionplan_desc) VALUES ('$strategy_id','$actionplan_desc')";
+								$result				=mysql_query($sql) or die (mysql_error());
 								if (false===$result)
 									{
 										echo mysql_error();
@@ -149,7 +160,31 @@
 																$y++;
 															}?>
 																<tr style="font-size:13px">
-																	<td colspan="3"><input type="button" name="edit_actionplan" value="Add Action Plan"></input></td>
+																	<td colspan="3">
+																		<button data-toggle="modal" data-target="#strategy<?php echo $strategy_id;?>"  type="button">Add Action Plan</button>
+																		<div class="modal fade" id="strategy<?php echo $strategy_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																			<div class="modal-dialog">
+																				<div class="modal-content">
+																					<div class="modal-header">
+																						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																						<h4 class="modal-title" id="strategy<?php echo $strategy_id;?>">Add Action Plan</h4>
+																					</div>
+																					<form action="" method="post">
+																						<div class="modal-body">
+																							<div class="row" style="margin:10px;">
+																								<input type="hidden" name="strategy_id" value="<?php echo $strategy_id;?>"></input>
+																								<textarea class="form-control" name="actionplan_desc" required></textarea>
+																							</div>
+																						</div>
+																						<div class="modal-footer">
+																							<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																							<input type="submit" class="btn-u btn-u-primary" name="add_actionplan" value="Submit"></input>
+																						</div>
+																					</form>
+																				</div>
+																			</div>
+																		</div>
+																	</td>
 																</tr>
 															</table><?php
 															

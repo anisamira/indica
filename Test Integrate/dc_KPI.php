@@ -45,6 +45,17 @@
 										echo mysql_error();
 									}
 							}
+							if (isset($_POST['add_kpi']))
+							{
+								$actionplan_id	=$_POST["actionplan_id"];
+								$kpi_desc 		= mysql_real_escape_string($_POST["kpi_desc"]); 
+								$sql			="INSERT INTO kpi (actionplan_id, kpi_desc) VALUES ('$actionplan_id','$kpi_desc')";
+								$result			=mysql_query($sql) or die (mysql_error());
+								if (false===$result)
+									{
+										echo mysql_error();
+									}
+							}
 
 								
 
@@ -159,7 +170,31 @@
 																$y++;
 															}?>
 																<tr style="font-size:13px">
-																	<td colspan="3"><input type="button" name="edit_kpi" value="Add KPI"></input></td>
+																	<td colspan="3">
+															<button data-toggle="modal" data-target="#action<?php echo $actionplan_id;?>"  type="button">Add KPI</button>
+															<div class="modal fade" id="action<?php echo $actionplan_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																<div class="modal-dialog">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																			<h4 class="modal-title" id="action<?php echo $actionplan_id;?>">Add KPI</h4>
+																		</div>
+																		<form action="" method="post">
+																			<div class="modal-body">
+																				<div class="row" style="margin:10px;">
+																					<input type="hidden" name="actionplan_id" value="<?php echo $actionplan_id;?>"></input>
+																					<textarea class="form-control" name="kpi_desc" required></textarea>
+																				</div>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																				<input type="submit" class="btn-u btn-u-primary" name="add_kpi" value="Submit"></input>
+																			</div>
+																		</form>
+																	</div>
+																</div>
+															</div>
+														</td>
 																</tr>
 															</table><?php
 														}
