@@ -6,15 +6,18 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
-	$moduleid=$_SESSION['module_id'];
-	$sesi=$_SESSION['session_name'];
 	
-if (!isset($_SESSION['code'])){
 	
-	header("location:workbench_view.php");
+if (!isset($_GET['coded'])){
+	
+	echo 'WRONG';
 }
 else{
 	
+	$vm=$_GET['module_id'];
+	$vsesi=$_GET['session_name'];
+	
+echo 'masyuk';
 	?>
 
 <div class="wrapper">
@@ -48,8 +51,8 @@ else{
 											JOIN target ON target.kpi_id=kpi.kpi_id 
 											JOIN reference ON reference.kpi_id=kpi.kpi_id
                                             JOIN form ON form.module_id=goal.module_id											
-											WHERE goal.module_id='$moduleid'
-											AND goal.session_name='$sesi'
+											WHERE goal.module_id='$vm'
+											AND goal.session_name='$vsesi'
 											AND form.form_status='approved' ";
 											$result = mysql_query($sql) or die(mysql_error());
 
