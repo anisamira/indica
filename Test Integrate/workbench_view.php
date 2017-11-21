@@ -58,20 +58,25 @@ if(isset($_POST["search"])){
 <?php		
 		while($row=mysql_fetch_array($result))
 		{
-			$moduleid= $row['module_id'];
-			$sesi=$row['session_name'];
+			$_GET['module_id']=$row['module_id'];
+			$_GET['session_name']=$row['session_name'];
 			$name=$row['module_name'];
+			$moduleid=$_GET['module_id'];
+			$sesi=$_GET['session_name'];
 			
-?>			
+			
+			
+			
+?>	
 <tr>
-                           <form action="work_view.php" method="post">
+                         <!--  <form action='work_view.php?moduleid=".urlencode($moduleid)."sesi=".urlencode($sesi)."' method="get">-->
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="module<?php echo $x;?>" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>
 								   <input type="hidden" name="sesi<?php echo $x;?>" value="<?php echo $sesi;?>"/>
 							<td><?php echo $name;?></td>
-							<td><button type="submit" name="Go" class="btn btn-primary">Go</button></td>
-							</form>
+							<td><button type="submit" name="Go" class="btn btn-primary"><a href="work_view.php?moduleid=".urlencode($moduleid)."">Go</a></button></td>
+							<!--</form>-->
 
 </tr>								   
 												<?php

@@ -7,31 +7,35 @@
 	include('sidebar.php');
 	
 
+	$moduleid=$_GET['moduleid'];
+	//$sesi=$_GET['sesi'];
 	
-if (!isset($_POST['Go'])){
+	echo $moduleid;
+	
+if (!isset($_GET['moduleid'])){
+	
+	echo "luar";
+	
 	?>
-<div class="alert alert-warning alert-dismissable fade in">
-	 <meta http-equiv="refresh" content="1;url=workbench_view.php" />
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong></strong> Redirecting in 1 seconds...
-  </div>
+
+	
   
 <?php
   }
 else{
 	
-	
- for($y=1; $y<=50; $y++)
+	echo $moduleid;
+ // for($y=1; $y<=50; $y++)
 								
-									if (empty($_POST["module".$y]))
-									{
-										$error = 1;
-									}
-									else
-									{
+									// if (empty($_POST["module".$y]))
+									// {
+										// $error = 1;
+									// }
+									// else
+									// {
 	
-	$moduleid=$_POST['module'.$y];
-	$sesi=$_POST['sesi'.$y];
+	// $moduleid=$_POST['module'.$y];
+	// $sesi=$_POST['sesi'.$y];
 	
 	?>
 
@@ -67,7 +71,7 @@ else{
 											JOIN reference ON reference.kpi_id=kpi.kpi_id
                                             JOIN form ON form.module_id=goal.module_id											
 											WHERE goal.module_id='$moduleid'
-											AND goal.session_name='$sesi'
+											AND goal.session_name='sesi 2016-2020'
 											AND form.form_status='approved' ";
 											$result = mysql_query($sql) or die(mysql_error());
 
@@ -226,6 +230,6 @@ $(document).ready(function() {
 <?php
 // end 
 }
-}
+
 ?>
 
