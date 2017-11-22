@@ -15,7 +15,26 @@ else
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	
-	
+	$sql			="SELECT * FROM session where session_status='1'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$_SESSION['session_name']	=$row['session_name'];
+							$year1=$row['year1'];
+							$year2=$row['year2'];
+							$year3=$row['year3'];
+							$year4=$row['year4'];
+							$year5=$row['year5'];
+						}
+	$session_name	=$_SESSION['session_name'];
+					}
+					else
+					{
+						echo "no data found";
+					}
+					
 					if(isset($_POST['submit_approval']))
 						{
 							for($y=1; $y<=50; $y++)
@@ -67,14 +86,14 @@ else
 				<table class="table table-bordered"> 
 					<tr style="font-size:13px">
 						<th>Version</th>						
-						<th>Last Updated</th>
+						<!--<th>Last Updated</th>-->
 						<th>Status</th>
 						<th>Action</th>						
 					</tr>
 					<?php
 					$sql= "SELECT * 
 						FROM form 
-						WHERE module_id='$module_id'";
+						WHERE module_id='$module_id' AND session_name='$session_name'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
@@ -85,7 +104,6 @@ else
 							$session_name	=$row['session_name'];?>
 							<tr style="font-size:13px">  
 								<td>KPI Achievement <?php echo $session_name;?></td>
-								<td></td>
 								<td><?php echo $form_status;?></td>
 								<td>
 									<form action="datamanager_review.php" method="post">
@@ -104,27 +122,7 @@ else
 										
 											
 							</tr>
-							<tr style="font-size:13px">  
-								<td>KPI Quater Achievement <?php echo $curyear;?></td>
-								<td></td>
-								<td><?php echo $form_status;?></td>
-								<td>
-									<form action="datamanager_achieve.php" method="post">
-										<input type="hidden" name="form_id" value="<?php echo $form_id;?>"></input>
-										<?php
-										if ($form_status == 'approved' || $form_status == 'rejected')
-										{?>
-											<input type="submit" name="approval" value="Approval" disabled></input><?php
-										}
-										else
-										{?>
-											<input type="submit" name="approval" value="Approval"></input><?php
-										}?>
-										
-									</form>
-										
-											
-							</tr><?php
+							<?php
 							
 						}
 					}
