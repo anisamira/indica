@@ -12,10 +12,10 @@
  $date_q= date ("06/30/Y");
  if ($date_now<=$date_q)
 {
-	$quater=1;
+	$quarter=1;
 }
 else
-    $quater=2;	
+    $quarter=2;	
 	
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
@@ -90,9 +90,7 @@ else
 <body>
 
 										
-<?php
-						$module_id=$_SESSION['module_id'];
-						
+<?php						
 							
 						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
 						FROM goal 
@@ -107,6 +105,7 @@ else
 						JOIN year ON achievement.year_id=year.year_id
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
+						AND achievement.quarter='$quarter'
 						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						
@@ -146,6 +145,7 @@ else
 						while($row=mysql_fetch_array($result))
 						{
 							$kpi_id			=$row['kpi_id'];
+							$ach_id			=$row['ach_id'];
 							$goal_desc		=$row['goal_desc'];
 							$kpi_desc		=$row['kpi_desc'];
 							$target_id		=$row['target_id'];
@@ -163,26 +163,26 @@ else
 							$target5= $row['target5'];
 							
 						
-if ($year==$year1)
-{
-	$target=$target1;
-}
-elseif 	($year==$year2)
-{
-	$target=$target2;
-}
-elseif 	($year==$year3)
-{
-	$target=$target3;
-}
-elseif 	($year==$year4)
-{
-	$target=$target4;
-}
-elseif 	($year==$year5)
-{
-	$target=$target5;
-}	
+							if ($year==$year1)
+							{
+								$target=$target1;
+							}
+							elseif 	($year==$year2)
+							{
+								$target=$target2;
+							}
+							elseif 	($year==$year3)
+							{
+								$target=$target3;
+							}
+							elseif 	($year==$year4)
+							{
+								$target=$target4;
+							}
+							elseif 	($year==$year5)
+							{
+								$target=$target5;
+							}	
 							
 						?>
 
@@ -194,7 +194,7 @@ elseif 	($year==$year5)
 								<td><?php echo $quarterq;?></td>
 								<td><?php echo $target;?></td>
 								<td><?php echo $achievement;?></td>
-								<td><input type="hidden" name="kpi_id<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
+								<td><input type="hidden" name="ach_id<?php echo $x;?>" value="<?php echo $ach_id;?>"></input>
 								<label class="radio-inline"><input type="radio" name="approval<?php echo $x;?>" value="approve" required> Approve</input></label>
 								<input type="radio" name="approval<?php echo $x;?>" value="reject"> Reject</input>
 							</td>
@@ -207,8 +207,7 @@ elseif 	($year==$year5)
 					</table>
 					<div style="margin:20px;">			
 							<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
-							<input type="hidden" name="form_id" value="<?php echo $form_id;?>">
-							<input type="submit" name="submit" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>	
+							<input type="submit" name="submit_achievement" value="Submit" onclick="return confirm('Are you sure you want to submit?');" /></input>	
 					</div>		<!--<form action="index.php" method="post">-->			
 				</form>
 							<?php

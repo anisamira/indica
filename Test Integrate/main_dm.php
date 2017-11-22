@@ -8,10 +8,10 @@
  $date_q= date ("06/30/Y");
  if ($date_now<=$date_q)
 {
-	$quater=1;
+	$quarter=1;
 }
 else
-    $quater=2;	
+    $quarter=2;	
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	
@@ -28,12 +28,18 @@ else
 							$year4=$row['year4'];
 							$year5=$row['year5'];
 						}
-	$session_name	=$_SESSION['session_name'];
+						$session_name	=$_SESSION['session_name'];
+	
 					}
 					else
 					{
 						echo "no data found";
 					}
+					
+	$sql			="SELECT form_id FROM form where session_name='$session_name' AND module_id='$module_id'";
+					
+					$result = mysql_query($sql) or die(mysql_error()); 
+					$form_id	=$_SESSION['form_id'];
 					
 					if(isset($_POST['submit_approval']))
 						{
@@ -74,6 +80,32 @@ else
 									$result		=mysql_query($sql) or die (mysql_error());	
 								}
 						}
+						
+						if(isset($_POST['submit_achievement']))
+						{
+							for($y=1; $y<=50; $y++)
+							{
+								if (empty($_POST["ach_id".$y]))
+								{
+									$error = 1;
+								}
+								else
+								{
+									$ach_id		=($_POST["ach_id".$y]);
+									$approval 		= ($_POST["approval".$y]);
+									$action_comment = mysql_real_escape_string($_POST["action_comment".$y]); 
+									$sql			="UPDATE achievement
+														SET ach_status='$approval'
+														WHERE ach_id='$ach_id'";
+									$result			=mysql_query($sql) or die (mysql_error());
+									if (false===$result)
+									{
+										echo mysql_error();
+									}
+								}
+							}
+						}
+							
 					
 	
 ?>
@@ -119,7 +151,7 @@ else
 										}?>
 										
 									</form>
-										
+								</td>		
 											
 							</tr>
 							<?php
@@ -129,6 +161,25 @@ else
 					else
 					{
 						echo "no data found";
+					}
+					$sql= "SELECT * 
+						FROM achievement 
+						WHERE form_id='$form_id' AND quarter='$quarter'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{?>
+						<tr style="font-size:13px">  
+								<td>KPI Achievement Quarter <?php echo $quarter;?> Year <?php echo $curyear;?></td>
+								<td></td>
+								<td>
+									<form action="datamanager_achieve.php" method="post">									
+											<input type="submit" name="achieve_approval" value="Approval"></input>								
+									</form>
+								</td>
+									
+										
+											
+							</tr><?php
 					}?>
 					
 					
