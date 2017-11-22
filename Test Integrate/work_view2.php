@@ -23,7 +23,7 @@ else{
 	
 	$moduleid=$_GET['moduleid'];
 	$sesi=$_GET['sesi'];
-	
+	echo $moduleid;
  // for($y=1; $y<=50; $y++)
 								
 									// if (empty($_POST["module".$y]))
@@ -48,11 +48,11 @@ else{
 
 
 <div class="topnav">
-  <a class="active" href="work_view.php?moduleid=$moduleid&sesi=$sesi">Information</a>
-  <a href="achieve_view.php?moduleid=$moduleid&sesi=$sesi">Achievement</a>
-  <a href="doc_view.php?moduleid=$moduleid&sesi=$sesi">Deliverables</a>
-  <a href="issue_view.php?moduleid=$moduleid&sesi=$sesi">Issue</a>
-  <a href="financial_view.php?moduleid=$moduleid&sesi=$sesi">Financial</a>
+  <a class="active" href="#" name="info">Information</a>
+  <a href="#" name="achieve">Achievement</a>
+  <a href="#">Deliverables</a>
+  <a href="#">Issue</a>
+  <a href="#">Financial</a>
 
 </div>
 
@@ -151,7 +151,6 @@ if (mysql_num_rows($result)>0){
 													<td><?php echo $data_source;?></td>
 													<td><?php echo $estimated_cost;?></td>
 													<td><?php echo $exp_fin_return;?></td>
-													<td><?php echo $moduleid;;?></td>
 												</tr>
 												<?php $x++;
 											} 

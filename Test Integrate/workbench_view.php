@@ -69,14 +69,16 @@ if(isset($_POST["search"])){
 			
 ?>	
 <tr>
-                         <!--  <form action='work_view.php?moduleid=".urlencode($moduleid)."sesi=".urlencode($sesi)."' method="get">-->
+                         <form action="work_view.php?moduleid=$moduleid&sesi=$sesi" method="get">
                             <td><?php echo $moduleid;?></td>
-								   <input type="hidden" name="module<?php echo $x;?>" value="<?php echo $moduleid;?>"/>   
+								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>
-								   <input type="hidden" name="sesi<?php echo $x;?>" value="<?php echo $sesi;?>"/>
+								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 							<td><?php echo $name;?></td>
-							<td><button type="submit" name="Go" class="btn btn-primary"><a href="work_view.php?moduleid=".urlencode($moduleid)."">Go</a></button></td>
-							<!--</form>-->
+							<td><button type="submit" class="btn btn-primary">Go</button></td>
+							<!--<td><button type="submit" name="Go" class="btn btn-primary"><a href="work_view.php?moduleid=$moduleid&sesi=$sesi">Go</a></button></td>-->
+
+							</form>
 
 </tr>								   
 												<?php

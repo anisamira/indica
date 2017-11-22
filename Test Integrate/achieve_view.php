@@ -6,8 +6,6 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
-$moduleid=$_SESSION['module_id'];
-	$sesi=$_SESSION['session_name'];
 	
 	$curyear=date ('Y');
     $date_now=date ("m/d/Y");
@@ -56,10 +54,17 @@ else
 						echo "no data found";
 					}
 	
-if (!isset($_SESSION['module_id'])&&!isset($_SESSION['session_name'])){
-header("location:workbench_view.php");
+$moduleid=$_GET['moduleid'];
+$sesi=$_GET['sesi'];
+	
+if (!isset($_GET['moduleid'])){
+	
+	echo "luar";
 }
 else{
+
+$moduleid=$_GET['moduleid'];
+$sesi=$_GET['sesi'];
 
 	?>
 
