@@ -113,16 +113,19 @@ div.panel {
 
 <button class="accordion">Information</button>
 <div class="panel">
+
+
 <?php
-	include('work_view.php');
-            get_all_records();
+   include('work_view.php');
+   get_all_records();
 ?>
 
- <form class="form-horizontal" action="work_view.php?moduleid=$moduleid&sesi=$sesi" method="get" name="Expert"   
+	 
+ <form class="form-horizontal" action="work_view.php?moduleid=$moduleid&sesi=$sesi" method="post" name="Export"   
                       enctype="multipart/form-data">
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-								<button type="submit" class="btn btn-primary">Download Excel</button>
+								<button type="submit" class="btn btn-primary" name="Export">Download Excel</button>
                             </div>
                    </div>                    
             </form>           
@@ -132,10 +135,9 @@ div.panel {
 
 <button class="accordion">Achievement</button>
 <div class="panel">
-										
 <?php
 						
-						$x=1;
+							
 						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
@@ -160,9 +162,9 @@ div.panel {
 						if(mysql_num_rows($result) > 0)
 					{
 						
-	
+						$x=1;
 						
-						?>
+?>
 						<table class="table table-bordered">
 					                <col width="10%">
 									<col width="20%">
@@ -226,7 +228,7 @@ elseif 	($year==$year5)
 }	
 							
 
-						?>
+?>
 
 							<tr>  
 								<td height="56px"><?php echo $x;?></td>
@@ -240,14 +242,21 @@ elseif 	($year==$year5)
 							<?php
 						$x++;
 						}
-					}
-else
-{
-	echo "No result";
-}
-
+						?>
+						</table>
+					<?php }	
 ?>
-</table>					
+
+<form class="form-horizontal" action="achieve_view2.php?moduleid=$moduleid&sesi=$sesi" method="post" name="Export"   
+                      enctype="multipart/form-data">
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export">Download Excel</button>
+                            </div>
+                   </div>                    
+            </form>           
+
+										
 </div>
 
 <button class="accordion">Deliverables</button>
@@ -339,17 +348,20 @@ else
 							<?php
 						$x++;
 						}
-						
-				
-					
+	?>
+</table> 	
+	<form method="post" action="export.php?moduleid=$moduleid&sesi=$sesi" >
+     <input type="submit" name="export" class="btn btn-success" value="Export" />
+    </form>			
+<?php					
 					}
+					
 					else
 {
 	echo "No result";
 }
 					?>
 
-</table> 
  
  </div>
 

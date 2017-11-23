@@ -88,7 +88,7 @@ else{
   
 
 <?php
-$module_id=$_SESSION['module_id'];
+
 						$x=1;
 					
 						
