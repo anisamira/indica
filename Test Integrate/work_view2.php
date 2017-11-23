@@ -213,6 +213,11 @@ if (mysql_num_rows($result)>0){
 												<?php $x++;
 											} 
 }
+
+else
+{
+	echo "No result";
+}
 											?>
 									</table>								
 
@@ -333,7 +338,10 @@ elseif 	($year==$year5)
 						$x++;
 						}
 					}
-
+else
+{
+	echo "No result";
+}
 
 ?>
 </table>					
@@ -432,6 +440,10 @@ elseif 	($year==$year5)
 				
 					
 					}
+					else
+{
+	echo "No result";
+}
 					?>
 
 </table> 
@@ -557,6 +569,10 @@ elseif 	($curyear==$year&&$year==$year5)
 </div>
 <?php					
 					}
+else
+{
+	echo "No result";
+}
 ?>
 </div>
 
