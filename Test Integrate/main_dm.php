@@ -162,15 +162,36 @@ else
 					{
 						echo "no data found";
 					}
+					$status="";
+					
+					$sql_approval="SELECT ach_id FROM achievement WHERE ach_status='reject'";
+					$result_approval=mysql_query($sql_approval) or die(mysql_error());
+					if(mysql_num_rows($result_approval)>0)
+					{
+						$status="rejected";
+					}
+					else
+					{
+						$sql_approval2="SELECT ach_id FROM achievement WHERE ach_status='approve'";
+						$result_approval2=mysql_query($sql_approval2) or die(mysql_error());
+						if(mysql_num_rows($result_approval2)>0)
+						{
+							$status="approved";
+						}
+						else
+						{
+							$status="pending";
+						}
+					}
 					$sql= "SELECT * 
 						FROM achievement 
 						WHERE form_id='$form_id' AND quarter='$quarter'";
-					$result = mysql_query($sql) or die(mysql_error()); 
+					$result = mysql_query($sql) or die(mysql_error());
 					if(mysql_num_rows($result)>0)
 					{?>
 						<tr style="font-size:13px">  
 								<td>KPI Achievement Quarter <?php echo $quarter;?> Year <?php echo $curyear;?></td>
-								<td></td>
+								<td><?php echo $status;?></td>
 								<td>
 									<form action="datamanager_achieve.php" method="post">									
 											<input type="submit" name="achieve_approval" value="Approval"></input>								
