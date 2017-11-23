@@ -13,10 +13,6 @@ include ('sidebar.php');
 
 <div class="w3-container" style="margin-left:300px;margin-top:43px;border-left:solid; border-height:100%; ">
 
-<h3>TITLE</h3>
-
-
-    
   <header class="w3-container" style="padding-top:22px">
     <h5><b><i class="fa fa-dashboard"></i> Available Modules</b></h5>
   </header>

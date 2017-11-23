@@ -7,6 +7,8 @@ include ('sidebar.php');
 <head>
 <link rel="stylesheet" type="text/css" href="table.css" />
 <link rel="stylesheet" type="text/css" href="alert.css" />
+<link rel="stylesheet" type="text/css" href="toggleswitch.css" />
+
 
 </head>
 
@@ -39,11 +41,12 @@ include ('sidebar.php');
     <strong><center>Session Created</strong></center>
 
     <br>
-      <table id='myTable' style= "float=left; margin: 0 auto;" >
+      <table id='myTable' class='fixed' style= "float=left; margin: 0 auto;" >
       <thead>
         <tr>
           <th>Session Name</th>
-          <th>Status</th>
+          <th>Current Status</th>
+          <th>Change Status</th>
         </tr>
       </thead>
       <tbody>
@@ -52,25 +55,37 @@ include ('sidebar.php');
 
               while($row = mysql_fetch_assoc($result))//while look to fetch the result and store in a array $row.  
               {  
+
                 $session_name=$row['session_name'];  
                 $session_status=$row['session_status'];  
 
                 if($session_status==0){
                   $ses_stat = "OFF";
+                  $ses= "ON";
                 }
                 else {
                   $ses_stat = "ON";
+                  $ses= "OFF";
                 }
 
+                
                                 
                 echo  "<table id='myTable' style='margin: 0 auto; float=left' class='fixed'>
                 <tr>
                     <td>$session_name</td>
-                    <td>$ses_stat</td>
+                    <td>$ses_stat</td>";?>
+                    
+                    <td><a onclick="return confirm('Turn <?php echo $ses?> this form?')" href="handler.php?stat=<?php echo $session_name ?>&check=<?php echo $session_status ?>">
+                    <button>
+                    <?php echo $ses; ?></button></a></td>
+
                 </tr>
-                </table>";
-              }
+                </table>
+                
+             <?php }
             ?>
+
+            
       </table>  
 
       <br>
@@ -78,14 +93,17 @@ include ('sidebar.php');
 
   <!-- End page content -->
 </div>
-
-
-
-
-      
-    
 </body>
 </html> 
 
+<script>
 
+$('a.delete').on('click', function() {
+    var choice = confirm('Do you really want to edit this record?');
+    if(choice === true) {
+        return true;
+    }
+    return false;
+});
 
+</script>

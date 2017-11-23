@@ -18,7 +18,7 @@ include ('sidebar.php');
     <br>
     <?php 
    if(!empty($_GET['deleted'])){?>
-          <div class="alert">
+          <div class="error_alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
           <strong>User has been deleted</strong> 
           </div>
@@ -27,7 +27,7 @@ include ('sidebar.php');
 
     <strong><center>View All User</strong></center>
 
-      <br><table id='myTable' style= " margin: 0 auto;" >
+      <br><table id='myTable' class = "fixed" style= " margin: 0 auto;" >
       <thead>
         <tr>
           <th>User ID</th>
@@ -53,7 +53,7 @@ include ('sidebar.php');
                     <td>$user_id</td>
                     <td>$username</td>
                     <td>$password</td>";?>
-                    <td><a href="delete.php?del=<?php echo $user_id ?>"><button class="btn btn-danger">Delete</button></a></td>
+                    <td><a onclick="return confirm('Delete this record?')" href="delete.php?del=<?php echo $user_id ?>"><button class="btn btn-danger">Delete</button></a></td>
                 </tr>
                 </table>
             <?php } ?>
@@ -70,3 +70,14 @@ include ('sidebar.php');
 
 
 </html> 
+<script>
+
+$('a.delete').on('click', function() {
+    var choice = confirm('Do you really want to delete this record?');
+    if(choice === true) {
+        return true;
+    }
+    return false;
+});
+
+</script>

@@ -16,7 +16,7 @@ session_start();
 				$_SESSION['module_id'] = $row['module_id'];
 				$_SESSION['role_id']	=$row['role_id'];
 				$_SESSION['login_user']=$myusername;	
-					
+
 				// admin=1, data_controller=2, data_manager=3, tnc=4
 
 						if(	$_SESSION['role_id']=='R01'){     

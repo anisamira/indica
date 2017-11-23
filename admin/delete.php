@@ -1,10 +1,11 @@
 
     <?php  
     include("connection.php");  
-
+    
     $delete_id=$_GET['del'];  
-    $delete_query="DELETE FROM user WHERE userid='$delete_id'";//delete query  
+    $delete_query="DELETE FROM user WHERE user_id='$delete_id'";//delete query  
 
+    
     $run=mysql_query($delete_query);  
     if($run)  
     {  
