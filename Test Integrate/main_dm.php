@@ -180,7 +180,7 @@ else
 						}
 						else
 						{
-							$status="pending";
+							$status="";
 						}
 					}
 					$sql= "SELECT * 
@@ -193,8 +193,16 @@ else
 								<td>KPI Achievement Quarter <?php echo $quarter;?> Year <?php echo $curyear;?></td>
 								<td><?php echo $status;?></td>
 								<td>
-									<form action="datamanager_achieve.php" method="post">									
-											<input type="submit" name="achieve_approval" value="Approval"></input>								
+									<form action="datamanager_achieve.php" method="post"><?php 
+											if ($status=="") 
+											{?>
+												<input type="submit" name="achieve_approval" value="Approval"></input><?php
+											}
+											else
+											{?>
+												<input type="submit" name="achieve_approval" value="Approval" disabled></input><?php
+											}?>
+									
 									</form>
 								</td>
 									

@@ -322,6 +322,48 @@
 							
 						$(wrapperaction10).on("click",".remove_field", function(e){ 
 							e.preventDefault(); $(this).parent('div').remove();
+						});
+
+						
+						
+						var wrapperaction11  =  $(".wrapaction11");
+						var add_action11 = $(".add_action11"); 
+							
+						$(add_action11).click(function(e){ 
+							e.preventDefault();
+							$(wrapperaction11).append('<div><input type="text" name="action11[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
+						});
+							
+						$(wrapperaction11).on("click",".remove_field", function(e){ 
+							e.preventDefault(); $(this).parent('div').remove();
+						});	
+						
+						
+						
+						var wrapperaction12  =  $(".wrapaction12");
+						var add_action12 = $(".add_action12"); 
+							
+						$(add_action12).click(function(e){ 
+							e.preventDefault();
+							$(wrapperaction12).append('<div><input type="text" name="action12[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
+						});
+							
+						$(wrapperaction12).on("click",".remove_field", function(e){ 
+							e.preventDefault(); $(this).parent('div').remove();
+						});	
+						
+						
+						
+						var wrapperaction13  =  $(".wrapaction13");
+						var add_action13 = $(".add_action13"); 
+							
+						$(add_action13).click(function(e){ 
+							e.preventDefault();
+							$(wrapperaction13).append('<div><input type="text" name="action13[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
+						});
+							
+						$(wrapperaction13).on("click",".remove_field", function(e){ 
+							e.preventDefault(); $(this).parent('div').remove();
 						});	
 						
 						
@@ -544,6 +586,49 @@
 						$(wrapperkpi15).on("click",".remove_field", function(e){ 
 							e.preventDefault(); $(this).parent('div').remove();
 						});	
+						
+						
+						
+						var wrapperkpi16  =  $(".wrapkpi16");
+						var add_kpi16 = $(".add_kpi16"); 
+							
+						$(add_kpi16).click(function(e){ 
+							e.preventDefault();
+							$(wrapperkpi16).append('<div><input type="text" name="kpi16[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
+						});
+							
+						$(wrapperkpi16).on("click",".remove_field", function(e){ 
+							e.preventDefault(); $(this).parent('div').remove();
+						});	
+						
+						
+						
+						var wrapperkpi17  =  $(".wrapkpi17");
+						var add_kpi17 = $(".add_kpi17"); 
+							
+						$(add_kpi17).click(function(e){ 
+							e.preventDefault();
+							$(wrapperkpi17).append('<div><input type="text" name="kpi17[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
+						});
+							
+						$(wrapperkpi17).on("click",".remove_field", function(e){ 
+							e.preventDefault(); $(this).parent('div').remove();
+						});	
+						
+						
+						
+						var wrapperkpi18  =  $(".wrapkpi18");
+						var add_kpi18 = $(".add_kpi15"); 
+							
+						$(add_kpi18).click(function(e){ 
+							e.preventDefault();
+							$(wrapperkpi18).append('<div><input type="text" name="kpi18[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
+						});
+							
+						$(wrapperkpi18).on("click",".remove_field", function(e){ 
+							e.preventDefault(); $(this).parent('div').remove();
+						});	
+	
 	
 	
 		
