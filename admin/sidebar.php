@@ -1,5 +1,5 @@
 <?php
-include ('connection.php');
+include_once ('connection.php');
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,6 @@ include ('connection.php');
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <style>
@@ -45,14 +44,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
     <!--<h5>Dashboard</h5>-->
   </div>
   <div class="w3-bar-block">
-    <a href="main.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-dashboard fa-fw"></i>  Home</a>
-    
+    <a href="main_admin.php" class="w3-bar-item w3-button"><i class="fa fa-dashboard fa-fw"></i>  Home</a>
+  
     </br>
     <?php 
-    if (($_SESSION['role_id']) == 'R01') {?>
-    <!-- <a href="#" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cogs fa-fw"></i>  Site Administration</a> -->
+    if (($_SESSION['username']) == 'admin') {?>
+    
     <a href="admin_manageuser.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-universal-access fa-fw"></i>  Manage Users</a>
-    <a href="admin_create_session.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-plus-square fa-fw"></i>  Create Session</a>    
+    <a href="admin_create_session.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-cogs fa-fw"></i>  Create Session</a>
     <a href="logtrails.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i>  Log Trails</a>
     
     <?php } ?>
