@@ -79,10 +79,7 @@ else{
   <a href="financial_view.php">Financial</a>
 
 </div>
-
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$moduleid;?>
- </div> 
+ 
   <body>
 
   

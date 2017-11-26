@@ -83,10 +83,6 @@ else{
 
 </div>
 
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$moduleid;?>
-  
-</div>
 <body>
 
 							
