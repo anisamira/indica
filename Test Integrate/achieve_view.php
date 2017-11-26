@@ -171,7 +171,7 @@ elseif 	($year==$year5)
 
 $result = mysql_query($sql) or die(mysql_error()); 
 
-while($row = mysql_fetch_assoc($result))          
+while($row = mysql_fetch_array($result))          
       {  
            fputcsv($output, $row);  
       }  

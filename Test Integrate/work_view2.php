@@ -234,8 +234,6 @@ if (mysql_num_rows($result)>0){
 
 
 <?php
-if(mysql_num_rows($result) > 0)
-					{
 							
 											while($row=mysql_fetch_array($result))
 											{
@@ -415,15 +413,16 @@ elseif 	($year==$year5)
 					<?php }	
 ?>
 
-<form class="form-horizontal" action="achieve_view2.php?moduleid=$moduleid&sesi=$sesi" method="post" name="Export"   
+<form class="form-horizontal" action="achieve_view2.php?moduleid=$moduleid&sesi=$sesi" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" name="Export">Download Excel</button>
+								<button type="submit" class="btn btn-primary" name="Export" value="export to excel">Download Excel</button>
                             </div>
                    </div>                    
             </form>           
 
+			
 </div>
 
 <div id="Deliverables" class="tabcontent">
@@ -653,12 +652,32 @@ else
 	echo "No result";
 }
 ?>
+
+<form class="form-horizontal" action="issue_view2.php?moduleid=$moduleid&sesi=$sesi" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+            </form>           
+
+
 </div>
 <div id="Financial" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
+  
+  Total Expenditure
 </div>
 
+
+
+ 
+</div>
+
+</div>
+    </div>
+
+	
 <script>
 function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
@@ -692,24 +711,11 @@ for (i = 0; i < acc.length; i++) {
     }
 }
 </script>
-
-</body>
-</html>
-
-
- 
-</div>
-
-</div>
-    </div>
-
-
-
-</html>
+	
 
 <!-- this is the end of this doc  >
 <?php
 // end 
 }
-}
+
 ?>
