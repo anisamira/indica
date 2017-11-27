@@ -11,7 +11,7 @@
 	
 ?>
 
-<body>
+
 	<div class="wrapper">
 		<div class="container content-sm">
 		<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
@@ -37,7 +37,7 @@
 							$session_name	=$row['session_name'];?>
 							<tr>  
 								<td>KPI Achievement <?php echo $session_name;?></td>
-								<td>30 / 8 / 2017</td>
+								<td></td>
 								<td><?php echo $form_status;?></td>
 								<td>
 								<button onclick="location.href='datacontroller_viewrecord.php'" type="button">View Record</button>
@@ -89,7 +89,7 @@
 	<script src="assets/plugins/placeholder-IE-fixes.js"></script>
 	<![endif]-->
 
-</body>
+
 </html>
 
 

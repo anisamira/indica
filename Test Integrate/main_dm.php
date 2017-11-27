@@ -66,7 +66,7 @@ else
 							}
 							
 							$form_id	=$_POST["form_id"];
-							$sql2		="SELECT * FROM master_status where form_id='$form_id' AND action_type='reject'";
+							$sql2		="SELECT * FROM master_status where form_id='$form_id' AND action_type='rejected'";
 							$result		=mysql_query($sql2) or die (mysql_error());
 							if(mysql_num_rows($result)>0)
 								{

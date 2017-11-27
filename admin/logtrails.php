@@ -1,4 +1,4 @@
-<?php
+	<?php
 include ('sidebar.php');
 ?>
 
@@ -35,7 +35,7 @@ include ('sidebar.php');
 		  // $result = mysql_query ("SELECT * FROM logtrails");
           while($row = mysql_fetch_assoc($result))
           {
-          $user_id=$row['user_id'];
+          $user_id=$row['user_id'];	
           $username=$row['username'];
           $login_time=$row['login_time'];
           $logout_time=$row['logout_time'];
