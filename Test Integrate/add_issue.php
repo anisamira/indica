@@ -32,10 +32,6 @@
 
 </div>
 
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_id;?>
-  
-</div>
 <body>
 
 <?php

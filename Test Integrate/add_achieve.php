@@ -95,10 +95,6 @@ else
 
 </div>
 
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME <?=$module_id;?>
-  
-</div>
 <body>
 
 <?php

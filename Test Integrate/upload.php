@@ -74,11 +74,8 @@
   <a  href="financial.php">Financial</a>
 
 </div>	
-		
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_id;?>
- </div> 		
- 
+				
+
 <?php
 
 if (isset($_POST['Evidence']))

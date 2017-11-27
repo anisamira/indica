@@ -74,6 +74,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif};
 	<a href="datacontroller_updaterecord2.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-book fa-fw"></i> Achievement</a>-->
 	<?php
 	 }
+	 if (($_SESSION['role_id']) == 'R04'){?>
+	 	<a href="main_vc.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+	 	<a href="work.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-dashboard fa-fw"></i>Module Workbench</a>
+
+	 <?php
+	 }
 	?>
     </br>
     <a href="logout.php" class="w3-bar-item w3-button w3-padding"><i class="fa fa-power-off fa-fw"></i>  Log Out</a>
