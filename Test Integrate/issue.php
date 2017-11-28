@@ -291,13 +291,10 @@ elseif 	($curyear==$year&&$year==$year5)
 					else
 					{
 					
-					echo "You Have an Issue to be updated";
+						echo "No issue is recorded";
 							
 						?>
 
-					<form action="add_issue.php" method="post">
-					<input type="submit" name="Issue" value="Add Issue" target="blank">
-					</form>
 <?php
 					
 					}
@@ -433,13 +430,11 @@ elseif 	($curyear==$year&&$year==$year5)
 					else
 					{
 					
-					echo "You Have an Issue to be updated";
+					echo "No issue is recorded";
 							
 						?>
 
-					<form action="add_issue.php" method="post">
-					<input type="submit" name="Issue" value="Add Issue" target="blank">
-					</form>
+					
 <?php
 					
 					}
@@ -574,13 +569,11 @@ elseif 	($curyear==$year&&$year==$year5)
 					else
 					{
 					
-					echo "You Have an Issue to be updated";
+						echo "No issue is recorded";
 							
 						?>
 
-					<form action="add_issue.php" method="post">
-					<input type="submit" name="Issue" value="Add Issue" target="blank">
-					</form>
+					
 <?php
 					
 					}
@@ -715,13 +708,11 @@ elseif 	($curyear==$year&&$year==$year5)
 					else
 					{
 					
-					echo "You Have an Issue to be updated";
+						echo "No issue is recorded";
 							
 						?>
 
-					<form action="add_issue.php" method="post">
-					<input type="submit" name="Issue" value="Add Issue" target="blank">
-					</form>
+					
 <?php
 					
 					}
@@ -856,13 +847,11 @@ elseif 	($curyear==$year&&$year==$year5)
 					else
 					{
 					
-					echo "You Have an Issue to be updated";
+					echo "No issue is recorded";
 							
 						?>
 
-					<form action="add_issue.php" method="post">
-					<input type="submit" name="Issue" value="Add Issue" target="blank">
-					</form>
+					
 <?php
 					
 					}
