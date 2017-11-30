@@ -69,13 +69,13 @@ else
 					{
 						echo "no data found";
 					}									
- $sql			= "SELECT COUNT(goal_id) AS goal FROM goal WHERE module_id='$module_id'";
+ $sql			= "SELECT COUNT(goal_id) AS goalie FROM goal WHERE module_id='$module_id'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
 						while($row=mysql_fetch_array($result))
 						{
-							$goals=$row['goal'];
+							$goals=$row['goalie'];
 							
 						}
 						
@@ -85,7 +85,10 @@ else
 						echo "no data found";
 					}									
 
-?>
+
+					
+				
+					?>
 
 <div class="wrapper">
 
@@ -93,87 +96,32 @@ else
 		<div class="container content-sm">		
 		<!-- !PAGE CONTENT! -->
 
-<div class="cards">
-    <div class="card">
-    <img src="http://s4c.cymru/temp/wave2.jpg"></img>
-    <div class="card-title">
-      <a href="#" class="toggle-info btn">
-        <span class="left"></span>
-        <span class="right"></span>
-      </a>
-      <h2>
-          Card title
-          <small>Image from unsplash.com</small>
-      </h2>
-    </div>
-    <div class="card-flap flap1">
-      <div class="card-description">
-        This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
-      </div>
-      <div class="card-flap flap2">
-        <div class="card-actions">
-          <a href="#" class="btn">Read more</a>
-        </div>
-      </div>
-    </div>
+	<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
+
+			<div style="padding-left:16px">
+  &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
+  <br>
+
+		
   </div>
-
-  <div class="card">
-    <img src="http://s4c.cymru/temp/wave3.jpg"></img>
-    <div class="card-title">
-      <a href="#" class="toggle-info btn">
-        <span class="left"></span>
-        <span class="right"></span>
-      </a>
-      <h2>
-          Card title
-          <small>Image from unsplash.com</small>
-      </h2>
-    </div>
-    <div class="card-flap flap1">
-      <div class="card-description">
-        This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
+	
+		bape goals al <?=$goals?>	
+	
+ <div class=" card [ is-collapsed ] ">
+      <div class="card__inner [ js-expander ]">
+        <span>Card</span>
+        <i class="fa fa-folder-o"></i>
       </div>
-      <div class="card-flap flap2">
-        <div class="card-actions">
-          <a href="#" class="btn">Read more</a>
-        </div>
+      <div class="card__expander">
+        <i class="fa fa-close [ js-collapser ]"></i>
+        Expander
       </div>
     </div>
-  </div>
-
-  <div class="card">
-    <img src="http://s4c.cymru/temp/wave2.jpg"></img>
-    <div class="card-title">
-      <a href="#" class="toggle-info btn">
-        <span class="left"></span>
-        <span class="right"></span>
-      </a>
-      <h2>
-          Card title
-          <small>Image from unsplash.com</small>
-      </h2>
-    </div>
-    <div class="card-flap flap1">
-      <div class="card-description">
-        This grid is an attempt to make something nice that works on touch devices. Ignoring hover states when they're not available etc.
-      </div>
-      <div class="card-flap flap2">
-        <div class="card-actions">
-          <a href="#" class="btn">Read more</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-</div>
-
 
 
 </div>
 </div>
-
+</div>
 <script>
 
 $(document).ready(function(){
@@ -220,6 +168,40 @@ $(document).ready(function(){
     
   });
 });
+
+var $cell = $('.card');
+
+//open and close card when clicked on card
+$cell.find('.js-expander').click(function() {
+
+  var $thisCell = $(this).closest('.card');
+
+  if ($thisCell.hasClass('is-collapsed')) {
+    $cell.not($thisCell).removeClass('is-expanded').addClass('is-collapsed').addClass('is-inactive');
+    $thisCell.removeClass('is-collapsed').addClass('is-expanded');
+    
+    if ($cell.not($thisCell).hasClass('is-inactive')) {
+      //do nothing
+    } else {
+      $cell.not($thisCell).addClass('is-inactive');
+    }
+
+  } else {
+    $thisCell.removeClass('is-expanded').addClass('is-collapsed');
+    $cell.not($thisCell).removeClass('is-inactive');
+  }
+});
+
+//close card when click on cross
+$cell.find('.js-collapser').click(function() {
+
+  var $thisCell = $(this).closest('.card');
+
+  $thisCell.removeClass('is-expanded').addClass('is-collapsed');
+  $cell.not($thisCell).removeClass('is-inactive');
+
+});
+
 </script>
 
 <style>
@@ -420,6 +402,238 @@ div.card.show {
   }
 }
 
+$light-gray: #eceef1;
+$gray: darken(#eceef1, 30%);
+$slate: darken(#eceef1, 70%);
+$turquoise: #1abc9c;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: $light-gray;
+  font-family: 'Slabo 27px', serif;
+  color: $slate;
+}
+
+.wrapper {
+  margin: 5em auto;
+  max-width: 1000px;
+
+  background-color: #fff;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.06);
+}
+
+.header {
+  padding: 30px 30px 0;
+  text-align: center;
+
+  &__title {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 2.5em;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+  &__subtitle {
+    margin: 0;
+    font-size: 1.5em;
+    color: $gray;
+    font-family: 'Yesteryear', cursive;
+    font-weight: 500;
+    line-height: 1.1;
+  }
+}
+
+//Grid Container
+.cards {
+  padding: 15px;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+//Cards
+.card {
+  margin: 15px; 
+  width: calc((100% / 3) - 30px);
+  transition: all 0.2s ease-in-out;
+
+  //media queries for stacking cards
+  @media screen and (max-width: 991px) {
+    width: calc((100% / 2) - 30px);
+  }
+
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+
+  &:hover {
+    .card__inner {
+      background-color: $turquoise;
+      transform: scale(1.05);
+    }
+  }
+
+  &__inner {
+    width: 100%;
+    padding: 30px;
+    position: relative;
+    cursor: pointer;
+    
+    background-color: $gray;
+    color: $light-gray;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    text-align: center;
+
+    transition: all 0.2s ease-in-out;
+    
+    &:after {
+      transition: all 0.3s ease-in-out;
+    }
+    
+    .fa {
+      width: 100%;
+      margin-top: .25em;
+    }
+  }
+
+  //Expander
+  &__expander {
+    transition: all 0.2s ease-in-out;
+    background-color: $slate;
+    width: 100%;
+    position: relative;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    text-transform: uppercase;
+    color: $light-gray;
+    font-size: 1.5em;
+    
+    .fa {
+      font-size: 0.75em;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+
+  &.is-collapsed {
+    
+    .card__inner {
+      &:after {
+        content: "";
+        opacity: 0;
+      }
+    }
+    .card__expander {
+      max-height: 0;
+      min-height: 0;
+      overflow: hidden;
+      margin-top: 0;
+      opacity: 0;
+    }
+  }
+
+  &.is-expanded {
+
+    .card__inner {
+      background-color: $turquoise;
+      
+      &:after{
+        content: "";
+        opacity: 1;
+        display: block;
+        height: 0;
+        width: 0;
+        position: absolute;
+        bottom: -30px;
+        left: calc(50% - 15px);
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid #333a45;
+      }
+      
+      //folder open icon
+      .fa:before {
+        content: "\f115";
+      }
+    }
+
+    .card__expander {
+      max-height: 1000px;
+      min-height: 200px;
+      overflow: visible;
+      margin-top: 30px;
+      opacity: 1;
+    }
+
+    &:hover {
+      .card__inner {
+        transform: scale(1);
+      }
+    }
+  }
+  
+  &.is-inactive {
+    .card__inner {
+      pointer-events: none;
+      opacity: 0.5;
+    }
+    
+    &:hover {
+      .card__inner {
+        background-color: $gray;
+        transform: scale(1);
+      }
+    }
+  }
+}
+
+
+//Expander Widths
+
+//when 3 cards in a row
+@media screen and (min-width: 992px) {
+
+  .card:nth-of-type(3n+2) .card__expander {
+    margin-left: calc(-100% - 30px);
+  }
+  .card:nth-of-type(3n+3) .card__expander {
+    margin-left: calc(-200% - 60px);
+  }
+  .card:nth-of-type(3n+4) {
+    clear: left;
+  }
+  .card__expander {
+    width: calc(300% + 60px);
+  }
+
+}
+
+//when 2 cards in a row
+@media screen and (min-width: 768px) and (max-width: 991px) {
+
+  .card:nth-of-type(2n+2) .card__expander {
+    margin-left: calc(-100% - 30px);
+  }
+  .card:nth-of-type(2n+3) {
+    clear: left;
+  }
+  .card__expander {
+    width: calc(200% + 30px);
+  }
+
+}
 
 
 </style>

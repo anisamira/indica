@@ -4,12 +4,14 @@ include 'db.php';
 if(isset($_POST["Export"]))
 {
 		 
-	$moduleid=$_GET['moduleid'];
-	$sesi=$_GET['sesi'];
+	$moduleid=$_POST['moduleid'];
+	$sesi=$_POST['sesi'];
+	$year=$_POST['year'];
+	$module_name=$_POST['modulename'];
 
 	
       header('Content-Type:text/csv; charset=utf-8');  
-      header('Content-Disposition: attachment; filename=achievement.csv');  
+      header('Content-Disposition: attachment; filename=achievement_'.$module_name.'_'.$year.'_'.$sesi.'.csv');  
       $output = fopen("php://output", "w"); 
       fputcsv($output, array('Module ID','Session','Goal','KPI', 'Year','Quater','Achievement'));  
       $sql = "SELECT goal.module_id,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc

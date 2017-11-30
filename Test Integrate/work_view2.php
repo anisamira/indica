@@ -290,8 +290,12 @@ if (mysql_num_rows($result)>0){
 										
 
 	 
- <form class="form-horizontal" action="work_view.php?moduleid=$moduleid&sesi=$sesi" method="post" name="Export"   
+ <form class="form-horizontal" action="work_view.php" method="post" name="Export"   
                       enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year" value="<?php echo $year;?>"/>
+<input type="hidden" name="module_name" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
 								<button type="submit" class="btn btn-primary" name="Export">Download Excel</button>
@@ -413,8 +417,12 @@ elseif 	($year==$year5)
 					<?php }	
 ?>
 
-<form class="form-horizontal" action="achieve_view2.php?moduleid=$moduleid&sesi=$sesi" method="post" name="upload_excel"   
+<form class="form-horizontal" action="achieve_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year" value="<?php echo $year;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
 								<button type="submit" class="btn btn-primary" name="Export" value="export to excel">Download Excel</button>
@@ -515,9 +523,7 @@ elseif 	($year==$year5)
 						}
 	?>
 </table> 	
-	<form method="post" action="export.php?moduleid=$moduleid&sesi=$sesi" >
-     <input type="submit" name="export" class="btn btn-success" value="Export" />
-    </form>			
+		
 <?php					
 					}
 					
@@ -653,8 +659,12 @@ else
 }
 ?>
 
-<form class="form-horizontal" action="issue_view2.php?moduleid=$moduleid&sesi=$sesi" method="post" name="upload_excel"   
+<form class="form-horizontal" action="issue_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year" value="<?php echo $year;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
 								<button type="submit" class="btn btn-primary" name="Export" value="export to excel">Download Excel</button>
