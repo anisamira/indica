@@ -10,7 +10,7 @@ if(isset($_POST["Export"]))
 	$module_name=$_POST['modulename'];
 	
       header('Content-Type:text/csv; charset=utf-8');  
-      header('Content-Disposition: attachment; filename=issue_'.$module_name.'_'.$year.'.xlsx');  
+      header('Content-Disposition: attachment; filename=issue_'.$module_name.'_'.$year.'.csv');  
       $output = fopen("php://output", "w"); 
       fputcsv($output, array('Module ID','Session','Goal','KPI', 'Target','Achievement','Punca Tidak Capai','Rancangan','Tarikh Siap','Tindakan','Tarikh Siap'));  
       $sql = "SELECT goal.module_id,goal.session_name,goal.goal_desc,kpi.kpi_desc,achievement.target,achievement.ach_desc,issue.reason,issue.pembetulan,issue.date_pembetulan,issue.pencegahan,issue.date_pencegahan 
