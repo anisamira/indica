@@ -69,38 +69,53 @@
 
 
 <div class="w3-main" style="margin-left:300px;margin-top:90px; margin-right:50px;">	
-<div class="control-group">
-<label class="control-label">Year</label>
-<div class="controls">
-<select class="form-control" name="txt_year">
+	<div class="control-group">
+		<label class="control-label">Year</label>
+			<div class="controls">
+					<form id="s" method="post">
+						<table class="table" width="80%">
+							<tr>
+								<td>
+									<select class="form-control" name="txt_year"><?php
 
-<?php
+										$sql=mysql_query("Select * from session where session_name='$session_name'");
+										$row=mysql_num_rows($sql);
+										while($row = mysql_fetch_array($sql))
+										{
+											$year1=$row['year1'];
+											$year2=$row['year2'];
+											$year3=$row['year3'];
+											$year4=$row['year4'];
+											$year5=$row['year5'];
+											?>
+											
+											<option value="<?php  echo $year1;?>"><?php  echo $year1;?></option>
+											<option value="<?php  echo $year2;?>"><?php  echo $year2;?></option>
+											<option value="<?php  echo $year3;?>"><?php  echo $year3;?></option>
+											<option value="<?php  echo $year4;?>"><?php  echo $year4;?></option>
+											<option value="<?php  echo $year5;?>"><?php  echo $year5;?></option>
+						
+											<?php
 
-$sql=mysql_query("Select * from session where session_name='$session_name'");
-$row=mysql_num_rows($sql);
-while($row = mysql_fetch_array($sql)){
-	$year1=$row['year1'];
-	$year2=$row['year2'];
-	$year3=$row['year3'];
-	$year4=$row['year4'];
-	$year5=$row['year5'];
-	?>
-	
-	<option value="<?php  echo $year1;?>"><?php  echo $year1;?></option>
-	<option value="<?php  echo $year2;?>"><?php  echo $year2;?></option>
-	<option value="<?php  echo $year3;?>"><?php  echo $year3;?></option>
-	<option value="<?php  echo $year4;?>"><?php  echo $year4;?></option>
-	<option value="<?php  echo $year5;?>"><?php  echo $year5;?></option>
-	
-	
-<?php
+										}?>
+										
+									</select> 
+								</td>
+							<div class="form-actions">
+								<td><button type="submit" class ="btn btn-sucess"name="save" value="">Go</button></td>
+							</div>
+							</tr>
+							
+						</table>
 
-}
+					</form>
 
-?>
-</select>
-</div>
-</div>
+				
+				
+			</div>
+
+		</div>
+
 
 	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 	<div class="control-group">
@@ -138,6 +153,7 @@ while($row = mysql_fetch_array($sql)){
 		   
 		</tbody>
 	</table>
+</div>
 </div>
 </div>
 </div>
