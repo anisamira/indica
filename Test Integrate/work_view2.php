@@ -177,6 +177,7 @@ div.tab button.active {
   <button class="tablinks" onclick="openCity(event, 'Deliverables')">Deliverables</button>
    <button class="tablinks" onclick="openCity(event, 'Issue')">Issue</button>
   <button class="tablinks" onclick="openCity(event, 'Financial')">Financial</button>
+  <button class="tablinks" onclick="openCity(event, 'Dashboard')">Dashboard</button>
   </div>
 
 <div id="Information" class="tabcontent">
