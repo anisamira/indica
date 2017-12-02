@@ -74,15 +74,14 @@
   <a  href="financial.php">Financial</a>
 
 </div>	
-		
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_id;?>
- </div> 		
- 
+				
+
 <?php
 
 if (isset($_POST['Evidence']))
 {
+	
+$year=$_POST['year'];	
 ?>
 
 
@@ -108,6 +107,7 @@ if (isset($_POST['Evidence']))
 						AND goal.session_name='$session_name'
 						AND form.form_status='approved'
 						AND achievement.year_id='$year_id'
+						AND year.year_name='$year'
 						";
 						$result = mysql_query($sql) or die(mysql_error());
 						

@@ -6,6 +6,16 @@
 	include('style_dc.php');
 	include('sidebar.php');
 	
+	$curyear=date ('Y');
+    $date_now=date ("m/d/Y");
+ $date_q= date ("06/30/Y");
+ if ($date_now<=$date_q)
+{
+	$quater=1;
+}
+else
+    $quater=2;	
+	
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	$sql			="SELECT * FROM session where session_status='1'";
@@ -39,6 +49,39 @@
 					{
 						echo "no data found";
 					}
+		
+  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$year= $row['year_name'];
+							$year_id=$row['year_id'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}			
+	
+	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$module_name=$row['module_name'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}	
 	
 
 	
@@ -78,7 +121,11 @@ body {margin:0;}
 		<!-- !PAGE CONTENT! -->
 			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
 
-
+<div style="padding-left:16px">
+  &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
+  <br>
+</div>
+			
 <div class="topnav">
   <a href="work.php">Information</a>
   <a href="achieve.php">Achievement</a>
@@ -88,12 +135,6 @@ body {margin:0;}
 
 </div>
 
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME <?=$module_id;?>
- 
-  
- 
-</div>
 <body>
 <?php
 $module_id=$_SESSION['module_id'];

@@ -32,10 +32,6 @@
 
 </div>
 
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_id;?>
-  
-</div>
 <body>
 
 <?php
@@ -186,6 +182,7 @@ elseif 	($curyear==$year&&$year==$year5)
 								<col width=14px;>
 								<col width=14px;>
 								<col width=14px;>
+								<col width=14px;>
 									<col width=174px;>
 									<col width=174px;>
 									<col width=134px;>
@@ -196,6 +193,7 @@ elseif 	($curyear==$year&&$year==$year5)
 									    <th>No.</th>
 									    <th>Goal</th>
 									    <th>KPI</th>
+										<th>Year</th>
 										<th>Target</th>
 										<th>Achievement</th>
 										<th>Punca tidak capai sasaran</th>
@@ -214,13 +212,13 @@ elseif 	($curyear==$year&&$year==$year5)
 							$achievement	=$row2['ach_desc'];
 							$quater			=$row2['quarter'];
 							$targett		=$row2['target'];
-							
+							$yearer			=$row2['year_name'];
 								
-							$target1= $row['target1'];
-							$target2= $row['target2'];
-							$target3= $row['target3'];
-							$target4= $row['target4'];
-							$target5= $row['target5'];
+							$target1= $row2['target1'];
+							$target2= $row2['target2'];
+							$target3= $row2['target3'];
+							$target4= $row2['target4'];
+							$target5= $row2['target5'];
 							
 						
 if ($curyear==$year&&$year==$year1)
@@ -250,6 +248,7 @@ elseif 	($curyear==$year&&$year==$year5)
 								<td><?php echo $x;?></td>
 								<td><?php echo $goal_desc;?></td>
 								<td><?php echo $kpi_desc;?></td>
+								<td><?php echo $yearer;?></td>
 								<td><?php echo $targett;?></td>
 							    <td><?php echo $achievement;?></td>
 								<td><input class="form-control" style="width:156px;" type="text" name="reason<?php echo $x;?>" required/>

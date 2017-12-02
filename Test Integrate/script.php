@@ -173,6 +173,39 @@
 						});
 						
 						
+						
+						var wrapperstrategy11  =  $(".wrapstrategy11");
+						var add_strategy11 = $(".add_strategy11"); 
+							
+							$(add_strategy11).click(function(e){ 
+							e.preventDefault();
+							$(wrapperstrategy11).append('<div><input type="text" name="strategy11[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
+						});
+							
+						$(wrapperstrategy11).on("click",".remove_field", function(e){ 
+							e.preventDefault(); $(this).parent('div').remove();
+						});
+						
+						
+						
+						var wrapperstrategy12  =  $(".wrapstrategy12");
+						var add_strategy12 = $(".add_strategy12"); 
+							
+							$(add_strategy12).click(function(e){ 
+							e.preventDefault();
+							$(wrapperstrategy12).append('<div><input type="text" name="strategy12[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div>'); //add input box
+						});
+							
+						$(wrapperstrategy12).on("click",".remove_field", function(e){ 
+							e.preventDefault(); $(this).parent('div').remove();
+						});
+						
+						
+						
+						
+						
+						
+						
 					var wrapperaction1  =  $(".wrapaction1");
 						var add_action1 = $(".add_action1"); 
 							
@@ -365,6 +398,21 @@
 						$(wrapperaction13).on("click",".remove_field", function(e){ 
 							e.preventDefault(); $(this).parent('div').remove();
 						});	
+						
+						
+						
+						var wrapperaction14  =  $(".wrapaction14");
+						var add_action14 = $(".add_action14"); 
+							
+						$(add_action14).click(function(e){ 
+							e.preventDefault();
+							$(wrapperaction14).append('<div><input type="text" name="action14[]" style="width:90%; height:34px; margin-bottom:12px;"/><button href="#" class="btn remove_field btn-u btn-u-red" type="button"><i class="fa fa-trash-o"/></button></div></br>');
+						});
+							
+						$(wrapperaction14).on("click",".remove_field", function(e){ 
+							e.preventDefault(); $(this).parent('div').remove();
+						});	
+						
 						
 						
 						

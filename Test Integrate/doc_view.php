@@ -79,16 +79,13 @@ else{
   <a href="financial_view.php">Financial</a>
 
 </div>
-
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$moduleid;?>
- </div> 
+ 
   <body>
 
   
 
 <?php
-$module_id=$_SESSION['module_id'];
+
 						$x=1;
 					
 						

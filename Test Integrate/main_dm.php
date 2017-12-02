@@ -66,7 +66,7 @@ else
 							}
 							
 							$form_id	=$_POST["form_id"];
-							$sql2		="SELECT * FROM master_status where form_id='$form_id' AND action_type='reject'";
+							$sql2		="SELECT * FROM master_status where form_id='$form_id' AND action_type='rejected'";
 							$result		=mysql_query($sql2) or die (mysql_error());
 							if(mysql_num_rows($result)>0)
 								{
@@ -164,7 +164,22 @@ else
 					}
 					$status="";
 					
-					$sql_approval="SELECT ach_id FROM achievement WHERE ach_status='reject'";
+					$sql_approval="SELECT achievement.ach_id 
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
+                        WHERE goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
+						AND achievement.quarter='$quarter'
+						AND achievement.ach_status='reject'
+						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)";
 					$result_approval=mysql_query($sql_approval) or die(mysql_error());
 					if(mysql_num_rows($result_approval)>0)
 					{
@@ -172,7 +187,23 @@ else
 					}
 					else
 					{
-						$sql_approval2="SELECT ach_id FROM achievement WHERE ach_status='approve'";
+						$sql_approval2="SELECT achievement.ach_id 
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
+                        WHERE goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
+						AND achievement.quarter='$quarter'
+						AND achievement.ach_status='approve'
+						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)";
+						
 						$result_approval2=mysql_query($sql_approval2) or die(mysql_error());
 						if(mysql_num_rows($result_approval2)>0)
 						{
