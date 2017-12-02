@@ -73,7 +73,7 @@
 		<label class="control-label">Year</label>
 			<div class="controls">
 					<form id="s" method="post">
-						<table class="table" width="80%">
+						<table class="table" width="20%">
 							<tr>
 								<td>
 									<select class="form-control" name="txt_year"><?php
