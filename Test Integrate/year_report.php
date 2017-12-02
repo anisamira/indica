@@ -100,38 +100,94 @@ else
 	<div style="padding-left:16px">
   &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
   <br>
+    &nbsp&nbspGenerate Yearly Report
+  <br>
 	</div>
 	
-<div class="w3-container">
-  <div class="w3-dropdown-hover">
-    <button class="w3-button w3-black">KPI Reports</button>
-    <div class="w3-dropdown-content w3-bar-block w3-border">
-      <a href="module_report.php" target="_blank" class="w3-bar-item w3-button">Module Information</a>
-      <a href="performance_report.php" target="_blank" class="w3-bar-item w3-button">Performance Reports</a>
-      <a href="financial_report.php" target="_blank" class="w3-bar-item w3-button">Financial Overview</a>
-    </div>
-  </div>
+<?php
+
+// select all
+	
+  $x=1;
+  $sql=("SELECT DISTINCT year.year_name
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
+						JOIN evidence ON evidence.ach_id=achievement.ach_id
+						JOIN session ON session.session_name=goal.session_name
+						WHERE goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
+						AND form.form_status='approved'
+						AND year.year_name<='$curyear'
+								");
+  	
+	$result = mysql_query($sql) or die(mysql_error());
 
 
-<div class="w3-dropdown-hover">
- <button class="w3-button w3-black">Year Reports</button>
-    <div class="w3-dropdown-content w3-bar-block w3-border">
-      <a href="year_report.php" target="_blank" class="w3-bar-item w3-button">Generate Yearly report</a>
-      
+ if(mysql_num_rows($result)>0){
+  
+	  ?>
+	  
+	  <div class="table-responsive">  
+		
+								   <table class="table table-bordered"> 
+
+										<tr> 
+											<th>YEAR</th>  
+										</tr>
+	  
+	  
+<?php		
+		while($row=mysql_fetch_array($result))
+		{
+			
+			$year=$row['year_name'];
+			
+?>	
+<tr>
+                         <form action="work_view2.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                            <td style="width:50px;"><?php echo $year;?></td>
+							<td style="width:15px;"><button type="submit" class="btn btn-primary">Go</button></td>
+						 </form>
+
+</tr>								   
+												<?php
+											}
+	$x++;											
+
+											?>
+									</table>								
+
 </div>
-</div>
 
-<div class="w3-dropdown-hover">
- <button class="w3-button w3-black">ICU Reports</button>
-    <div class="w3-dropdown-content w3-bar-block w3-border">
-      <a href="icu_reports.php" target="_blank" class="w3-bar-item w3-button">Generate ICU Reports</a>
-    
+<?php		
+ }	 
+  else{
+ 	{
+		//print error message
+		echo 'No project found';
+	}
+	// once processing is complete
+	// free result set
+	
+}
 
-</div>
-</div>
+if isset($_POST[''])
 
 
-<!-- end of division-->
-    </div>	
+
+
+?>		
+
+	
+	<!--END OF DIVISION-->
 	</div>
-	</div>				
+	</div>
+	
