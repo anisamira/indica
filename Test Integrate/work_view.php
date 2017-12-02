@@ -1,12 +1,6 @@
-
 <?php
 	include('db.php');
- if(isset($_POST["Export"])){
 	
-	$moduleid=$_POST['moduleid'];
-	$sesi=$_POST['sesi'];		
-	$module_name=$_POST['module_name'];
-
 		$sqliu="SELECT * FROM session where session_status='1'";
 		$result = mysql_query($sqliu) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -24,6 +18,12 @@
 					{
 						echo "no data found";
 					}
+ if(isset($_POST["Export"])){
+	
+	$moduleid=$_POST['moduleid'];
+	$sesi=$_POST['sesi'];		
+	$module_name=$_POST['module_name'];
+
 	
       header('Content-Type:text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=kpi_information_'.$module_name.'_'.$sesi.'.csv');  
@@ -44,7 +44,6 @@
 											";
 
 $result = mysql_query($sql) or die(mysql_error()); 
-
 while($row = mysql_fetch_assoc($result))          
       {  
            fputcsv($output, $row);  

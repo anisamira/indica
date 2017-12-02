@@ -283,12 +283,6 @@ if (mysql_num_rows($result)>0){
 ?>
 </table>										
 </div>
-<?php
-}
-
-											?>
-										
-
 	 
  <form class="form-horizontal" action="work_view.php" method="post" name="Export"   
                       enctype="multipart/form-data">
@@ -301,7 +295,18 @@ if (mysql_num_rows($result)>0){
 								<button type="submit" class="btn btn-primary" name="Export">Download Excel</button>
                             </div>
                    </div>                    
-            </form>    
+            </form>  
+<?php
+}
+else
+{
+	echo "No result";
+}
+
+											?>
+										
+
+  
 </div>
 
 <div id="Achievement" class="tabcontent">
@@ -414,10 +419,8 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
-					<?php }	
-?>
-
-<form class="form-horizontal" action="achieve_view2.php" method="post" name="upload_excel"   
+						
+						<form class="form-horizontal" action="achieve_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -429,6 +432,13 @@ elseif 	($year==$year5)
                             </div>
                    </div>                    
             </form>           
+					<?php }	else
+					{
+						echo "No Result";
+					}
+?>
+
+
 
 			
 </div>
@@ -651,13 +661,6 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
-<?php					
-					}
-else
-{
-	echo "No result";
-}
-?>
 
 <form class="form-horizontal" action="issue_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
@@ -670,7 +673,16 @@ else
 								<button type="submit" class="btn btn-primary" name="Export" value="export to excel">Download Excel</button>
                             </div>
                    </div>                    
-            </form>           
+            </form>  
+<?php					
+					}
+else
+{
+	echo "No result";
+}
+?>
+
+         
 
 
 </div>

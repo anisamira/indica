@@ -77,8 +77,7 @@ if(isset($_POST["search"])){
 								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 							<td><?php echo $name;?></td>
 							<td><button type="submit" class="btn btn-primary">Go</button></td>
-							<!--<td><button type="submit" name="Go" class="btn btn-primary"><a href="work_view.php?moduleid=$moduleid&sesi=$sesi">Go</a></button></td>-->
-
+							
 							</form>
 
 </tr>								   

@@ -102,14 +102,13 @@ else
   <br>
 	</div>
 	
-	
 <div class="w3-container">
   <div class="w3-dropdown-hover">
     <button class="w3-button w3-black">KPI Reports</button>
     <div class="w3-dropdown-content w3-bar-block w3-border">
-      <a href="whole1.php" target="_blank" class="w3-bar-item w3-button">Module Information</a>
-      <a href="perform.php" target="_blank" class="w3-bar-item w3-button">Performance Reports</a>
-      <a href="fff.php" target="_blank" class="w3-bar-item w3-button">Financial Overview</a>
+      <a href="module_report.php" target="_blank" class="w3-bar-item w3-button">Module Information</a>
+      <a href="performance_report.php" target="_blank" class="w3-bar-item w3-button">Performance Reports</a>
+      <a href="financial_report.php" target="_blank" class="w3-bar-item w3-button">Financial Overview</a>
     </div>
   </div>
 
@@ -117,13 +116,22 @@ else
 <div class="w3-dropdown-hover">
  <button class="w3-button w3-black">Year Reports</button>
     <div class="w3-dropdown-content w3-bar-block w3-border">
-      <a href="year.php" target="_blank" class="w3-bar-item w3-button">2017</a>
-      <a href="year.php" target="_blank" class="w3-bar-item w3-button">2016</a>
-      <a href="year.php" target="_blank" class="w3-bar-item w3-button">2015</a>
+      <a href="year_report.php" target="_blank" class="w3-bar-item w3-button">Generate Yearly report</a>
+      
+</div>
+</div>
+
+<div class="w3-dropdown-hover">
+ <button class="w3-button w3-black">ICU Reports</button>
+    <div class="w3-dropdown-content w3-bar-block w3-border">
+      <a href="icu_reports.php" target="_blank" class="w3-bar-item w3-button">Generate ICU Reports</a>
+    
 
 </div>
 </div>
-  </div>	
-	
+
+
+<!-- end of division-->
+    </div>	
 	</div>
 	</div>				
