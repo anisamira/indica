@@ -68,7 +68,7 @@
 
 
 
-<div class="w3-main" style="margin-left:300px;margin-top:90px; margin-right:50px;">	
+<div class="w3-main" style="margin-left:300px;margin-top:60px; margin-right:50px;">	
 	<div class="control-group">
 		<label class="control-label">Year</label>
 			<div class="controls">
