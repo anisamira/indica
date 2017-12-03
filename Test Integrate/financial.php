@@ -119,8 +119,7 @@ body {margin:0;}
 
 <div class="wrapper">
 
-
-		<div class="container content-sm">		
+	
 		<!-- !PAGE CONTENT! -->
 			<div id="content">	
 
@@ -195,7 +194,7 @@ $module_id=$_SESSION['module_id'];
 
 
 	</div>
-		</div>
+
 	</div><!--/wrapper-->
 
 	<style>

@@ -138,7 +138,6 @@ body {margin:0;}
 <div class="wrapper">
 
 
-		<div class="container content-sm">		
 		<!-- !PAGE CONTENT! -->
 			<div id="content">	
 
@@ -870,7 +869,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 
 	</div>
-		</div>
+
 	</div><!--/wrapper-->
 
 
