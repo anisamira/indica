@@ -5,33 +5,31 @@ include ('sidebar.php');
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="ulbreadcrumb.css" />
+<link rel="stylesheet" type="text/css" href="img-list.css" />
 
 </head>
 <body>
 
-<div class="w3-container" style="margin-left:300px;margin-top:43px;border-left:solid; border-height:100%; ">
+<div class="w3-container" style="margin-left:300px;margin-top:43px ">
 
-<h2>Breadcrumb Pagination</h2>
-<ul class="breadcrumb">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Pictures</a></li>
-  <li><a href="#">Summer 15</a></li>
-  <li>Italy</li>
-</ul>
-
-        <ul>
-            <li><a href="#">Coffee</li>
-            <li><a href="#">Tea
-                <ul>
-                <li><a href="#">Black tea</li>
-                <li><a href="#">Green tea</li>
-                </ul>
+<ul class="img-list" style="margin-top:10%">
+            <li>
+                <a href="admin_manageuser_create_new_user.php"><img src="search.png" alt="Create new user">
+                    <span class="text-content"><span>Click here to create a new user</span></span>
+                    <figcaption>Create new user</figcaption>
+                </a>
             </li>
-            <li<a href="#">Milk</li>
-        </ul>
-        </div>
+            <li>
+                <a href="admin_manageuser_viewuser.php"><img src="book.png" alt="View all user">
+                    <span class="text-content"><span>Click here to view all users</span></span>
+                    <figcaption>View all user</figcaption>                    
+                </a>
+            </li>
+            <li>
+                
+            </li>
 
+        </ul>
     
   <!-- End page content -->
 </div>

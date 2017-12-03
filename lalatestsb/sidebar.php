@@ -22,17 +22,13 @@ include_once ('connection.php');
 
 </head>
 
-<style>
-        label {
-        font-weight: normal !important;
-    }
-    </style>
-
 <body>
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar">
-
+            <div class="sidebar-header">
+                <h3>INDICA UM</h3>
+            </div>
 
             <ul class="list-unstyled components">
 
