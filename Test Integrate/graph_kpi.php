@@ -68,7 +68,7 @@
 
 
 
-<div class="w3-main" style="margin-left:300px;margin-top:60px; margin-right:50px;">	
+<div id="content" >	
 	<div class="control-group">
 		<label class="control-label">Year</label>
 			<div class="controls">
@@ -167,7 +167,7 @@
 			{
 				?>
 							<div class="alert alert-warning alert-dismissable fade in">
-								<meta http-equiv="refresh" content="1;url=graph_kpi.php" />
+								<meta http-equiv="refresh" content="1;url=main_vc.php" />
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 								<strong>There is no records</strong> Redirecting in 1 seconds...
 							</div><?php	
@@ -221,7 +221,7 @@
 			{
 				?>
 							<div class="alert alert-warning alert-dismissable fade in">
-								<meta http-equiv="refresh" content="1;url=graph_kpi.php" />
+								<meta http-equiv="refresh" content="1;url=main_vc.php" />
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 								<strong>There is no records</strong> Redirecting in 1 seconds...
 							</div><?php	
