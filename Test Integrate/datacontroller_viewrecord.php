@@ -1,5 +1,5 @@
 
-<body>
+<body style="width:100%; overflow:scroll; position:relative;">
 <?php
 	include('style_dc.php');
 	include('sidebar.php');
@@ -9,9 +9,8 @@
 
 ?>
 	<div class="wrapper">
-		<div class="container content-sm">
-			<div class="w3-main" style="margin-left:300px;margin-top:20px;">					
-				<div class="table-responsive">  
+			<div id="content">					
+				<div class="">  
 					
 					<?php
 							$x=1;
@@ -119,7 +118,6 @@
 													
 				</div>
 			</div>
-		</div>
 	</div><!--/wrapper-->
 
 		
