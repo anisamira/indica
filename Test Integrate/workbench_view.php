@@ -12,9 +12,7 @@
 <div class="wrapper">
 
 
-		<div class="container content-sm">		
-		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
+			<div id="content">	
 
 
 
@@ -182,9 +180,6 @@ if(isset($_POST["select"])){
 
 			</div>
     </div>
- 
-</div>
+
   
 </html>
-
-

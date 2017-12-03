@@ -81,9 +81,7 @@ else
 <div class="wrapper">
 
 
-		<div class="container content-sm">		
-		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
+			<div id="content">	
 
 
 <div class="topnav">
@@ -267,8 +265,6 @@ $result = mysql_query($sql) or die(mysql_error());
 
 	</div>
 		</div>
-	</div><!--/wrapper-->
-
 
 <script>
 $(document).ready(function() {

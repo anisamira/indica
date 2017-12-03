@@ -62,9 +62,7 @@
 <div class="wrapper">
 
 
-		<div class="container content-sm">		
-		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
+			<div id="content">	
 
 
 <?php
@@ -146,8 +144,6 @@
 
 			</div>
     </div>
- 
-</div>
   
 <script>
 var acc = document.getElementsByClassName("accordion");
@@ -170,7 +166,6 @@ for (i = 0; i < acc.length; i++) {
 
 </div>
     </div>
-</div>
 
 
 <style>

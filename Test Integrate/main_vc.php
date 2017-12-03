@@ -1,4 +1,3 @@
-
 <?php
 	include('style_dc.php');
 	include('sidebar.php');
@@ -90,7 +89,7 @@ else
 					}
 						
 
-$sql			= "SELECT COUNT(goal.goal_id) AS gol, COUNT(kpi.kpi_id) AS kpi, SUM(reference.estimated_cost) AS cost, SUM(reference.exp_fin_return) AS income
+$sql			= "SELECT SUM(reference.estimated_cost) AS cost, SUM(reference.exp_fin_return) AS income
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -113,8 +112,6 @@ $sql			= "SELECT COUNT(goal.goal_id) AS gol, COUNT(kpi.kpi_id) AS kpi, SUM(refer
 					{
 						while($row=mysql_fetch_array($result))
 						{
-							$goal_num= $row['gol'];
-							$kpi_num= $row['kpi'];
 							$cost= $row['cost'];
 							$income= $row['income'];
 						}
@@ -124,6 +121,34 @@ $sql			= "SELECT COUNT(goal.goal_id) AS gol, COUNT(kpi.kpi_id) AS kpi, SUM(refer
 					{
 						echo "no data found";
 					}
+$sql = "SELECT COUNT(goal.goal_id) AS gol, COUNT(kpi.kpi_id) AS kpi
+										    FROM goal
+											JOIN strategy ON strategy.goal_id=goal.goal_id 
+											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+											JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+											JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+											JOIN target ON target.kpi_id=kpi.kpi_id 
+											JOIN reference ON reference.kpi_id=kpi.kpi_id
+                                            JOIN form ON form.module_id=goal.module_id											
+											WHERE goal.module_id='$module_id'
+											AND goal.session_name='$session_name'
+											AND form.form_status='approved'
+											";
+$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$goal_num= $row['gol'];
+							$kpi_num= $row['kpi'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}											
 					
 $sql			= "SELECT COUNT(issue.issue_id) AS issue
 						FROM goal 
@@ -231,10 +256,10 @@ $sql			= "SELECT COUNT(achievement.ach_id) AS takcapai
 
 
 
-		<div class="container content-sm">		
+		<div class="wrapper">		
 		<!-- !PAGE CONTENT! -->
 
-	<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
+	<div id="content">	
 
 	<div style="padding-left:16px">
   &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>

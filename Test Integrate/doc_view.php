@@ -67,9 +67,7 @@ else{
 <div class="wrapper">
 
 
-		<div class="container content-sm">		
-		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
+			<div id="content">	
 
 <div class="topnav">
   <a href="work_view.php">Information</a>
@@ -179,7 +177,6 @@ else{
 
 </table> 
 	</div>
-		</div>
 	</div><!--/wrapper-->
 
 

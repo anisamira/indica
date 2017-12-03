@@ -62,9 +62,7 @@
 <div class="wrapper">
 
 
-		<div class="container content-sm">		
-		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
+			<div id="content">	
 
 		<div class="topnav">
   <a href="work.php">Information</a>
@@ -491,7 +489,7 @@ $result = mysql_query($sql) or die(mysql_error());
 ?>
 	</div>
 		</div>
-	</div><!--/wrapper-->
+
 	
 <style>
 body {margin:0;}
