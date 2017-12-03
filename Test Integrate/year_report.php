@@ -152,9 +152,10 @@ else
 			
 ?>	
 <tr>
-                         <form action="work_view2.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                             <td style="width:50px;"><?php echo $year;?></td>
-							<td style="width:15px;"><button type="submit" class="btn btn-primary">Go</button></td>
+							<input type="hidden" name="year" value="<?php echo $year;?>"/>
+							<td style="width:15px;"><button type="submit" name="submit" class="btn btn-primary">Go</button></td>
 						 </form>
 
 </tr>								   
@@ -179,7 +180,13 @@ else
 	
 }
 
-if isset($_POST[''])
+if (isset($_POST['year']))
+{
+	$year=$_POST['year'];
+	echo "$year";
+	
+	
+}
 
 
 

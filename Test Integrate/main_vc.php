@@ -188,7 +188,8 @@ $sql			= "SELECT COUNT(issue.issue_id) AS issue
       <div class="card__expander">
         <i class="fa fa-close [ js-collapser ]"></i>
         Number of Goal: <?=$goal_num;?>
-      </div>
+        
+	  </div>
     </div>
 
     <div class=" card [ is-collapsed ] ">

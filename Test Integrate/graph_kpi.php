@@ -68,11 +68,11 @@
 
 
 
-<div class="w3-main" style="margin-left:300px;margin-top:90px; margin-right:50px;">	
+<div class="w3-main" style="margin-left:300px;margin-top:60px; margin-right:50px;">	
 	<div class="control-group">
 		<label class="control-label">Year</label>
 			<div class="controls">
-					<form id="s" method="post">
+					<form action="" method="post">
 						<table class="table" width="20%">
 							<tr>
 								<td>
@@ -117,18 +117,67 @@
 		</div>
 
 
-	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-	<div class="control-group">
-	<table class="table table-bordered" id="datatable">
-		<thead>
-			<tr>
-				<th>KPI</th>
-				<th>Target</th>
-				<th>Achievement</th>
-			</tr>
-		</thead>
-		<tbody>
-		<?php
+
+	
+	<?php
+		
+		if(isset($_POST['save']))
+		{
+			$year = $_POST['txt_year'];
+			$sql2	="SELECT achievement.ach_id, achievement.target, achievement.ach_desc, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
+						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year on year.year_id=achievement.year_id
+						WHERE achievement.form_id='$form_id' 
+						AND kpi.session_name='$session_name'
+						AND achievement.quarter='2'
+						AND year.year_name='$year'";
+			$result2=mysql_query($sql2) or die (mysql_error());
+			if (mysql_num_rows($result2)>0)
+			{?>
+			<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div><div class="control-group">
+				<table class="table table-bordered" id="datatable">
+				<thead>
+					<tr>
+						<th>KPI</th>
+						<th>Target</th>
+						<th>Achievement</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php
+				while($row=mysql_fetch_array($result2))
+				{
+					$kpi_desc	=$row['kpi_desc'];
+					$ach_desc	=$row['ach_desc'];
+					$ach_id		=$row['ach_id'];
+					$target		=$row['target'];?>
+					 <tr style="font-size:13px">
+						<td><?php echo $kpi_desc;?></td>
+						<td><?php echo $target;?></td>
+						<td><?php echo $ach_desc;?></td>
+					</tr><?php
+				}?>
+				</tbody>
+			</table>
+			</div>
+			</div><?php
+			}
+			else
+			{
+				?>
+							<div class="alert alert-warning alert-dismissable fade in">
+								<meta http-equiv="refresh" content="1;url=main_vc.php" />
+								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								<strong>There is no records</strong> Redirecting in 1 seconds...
+							</div><?php	
+			}
+			
+		}
+		else
+		{
+			$year=$curyear;
+			
 			$sql2	="SELECT achievement.ach_id, achievement.target, achievement.ach_desc, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
 						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
 						JOIN achievement ON achievement.target_id=target.target_id
@@ -138,23 +187,49 @@
 						AND achievement.quarter='$quater'
 						AND year.year_name='$curyear'";
 			$result2=mysql_query($sql2) or die (mysql_error());
-			while($row=mysql_fetch_array($result2))
+			if (mysql_num_rows($result2)>0)
+			{?>
+			<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		<div class="control-group">
+				<table class="table table-bordered" id="datatable">
+				<thead>
+					<tr>
+						<th>KPI</th>
+						<th>Target</th>
+						<th>Achievement</th>
+					</tr>
+				</thead>
+				<tbody><?php
+				while($row=mysql_fetch_array($result2))
+				{
+					$kpi_desc	=$row['kpi_desc'];
+					$ach_desc	=$row['ach_desc'];
+					$ach_id		=$row['ach_id'];
+					$target		=$row['target'];?>
+					 <tr style="font-size:13px">
+						<td><?php echo $kpi_desc;?></td>
+						<td><?php echo $target;?></td>
+						<td><?php echo $ach_desc;?></td>
+					</tr><?php
+				}?>
+				</tbody>
+			</table>
+			</div>
+			</div><?php
+			}
+			else
 			{
-				$kpi_desc	=$row['kpi_desc'];
-				$ach_desc	=$row['ach_desc'];
-				$ach_id		=$row['ach_id'];
-				$target		=$row['target'];?>
-				 <tr style="font-size:13px">
-					<td><?php echo $kpi_desc;?></td>
-					<td><?php echo $target;?></td>
-					<td><?php echo $ach_desc;?></td>
-				</tr><?php
-			}?>
+				?>
+							<div class="alert alert-warning alert-dismissable fade in">
+								<meta http-equiv="refresh" content="1;url=main_vc.php" />
+								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								<strong>There is no records</strong> Redirecting in 1 seconds...
+							</div><?php	
+			}
+		}?>
+		
 		   
-		</tbody>
-	</table>
-</div>
-</div>
+
 </div>
 </div>
 <script>
@@ -166,7 +241,7 @@ Highcharts.chart('container', {
         type: 'column'
     },
     title: {
-        text: '<?php echo $_SESSION['module_name'] . " ". $curyear;?>'
+        text: '<?php echo $_SESSION['module_name'] . " ". $year;?>'
     },
     yAxis: {
         allowDecimals: false,
