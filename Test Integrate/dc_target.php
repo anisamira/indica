@@ -61,8 +61,7 @@
 
 ?>
 	<div class="wrapper">
-		<div class="container content-sm">
-			<div class="w3-main" style="margin-left:300px;margin-top:20px;">
+		<div id="content">
 				<div class="topnav">
 					<a href="dc_goal.php">Goals</a>
 					<a href="dc_strategy.php">Strategies</a>
@@ -206,7 +205,7 @@
 									 
 								
 						<!-- END TARGET FORM-->
-			</div>
+
 		</div>
 	</div><!--/wrapper-->
 

@@ -47,8 +47,7 @@
 		}?>
 		
 		<div class="wrapper">
-			<div class="container content-sm">
-				<div class="w3-main" style="margin-left:300px;margin-top:20px;">
+			<div id="content">
 					<div class="topnav"><!-- Tabs -->
 						<a href="dc_goal.php">Goals</a>
 						<a class="active" href="dc_strategy.php">Strategies</a>
@@ -58,7 +57,8 @@
 						<a href="dc_target.php">Target</a>
 						<a href="dc_reference.php">Reference</a>
 						<a href="dc_submit.php">Submit Records</a>
-					</div><br></br><?php
+					</div><br></br>
+					<?php
 					$x = 1;
 					if(isset($_GET['deletestrategy']))
 					{
@@ -71,7 +71,7 @@
 						ORDER BY goal_id ASC";
 					$result = mysql_query($sql) or die(mysql_error());
 					if (mysql_num_rows($result)>0)
-					{?>
+					{ ?>
 						<form action="dc_actionplan.php" method="post">
 							<table class="table table-bordered">
 								<col width="40%"/>
@@ -183,8 +183,8 @@
 							<strong>You need to fill in previous page first</strong> Redirecting in 1 seconds...
 						</div><?php	
 					}?>
-				</div>
-			</div>				
+
+			</div>	<!--container content-->			
 		</div><!--/wrapper-->
 	</body>
 		
