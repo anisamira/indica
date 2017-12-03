@@ -40,7 +40,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 
 
 
-<div class="w3-main" style="margin-left:300px;margin-top:60px; margin-right:50px;">	
+<div id="content">	
 	
 
 	<?php
@@ -161,7 +161,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 			{
 				?>
 							<div class="alert alert-warning alert-dismissable fade in">
-							<meta http-equiv="refresh" content="1;url=workbench_dash.php" />
+							<meta http-equiv="refresh" content="1;url=workbench_dash.php" /> 
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 								<strong>There is no records</strong> Redirecting in 1 seconds...
 							</div><?php	
