@@ -351,8 +351,7 @@ $sql			= "SELECT COUNT(achievement.ach_id) AS takcapai
 </div>
 
 	<script type="text/javascript" src="assets/best/js/index.js"></script>
-
-
+		
   </div>
   
 

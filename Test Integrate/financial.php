@@ -114,6 +114,9 @@ body {margin:0;}
     color: white;
 }
 </style>
+
+
+
 <div class="wrapper">
 
 
@@ -125,7 +128,8 @@ body {margin:0;}
   &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
   <br>
 </div>
-			
+
+<br>			
 <div class="topnav">
   <a href="work.php">Information</a>
   <a href="achieve.php">Achievement</a>
@@ -139,10 +143,9 @@ body {margin:0;}
 <?php
 $module_id=$_SESSION['module_id'];
 						$x=1;
-							
-					$x=1;
+
 										$sql="
-											SELECT  goal.*, strategy.*, actionplan.*, kpi.*, baseline.*, target.*,form.*, SUM(reference.estimated_cost) AS cost
+											SELECT SUM(reference.estimated_cost) AS cost, SUM(reference.exp_fin_return) AS income
 											FROM goal 
 											JOIN strategy ON strategy.goal_id=goal.goal_id 
 											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -159,6 +162,8 @@ $module_id=$_SESSION['module_id'];
 											{
 											
 											$cost=$row['cost'];
+											$return=$row['income'];
+
 											?>
 											
 											
@@ -168,8 +173,14 @@ $module_id=$_SESSION['module_id'];
 												  </div>
 												  <div class="card-block">
 													<h4 class="card-title">RM  <?php echo $cost;?></h4>
-													<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-													<a href="#" class="btn btn-primary">Go somewhere</a>
+												  </div>
+												</div>
+											<div class="card">
+												  <div class="card-header">
+													Total Expected Return
+												  </div>
+												  <div class="card-block">
+													<h4 class="card-title">RM  <?php echo $return;?></h4>
 												  </div>
 												</div>
 											
@@ -187,33 +198,25 @@ $module_id=$_SESSION['module_id'];
 		</div>
 	</div><!--/wrapper-->
 
+	<style>
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 20%;
+	height: 40%;
+    background-color: #FFFACD;
+}
 
-<script>
-$(document).ready(function() {
-  $("[data-toggle]").click(function() {
-    var toggle_el = $(this).data("toggle");
-    $(toggle_el).toggleClass("open-sidebar");
-  });
-     
-});
- 
-$(".swipe-area").swipe({
-    swipeStatus:function(event, phase, direction, distance, duration, fingers)
-        {
-            if (phase=="move" && direction =="right") {
-                 $(".container").addClass("open-sidebar");
-                 return false;
-            }
-            if (phase=="move" && direction =="left") {
-                 $(".container").removeClass("open-sidebar");
-                 return false;
-            }
-        }
-});
-</script>
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
 
-
-
+.news
+{
+    column-count: 2;
+}
+</style>
+	
 </html>
 
 
