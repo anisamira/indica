@@ -95,6 +95,7 @@ else
 
 <body>
 
+<div style="width:100%; overflow:scroll; position:relative; margin-top:30px;">
 <?php
 if (isset($_POST['Achievement1']))
 { 
@@ -221,6 +222,7 @@ elseif 	($curyear==$year&&$year==$year5)
 		}
 
 					?>	
+</div>
 </body>
 
 <?php

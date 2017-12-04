@@ -165,7 +165,7 @@ body {margin:0;}
 
 </div>
 
-
+</br>
 				<form action="add_achieve.php" method="post">
 					<input type="submit" name="Achievement1" value="Check for an Achievement" >
 					</form>
