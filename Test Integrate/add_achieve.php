@@ -199,7 +199,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 ?>					
 <tr>
-<td>
+<td colspan="5">
 <input type="submit" name="Insert" value="Insert">
 </td>
 </tr>
