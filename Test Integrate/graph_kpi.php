@@ -57,14 +57,15 @@
 					{
 						
 						$_SESSION['module_name'] = $row['module_name'];
-
 						}?>
 
- 
-					
+ <script type="text/javascript" src="graph.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>					
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 
 
 
@@ -77,7 +78,6 @@
 							<tr>
 								<td>
 									<select class="form-control" name="txt_year"><?php
-
 										$sql=mysql_query("Select * from session where session_name='$session_name'");
 										$row=mysql_num_rows($sql);
 										while($row = mysql_fetch_array($sql))
@@ -96,7 +96,6 @@
 											<option value="<?php  echo $year5;?>"><?php  echo $year5;?></option>
 						
 											<?php
-
 										}?>
 										
 									</select> 
@@ -163,6 +162,42 @@
 			</div>
 			</div><?php
 			}
+				$sql3	="SELECT achievement.ach_id, achievement.target, achievement.ach_result, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
+						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year on year.year_id=achievement.year_id
+						WHERE achievement.form_id='$form_id' 
+						AND kpi.session_name='$session_name'
+						AND achievement.quarter='2'
+						AND year.year_name='$year'";
+			$result3=mysql_query($sql3) or die (mysql_error());
+			if (mysql_num_rows($result3)>0)
+			{?>
+			<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div><div class="control-group">
+				<table class="table table-bordered" id="datatable2">
+				<thead>
+					<tr>
+						<th>KPI</th>
+						<th>Achievement</th>
+					</tr>
+				</thead>
+				<tbody>
+				<?php
+				while($row=mysql_fetch_array($result3))
+				{
+					$kpi_desc	=$row['kpi_desc'];
+					$ach_result	=$row['ach_result'];
+					$ach_id		=$row['ach_id'];?>
+					 <tr style="font-size:13px">
+						<td><?php echo $kpi_desc;?></td>
+						<td><?php echo $ach_result;?></td>
+					</tr><?php
+				}?>
+				</tbody>
+			</table>
+			</div>
+			</div><?php
+			}
 			else
 			{
 				?>
@@ -217,6 +252,42 @@
 			</div>
 			</div><?php
 			}
+			$sql3	="SELECT achievement.ach_id, achievement.target, achievement.ach_result, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
+						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year on year.year_id=achievement.year_id
+						WHERE achievement.form_id='$form_id' 
+						AND kpi.session_name='$session_name'
+						AND achievement.quarter='$quater'
+						AND year.year_name='$curyear'";
+			$result3=mysql_query($sql3) or die (mysql_error());
+			if (mysql_num_rows($result3)>0)
+			{?>
+			<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+		<div class="control-group">
+				<table class="table table-bordered" id="datatable2">
+				<thead>
+					<tr>
+						<th>KPI</th>
+						<th>Achievement</th>
+					</tr>
+				</thead>
+				<tbody><?php
+				while($row=mysql_fetch_array($result3))
+				{
+					$kpi_desc	=$row['kpi_desc'];
+					$ach_result	=$row['ach_result'];
+					$ach_id		=$row['ach_id'];?>
+					 <tr style="font-size:13px">
+						<td><?php echo $kpi_desc;?></td>
+						<td><?php echo $ach_result;?></td>
+					</tr><?php
+				}?>
+				</tbody>
+			</table>
+			</div>
+			</div><?php
+			}
 			else
 			{
 				?>
@@ -233,6 +304,7 @@
 </div>
 </div>
 <script>
+$(function () {
 Highcharts.chart('container', {
     data: {
         table: 'datatable'
@@ -256,5 +328,33 @@ Highcharts.chart('container', {
         }
     }
 });
+});
 
+$(function () {
+Highcharts.chart('container2', {
+    data: {
+        table: 'datatable2'
+    },
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: '<?php echo $_SESSION['module_name'] . " ". $year;?>'
+    },
+    yAxis: {
+        allowDecimals: false,
+        title: {
+            text: 'Number'
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                this.point.y + ' ' + this.point.name.toLowerCase();
+        }
+    }
+});
+});
 </script>
+
+
