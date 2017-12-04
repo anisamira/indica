@@ -1,4 +1,4 @@
-<body style="width:100%; overflow:scroll; position:relative;">
+<body>
 <?php
 	include('sidebar.php');
 	include('style_dc.php');
@@ -33,7 +33,7 @@
 				
 				
 		<!--<div class="w3-main" style="margin-left:300px;margin-top:43px;">-->
-				<div class=""> 
+				<div  style="width:100%; overflow:scroll; position:relative;"> 
 					<form action="main_dm.php" method="post">
 						<table class="table table-bordered"> 						
 							<tr style="font-size:13px">

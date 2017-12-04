@@ -1,5 +1,5 @@
 
-<body style="width:100%; overflow:scroll; position:relative;">
+<body>
 <?php
 	include('style_dc.php');
 	include('sidebar.php');
@@ -10,7 +10,7 @@
 ?>
 	<div class="wrapper">
 			<div id="content">					
-				<div class="">  
+				<div style="width:100%; overflow:scroll; position:relative;"">  
 					
 					<?php
 							$x=1;

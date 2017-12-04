@@ -1,5 +1,5 @@
 
-<body style="width:100%; overflow:scroll; position:relative;">
+<body>
 <?php
 	//include('style_dc.php');
 	include('sidebar.php');
@@ -53,7 +53,7 @@
 						
 						<!-- SUBMIT RECORDS-->
 						<br></br>
-							  
+							  <div  style="width:100%; overflow:scroll; position:relative;">
 								<?php
 									$x=1;
 									$que="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
@@ -174,6 +174,7 @@
 																				$estimated_cost	=$row8['estimated_cost'];
 																				$exp_fin_return	=$row8['exp_fin_return'];?>
 																				<td><?php echo $kpi_desc;?></td>
+																				<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
 																				<td><?php echo $operation_def;?></td>
 																				<td><?php echo $baseline1;?></td>
 																				<td><?php echo $baseline2;?></td>
@@ -186,7 +187,8 @@
 																				<td><?php echo $data_source;?></td>
 																				<td><?php echo $estimated_cost;?></td>
 																				<td><?php echo $exp_fin_return;?></td>
-																				<tr style="font-size:13px"><?php
+																				<tr style="font-size:13px"><?php $x++;
+																			
 																			}
 																			
 																	}
@@ -210,7 +212,7 @@
 									}?>										
 												
 
-
+</div>
 					<!-- END SUBMIT RECORDS-->
 		</div>
 	</div><!--/wrapper-->
