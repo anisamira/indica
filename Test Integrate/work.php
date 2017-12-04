@@ -128,7 +128,7 @@ if (mysql_num_rows($result)>0){
 ?>
 
 
-<div class="table-responsive">  
+<div style="width:100%; overflow:scroll; position:relative;">  
 								   <table class="table table-bordered"> 
 										<tr>
 											<th></th>
