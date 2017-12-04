@@ -90,7 +90,10 @@ else
 
 									
 ?>
+<head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+</head>
 		<div class="wrapper">		
 		<!-- !PAGE CONTENT! -->
 
@@ -126,6 +129,18 @@ else
       <a href="icu_reports.php" target="_blank" class="w3-bar-item w3-button">Generate ICU Reports</a>
     
 
+	
+	<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+   Dropdown <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+   </ul>
+	</div>
+	
+	
 </div>
 </div>
 

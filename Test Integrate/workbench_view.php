@@ -68,7 +68,7 @@ if(isset($_POST["search"])){
 			
 ?>	
 <tr>
-                         <form action="work_view2.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>

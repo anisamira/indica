@@ -173,7 +173,16 @@ else
   else{
  	{
 		//print error message
-		echo 'No project found';
+		
+		
+		?>
+							<div class="alert alert-warning alert-dismissable fade in">
+								<meta http-equiv="refresh" content="1;url=report_tnc.php" />
+								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								<strong>No project found</strong> Redirecting in 1 seconds...
+							</div>
+							<?php
+		
 	}
 	// once processing is complete
 	// free result set
