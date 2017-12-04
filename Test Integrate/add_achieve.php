@@ -243,7 +243,7 @@ if (isset($_POST['Insert'])){
 	$targett=$_POST['tar'.$y];
 	$value=$_POST['target'.$y];
 	
-$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc,target,form_id) VALUES ('$year_id','$value','$quater','$achievement','$targett','$form_id')";
+$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc,target,form_id, ach_status) VALUES ('$year_id','$value','$quater','$achievement','$targett','$form_id','pending')";
 $result = mysql_query($sql) or die(mysql_error());  											   
 												if (false === $result) 
 												{

@@ -137,7 +137,7 @@ body {margin:0;}
   <a class="active" href="financial.php">Financial</a>
 
 </div>
-
+</br>
 <body>
 <?php
 $module_id=$_SESSION['module_id'];

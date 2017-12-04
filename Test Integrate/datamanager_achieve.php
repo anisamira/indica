@@ -77,11 +77,10 @@ else
 	?>
 
 <div class="wrapper">
-
-		<div class="table-responsive"> 
+	<div id="content">
+		<div style="width:100%; overflow:scroll; position:relative;"> 
        <form action="main_dm.php" method="post">		
 		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
 
 <div style="padding-left:16px">
   &nbsp&nbspWELCOME <?=$module_id;?>
@@ -216,11 +215,10 @@ else
 						?>
 
 </body>
-				</div>
 			</div>
 		</div>
 	</div>
-
+</div>
 
 <script>
 $(document).ready(function() {

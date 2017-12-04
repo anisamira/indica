@@ -158,11 +158,11 @@ body {margin:0;}
 
 <body>
 
-
+</br>
                     <form action="add_issue.php" method="post">
 					<input type="submit" name="Issue" value="Check for an Issue">
 					</form>
-
+</br>
 
 <button class="accordion">ISSUE on <?=$year1?></button>
 <div class="panel">
@@ -192,12 +192,12 @@ body {margin:0;}
 
 						
 ?>
-                     
+                 
 <?php				
 					if (mysql_num_rows($result)>0)
 					{
 					?>
-<div class="table-responsive"> 					
+<div style="width:100%; overflow:scroll; position:relative;"> 					
 						<table class="table table-bordered">
 									
 									
