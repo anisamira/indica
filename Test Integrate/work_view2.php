@@ -74,13 +74,8 @@ else
 					}					
 	
 if (!isset($_GET['moduleid'])){
-	
-	echo "luar";
-	
-	?>
-
-	
-  
+?>	
+Sorry: Unable to find the module.
 <?php
   }
 else{

@@ -43,7 +43,6 @@ include_once ('connection.php');
                         <li><a href="admin_manageuser_create_new_user.php">Create new user</a></li>
                         <li><a href="admin_manageuser_viewuser.php">View all user</a></li>
                         <li><a href="admin_manageuser_edituser.php">Edit users</a></li>
-                        <li><a href="workbench_dash.php">Dashboard</a></li>
                     </ul>
                 </li>
                 <li>
@@ -52,6 +51,9 @@ include_once ('connection.php');
                 <li>
                     <a href="logtrails.php">Log Trails</a>
                 </li>
+				<li><a href="workbench_dash.php">Dashboard</a></li>
+				<li><a href="workbench_view.php">Module Workbench</a></li>
+				
                 <?php }
 
 				 if (($_SESSION['role_id']) == 'R02') {?>
