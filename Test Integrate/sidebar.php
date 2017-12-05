@@ -53,9 +53,9 @@ include_once ('connection.php');
                 </li>
 				<li><a href="workbench_dash.php">Dashboard</a></li>
 				<li><a href="workbench_view.php">Module Workbench</a></li>
+				<li><a href="calculation1.php">Calculation</a></li>
 				
                 <?php }
-
 				 if (($_SESSION['role_id']) == 'R02') {?>
 				 
 					<li><a href="main_dc.php">Home</a></li>
