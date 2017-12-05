@@ -1,7 +1,7 @@
 
 <body>
 <?php
-	include('style_dc.php');
+	//include('style_dc.php');
 	include('sidebar.php');
 	include('script.php');
 	$module_id=$_SESSION['module_id'];
@@ -38,8 +38,8 @@
 
 ?>
 	<div class="wrapper">
-		<div class="container content-sm">
-			<div class="w3-main" style="margin-left:200px;margin-top:20px;">
+		<div id="content">
+
 				<div class="topnav">
 					<a href="dc_goal.php">Goals</a>
 					<a href="dc_strategy.php">Strategies</a>
@@ -53,7 +53,7 @@
 						
 						<!-- SUBMIT RECORDS-->
 						<br></br>
-							  
+							  <div  style="width:100%; overflow:scroll; position:relative;">
 								<?php
 									$x=1;
 									$que="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
@@ -74,7 +74,7 @@
 											AND session_name='$session_name' 
 											ORDER BY goal_id ASC";
 										$result = mysql_query($sql) or die(mysql_error());?>
-										<div class="table-responsive">
+
 											<form action="main_dc.php" method="post">
 												 <table class="table table-bordered">
 													<tr style="font-size:14px">
@@ -174,6 +174,7 @@
 																				$estimated_cost	=$row8['estimated_cost'];
 																				$exp_fin_return	=$row8['exp_fin_return'];?>
 																				<td><?php echo $kpi_desc;?></td>
+																				<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
 																				<td><?php echo $operation_def;?></td>
 																				<td><?php echo $baseline1;?></td>
 																				<td><?php echo $baseline2;?></td>
@@ -186,15 +187,20 @@
 																				<td><?php echo $data_source;?></td>
 																				<td><?php echo $estimated_cost;?></td>
 																				<td><?php echo $exp_fin_return;?></td>
-																				<tr style="font-size:13px"><?php
+																				<tr style="font-size:13px"><?php $x++;
+																			
 																			}
 																			
 																	}
 															}
 													}?>
 												</table>
+												<div style="margin:20px;">
+													<input type="checkbox" name="check" value="yes" required> I hereby admit that all records / information submitted are true.</input></br></br>
+													<input type="submit" name="submit_master" value="Submit" onclick="return confirm('Are you sure you want to submit this form?');" /></input>
+												</div>
 											</form>
-										</div><?php
+										<?php
 									}	
 									else
 									{?>
@@ -205,11 +211,8 @@
 										</div><?php	
 									}?>										
 												
-								
-														
-							
-						</div>
 
+</div>
 					<!-- END SUBMIT RECORDS-->
 		</div>
 	</div><!--/wrapper-->

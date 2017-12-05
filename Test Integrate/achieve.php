@@ -146,10 +146,9 @@ body {margin:0;}
 	
 <div class="wrapper">
 
-
-		<div class="container content-sm">		
+	
 		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
+		<div id="content">	
 
 <div style="padding-left:16px">
   &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name?> YEAR <?=$year?>
@@ -167,10 +166,61 @@ body {margin:0;}
 </div>
 
 
+</br>
+<table>
+<tr><td>
 				<form action="add_achieve.php" method="post">
 					<input type="submit" name="Achievement1" value="Check for an Achievement" >
 					</form>
-					
+	</td>
+<td>	
+<?php
+$sql="SELECT * 
+		FROM achievement 
+		WHERE form_id='$form_id' AND quarter='$quater' AND ach_status='reject'";
+		$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{	
+?>
+						<form action="add_achieve.php" method="post">
+					<input type="submit" name="update" value="Update Records" >
+				</form>	
+		</td>
+		<div class="alert alert-info fade in">
+		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+		<strong>Information</strong> 
+		<ul>
+			<li>Some of Your achievement are rejected. You need to update the records.</li>
+		</ul>
+	</div>
+		<?php				
+		}
+		
+?>
+	
+</tr>
+</table>		
+<?php
+$sql="SELECT * 
+		FROM achievement 
+		WHERE form_id='$form_id' AND quarter='$quater' AND ach_status='pending'";
+		$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{	
+?>
+		<div class="alert alert-info fade in">
+		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+		<strong>Information</strong> 
+		<ul>
+			<li>Waiting for approval.</li>
+			<li>Contact your Data Manager for the data approval.</li>
+
+		</ul>
+	</div>
+		<?php				
+		}
+		
+		?>
 
 <br>
 
@@ -871,7 +921,7 @@ elseif 	($year==$year5)
 <!-- end of year 1-->
 
 	</div>
-		</div>
+
 
 
 <script>

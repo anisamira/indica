@@ -61,8 +61,7 @@
 
 ?>
 	<div class="wrapper">
-		<div class="container content-sm">
-			<div class="w3-main" style="margin-left:300px;margin-top:20px;">
+		<div id="content">
 				<div class="topnav">
 					<a href="dc_goal.php">Goals</a>
 					<a href="dc_strategy.php">Strategies</a>
@@ -254,10 +253,7 @@
 									<strong>You need to fill in previous page first</strong> Redirecting in 1 seconds...
 								</div><?php	
 							}?>
-									
-						
 
-		</div>
 	</div><!--/wrapper-->
 
 		

@@ -77,11 +77,10 @@ else
 	?>
 
 <div class="wrapper">
-
-		<div class="table-responsive"> 
+	<div id="content">
+		<div style="width:100%; overflow:scroll; position:relative;"> 
        <form action="main_dm.php" method="post">		
 		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
 
 <div style="padding-left:16px">
   &nbsp&nbspWELCOME <?=$module_id;?>
@@ -106,6 +105,7 @@ else
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND achievement.quarter='$quarter'
+						AND achievement.ach_status='pending'
 						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						
@@ -153,36 +153,9 @@ else
 							$year           =$row['year_name'];
 							$quarterq       =$row['quarter'];
 							$yearid         =$row['year_id'];
-							
-							
-							
-							$target1= $row['target1'];
-							$target2= $row['target2'];
-							$target3= $row['target3'];
-							$target4= $row['target4'];
-							$target5= $row['target5'];
+							$target			=$row['target'];
 							
 						
-							if ($year==$year1)
-							{
-								$target=$target1;
-							}
-							elseif 	($year==$year2)
-							{
-								$target=$target2;
-							}
-							elseif 	($year==$year3)
-							{
-								$target=$target3;
-							}
-							elseif 	($year==$year4)
-							{
-								$target=$target4;
-							}
-							elseif 	($year==$year5)
-							{
-								$target=$target5;
-							}	
 							
 						?>
 
@@ -216,11 +189,10 @@ else
 						?>
 
 </body>
-				</div>
 			</div>
 		</div>
 	</div>
-
+</div>
 
 <script>
 $(document).ready(function() {

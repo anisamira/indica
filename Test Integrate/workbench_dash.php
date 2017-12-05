@@ -12,7 +12,8 @@
 <div class="wrapper">
 
 
-			<div id="content">	
+		<div id="content">		
+		<!-- !PAGE CONTENT! -->	
 
 
 
@@ -24,8 +25,9 @@ Module Code: <input type="text" name="code">
 
 <input type="submit" name="search" value="Search">
 <input type="submit" name="select" value="Select ALL">
-</form>
 
+</form>
+<br>
 </html>        
 <?php
 
@@ -68,19 +70,19 @@ if(isset($_POST["search"])){
 			
 ?>	
 <tr>
-                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                         <form action="dash_view.php" method="post">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>
 								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 							<td><?php echo $name;?></td>
-							<td><button type="submit" class="btn btn-primary">Go</button></td>
+							<td><button type="submit" class="btn btn-primary" name="save">Go</button></td>
 							
 							</form>
 
 </tr>								   
 												<?php
-											}
+		}
 	$x++;											
 
 											?>
@@ -90,7 +92,7 @@ if(isset($_POST["search"])){
 
 <?php		
  }	 
-  else{
+  else
  	{
 		//print error message
 		echo 'No code found';
@@ -98,7 +100,7 @@ if(isset($_POST["search"])){
 	// once processing is complete
 	// free result set
 	
-}
+
 }
 
 // select all
@@ -139,13 +141,13 @@ if(isset($_POST["select"])){
 			
 ?>	
 <tr>
-                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                         <form action="dash_view.php" method="post">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>
 								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 							<td><?php echo $name;?></td>
-							<td><button type="submit" class="btn btn-primary">Go</button></td>
+							<td><button type="submit" name="save" class="btn btn-primary">Go</button></td>
 							<!--<td><button type="submit" name="Go" class="btn btn-primary"><a href="work_view.php?moduleid=$moduleid&sesi=$sesi">Go</a></button></td>-->
 
 							</form>
@@ -162,7 +164,7 @@ if(isset($_POST["select"])){
 
 <?php		
  }	 
-  else{
+  else
  	{
 		//print error message
 		echo 'No code found';
@@ -170,16 +172,22 @@ if(isset($_POST["select"])){
 	// once processing is complete
 	// free result set
 	
+
 }
-}
+
+
+
+	
 
 
 
 
-?>		
+?>
 
-			</div>
+
     </div>
-
+ 
   
 </html>
+
+

@@ -148,9 +148,7 @@ body {margin:0;}
 <div class="wrapper">
 
 
-		<div class="container content-sm">		
-		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
+			<div id="content">	
 
 			<div style="padding-left:16px">
   &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
@@ -259,7 +257,7 @@ $module_id=$_SESSION['module_id'];
 								<td><?php echo $quater;?></td>	
 								<td><?php echo $achievement;?></td>								
 								<td><?php echo $descriptionvalue;?></td>
-								<td><?php echo "<a href='$files_show'>$files_field</a></div>"?></td>
+								<td><?php echo "<a href='$files_show'>$files_field</a>"?></td>
 								<td><input class="form-control" type="hidden" name="ev_id<?php echo $x;?>" value="<?php echo $ev_id;?>"></input><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletedoc(<?php echo  $ev_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
 
 
@@ -385,7 +383,7 @@ $module_id=$_SESSION['module_id'];
 								<td><?php echo $quater;?></td>	
 								<td><?php echo $achievement;?></td>								
 								<td><?php echo $descriptionvalue;?></td>
-								<td><?php echo "<a href='$files_show'>$files_field</a></div>"?></td>
+								<td><?php echo "<a href='$files_show'>$files_field</a>"?></td>
 								<td><input class="form-control" type="hidden" name="ev_id<?php echo $x;?>" value="<?php echo $ev_id;?>"></input><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletedoc(<?php echo  $ev_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
 
 
@@ -509,7 +507,7 @@ $module_id=$_SESSION['module_id'];
 								<td><?php echo $quater;?></td>	
 								<td><?php echo $achievement;?></td>								
 								<td><?php echo $descriptionvalue;?></td>
-								<td><?php echo "<a href='$files_show'>$files_field</a></div>"?></td>
+								<td><?php echo "<a href='$files_show'>$files_field</a>"?></td>
 								<td><input class="form-control" type="hidden" name="ev_id<?php echo $x;?>" value="<?php echo $ev_id;?>"></input><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletedoc(<?php echo  $ev_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
 
 
@@ -632,7 +630,7 @@ $module_id=$_SESSION['module_id'];
 								<td><?php echo $quater;?></td>	
 								<td><?php echo $achievement;?></td>								
 								<td><?php echo $descriptionvalue;?></td>
-								<td><?php echo "<a href='$files_show'>$files_field</a></div>"?></td>
+								<td><?php echo "<a href='$files_show'>$files_field</a>"?></td>
 								<td><input class="form-control" type="hidden" name="ev_id<?php echo $x;?>" value="<?php echo $ev_id;?>"></input><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletedoc(<?php echo  $ev_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
 
 
@@ -755,7 +753,7 @@ $module_id=$_SESSION['module_id'];
 								<td><?php echo $quater;?></td>	
 								<td><?php echo $achievement;?></td>								
 								<td><?php echo $descriptionvalue;?></td>
-								<td><?php echo "<a href='$files_show'>$files_field</a></div>"?></td>
+								<td><?php echo "<a href='$files_show'>$files_field</a>"?></td>
 								<td><input class="form-control" type="hidden" name="ev_id<?php echo $x;?>" value="<?php echo $ev_id;?>"></input><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletedoc(<?php echo  $ev_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
 
 
@@ -791,7 +789,7 @@ $module_id=$_SESSION['module_id'];
 
 
 	</div>
-		</div>
+
 	</div><!--/wrapper-->
 
 

@@ -74,13 +74,8 @@ else
 					}					
 	
 if (!isset($_GET['moduleid'])){
-	
-	echo "luar";
-	
-	?>
-
-	
-  
+?>	
+Sorry: Unable to find the module.
 <?php
   }
 else{
@@ -93,10 +88,8 @@ else{
 <div class="wrapper">
 
 
-		<div class="container content-sm">		
-		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
 
+			<div id="content">	
 
 
 <head>
@@ -440,7 +433,6 @@ elseif 	($year==$year5)
 ?>
 
 
-
 			
 </div>
 
@@ -689,7 +681,55 @@ else
 </div>
 <div id="Financial" class="tabcontent">
   
-  Total Expenditure
+  
+<?php  
+  
+										$sql="
+											SELECT SUM(reference.estimated_cost) AS cost, SUM(reference.exp_fin_return) AS income
+											FROM goal 
+											JOIN strategy ON strategy.goal_id=goal.goal_id 
+											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+											JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+											JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+											JOIN target ON target.kpi_id=kpi.kpi_id 
+                                            JOIN form ON form.module_id=goal.module_id
+											JOIN reference ON reference.kpi_id=kpi.kpi_id
+											WHERE goal.module_id='$moduleid'
+											AND goal.session_name='$sesi'
+											";
+											$result = mysql_query($sql) or die(mysql_error()); 
+											while($row=mysql_fetch_array($result))
+											{
+											
+											$cost=$row['cost'];
+											$return=$row['income'];
+
+											?>
+											
+											
+												<div class="card">
+												  <div class="card-header">
+													Total Estimated Cost
+												  </div>
+												  <div class="card-block">
+													<h4 class="card-title">RM  <?php echo $cost;?></h4>
+												  </div>
+												</div>
+											<div class="card">
+												  <div class="card-header">
+													Total Expected Return
+												  </div>
+												  <div class="card-block">
+													<h4 class="card-title">RM  <?php echo $return;?></h4>
+												  </div>
+												</div>
+											
+											
+										<?php	
+											}
+						
+?>
+  
 </div>
 
 
@@ -698,7 +738,6 @@ else
 </div>
 
 </div>
-    </div>
 
 	
 <script>

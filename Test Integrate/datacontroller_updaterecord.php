@@ -84,9 +84,8 @@
 	
 ?>
 	<div class="wrapper">
-		<div class="container content-sm">
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">
-				<div class="table-responsive"> 
+			<div id="content">
+				<div style="width:100%; overflow:scroll; position:relative;"> 
 					<?php
 								$x=1;
 								$sql3 = "SELECT master_status.*, goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
@@ -210,7 +209,7 @@
 																					</div>
 																					<div class="modal-footer">
 																						<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																						<input type="submit" class="btn-u btn-u-primary" name="submit_updated" value="Submit"></input>
+																						<input type="submit" class="btn-u btn-u-primary" name="submit_updated" value="Save"></input>
 																					</div>
 																				</form>
 																				
@@ -242,7 +241,6 @@
 					
 				</div>
 			</div>
-		</div>
 	</div>
 
 

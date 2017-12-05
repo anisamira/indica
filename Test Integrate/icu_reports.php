@@ -91,12 +91,12 @@ else
 									
 ?>
 
-		<div class="container content-sm">		
+		<div class="wrapper">		
 		<!-- !PAGE CONTENT! -->
 
 
-	<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
-
+	
+			<div id="content">	
 	<div style="padding-left:16px">
   &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
   <br>
@@ -119,12 +119,13 @@ else
   
 	  ?>
 	  
-	  <div class="table-responsive">  
+	  <div class="table-responsive" style="width:50%">  
 		
-								   <table class="table table-bordered"> 
+								   <table class="table table-bordered" style="outline:0;"> 
 
 										<tr> 
-											<th>YEAR</th>  
+											<th>YEAR</th>
+											<th></th>	
 										</tr>
 	  
 	  
@@ -137,9 +138,9 @@ else
 ?>	
 <tr>
                          <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                            <td style="width:50px;"><?php echo $icu_year;?></td>
+                            <td style="width:30%;"><?php echo $icu_year;?></td>
 							<input type="hidden" name="year" value="<?php echo $icu_year;?>"/>
-							<td style="width:15px;"><button type="submit" name="submit" class="btn btn-primary">Generate</button></td>
+							<td style="width:10%;"><button type="submit" name="submit" class="btn btn-primary">Generate</button></td>
 						 </form>
 
 </tr>								   
@@ -156,11 +157,16 @@ else
  }	 
   else{
  	{
-		//print error message
-		echo 'No project found';
+	
+			?>
+							<div class="alert alert-warning alert-dismissable fade in">
+								<meta http-equiv="refresh" content="1;url=report_tnc.php" />
+								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								<strong>No project found</strong> Redirecting in 1 seconds...
+							</div>
+							<?php
 	}
-	// once processing is complete
-	// free result set
+	
 	
 }
 

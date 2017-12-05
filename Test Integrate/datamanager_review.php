@@ -5,8 +5,7 @@
 	include('script.php');
 ?>
 	<div class="wrapper">
-		<div class="container content-sm">
-			<div class="w3-main" style="margin-left:300px;margin-top:20px;">
+		<div id="content">
 				<?php 
 					$module_id=$_SESSION['module_id'];
 					$user_id=$_SESSION['user_id'];
@@ -34,7 +33,7 @@
 				
 				
 		<!--<div class="w3-main" style="margin-left:300px;margin-top:43px;">-->
-				<div class="table-responsive"> 
+				<div  style="width:100%; overflow:scroll; position:relative;"> 
 					<form action="main_dm.php" method="post">
 						<table class="table table-bordered"> 						
 							<tr style="font-size:13px">
@@ -133,7 +132,7 @@
 				</form>
 		
 				</div>
-			</div>
+
 		</div>
 	</div>
 

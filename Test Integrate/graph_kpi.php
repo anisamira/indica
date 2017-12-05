@@ -30,7 +30,7 @@
 						echo "no data found";
 					}
 	
-	$sql2			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
+	$sql2= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
 					$result2 = mysql_query($sql2) or die(mysql_error()); 
 					if(mysql_num_rows($result2)>0)
 					{
@@ -57,64 +57,53 @@
 					{
 						
 						$_SESSION['module_name'] = $row['module_name'];
-
 						}?>
-
- 
-					
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script type="text/javascript" src="graph.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>					
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<!--<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>-->
 
 
 
-<div class="w3-main" style="margin-left:300px;margin-top:60px; margin-right:50px;">	
+<div id="content" >	
 	<div class="control-group">
 		<label class="control-label">Year</label>
-			<div class="controls">
-					<form action="" method="post">
-						<table class="table" width="20%">
-							<tr>
-								<td>
-									<select class="form-control" name="txt_year"><?php
-
-										$sql=mysql_query("Select * from session where session_name='$session_name'");
-										$row=mysql_num_rows($sql);
-										while($row = mysql_fetch_array($sql))
-										{
-											$year1=$row['year1'];
-											$year2=$row['year2'];
-											$year3=$row['year3'];
-											$year4=$row['year4'];
-											$year5=$row['year5'];
-											?>
-											
-											<option value="<?php  echo $year1;?>"><?php  echo $year1;?></option>
-											<option value="<?php  echo $year2;?>"><?php  echo $year2;?></option>
-											<option value="<?php  echo $year3;?>"><?php  echo $year3;?></option>
-											<option value="<?php  echo $year4;?>"><?php  echo $year4;?></option>
-											<option value="<?php  echo $year5;?>"><?php  echo $year5;?></option>
-						
-											<?php
-
-										}?>
-										
-									</select> 
-								</td>
-							<div class="form-actions">
-								<td><button type="submit" class ="btn btn-sucess"name="save" value="">Go</button></td>
-							</div>
-							</tr>
-							
-						</table>
-
-					</form>
-
-				
-				
-			</div>
-
+		<div class="controls">
+			<form action="" method="post">
+				<table class="table" width="20%">
+					<tr>
+						<td>
+							<select class="form-control" name="txt_year"><?php
+								$sql=mysql_query("Select * from session where session_name='$session_name'");
+								$row=mysql_num_rows($sql);
+								while($row = mysql_fetch_array($sql))
+								{
+									$year1=$row['year1'];
+									$year2=$row['year2'];
+									$year3=$row['year3'];
+									$year4=$row['year4'];
+									$year5=$row['year5'];?>
+									
+									<option value="<?php  echo $year1;?>"><?php  echo $year1;?></option>
+									<option value="<?php  echo $year2;?>"><?php  echo $year2;?></option>
+									<option value="<?php  echo $year3;?>"><?php  echo $year3;?></option>
+									<option value="<?php  echo $year4;?>"><?php  echo $year4;?></option>
+									<option value="<?php  echo $year5;?>"><?php  echo $year5;?></option><?php
+								}?>	
+							</select> 
+						</td>
+						<div class="form-actions">
+							<td><button type="submit" class ="btn btn-sucess"name="save" value="">Go</button></td>
+						</div>
+					</tr>
+				</table>
+			</form>
 		</div>
+	</div>
 
 
 
@@ -123,7 +112,7 @@
 		
 		if(isset($_POST['save']))
 		{
-			$year = $_POST['txt_year'];
+			$year 	= $_POST['txt_year'];
 			$sql2	="SELECT achievement.ach_id, achievement.target, achievement.ach_desc, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
 						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
 						JOIN achievement ON achievement.target_id=target.target_id
@@ -135,39 +124,74 @@
 			$result2=mysql_query($sql2) or die (mysql_error());
 			if (mysql_num_rows($result2)>0)
 			{?>
-			<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div><div class="control-group">
-				<table class="table table-bordered" id="datatable">
-				<thead>
-					<tr>
-						<th>KPI</th>
-						<th>Target</th>
-						<th>Achievement</th>
-					</tr>
-				</thead>
-				<tbody>
-				<?php
-				while($row=mysql_fetch_array($result2))
-				{
-					$kpi_desc	=$row['kpi_desc'];
-					$ach_desc	=$row['ach_desc'];
-					$ach_id		=$row['ach_id'];
-					$target		=$row['target'];?>
-					 <tr style="font-size:13px">
-						<td><?php echo $kpi_desc;?></td>
-						<td><?php echo $target;?></td>
-						<td><?php echo $ach_desc;?></td>
-					</tr><?php
-				}?>
-				</tbody>
-			</table>
-			</div>
-			</div><?php
+				<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+				<div class="control-group">
+					<table class="table table-bordered" id="datatable">
+						<thead>
+							<tr>
+								<th>KPI</th>
+								<th>Target</th>
+								<th>Achievement</th>
+							</tr>
+						</thead>
+						<tbody><?php
+							while($row2=mysql_fetch_array($result2))
+							{
+								$kpi_desc	=$row2['kpi_desc'];
+								$ach_desc	=$row2['ach_desc'];
+								$ach_id		=$row2['ach_id'];
+								$target		=$row2['target'];?>
+								<tr style="font-size:13px">
+									<td><?php echo $kpi_desc;?></td>
+									<td><?php echo $target;?></td>
+									<td><?php echo $ach_desc;?></td>
+								</tr><?php
+							}?>
+						</tbody>
+					</table>
+				</div><?php
+			}
+			
+			$sql3	="SELECT achievement.ach_id, achievement.target, achievement.ach_result, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
+						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year on year.year_id=achievement.year_id
+						WHERE achievement.form_id='$form_id' 
+						AND kpi.session_name='$session_name'
+						AND achievement.quarter='2'
+						AND year.year_name='$year'";
+			$result3=mysql_query($sql3) or die (mysql_error());
+			if (mysql_num_rows($result3)>0)
+			{?>
+				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+				<div class="control-group">
+					<table class="table table-bordered" id="datatable2">
+						<thead>
+							<tr>
+								<th>KPI</th>
+								<th>Achievement</th>
+							</tr>
+						</thead>
+						<tbody><?php
+							while($row3=mysql_fetch_array($result3))
+							{
+								$kpi_desc	=$row3['kpi_desc'];
+								$ach_result	=$row3['ach_result'];
+								$ach_id		=$row3['ach_id'];?>
+								<tr style="font-size:13px">
+									<td><?php echo $kpi_desc;?></td>
+									<td><?php echo $ach_result;?></td>
+								</tr><?php
+							}?>
+						</tbody>
+					</table>
+				</div><?php
 			}
 			else
 			{
 				?>
 							<div class="alert alert-warning alert-dismissable fade in">
-								<meta http-equiv="refresh" content="1;url=main_vc.php" />
+							<meta http-equiv="refresh" content="1;url=main_vc.php" />
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 								<strong>There is no records</strong> Redirecting in 1 seconds...
 							</div><?php	
@@ -176,9 +200,8 @@
 		}
 		else
 		{
-			$year=$curyear;
-			
-			$sql2	="SELECT achievement.ach_id, achievement.target, achievement.ach_desc, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
+			$year=$curyear;			
+			$sql4	="SELECT achievement.ach_id, achievement.target, achievement.ach_desc, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
 						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN year on year.year_id=achievement.year_id
@@ -186,53 +209,85 @@
 						AND kpi.session_name='$session_name'
 						AND achievement.quarter='$quater'
 						AND year.year_name='$curyear'";
-			$result2=mysql_query($sql2) or die (mysql_error());
-			if (mysql_num_rows($result2)>0)
+			$result4=mysql_query($sql4) or die (mysql_error());
+			if (mysql_num_rows($result4)>0)
 			{?>
-			<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-		<div class="control-group">
-				<table class="table table-bordered" id="datatable">
-				<thead>
-					<tr>
-						<th>KPI</th>
-						<th>Target</th>
-						<th>Achievement</th>
-					</tr>
-				</thead>
-				<tbody><?php
-				while($row=mysql_fetch_array($result2))
-				{
-					$kpi_desc	=$row['kpi_desc'];
-					$ach_desc	=$row['ach_desc'];
-					$ach_id		=$row['ach_id'];
-					$target		=$row['target'];?>
-					 <tr style="font-size:13px">
-						<td><?php echo $kpi_desc;?></td>
-						<td><?php echo $target;?></td>
-						<td><?php echo $ach_desc;?></td>
-					</tr><?php
-				}?>
-				</tbody>
-			</table>
-			</div>
-			</div><?php
+				<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+					<div class="control-group">
+						<table class="table table-bordered" id="datatable">
+							<thead>
+								<tr>
+									<th>KPI</th>
+									<th>Target</th>
+									<th>Achievement</th>
+								</tr>
+							</thead>
+							<tbody><?php
+								while($row4=mysql_fetch_array($result4))
+								{
+									$kpi_desc	=$row4['kpi_desc'];
+									$ach_desc	=$row4['ach_desc'];
+									$ach_id		=$row4['ach_id'];
+									$target		=$row4['target'];?>
+									<tr style="font-size:13px">
+										<td><?php echo $kpi_desc;?></td>
+										<td><?php echo $target;?></td>
+										<td><?php echo $ach_desc;?></td>
+									</tr><?php
+								}?>
+							</tbody>
+						</table>
+					</div><?php
+			}
+			
+			$sql5	="SELECT achievement.ach_id, achievement.target, achievement.ach_result, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
+						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year on year.year_id=achievement.year_id
+						WHERE achievement.form_id='$form_id' 
+						AND kpi.session_name='$session_name'
+						AND achievement.quarter='$quater'
+						AND year.year_name='$curyear'";
+			$result5=mysql_query($sql5) or die (mysql_error());
+			if (mysql_num_rows($result5)>0)
+			{?>
+				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+				<div class="control-group">
+					<table class="table table-bordered" id="datatable2">
+						<thead>
+							<tr>
+								<th>KPI</th>
+								<th>Achievement</th>
+							</tr>
+						</thead>
+						<tbody><?php
+							while($row5=mysql_fetch_array($result5))
+							{
+								$kpi_desc	=$row5['kpi_desc'];
+								$ach_result	=$row5['ach_result'];
+								$ach_id		=$row5['ach_id'];?>
+								 <tr style="font-size:13px">
+									<td><?php echo $kpi_desc;?></td>
+									<td><?php echo $ach_result;?></td>
+								</tr><?php
+							}?>
+						</tbody>
+					</table>
+				</div><?php
 			}
 			else
-			{
-				?>
-							<div class="alert alert-warning alert-dismissable fade in">
-								<meta http-equiv="refresh" content="1;url=main_vc.php" />
-								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-								<strong>There is no records</strong> Redirecting in 1 seconds...
-							</div><?php	
+			{?>
+				<div class="alert alert-warning alert-dismissable fade in">
+				<meta http-equiv="refresh" content="1;url=main_vc.php" />
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>There is no records</strong> Redirecting in 1 seconds...
+				</div><?php	
 			}
 		}?>
-		
-		   
+</div>
 
-</div>
-</div>
 <script>
+$(function () {
 Highcharts.chart('container', {
     data: {
         table: 'datatable'
@@ -256,5 +311,33 @@ Highcharts.chart('container', {
         }
     }
 });
+});
 
+$(function () {
+Highcharts.chart('container2', {
+    data: {
+        table: 'datatable2'
+    },
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: '<?php echo $_SESSION['module_name'] . " ". $year;?>'
+    },
+    yAxis: {
+        allowDecimals: false,
+        title: {
+            text: 'Number'
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                this.point.y + ' ' + this.point.name.toLowerCase();
+        }
+    }
+});
+});
 </script>
+
+

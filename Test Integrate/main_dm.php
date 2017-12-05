@@ -66,7 +66,7 @@ else
 							}
 							
 							$form_id	=$_POST["form_id"];
-							$sql2		="SELECT * FROM master_status where form_id='$form_id' AND action_type='rejected'";
+							$sql2		="SELECT * FROM master_status where form_id='$form_id' AND action_type='reject'";
 							$result		=mysql_query($sql2) or die (mysql_error());
 							if(mysql_num_rows($result)>0)
 								{
@@ -112,18 +112,17 @@ else
 
 <body>
 	<div class="wrapper">
-		<div class="container content-sm">
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">
+		<div id="content">
 			<!--<form action="datamanager_review.php" method="post">-->
 				<table class="table table-bordered"> 
 					<tr style="font-size:13px">
 						<th>Version</th>						
-						<!--<th>Last Updated</th>-->
+						<th>Last Updated</th>
 						<th>Status</th>
 						<th>Action</th>						
 					</tr>
 					<?php
-					$sql= "SELECT * 
+					$sql= "SELECT form_id, session_name, module_id, form_status,  DATE_FORMAT(last_updated, '%d-%m-%Y') AS last_updated
 						FROM form 
 						WHERE module_id='$module_id' AND session_name='$session_name'";
 					$result = mysql_query($sql) or die(mysql_error()); 
@@ -133,9 +132,11 @@ else
 						{
 							$form_status	=$row['form_status'];
 							$form_id		=$row['form_id'];
-							$session_name	=$row['session_name'];?>
+							$session_name	=$row['session_name'];
+							$last_updated	=$row['last_updated'];?>
 							<tr style="font-size:13px">  
 								<td>KPI Achievement <?php echo $session_name;?></td>
+								<td><?php echo $last_updated;?></td>
 								<td><?php echo $form_status;?></td>
 								<td>
 									<form action="datamanager_review.php" method="post">
@@ -221,19 +222,38 @@ else
 					if(mysql_num_rows($result)>0)
 					{?>
 						<tr style="font-size:13px">  
-								<td>KPI Achievement Quarter <?php echo $quarter;?> Year <?php echo $curyear;?></td>
-								<td><?php echo $status;?></td>
-								<td>
+								<td>KPI Achievement Quarter <?php echo $quarter;?> Year <?php echo $curyear;?></td>	
+								<td></td>
 									<form action="datamanager_achieve.php" method="post"><?php 
-											if ($status=="") 
-											{?>
-												<input type="submit" name="achieve_approval" value="Approval"></input><?php
-											}
+										$query= "SELECT * 
+												FROM achievement 
+												WHERE form_id='$form_id' AND quarter='$quarter' AND ach_status='pending'";
+										$result = mysql_query($query) or die(mysql_error());
+										if(mysql_num_rows($result)>0)	
+										{?>								
+											<td>pending</td>
+											<td><input type="submit" name="achieve_approval" value="Approval"></input></td><?php
+										}
 											else
-											{?>
-												<input type="submit" name="achieve_approval" value="Approval" disabled></input><?php
+											{
+												$query2= "SELECT * 
+												FROM achievement 
+												WHERE form_id='$form_id' AND quarter='$quarter' AND ach_status='reject'";
+												$result2 = mysql_query($query2) or die(mysql_error());
+												if(mysql_num_rows($result2)>0)
+												{?>
+													<td>Rejected</td>
+													<td><input type="submit" name="achieve_approval" value="Approval" disabled></input></td><?php
+													
+												}
+												else
+												{?>
+													<td>Approved</td>
+													<td><input type="submit" name="achieve_approval" value="Approval" disabled></input></td><?php
+													
+												}
+												
 											}?>
-									
 									</form>
 								</td>
 									
@@ -245,7 +265,7 @@ else
 					
 				</table>
 						
-			</div>
+
 		</div>
 	</div>
 

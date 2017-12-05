@@ -90,13 +90,15 @@ else
 
 									
 ?>
+<head>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
-		<div class="container content-sm">		
+</head>
+		<div class="wrapper">		
 		<!-- !PAGE CONTENT! -->
 
 
-	<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
-
+			<div id="content">	
 	<div style="padding-left:16px">
   &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
   <br>
@@ -127,11 +129,24 @@ else
       <a href="icu_reports.php" target="_blank" class="w3-bar-item w3-button">Generate ICU Reports</a>
     
 
+	
+	<div class="dropdown">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
+   Dropdown <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Action</a></li>
+    <li><a href="#">Another action</a></li>
+   </ul>
+	</div>
+	
+	
 </div>
 </div>
 
 
 <!-- end of division-->
-    </div>	
+    </div>
 	</div>
-	</div>				
+	</div>
+	

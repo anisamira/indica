@@ -7,6 +7,7 @@
 	
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
+	$username		=$_SESSION['username'];
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -43,7 +44,7 @@
 	if(isset($_POST['submit_master']))		
 	{
 		$sql	="UPDATE form 
-					SET form_status='pending' 
+					SET form_status='pending', user='$username', last_updated=now() 
 					WHERE module_id='$module_id' 
 					AND session_name='$session_name'";
 		$result = mysql_query($sql) or die(mysql_error());  
@@ -74,7 +75,7 @@
 	if(isset($_POST['submit_updated']))		
 	{
 		$sql	="UPDATE form 
-					SET form_status='pending' 
+					SET form_status='pending', user='$username', last_updated=now()  
 					WHERE module_id='$module_id' 
 					AND session_name='$session_name'";
 		$result = mysql_query($sql) or die(mysql_error());  
@@ -97,9 +98,8 @@
 	<div class="wrapper">
 
 
-		<div class="container content-sm">		
+		<div id="content">		
 		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 			<?php 
 
 					$sql2="SELECT module.*, user.* 
@@ -126,7 +126,7 @@
 		<div class="row" style="margin:0 auto;">
 		<?php
 		
-			if($form_status!='new')
+			if($form_status!='new' )
 				{ ?>
 					<!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
 						<button class="col-md-4 content-boxes-v6">
@@ -163,17 +163,24 @@
 				<p></p>
 			</button>
 		</a>
-		
-	<!--	<a href="archive.php" style="text-decoration:none;">
-			<button class="col-md-4 content-boxes-v6">
-				<i class="rounded-x icon-folder"></i>
-				<h3 class="title-v3-md text-uppercase margin-bottom-10">Archive</h3>
-				<p></p>
-			</button>
-		</a> -->
+	</div>
+	<hr class="margin-bottom-30">
+	<div class="alert alert-info fade in">
+		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+		<strong>Information</strong> 
+		<ul>
+		<?php if ($form_status=='new')
+					echo"<li>You need to add new records for ". $session_name ."</li>";
+			 elseif ($form_status=='pending')
+					echo "<li>Your records are pending for approval from Data Manager</li>";
+			elseif ($form_status=='approved')
+					echo "<li>Your main records for ".$session_name ." has been approved.</li>";
+			else
+				echo "<li>Your records are rejected. You need to update the records.</li>";?>
+			<li>Check Module Workbench to update achievement.</li>
+		</ul>
+	</div>
 
-	</div><!--/row-->
-</div><!--/container-->
 <!--=== End Service Block ===-->
 
 

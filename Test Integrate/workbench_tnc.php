@@ -62,9 +62,7 @@
 <div class="wrapper">
 
 
-		<div class="container content-sm">		
-		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
+			<div id="content">	
 
 
 <?php
@@ -105,7 +103,7 @@
 			
 ?>	
 <tr>
-                         <form action="work_view2.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>
@@ -146,8 +144,6 @@
 
 			</div>
     </div>
- 
-</div>
   
 <script>
 var acc = document.getElementsByClassName("accordion");
@@ -170,7 +166,6 @@ for (i = 0; i < acc.length; i++) {
 
 </div>
     </div>
-</div>
 
 
 <style>
