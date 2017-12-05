@@ -90,9 +90,13 @@ else
 
 									
 ?>
-<head>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
+<head>
+    <!-- Bootstrap Dropdown Hover CSS     -->
+<link href="assets/hover/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<link href="assets/hover/css/animate.min.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 		<div class="wrapper">		
 		<!-- !PAGE CONTENT! -->
@@ -103,50 +107,73 @@ else
   &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
   <br>
 	</div>
+</br>	
+<table>
 	
-<div class="w3-container">
-  <div class="w3-dropdown-hover">
-    <button class="w3-button w3-black">KPI Reports</button>
-    <div class="w3-dropdown-content w3-bar-block w3-border">
-      <a href="module_report.php" target="_blank" class="w3-bar-item w3-button">Module Information</a>
-      <a href="performance_report.php" target="_blank" class="w3-bar-item w3-button">Performance Reports</a>
-      <a href="financial_report.php" target="_blank" class="w3-bar-item w3-button">Financial Overview</a>
-    </div>
-  </div>
-
-
-<div class="w3-dropdown-hover">
- <button class="w3-button w3-black">Year Reports</button>
-    <div class="w3-dropdown-content w3-bar-block w3-border">
-      <a href="year_report.php" target="_blank" class="w3-bar-item w3-button">Generate Yearly report</a>
-      
-</div>
-</div>
-
-<div class="w3-dropdown-hover">
- <button class="w3-button w3-black">ICU Reports</button>
-    <div class="w3-dropdown-content w3-bar-block w3-border">
-      <a href="icu_reports.php" target="_blank" class="w3-bar-item w3-button">Generate ICU Reports</a>
-    
-
-	
-	<div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" data-hover="dropdown">
-   Dropdown <span class="caret"></span>
-  </button>
-  <ul class="dropdown-menu">
-    <li><a href="#">Action</a></li>
-    <li><a href="#">Another action</a></li>
-   </ul>
-	</div>
-	
-	
-</div>
-</div>
-
-
+<div class="container">
+<td>	
+	<div class="dropdown dropdown-inline">
+          <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">KPI Reports<b class="caret"></b></a>
+          <ul class="dropdown-menu dropdownhover-bottom">
+            <li><a href="module_reports.php">Module Information</a></li>
+            <li><a href="performance_report.php">Performance Reports</a></li>
+            <li><a href="financial_report.php">Financial Overview</a></li>
+          </ul>
+        </div>
+</td>
+<td>
+	 <div class="dropdown dropdown-inline">
+          <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Year Reports<b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="year_report.php">Generate Yearly Reports</a></li>
+          </ul>
+        </div>
+</td>
+<td>		
+	 <div class="dropdown dropdown-inline">
+          <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">ICU Reports <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="icu_reports.php">Generate ICU Reports</a></li>
+          </ul>
+   </div>
+</td>   
+	  
+	   </div>
+</table>	   
 <!-- end of division-->
     </div>
 	</div>
-	</div>
-	
+
+
+<style>
+	.caret-up {
+    width: 0; 
+    height: 0; 
+    border-left: 4px solid rgba(0, 0, 0, 0);
+    border-right: 4px solid rgba(0, 0, 0, 0);
+    border-bottom: 4px solid;
+    
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}	
+
+</style>
+<script>
+
+    $(function(){
+    $(".dropdown").hover(            
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeIn("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");                
+            },
+            function() {
+                $('.dropdown-menu', this).stop( true, true ).fadeOut("fast");
+                $(this).toggleClass('open');
+                $('b', this).toggleClass("caret caret-up");                
+            });
+    });
+    
+
+</script>
