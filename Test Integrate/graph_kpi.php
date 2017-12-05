@@ -58,7 +58,7 @@
 						
 						$_SESSION['module_name'] = $row['module_name'];
 						}?>
-
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
  <script type="text/javascript" src="graph.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>					
 <script src="https://code.highcharts.com/highcharts.js"></script>
