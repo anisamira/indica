@@ -22,22 +22,19 @@ include_once ('connection.php');
 
 </head>
 
-<<<<<<< HEAD
+
 <style>
         label {
         font-weight: normal !important;
     }
     </style>
 
-=======
->>>>>>> 642c0e1fd12458c559f6131bb9e0b2d01103be50
+
 <body>
     <div class="wrapper">
         <!-- Sidebar Holder -->
         <nav id="sidebar">
 
-<<<<<<< HEAD
-
             <ul class="list-unstyled components">
 
                 <p><span>Welcome,<strong> <?php echo $_SESSION['username']; ?> </strong></span><br></p>
@@ -46,59 +43,19 @@ include_once ('connection.php');
 
 
                 <!-- Menu for ADMIN R01 -->
-                <?php if (($_SESSION['username']) == 'admin') {?>
+                <?php if (($_SESSION['role_id']) == 'R01') {?>
                 <li>
-                    
-                    <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Manage Users</a>
-                    <ul class="list-unstyled" id="pageSubmenu">
-                        <li><a href="admin_manageuser_create_new_user.php">Create new user</a></li>
-                        <li><a href="admin_manageuser_viewuser.php">View all user</a></li>
-                        <!-- <li><a href="admin_manageuser_edituser.php">Edit users</a></li> -->
-                        <li><a href="admin_manageuser_view_profileuser.php">Edit Profile</a></li>                        
-                    </ul>
-                </li>
-                <li>
-                    <a href="admin_create_session.php">Create sessions</a>
-                </li>
-                <li>
-                    <a href="logtrails.php">Log Trails</a>
-                </li>
-                <?php } ?>
-
-                <!-- General menu PART 2 -->
-                <li>
-                    <a href="logout.php">Log Out</a>
-                </li>
-            </ul>
-
-=======
-            <ul class="list-unstyled components">
-
-                <p><span>Welcome,<strong> <?php echo $_SESSION['username']; ?> </strong></span><br></p>
-
-                <!-- General menu for all users PART 1 -->
-
-
-                <!-- Menu for ADMIN R01 -->
-                <?php if (($_SESSION['username']) == 'admin') {?>
-                <li>
-                    
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Manage Users</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li><a href="admin_manageuser_create_new_user.php">Create new user</a></li>
                         <li><a href="admin_manageuser_viewuser.php">View all user</a></li>
-                        <li><a href="admin_manageuser_edituser.php">Edit users</a></li>
-                    </ul>
+                        <li><a href="admin_manageuser_edituser.php">Edit users</a></li></ul>
                 </li>
-                <li>
-                    <a href="admin_create_session.php">Create sessions</a>
-                </li>
-                <li>
-                    <a href="logtrails.php">Log Trails</a>
-                </li>
-				<li><a href="workbench_dash.php">Dashboard</a></li>
+                <li><a href="admin_create_session.php">Create sessions</a></li>
+                <li><a href="logtrails.php">Log Trails</a></li>
+                <li><a href="workbench_dash.php">Dashboard</a></li>
 				<li><a href="workbench_view.php">Module Workbench</a></li>
-				<li><a href="calculation1.php">Calculation</a></li>
+				<li><a href="calculation1.php">Calculation</a></li>                
 				
                 <?php }
 				 if (($_SESSION['role_id']) == 'R02') {?>
@@ -125,7 +82,7 @@ include_once ('connection.php');
                 </li>
             </ul>
 
->>>>>>> 642c0e1fd12458c559f6131bb9e0b2d01103be50
+
         </nav>
 
         <!-- Page Content Holder -->
@@ -149,8 +106,8 @@ include_once ('connection.php');
 
 </body>
 
-<<<<<<< HEAD
+
 </html>
-=======
+
 </html>
->>>>>>> 642c0e1fd12458c559f6131bb9e0b2d01103be50
+
