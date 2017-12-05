@@ -70,7 +70,7 @@ if(isset($_POST["search"])){
 			
 ?>	
 <tr>
-                         <form action="calculation2.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                         <form action="calculation2.php" method="post">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>

@@ -33,15 +33,6 @@ $sql			="SELECT * FROM session where session_status='1'";
 	
 ?>
  
-					
-<script src="https://code.highcharts.com/modules/drilldown.js"></script>
- <script type="text/javascript" src="graph.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>					
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/data.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-
 
 <!--<div id="content">	-->
 <div	style ="margin-left:300px">
@@ -69,15 +60,15 @@ $sql			="SELECT * FROM session where session_status='1'";
 						echo "no data found";
 					}
 					
-				
-			
-			
-				
-			$sql	="SELECT kpi.kpi_id, kpi.kpi_desc, achievement.ach_id, achievement.ach_desc, achievement.target, target.target_id
-FROM kpi
-JOIN target ON target.kpi_id = kpi.kpi_id
-JOIN achievement ON achievement.target_id = target.target_id
-LIMIT 0 , 30";
+					
+			$sql	="SELECT achievement.ach_id, achievement.target, achievement.ach_result, achievement.ach_desc, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
+						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year on year.year_id=achievement.year_id
+						WHERE achievement.form_id='$form_id' 
+						AND kpi.session_name='$session_name'
+						AND achievement.quarter='2'
+						AND year.year_name='$year'";
 			$result=mysql_query($sql) or die (mysql_error());
 			if (mysql_num_rows($result)>0)
 			{ ?>
