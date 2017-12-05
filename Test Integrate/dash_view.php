@@ -34,6 +34,9 @@ $sql			="SELECT * FROM session where session_status='1'";
 ?>
  
 					
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+ <script type="text/javascript" src="graph.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>					
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
@@ -115,8 +118,6 @@ $sql			="SELECT * FROM session where session_status='1'";
 					</div>
 			<?php
 			
-		
-
 				
 			$sql3	="SELECT achievement.ach_id, achievement.target, achievement.ach_desc, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
 						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
@@ -157,6 +158,42 @@ $sql			="SELECT * FROM session where session_status='1'";
 			</div>
 			<?php
 			}
+			
+			$sql4	="SELECT achievement.ach_id, achievement.target, achievement.ach_result, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
+						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year on year.year_id=achievement.year_id
+						WHERE achievement.form_id='$form_id' 
+						AND kpi.session_name='$session_name'
+						AND achievement.quarter='2'
+						AND year.year_name='$year'";
+			$result4=mysql_query($sql4) or die (mysql_error());
+			if (mysql_num_rows($result4)>0)
+			{?>
+				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+				<div class="control-group">
+					<table class="table table-bordered" id="datatable2">
+						<thead>
+							<tr>
+								<th>KPI</th>
+								<th>Achievement</th>
+							</tr>
+						</thead>
+						<tbody><?php
+							while($row3=mysql_fetch_array($result4))
+							{
+								$kpi_desc	=$row3['kpi_desc'];
+								$ach_result	=$row3['ach_result'];
+								$ach_id		=$row3['ach_id'];?>
+								<tr style="font-size:13px">
+									<td><?php echo $kpi_desc;?></td>
+									<td><?php echo $ach_result;?></td>
+								</tr><?php
+							}?>
+						</tbody>
+					</table>
+				</div><?php
+			}
 			else
 			{
 				?>
@@ -174,7 +211,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 		{
 			$curyear	=$_POST['year'];
 			$form_id	=$_POST['form_id'];
-			$sql2	="SELECT achievement.ach_id, achievement.target, achievement.ach_desc, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
+			$sql5	="SELECT achievement.ach_id, achievement.target, achievement.ach_desc, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
 						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN year on year.year_id=achievement.year_id
@@ -182,8 +219,8 @@ $sql			="SELECT * FROM session where session_status='1'";
 						AND kpi.session_name='$session_name'
 						AND achievement.quarter='2'
 						AND year.year_name='$curyear'";
-			$result2=mysql_query($sql2) or die (mysql_error());
-			if (mysql_num_rows($result2)>0)
+			$result5=mysql_query($sql5) or die (mysql_error());
+			if (mysql_num_rows($result5)>0)
 			{?>
 			<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div><div class="control-group">
 				<table class="table table-bordered" id="datatable">
@@ -196,7 +233,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 				</thead>
 				<tbody>
 				<?php
-				while($row=mysql_fetch_array($result2))
+				while($row=mysql_fetch_array($result5))
 				{
 					$kpi_desc	=$row['kpi_desc'];
 					$ach_desc	=$row['ach_desc'];
@@ -212,6 +249,42 @@ $sql			="SELECT * FROM session where session_status='1'";
 			</table>
 			</div>
 			<?php
+			}
+			
+			$sql6	="SELECT achievement.ach_id, achievement.target, achievement.ach_result, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
+						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year on year.year_id=achievement.year_id
+						WHERE achievement.form_id='$form_id' 
+						AND kpi.session_name='$session_name'
+						AND achievement.quarter='$quater'
+						AND year.year_name='$curyear'";
+			$result6=mysql_query($sql6) or die (mysql_error());
+			if (mysql_num_rows($result6)>0)
+			{?>
+				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+				<div class="control-group">
+					<table class="table table-bordered" id="datatable2">
+						<thead>
+							<tr>
+								<th>KPI</th>
+								<th>Achievement</th>
+							</tr>
+						</thead>
+						<tbody><?php
+							while($row5=mysql_fetch_array($result6))
+							{
+								$kpi_desc	=$row5['kpi_desc'];
+								$ach_result	=$row5['ach_result'];
+								$ach_id		=$row5['ach_id'];?>
+								 <tr style="font-size:13px">
+									<td><?php echo $kpi_desc;?></td>
+									<td><?php echo $ach_result;?></td>
+								</tr><?php
+							}?>
+						</tbody>
+					</table>
+				</div><?php
 			}
 			else
 			{
@@ -234,6 +307,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 
 
 <script>
+$(function () {
 Highcharts.chart('container', {
     data: {
         table: 'datatable'
@@ -256,6 +330,33 @@ Highcharts.chart('container', {
                 this.point.y + ' ' + this.point.name.toLowerCase();
         }
     }
+});
+});
+
+$(function () {
+Highcharts.chart('container2', {
+    data: {
+        table: 'datatable2'
+    },
+    chart: {
+        type: 'pie'
+    },
+    title: {
+        text: '<?php echo $curyear;?>'
+    },
+    yAxis: {
+        allowDecimals: false,
+        title: {
+            text: 'Number'
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                this.point.y + ' ' + this.point.name.toLowerCase();
+        }
+    }
+});
 });
 
 </script>

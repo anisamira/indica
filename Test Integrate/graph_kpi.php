@@ -59,7 +59,7 @@
 						$_SESSION['module_name'] = $row['module_name'];
 						}?>
 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
- <script type="text/javascript" src="graph.js"></script>
+<script type="text/javascript" src="graph.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>					
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
@@ -151,13 +151,7 @@
 					</table>
 				</div><?php
 			}
-			else
-			{?>
-				<div class="alert alert-warning alert-dismissable fade in">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>There is no records</strong> Redirecting in 1 seconds...
-				</div><?php	
-			}
+			
 			$sql3	="SELECT achievement.ach_id, achievement.target, achievement.ach_result, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
 						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
 						JOIN achievement ON achievement.target_id=target.target_id
@@ -197,6 +191,7 @@
 			{
 				?>
 							<div class="alert alert-warning alert-dismissable fade in">
+							<meta http-equiv="refresh" content="1;url=main_vc.php" />
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 								<strong>There is no records</strong> Redirecting in 1 seconds...
 							</div><?php	
@@ -244,13 +239,7 @@
 						</table>
 					</div><?php
 			}
-			else
-			{?>
-				<div class="alert alert-warning alert-dismissable fade in">
-					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-					<strong>There is no records</strong> Redirecting in 1 seconds...
-				</div><?php	
-			}
+			
 			$sql5	="SELECT achievement.ach_id, achievement.target, achievement.ach_result, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
 						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
 						JOIN achievement ON achievement.target_id=target.target_id
@@ -289,6 +278,7 @@
 			else
 			{?>
 				<div class="alert alert-warning alert-dismissable fade in">
+				<meta http-equiv="refresh" content="1;url=main_vc.php" />
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 					<strong>There is no records</strong> Redirecting in 1 seconds...
 				</div><?php	
