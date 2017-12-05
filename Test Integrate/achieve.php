@@ -225,7 +225,9 @@ $sql="SELECT *
 <br>
 
 
-<button class="accordion"><?=$year1?></button>
+<button class="accordion"><center><?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center>
+ 
+</button>
 <div class="panel">
  
  <?php
@@ -358,7 +360,7 @@ elseif 	($year==$year5)
 
  
 
-<button class="accordion"><?=$year2?></button>
+<button class="accordion"><center><?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
 
 <?php
@@ -493,7 +495,7 @@ elseif 	($year==$year5)
 						</div> 
 
 						
-<button class="accordion"><?=$year3?></button>
+<button class="accordion"><center><?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
  
  <?php
@@ -627,7 +629,7 @@ elseif 	($year==$year5)
 </div>
 
 
-<button class="accordion"><?=$year4?></button>
+<button class="accordion"><center><?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
  
  <?php
@@ -761,7 +763,7 @@ elseif 	($year==$year5)
 </div>
 
 
-<button class="accordion"><?=$year5?></button>
+<button class="accordion"><center><?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
  
  <?php
@@ -916,5 +918,6 @@ for (i = 0; i < acc.length; i++) {
         }
     }
 }
+
 </script>
 </html>

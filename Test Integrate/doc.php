@@ -3,7 +3,7 @@
 <head>
 
 <?php
-	include('style_dc.php');
+	//include('style_dc.php');
 	include('sidebar.php');
 	
 	
@@ -167,7 +167,7 @@ body {margin:0;}
  
 
  
-<button class="accordion">Evidence on <?=$year1?></button>
+<button class="accordion">Evidence on <?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -292,7 +292,7 @@ $module_id=$_SESSION['module_id'];
 					
 
  
-<button class="accordion">Evidence on <?=$year2?></button>
+<button class="accordion">Evidence on <?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 
 <div class="panel">
  
@@ -417,7 +417,7 @@ $module_id=$_SESSION['module_id'];
 </div>					
 
 
-<button class="accordion">Evidence on <?=$year3?></button>
+<button class="accordion">Evidence on <?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -540,7 +540,7 @@ $module_id=$_SESSION['module_id'];
 
 </div>
 					
-<button class="accordion">Evidence on <?=$year4?></button>
+<button class="accordion">Evidence on <?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -663,7 +663,7 @@ $module_id=$_SESSION['module_id'];
 
 </div>
 					
-<button class="accordion">Evidence on <?=$year5?></button>
+<button class="accordion">Evidence on <?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 

@@ -304,7 +304,7 @@ else
 
 <div id="Achievement" class="tabcontent">
 
-<button class="accordion"><?=$year1?></button>
+<button class="accordion"><?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
  <?php
@@ -451,7 +451,7 @@ elseif 	($year==$year5)
 
  
 
-<button class="accordion"><?=$year2?></button>
+<button class="accordion"><?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -598,7 +598,7 @@ elseif 	($year==$year5)
 						</div> 
 
 						
-<button class="accordion"><?=$year3?></button>
+<button class="accordion"><?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
  <?php
@@ -744,7 +744,7 @@ elseif 	($year==$year5)
 </div>
 
 
-<button class="accordion"><?=$year4?></button>
+<button class="accordion"><?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
  <?php
@@ -892,7 +892,7 @@ elseif 	($year==$year5)
 </div>
 
 
-<button class="accordion"><?=$year5?></button>
+<button class="accordion"><?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
  <?php
@@ -1058,7 +1058,7 @@ elseif 	($year==$year5)
 <div id="Deliverables" class="tabcontent">
 
  
-<button class="accordion">Evidence on <?=$year1?></button>
+<button class="accordion">Evidence on <?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -1171,7 +1171,7 @@ $module_id=$_SESSION['module_id'];
 					
 
  
-<button class="accordion">Evidence on <?=$year2?></button>
+<button class="accordion">Evidence on <?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 
 <div class="panel">
  
@@ -1284,7 +1284,7 @@ $module_id=$_SESSION['module_id'];
 </div>					
 
 
-<button class="accordion">Evidence on <?=$year3?></button>
+<button class="accordion">Evidence on <?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -1395,7 +1395,7 @@ $module_id=$_SESSION['module_id'];
 
 </div>
 					
-<button class="accordion">Evidence on <?=$year4?></button>
+<button class="accordion">Evidence on <?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -1506,7 +1506,7 @@ $module_id=$_SESSION['module_id'];
 
 </div>
 					
-<button class="accordion">Evidence on <?=$year5?></button>
+<button class="accordion">Evidence on <?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -1625,7 +1625,7 @@ $module_id=$_SESSION['module_id'];
 
 <div id="Issue" class="tabcontent">
   
-<button class="accordion">ISSUE on <?=$year1?></button>
+<button class="accordion">ISSUE on <?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -1776,7 +1776,7 @@ elseif 	($curyear==$year&&$year==$year5)
 </div>
 					
 
-<button class="accordion">ISSUE on <?=$year2?></button>
+<button class="accordion">ISSUE on <?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -1927,7 +1927,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 </div>
 					
-<button class="accordion">ISSUE on <?=$year3?></button>
+<button class="accordion">ISSUE on <?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -2078,7 +2078,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 </div>
 					
-<button class="accordion">ISSUE on <?=$year4?></button>
+<button class="accordion">ISSUE on <?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -2229,7 +2229,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 </div>
 					
-<button class="accordion">ISSUE on <?=$year5?></button>
+<button class="accordion">ISSUE on <?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
