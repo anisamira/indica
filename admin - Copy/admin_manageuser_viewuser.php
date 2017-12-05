@@ -6,7 +6,11 @@ include ('sidebar.php');
 <html>
 
 <head>
-<link rel="stylesheet" type="text/css" href="table.css" />
+
+
+<h3>View All Users></h3><hr></div>
+<!-- <link rel="stylesheet" type="text/css" href="table.css" /> -->\
+<link rel="stylesheet" type="text/css" href="pure-min.css" />
 <link rel="stylesheet" type="text/css" href="alert.css" />
 </head>
 
@@ -14,7 +18,9 @@ include ('sidebar.php');
 </style>  
 
 <body>
-    <div class="w3-container" style="margin-left:300px;margin-top:43px; ">
+    
+<div id="content">
+
     <br>
     <?php 
    if(!empty($_GET['deleted'])){?>
@@ -25,21 +31,25 @@ include ('sidebar.php');
   <?php }
   ?>
 
-    <strong><center>View All User</strong></center>
 
-      <br><table id='myTable' class = "fixed" style= " margin: 0 auto;" >
+ <!-- <strong><center>View All User</strong></center> -->
+
+      
+      <br><table id='' class = "table table-hover" style= "margin: 0 auto;" >
       <thead>
         <tr>
+          <th> # </th>
           <th>User ID</th>
           <th>User Name</th>
           <th>Email</th>
           <th>Module ID</th>
           <th>Assigned Role</th>
-          <th>User Status</th>          
-          <th>Delete User</th>
+          <!-- <th>User Status</th>           -->
+          <!-- <th>Delete User</th> -->
+          <th>Edit User Profile</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table table-hover">
 
             <?php  
             
@@ -50,39 +60,44 @@ include ('sidebar.php');
             // $result = mysql_query("SELECT user.*, roles.*, module.* FROM user JOIN roles ON user.role_id = roles.role_id JOIN module ON user.module_id = module.module_id");
             // $result = mysql_query("SELECT logtrails.*, user.* FROM logtrails JOIN user ON logtrails.user_id = user.user_id");
             
-
+            $x = 1;
             while($row = mysql_fetch_assoc($result))//while look to fetch the result and store in a array $row.  
             {  
+                
                 $user_id=$row['user_id'];  
                 $username=$row['username'];  
-                $userEmail=$row['userEmail'];  
+                $email=$row['email'];  
                 $module_id=$row['module_id'];
                 $role_id=$row['role_id'];
                 $role_name=$row['role_name'];
-                $user_status=$row['user_status'];
+                // $user_status=$row['user_status'];
+                ?>
+
                 
-                echo  " <table id='myTable' style='margin: 0 auto' class='fixed'>
                 <tr>
-                    <td>$user_id</td>
-                    <td>$username</td>
-                    <td>$userEmail</td>
-                    <td>$module_id</td>
+                    <th><?php echo $x ?></th>
+                    <td><?php echo $user_id ?></td>
+                    <td><?php echo $username ?></td>
+                    <td><?php echo $email ?> </td>
+                    <td><?php echo $module_id ?></td>
                     
-                    <td>$role_name</td>
-                    <td>$user_status</td>";?>
-                    <td><a onclick="return confirm('Delete this record?')" href="delete.php?del=<?php echo $user_id ?>"><button class="btn btn-danger">Delete</button></a></td>
+                    <td><?php echo $role_name ?> </td>
+                    <!-- <td><?php echo $user_status ?></td> -->
+                    <!-- <td><a onclick="return confirm('Delete this record?')" href="delete.php?del=<?php echo $user_id ?>"><button class="btn btn-danger">Delete</button></a></td> -->
+                    <td><a onclick="return confirm('Edit this user profile?')" href="edit.php?edit=<?php echo $user_id ?>"><button class="btn btn-danger">Edit User</button></a></td>
                 </tr>
-                </table>
-            <?php } ?>
+
+                
+            <?php $x++; } ?>
+            </table>
+            
         </table>  
-            </div>  
-    </div>
+    
+    
     <br>
+</div>  
     
-  <!-- End page content -->
-</div></div>
-    
-    </body>
+</body>
 
 
 

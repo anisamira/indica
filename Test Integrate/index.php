@@ -16,7 +16,10 @@ session_start();
 				$_SESSION['module_id'] = $row['module_id'];
 				$_SESSION['role_id']	=$row['role_id'];
 				$_SESSION['login_user']=$myusername;	
-					
+
+				$sql1= mysql_query("UPDATE user SET login_time=now() WHERE username = '$myusername' AND password ='$mypassword'");
+				
+
 				// admin=1, data_controller=2, data_manager=3, tnc=4
 
 						if(	$_SESSION['role_id']=='R01'){     
@@ -24,9 +27,9 @@ session_start();
 						}elseif(	$_SESSION['role_id']=='R02'){
 						header("location:main_dc.php ");
 						 }elseif(	$_SESSION['role_id']=='R03'){
-						header("location:main_dm.php ");
+						header("location:userb.php ");
 						 }elseif(	$_SESSION['role_id']=='R04'){
-						header("location:main_vc.php ");
+						header("location:tnc.php ");
 						 }else{
 							 
 						 }					

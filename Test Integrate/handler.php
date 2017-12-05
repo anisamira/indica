@@ -7,10 +7,10 @@
     
     
     if ($check==0){
-        $stat_query="UPDATE session SET session_status=TRUE WHERE session_name='$stat_id'";//turn on session_status
+        $stat_query="UPDATE session SET session_status=TRUE WHERE session_name='$stat_id'";//delete query          
     }
     else{
-    $stat_query="UPDATE session SET session_status=FALSE WHERE session_name='$stat_id'";//turn off session_status
+    $stat_query="UPDATE session SET session_status=FALSE WHERE session_name='$stat_id'";//delete query  
     
     }
 

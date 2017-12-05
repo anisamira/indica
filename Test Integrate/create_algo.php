@@ -8,7 +8,7 @@ if(isset($_POST['create'])){
     $session_name="Sesi ".$start_year."-".$end_year;
 
     //create sesi baru
-    $sql1 = "INSERT INTO session (session_name, session_status) VALUES ('$session_name', TRUE)";
+    $sql1 = "INSERT INTO session (session_name, session_status, date_created) VALUES ('$session_name', TRUE, now())";
     $result1=mysql_query($sql1,$conn);
     //make sure status previous session off
     $sql2 = "UPDATE session SET session_status = FALSE WHERE session_name NOT IN ('$session_name')";

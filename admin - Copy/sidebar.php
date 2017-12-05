@@ -46,10 +46,11 @@ include_once ('connection.php');
                 <li>
                     
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Manage Users</a>
-                    <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <ul class="list-unstyled" id="pageSubmenu">
                         <li><a href="admin_manageuser_create_new_user.php">Create new user</a></li>
                         <li><a href="admin_manageuser_viewuser.php">View all user</a></li>
-                        <li><a href="admin_manageuser_edituser.php">Edit users</a></li>
+                        <!-- <li><a href="admin_manageuser_edituser.php">Edit users</a></li> -->
+                        <li><a href="admin_manageuser_view_profileuser.php">Edit Profile</a></li>                        
                     </ul>
                 </li>
                 <li>

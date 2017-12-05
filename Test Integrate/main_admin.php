@@ -7,94 +7,40 @@ include ('sidebar.php');
 
 <head>
 <link rel="stylesheet" type="text/css" href="table.css" />
+<link rel="stylesheet" type="text/css" href="img-list.css" />
+
 </head>
 
 <body>
+<div class="wrapper">
+    <!-- Sidebar Holder -->
 
-<div class="w3-container" style="margin-left:300px;margin-top:43px;border-left:solid; border-height:100%; ">
+    <!-- Page Content Holder -->
+    <div id="content">
 
-  <header class="w3-container" style="padding-top:22px">
-    <h5><b><i class="fa fa-dashboard"></i> Available Modules</b></h5>
-  </header>
 
-    <div id="aca" class="w3-row-padding w3-margin-bottom">
-        <div class="w3-quarter">
-            <div class="w3-container w3-red w3-padding-16">
-                <div class="w3-left"><i class="fa fa-graduation-cap w3-xxxlarge"></i></div>
-                <div class="w3-right"><h3></h3></div>
-                <div class="w3-clear"></div>
-                <a href="main_dc.php"<h4>Academic</h4>>
-            </div>
-        </div>
+        <h2>Collapsible Sidebar Using Bootstrap 3</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <div class="line"></div>
+
+        <h2>Lorem Ipsum Dolor</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <div class="line"></div>
+
+        <h2>Lorem Ipsum Dolor</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <div class="line"></div>
+
+        <h3>Lorem Ipsum Dolor</h3>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
     </div>
-
-    <br>
-
-    <div id="studlife" class="w3-row-padding w3-margin-bottom">
-        <div class="w3-quarter">
-            <div class="w3-container w3-blue w3-padding-16">
-                <div class="w3-left"><i class="fa fa-home w3-xxxlarge"></i></div>
-                <div class="w3-right"><h3></h3></div>
-                <div class="w3-clear"></div>
-                    <h4>Student Life</h4>
-        </div>
-    </div>
-
-    <div id="excres" class="w3-quarter">
-        <div class="w3-container w3-teal w3-padding-16">
-            <div class="w3-left"><i class="fa fa-area-chart w3-xxxlarge"></i></div>
-                <div class="w3-right"><h3></h3></div>
-                <div class="w3-clear"></div>
-                <h4>Excellent Research</h4>
-        </div>
-    </div>
-
-    <div id="interbrand" class="w3-quarter">
-        <div class="w3-container w3-orange w3-text-white w3-padding-16">
-            <div class="w3-left"><i class="fa fa-asl-interpreting w3-xxxlarge"></i></div>
-                <div class="w3-right"><h3></h3></div>
-                <div class="w3-clear"></div>
-                <h4>Internalization and Branding</h4>
-        </div>
-    </div>
-    
-    <div class="w3-row-padding w3-margin-bottom"></div>
-
-    <div id="infraplandev" class="w3-quarter">
-        <div class="w3-container w3-green w3-text-white w3-padding-16">
-            <div class="w3-left"><i class="fa fa-building w3-xxxlarge"></i></div>
-                <div class="w3-right"><h3></h3></div>
-                <div class="w3-clear"></div>
-                <h4>Infrastructure Planning and Development</h4>
-        </div>
-    </div>
-    
-    <div id="financial" class="w3-quarter">
-      <div class="w3-container w3-brown w3-text-white w3-padding-16">
-        <div class="w3-left"><i class="fa fa-balance-scale w3-xxxlarge"></i></div>
-        <div class="w3-right"><h3></h3></div>
-        <div class="w3-clear"></div>
-        <h4>Financial Sustainability and Wealth Creation</h4>
-      </div>
-    </div>
-
-    <div id="facstaff" class="w3-quarter">
-        <div class="w3-container w3-purple w3-text-white w3-padding-16">
-            <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
-                <div class="w3-right"><h3></h3></div>
-                <div class="w3-clear"></div>
-                <h4>Faculty and Staff Recruitment and Development</h4>
-        </div>
-    </div>
-
-    </div>
-
-    
-  <!-- End page content -->
 </div>
-    
+
+
+
 </body>
-</html> 
-
-
-
+</html>

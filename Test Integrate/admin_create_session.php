@@ -1,22 +1,20 @@
 <?php
 include ('sidebar.php');
 ?>
+
 <!DOCTYPE html>
 <html>
+    <head>
+    <link rel="stylesheet" type="text/css" href="alert.css" />
+    <link rel="stylesheet" type="text/css" href="pure-min.css" />
+    </head>
+    <body>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
 
-<head>
-<link rel="stylesheet" type="text/css" href="table.css" />
-<link rel="stylesheet" type="text/css" href="alert.css" />
-<link rel="stylesheet" type="text/css" href="toggleswitch.css" />
-
-
-</head>
-
-<body>
-
-<div class="w3-container" style="margin-left:300px;margin-top:43px;">
-<br>
-<?php 
+            <!-- Page Content Holder -->
+            <div id="content">
+            <?php 
    if(!empty($_GET['status'])){?>
           <div class="success_alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
@@ -24,15 +22,11 @@ include ('sidebar.php');
           </div>
   <?php }
   ?>
-    <br><br><br><br>
 
-
-
-  <br>
   Please insert start year (Ex: "2000") and end year (Ex: "2004"):<br><br>
-<form action="create_algo.php" method="post">
+<form action="create_algo.php" method="post" class="pure-form pure-form-aligned">
 
-    <input type="text" class="input" placeholder="Start Year" name="start_year" /> 
+    <input type="text" class="input" placeholder="Start Year" name="start_year" />
     <input type="text" class="input" placeholder="End Year" name="end_year" />
 
     <input type="submit" class="loginbutton" name ="create" value="Create" /><br>
@@ -41,7 +35,7 @@ include ('sidebar.php');
     <strong><center>Session Created</strong></center>
 
     <br>
-      <table id='myTable' class='fixed' style= "float=left; margin: 0 auto;" >
+    <table id='' class = "table table-hover" style= "margin: 0 auto;" >
       <thead>
         <tr>
           <th>Session Name</th>
@@ -50,7 +44,7 @@ include ('sidebar.php');
           <th>Date Created</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table table-hover">
             <?php              
               $result = mysql_query("SELECT session_name, session_status, date_created FROM session");
 
@@ -70,35 +64,31 @@ include ('sidebar.php');
                   $ses= "OFF";
                 }
 
-                
-                                
-                echo  "<table id='myTable' style='margin: 0 auto; float=left' class='fixed'>
+                ?>
+
                 <tr>
-                    <td>$session_name</td>
-                    <td>$ses_stat</td>";?>
-                    
+                    <td><?php echo $session_name ?></td>
+                    <td><?php echo $ses_stat ?></td>
                     <td><a onclick="return confirm('Turn <?php echo $ses?> this form?')" href="handler.php?stat=<?php echo $session_name ?>&check=<?php echo $session_status ?>">
-                    <button>
-                    <?php echo $ses; ?></button></a></td>
-                    <td><?php echo $date_created; ?></td>
+                    <button><?php echo $ses; ?></button></a></td>
+                    <td><?php echo $date_created ?></td>
 
                 </tr>
-                </table>
                 
-             <?php }
-            ?>
+                
+             <?php }?>
+             </table>
 
             
       </table>  
 
       <br>
 
+</div></div>
 
-  <!-- End page content -->
-</div>
-</body>
-</html> 
 
+    </body>
+</html>
 <script>
 
 $('a.delete').on('click', function() {

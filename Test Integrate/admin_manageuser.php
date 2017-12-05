@@ -26,7 +26,10 @@ include ('sidebar.php');
                 </a>
             </li>
             <li>
-                
+                <a href="admin_manageuser_edituser.php"><img src="book.png" alt="Edit User">
+                    <span class="text-content"><span>Click here to edit user</span></span>
+                    <figcaption>Edit user</figcaption>
+                </a>
             </li>
 
         </ul>

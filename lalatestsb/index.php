@@ -12,7 +12,9 @@ include ('sidebar.php');
 
             <!-- Page Content Holder -->
             <div id="content">
-
+            </div>
+        
+        </div>
 
 
     </body>
