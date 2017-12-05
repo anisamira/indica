@@ -1,4 +1,5 @@
 <html>
+
 <?php
 	include('style_dc.php');
 	include('sidebar.php');
@@ -61,40 +62,42 @@ $sql			="SELECT * FROM session where session_status='1'";
 					}
 					
 					
-			$sql	="SELECT achievement.ach_id, achievement.target, achievement.ach_result, achievement.ach_desc, target.target_id, kpi.kpi_id, kpi.kpi_desc, kpi.session_name, year.year_id, year.year_name
-						FROM kpi JOIN target ON target.kpi_id=kpi.kpi_id
-						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN year on year.year_id=achievement.year_id
-						WHERE achievement.form_id='$form_id' 
-						AND kpi.session_name='$session_name'
-						AND achievement.quarter='2'
-						AND year.year_name='$year'";
-			$result=mysql_query($sql) or die (mysql_error());
-			if (mysql_num_rows($result)>0)
+			$sql3	="SELECT kpi.kpi_id, kpi.kpi_desc, achievement.ach_id, achievement.ach_desc, achievement.target, achievement.ach_result, target.target_id
+FROM kpi
+JOIN target ON target.kpi_id = kpi.kpi_id
+JOIN achievement ON achievement.target_id = target.target_id
+LIMIT 0 , 30
+";
+			$result3=mysql_query($sql3) or die (mysql_error());
+			if (mysql_num_rows($result3)>0)
 			{ ?>
-			<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div><div class="control-group">
+			<div id="container" style="min-width: 310px; height: 400px; margin: 10 auto"></div><div class="control-group">
 				<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th>No</th>
+						
 						<th>KPI</th>
 						<th>Target</th>
-						<th>Achievement</th>
+						<th>Achievement</th> 
+						<th>Achievement Result</th>
 					</tr>
 				</thead>
 				<tbody>
 				<?php
 				$x=1;
-				while($row=mysql_fetch_array($result))
+				while($row3=mysql_fetch_array($result3))
 				{
-					$kpi_desc	=$row['kpi_desc'];
-					$target		=$row['target'];
-					$ach_desc	=$row['ach_desc']; ?>
+					$kpi_desc	=$row3['kpi_desc'];
+					$target		=$row3['target'];
+					//$ach_id	    =$row3['ach_id'];
+					$ach_desc	=$row3['ach_desc']; 
+					$ach_result =$row3['ach_result']?>
 					
 					 <tr style="font-size:13px">
 						<td><?php echo $kpi_desc;?></td>
 						<td><?php echo $target;?></td>
 						<td><?php echo $ach_desc;?></td>
+						<td><?php echo $ach_result;?></td>
 					</tr><?php $x++; 
 				}
 			}?>
