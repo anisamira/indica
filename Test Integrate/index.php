@@ -29,7 +29,7 @@ session_start();
 						 }elseif(	$_SESSION['role_id']=='R03'){
 						header("location:userb.php ");
 						 }elseif(	$_SESSION['role_id']=='R04'){
-						header("location:tnc.php ");
+						header("location:main_vc.php ");
 						 }else{
 							 
 						 }					
