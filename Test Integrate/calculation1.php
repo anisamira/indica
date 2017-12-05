@@ -76,7 +76,7 @@ if(isset($_POST["search"])){
 							<td><?php echo $sesi;?></td>
 								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 							<td><?php echo $name;?></td>
-							<td><button type="submit" class="btn btn-primary">Go</button></td>
+							<td><button type="submit" class="btn btn-primary" name="save">Go</button></td>
 							<!--<td><button type="submit" name="Go" class="btn btn-primary"><a href="work_view.php?moduleid=$moduleid&sesi=$sesi">Go</a></button></td>-->
 
 							</form>
@@ -142,13 +142,13 @@ if(isset($_POST["select"])){
 			
 ?>	
 <tr>
-                         <form action="calculation2.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                         <form action="calculation2.php" method="post">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>
 								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 							<td><?php echo $name;?></td>
-							<td><button type="submit" class="btn btn-primary">Go</button></td>
+							<td><button type="submit" class="btn btn-primary" name="save">Go</button></td>
 							<!--<td><button type="submit" name="Go" class="btn btn-primary"><a href="calculation1.php?moduleid=$moduleid&sesi=$sesi">Go</a></button></td>-->
 
 							</form>
