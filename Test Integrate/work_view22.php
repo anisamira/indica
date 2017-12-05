@@ -29,7 +29,7 @@ else{
 else
     $quater=2;	
 	
-	$sql			="SELECT * FROM session where session_status='1'";
+	$sql			="SELECT * FROM session where session_name='$sesi'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
