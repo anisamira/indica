@@ -30,9 +30,6 @@ Module Code: <input type="text" name="code">
 
 </html>        
 <?php
-
-
-
 if(isset($_POST["search"])){
 	$code=$_POST['code'];
 	
@@ -40,8 +37,6 @@ if(isset($_POST["search"])){
   $sql=("SELECT goal.*, module.* FROM goal JOIN module ON goal.module_id=module.module_id WHERE module.module_id='$code' GROUP BY module.module_id");
   	
 	$result = mysql_query($sql) or die(mysql_error());
-
-
  if(mysql_num_rows($result)>0){
   
 	  ?>
@@ -85,7 +80,6 @@ if(isset($_POST["search"])){
 												<?php
 											}
 	$x++;											
-
 											?>
 									</table>								
 
@@ -103,7 +97,6 @@ if(isset($_POST["search"])){
 	
 }
 }
-
 // select all
 if(isset($_POST["select"])){
 	
@@ -112,8 +105,6 @@ if(isset($_POST["select"])){
   $sql=("SELECT goal.*, module.* FROM goal JOIN module ON goal.module_id=module.module_id GROUP BY module.module_id");
   	
 	$result = mysql_query($sql) or die(mysql_error());
-
-
  if(mysql_num_rows($result)>0){
   
 	  ?>
@@ -157,7 +148,6 @@ if(isset($_POST["select"])){
 												<?php
 											}
 	$x++;											
-
 											?>
 									</table>								
 
@@ -175,10 +165,6 @@ if(isset($_POST["select"])){
 	
 }
 }
-
-
-
-
 ?>		
 
 			</div>
@@ -189,7 +175,6 @@ if(isset($_POST["select"])){
 <script>
 var acc = document.getElementsByClassName("accordion");
 var i;
-
 for (i = 0; i < acc.length; i++) {
   acc[i].onclick = function() {
     this.classList.toggle("active");
@@ -212,12 +197,10 @@ for (i = 0; i < acc.length; i++) {
 
 <style>
 body {margin:0;}
-
 .topnav {
   overflow: hidden;
   background-color: #332;
 }
-
 .topnav a {
   float: left;
   display: block;
@@ -227,12 +210,10 @@ body {margin:0;}
   text-decoration: none;
   font-size: 17px;
 }
-
 .topnav a:hover {
   background-color: #ddd;
   color: black;
 }
-
 .topnav a.active {
     background-color: #4CAF50;
     color: white;
@@ -247,8 +228,5 @@ $(document).ready(function() {
      
 });
  
-
 </script>
 </html>
-
-
