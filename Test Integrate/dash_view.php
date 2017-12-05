@@ -69,6 +69,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 						echo "no data found";
 					}
 					?>
+					
 				<div class="control-group">
 					<label class="control-label">Year</label>
 						<div class="controls">
