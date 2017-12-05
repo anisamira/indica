@@ -164,7 +164,7 @@ body {margin:0;}
 					</form>
 </br>
 
-<button class="accordion">ISSUE on <?=$year1?></button>
+<button class="accordion">ISSUE on <?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -198,7 +198,7 @@ body {margin:0;}
 					{
 					?>
 <div style="width:100%; overflow:scroll; position:relative;"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -303,7 +303,7 @@ elseif 	($curyear==$year&&$year==$year5)
 </div>
 					
 
-<button class="accordion">ISSUE on <?=$year2?></button>
+<button class="accordion">ISSUE on <?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -337,7 +337,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -442,7 +442,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 </div>
 					
-<button class="accordion">ISSUE on <?=$year3?></button>
+<button class="accordion">ISSUE on <?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -476,7 +476,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -581,7 +581,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 </div>
 					
-<button class="accordion">ISSUE on <?=$year4?></button>
+<button class="accordion">ISSUE on <?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -615,7 +615,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -720,7 +720,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 </div>
 					
-<button class="accordion">ISSUE on <?=$year5?></button>
+<button class="accordion">ISSUE on <?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -754,7 +754,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>

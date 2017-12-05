@@ -138,7 +138,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					
 ?>
 
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
+<form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
 
 
 
@@ -174,7 +174,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 ?>
 <div class="table-responsive"> 
-							<table class="table table-bordered">
+							<table class="table table-hover">
 								<col width=14px;>
 								<col width=14px;>
 								<col width=14px;>

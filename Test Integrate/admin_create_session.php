@@ -38,6 +38,7 @@ include ('sidebar.php');
     <table id='' class = "table table-hover" style= "margin: 0 auto;" >
       <thead>
         <tr>
+          <th>#</th>
           <th>Session Name</th>
           <th>Current Status</th>
           <th>Change Status</th>
@@ -47,7 +48,7 @@ include ('sidebar.php');
       <tbody class="table table-hover">
             <?php              
               $result = mysql_query("SELECT session_name, session_status, date_created FROM session");
-
+              $x = 1;
               while($row = mysql_fetch_assoc($result))//while look to fetch the result and store in a array $row.  
               {  
 
@@ -67,6 +68,7 @@ include ('sidebar.php');
                 ?>
 
                 <tr>
+                    <th><?php echo $x ?></th>
                     <td><?php echo $session_name ?></td>
                     <td><?php echo $ses_stat ?></td>
                     <td><a onclick="return confirm('Turn <?php echo $ses?> this form?')" href="handler.php?stat=<?php echo $session_name ?>&check=<?php echo $session_status ?>">
@@ -76,7 +78,7 @@ include ('sidebar.php');
                 </tr>
                 
                 
-             <?php }?>
+             <?php $x++; }?>
              </table>
 
             

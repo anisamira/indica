@@ -169,7 +169,7 @@ body {margin:0;}
 </br>
 <table>
 <tr><td>
-				<form action="add_achieve.php" method="post">
+				<form class="pure-form pure-form-aligned" action="add_achieve.php" method="post">
 					<input type="submit" name="Achievement1" value="Check for an Achievement" >
 					</form>
 	</td>
@@ -182,7 +182,7 @@ $sql="SELECT *
 					if(mysql_num_rows($result)>0)
 					{	
 ?>
-						<form action="add_achieve.php" method="post">
+						<form class="pure-form pure-form-aligned" action="add_achieve.php" method="post">
 					<input type="submit" name="update" value="Update Records" >
 				</form>	
 		</td>
@@ -225,7 +225,9 @@ $sql="SELECT *
 <br>
 
 
-<button class="accordion"><?=$year1?></button>
+<button class="accordion"><center><?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center>
+ 
+</button>
 <div class="panel">
  
  <?php
@@ -260,7 +262,7 @@ $sql="SELECT *
 						$x=1;
 						
 						?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -346,14 +348,7 @@ elseif 	($year==$year5)
 						{
 						echo "No Achievement is recorded";
 					?>
-				
-					
-				<!--	
-					<form action="add_achieve.php" method="post">
-					<input type="submit" name="Achievement1" value="Add Achievement" >
-					</form>
-					-->
-					
+	
 					<?php
 					}	
 				    
@@ -365,7 +360,7 @@ elseif 	($year==$year5)
 
  
 
-<button class="accordion"><?=$year2?></button>
+<button class="accordion"><center><?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
 
 <?php
@@ -400,7 +395,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -500,7 +495,7 @@ elseif 	($year==$year5)
 						</div> 
 
 						
-<button class="accordion"><?=$year3?></button>
+<button class="accordion"><center><?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
  
  <?php
@@ -535,7 +530,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -622,12 +617,7 @@ elseif 	($year==$year5)
 						echo "No Achievement is recorded";
 					?>
 				
-					
-				<!--	
-					<form action="add_achieve.php" method="post">
-					<input type="submit" name="Achievement1" value="Add Achievement" >
-					</form>
-					-->
+
 					
 					<?php
 					}	
@@ -639,7 +629,7 @@ elseif 	($year==$year5)
 </div>
 
 
-<button class="accordion"><?=$year4?></button>
+<button class="accordion"><center><?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
  
  <?php
@@ -674,7 +664,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -761,12 +751,7 @@ elseif 	($year==$year5)
 						echo "No Achievement is recorded";
 					?>
 				
-					
-				<!--	
-					<form action="add_achieve.php" method="post">
-					<input type="submit" name="Achievement1" value="Add Achievement" >
-					</form>
-					-->
+	
 					
 					<?php
 					}	
@@ -778,7 +763,7 @@ elseif 	($year==$year5)
 </div>
 
 
-<button class="accordion"><?=$year5?></button>
+<button class="accordion"><center><?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
  
  <?php
@@ -813,7 +798,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -900,13 +885,7 @@ elseif 	($year==$year5)
 						echo "No Achievement is recorded";
 					?>
 				
-					
-				<!--	
-					<form action="add_achieve.php" method="post">
-					<input type="submit" name="Achievement1" value="Add Achievement" >
-					</form>
-					-->
-					
+	
 					<?php
 					}	
 				    
@@ -939,5 +918,6 @@ for (i = 0; i < acc.length; i++) {
         }
     }
 }
+
 </script>
 </html>

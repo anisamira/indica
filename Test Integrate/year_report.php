@@ -100,10 +100,11 @@ else
 	<div style="padding-left:16px">
   &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
   <br>
-    &nbsp&nbspGenerate Yearly Report
   <br>
+    &nbsp&nbspGenerate Yearly Report
+  
 	</div>
-	
+	</br>
 <?php
 
 // select all
@@ -137,7 +138,7 @@ else
 	  
 	  <div class="table-responsive">  
 		
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 
 										<tr> 
 											<th>YEAR</th>  
@@ -152,7 +153,7 @@ else
 			
 ?>	
 <tr>
-                         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                         <form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                             <td style="width:50px;"><?php echo $year;?></td>
 							<input type="hidden" name="year" value="<?php echo $year;?>"/>
 							<td style="width:15px;"><button type="submit" name="submit" class="btn btn-primary">Go</button></td>
@@ -217,7 +218,7 @@ if (mysql_num_rows($result)>0){
 
 
 <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 										
 										<tr> 
 											<th>No.</th>  
@@ -276,7 +277,7 @@ if (mysql_num_rows($result)>0){
 </table>										
 </div>
 	 
- <form class="form-horizontal" action="year_report_generate.php" method="post" name="Export"   
+ <form class="pure-form pure-form-aligned" action="year_report_generate.php" method="post" name="Export"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $module_id;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $session_name;?>"/>

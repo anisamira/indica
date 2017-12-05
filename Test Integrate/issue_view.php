@@ -117,7 +117,7 @@ else{
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>

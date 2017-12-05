@@ -129,7 +129,7 @@ if (mysql_num_rows($result)>0){
 
 
 <div style="width:100%; overflow:scroll; position:relative;">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 										<tr>
 											<th></th>
 											<th colspan="5"> </br> </th>						

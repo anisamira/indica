@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="pure-min.css" />
+</head>
 
 <?php
-	include('style_dc.php');
+	// include('style_dc.php');
 	include('sidebar.php');
 	
 	
@@ -17,7 +19,11 @@
 
 
 <html>
-<form name="find" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+<<<<<<< HEAD
+<form name="find" class="pure-form pure-form-aligned" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+=======
+<form class="pure-form pure-form-aligned" name="find" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+>>>>>>> e6f1bc58c7c71c952ecaa8d31ed2c997305b482f
 
 Module Code: <input type="text" name="code"> 
 
@@ -45,12 +51,13 @@ if(isset($_POST["search"])){
 	  ?>
 	  
 	  <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 
 										<tr> 
 											<th>CODE</th>  
 											<th>SESSION</th>  
 											<th>NAME</th>
+											<th></th>
 										</tr>
 	  
 	  
@@ -68,7 +75,11 @@ if(isset($_POST["search"])){
 			
 ?>	
 <tr>
-                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
+<<<<<<< HEAD
+                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get" class="pure-form pure-form-aligned">
+=======
+                         <form class="pure-form pure-form-aligned" action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
+>>>>>>> e6f1bc58c7c71c952ecaa8d31ed2c997305b482f
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>
@@ -116,12 +127,13 @@ if(isset($_POST["select"])){
 	  ?>
 	  
 	  <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 
 										<tr> 
 											<th>CODE</th>  
 											<th>SESSION</th>  
 											<th>NAME</th>
+											<th></th>
 										</tr>
 	  
 	  
@@ -139,7 +151,11 @@ if(isset($_POST["select"])){
 			
 ?>	
 <tr>
-                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
+<<<<<<< HEAD
+                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get" class="pure-form pure-form-aligned">
+=======
+                         <form class="pure-form pure-form-aligned" action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
+>>>>>>> e6f1bc58c7c71c952ecaa8d31ed2c997305b482f
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>
