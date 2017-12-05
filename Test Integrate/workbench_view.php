@@ -17,7 +17,7 @@
 
 
 <html>
-<form name="find" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+<form class="pure-form pure-form-aligned" name="find" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
 
 Module Code: <input type="text" name="code"> 
 
@@ -45,7 +45,7 @@ if(isset($_POST["search"])){
 	  ?>
 	  
 	  <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 
 										<tr> 
 											<th>CODE</th>  
@@ -68,7 +68,7 @@ if(isset($_POST["search"])){
 			
 ?>	
 <tr>
-                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                         <form class="pure-form pure-form-aligned" action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>
@@ -116,7 +116,7 @@ if(isset($_POST["select"])){
 	  ?>
 	  
 	  <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 
 										<tr> 
 											<th>CODE</th>  
@@ -139,7 +139,7 @@ if(isset($_POST["select"])){
 			
 ?>	
 <tr>
-                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                         <form class="pure-form pure-form-aligned" action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>

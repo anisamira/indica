@@ -198,7 +198,7 @@ body {margin:0;}
 					{
 					?>
 <div style="width:100%; overflow:scroll; position:relative;"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -337,7 +337,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -476,7 +476,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -615,7 +615,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -754,7 +754,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>

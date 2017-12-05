@@ -121,7 +121,7 @@ else
 	  
 	  <div class="table-responsive" style="width:50%">  
 		
-								   <table class="table table-bordered" style="outline:0;"> 
+								   <table class="table table-hover" style="outline:0;"> 
 
 										<tr> 
 											<th>YEAR</th>
@@ -199,7 +199,7 @@ $sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, refer
 						$x=1;
 						
 ?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -245,7 +245,7 @@ $sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, refer
 						?>
 						</table>
 						
-						<form class="form-horizontal" action="icu_generate.php" method="post" name="upload_excel"   
+						<form class="pure-form pure-form-aligned" action="icu_generate.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="year" value="<?php echo $icu_year;?>"/>
                   <div class="form-group">

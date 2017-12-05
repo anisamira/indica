@@ -80,12 +80,13 @@
 	  ?>
 	  
 	  <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 
 										<tr> 
 											<th>CODE</th>  
 											<th>SESSION</th>  
 											<th>NAME</th>
+											<th></th>
 										</tr>
 	  
 	  
@@ -103,7 +104,7 @@
 			
 ?>	
 <tr>
-                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                         <form class="pure-form pure-form-aligned" action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>

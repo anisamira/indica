@@ -84,7 +84,7 @@ $year=$_POST['year'];
 
 
  
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
+<form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
 
 <?php
 						$module_id=$_SESSION['module_id'];
@@ -112,7 +112,7 @@ $year=$_POST['year'];
 if (mysql_num_rows($result)>0)
 {						
 ?>
-<table class="table table-bordered">
+<table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -279,7 +279,7 @@ if (isset($_POST['editevidence']))
 {
 	
 ?>	
-	<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
+	<form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="evidence" enctype="multipart/form-data">
 
 <?php
 						$module_id=$_SESSION['module_id'];
@@ -306,7 +306,7 @@ if (isset($_POST['editevidence']))
 if (mysql_num_rows($result)>0)
 {
 ?>	
-<table class="table table-bordered">
+<table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">

@@ -102,7 +102,7 @@ if (isset($_POST['Achievement1']))
 ?>
 
 
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="achievement1">
+<form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="achievement1">
 
 <?php
 						$module_id=$_SESSION['module_id'];
@@ -128,7 +128,7 @@ if (isset($_POST['Achievement1']))
 	if (mysql_num_rows($result)>0)
 	{
 ?>
-<table class="table table-bordered">
+<table class="table table-hover">
 									
 						<col width="10%">
 									<col width="20%">
@@ -271,7 +271,7 @@ if (isset($_POST['update']))
 ?>
 
 
-<form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="achievement1">
+<form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="achievement1">
 
 <?php
 						$module_id=$_SESSION['module_id'];
@@ -297,7 +297,7 @@ if (isset($_POST['update']))
 	if (mysql_num_rows($result)>0)
 	{
 ?>
-<table class="table table-bordered">
+<table class="table table-hover">
 									
 						<col width="10%">
 									<col width="20%">

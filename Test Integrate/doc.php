@@ -210,7 +210,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -282,7 +282,7 @@ $module_id=$_SESSION['module_id'];
 
 </table> 
 
-<form action="upload.php" method="post" name="addevidence">
+<form class="pure-form pure-form-aligned" action="upload.php" method="post" name="addevidence">
 <input type="hidden" name="year" value="<?php echo $year1;?>"/></td>
 					<input type="submit" name="Evidence" value="Add Evidence">
 					<input type="submit" name="editevidence" value="Edit Evidence">
@@ -336,7 +336,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -408,7 +408,7 @@ $module_id=$_SESSION['module_id'];
 
 </table> 
 
-<form action="upload.php" method="post" name="addevidence">
+<form class="pure-form pure-form-aligned" action="upload.php" method="post" name="addevidence">
 <input type="hidden" name="year" value="<?php echo $year2;?>"/></td>
 					<input type="submit" name="Evidence" value="Add Evidence">
 					<input type="submit" name="editevidence" value="Edit Evidence">
@@ -460,7 +460,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -532,7 +532,7 @@ $module_id=$_SESSION['module_id'];
 
 </table> 
 
-<form action="upload.php" method="post" name="addevidence">
+<form class="pure-form pure-form-aligned" action="upload.php" method="post" name="addevidence">
 <input type="hidden" name="year" value="<?php echo $year1;?>"/></td>
 					<input type="submit" name="Evidence" value="Add Evidence">
 					<input type="submit" name="editevidence" value="Edit Evidence">
@@ -583,7 +583,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -655,7 +655,7 @@ $module_id=$_SESSION['module_id'];
 
 </table> 
 
-<form action="upload.php" method="post" name="addevidence">
+<form class="pure-form pure-form-aligned" action="upload.php" method="post" name="addevidence">
 <input type="hidden" name="year" value="<?php echo $year1;?>"/></td>
 					<input type="submit" name="Evidence" value="Add Evidence">
 					<input type="submit" name="editevidence" value="Edit Evidence">
@@ -706,7 +706,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -778,7 +778,7 @@ $module_id=$_SESSION['module_id'];
 
 </table> 
 
-<form action="upload.php" method="post" name="addevidence">
+<form class="pure-form pure-form-aligned" action="upload.php" method="post" name="addevidence">
 <input type="hidden" name="year" value="<?php echo $year1;?>"/></td>
 					<input type="submit" name="Evidence" value="Add Evidence">
 					<input type="submit" name="editevidence" value="Edit Evidence">

@@ -98,12 +98,13 @@
 	  ?>
 	  
 	  <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 
 										<tr> 
 											<th>CODE</th>  
 											<th>SESSION</th>  
 											<th>NAME</th>
+										<th></th>
 										</tr>
 	  
 	  
@@ -119,7 +120,7 @@
 			
 ?>	
 <tr>
-                         <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                         <form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>
@@ -173,7 +174,7 @@ if (mysql_num_rows($result)>0){
 
 
 <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 										<tr>
 											<th></th>
 											<th colspan="5"> </br> </th>						
@@ -253,7 +254,7 @@ if (mysql_num_rows($result)>0){
 </table>										
 </div>
 	 
- <form class="form-horizontal" action="work_view.php" method="post" name="Export"   
+ <form class="pure-form pure-form-aligned" action="work_view.php" method="post" name="Export"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
