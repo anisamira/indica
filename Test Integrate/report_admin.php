@@ -1,5 +1,4 @@
 <?php
-	include('style_dc.php');
 	include('sidebar.php');
 	
 	$curyear=date ('Y');
@@ -54,21 +53,7 @@ else
 					}
 
 				
-	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$module_name=$row['module_name'];
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}
+
 
 
  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
@@ -103,10 +88,7 @@ else
 
 
 			<div id="content">	
-	<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
-  <br>
-	</div>
+
 </br>	
 <table>
 	
@@ -115,7 +97,7 @@ else
 	<div class="dropdown dropdown-inline">
           <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">KPI Reports<b class="caret"></b></a>
           <ul class="dropdown-menu dropdownhover-bottom">
-            <li><a href="module_reports.php">Module Information</a></li>
+            <li><a href="module_reports_admin.php">Module Information</a></li>
             <li><a href="performance_report.php">Performance Reports</a></li>
             <li><a href="financial_report.php">Financial Overview</a></li>
           </ul>
@@ -125,7 +107,7 @@ else
 	 <div class="dropdown dropdown-inline">
           <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Year Reports<b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="year_report.php">Generate Yearly Reports</a></li>
+            <li><a href="admin_year_report.php">Generate Yearly Reports</a></li>
           </ul>
         </div>
 </td>
@@ -144,21 +126,6 @@ else
     </div>
 	</div>
 
-
-<style>
-	.caret-up {
-    width: 0; 
-    height: 0; 
-    border-left: 4px solid rgba(0, 0, 0, 0);
-    border-right: 4px solid rgba(0, 0, 0, 0);
-    border-bottom: 4px solid;
-    
-    display: inline-block;
-    margin-left: 2px;
-    vertical-align: middle;
-}	
-
-</style>
 <script>
 
     $(function(){
