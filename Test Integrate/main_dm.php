@@ -1,8 +1,7 @@
-<body>
+<html><body>
 <?php
 	include('sidebar.php');
 	include('style_dc.php');
-	include('script.php');
  $curyear=date ('Y');
  $date_now=date ("m/d/Y");
  $date_q= date ("06/30/Y");
@@ -110,7 +109,7 @@ else
 	
 ?>
 
-<body>
+
 	<div class="wrapper">
 		<div id="content">
 			<!--<form action="datamanager_review.php" method="post">-->
@@ -268,13 +267,6 @@ else
 
 		</div>
 	</div>
-
-	
-<!--[if lt IE 9]>
-	<script src="assets/plugins/respond.js"></script>
-	<script src="assets/plugins/html5shiv.js"></script>
-	<script src="assets/plugins/placeholder-IE-fixes.js"></script>
-	<![endif]-->
 
 </body>
 </html>

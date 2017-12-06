@@ -1,7 +1,7 @@
 
 <?php
 	include('sidebar.php');
-	include('style_dc.php');
+	//include('style_dc.php');
 	include('script.php');
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
