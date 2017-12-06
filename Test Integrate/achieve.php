@@ -190,7 +190,7 @@ $sql="SELECT *
 		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
 		<strong>Information</strong> 
 		<ul>
-			<li>Some of Your achievement are rejected. You need to update the records.</li>
+			<li style="color:#000">Some of Your achievement are rejected. You need to update the records.</li>
 		</ul>
 	</div>
 		<?php				

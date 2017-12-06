@@ -36,7 +36,7 @@
 		
 		if (isset($_POST['add_strategy']))
 		{
-			$goal_id	=$_POST["goal_id"];
+			$goal_id		=$_POST["goal_id"];
 			$strategy_desc 	=mysql_real_escape_string($_POST["strategy_desc"]); 
 			$sql			="INSERT INTO strategy (strategy_desc, goal_id) VALUES ('$strategy_desc','$goal_id')";
 			$result			=mysql_query($sql) or die (mysql_error());
@@ -98,10 +98,10 @@
 													<col width="80%"/>
 													<col width="10%"/>
 													<col width="10%"/><?php
-													while($row=mysql_fetch_array($result2))
+													while($row2=mysql_fetch_array($result2))
 													{									
-														$strategy_id	=$row['strategy_id'];
-														$strategy_desc	=$row['strategy_desc'];?>
+														$strategy_id	=$row2['strategy_id'];
+														$strategy_desc	=$row2['strategy_desc'];?>
 														<tr style="font-size:13px">
 															<td><?php echo $y.") ".$strategy_desc;?></td>
 															<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletestrategy(<?php echo  $strategy_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>

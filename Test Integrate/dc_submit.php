@@ -1,7 +1,7 @@
 
-<body>
+<body style="width:100%; overflow:scroll; position:relative;">
 <?php
-	//include('style_dc.php');
+	include('style_dc.php');
 	include('sidebar.php');
 	include('script.php');
 	$module_id=$_SESSION['module_id'];
@@ -53,7 +53,7 @@
 						
 						<!-- SUBMIT RECORDS-->
 						<br></br>
-							  <div  style="width:100%; overflow:scroll; position:relative;">
+							  <div>
 								<?php
 									$x=1;
 									$que="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
