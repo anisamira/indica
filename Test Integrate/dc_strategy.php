@@ -46,7 +46,7 @@
 		
 		if (isset($_POST['add_strategy']))
 		{
-			$goal_id		=$_POST["goal_id"];
+			$goal_id		=$_POST["goalid"];
 			$strategy_desc 	=mysql_real_escape_string($_POST["strategy_desc"]); 
 			$sql			="INSERT INTO strategy (strategy_desc, goal_id) VALUES ('$strategy_desc','$goal_id')";
 			$result			=mysql_query($sql) or die (mysql_error());
@@ -84,8 +84,8 @@
 					$result = mysql_query($sql) or die(mysql_error());
 					if (mysql_num_rows($result)>0)
 					{ ?>
-						<form action="dc_actionplan.php" method="post">
-							<table class="table table-bordered">
+						<form action="dc_actionplan.php" method="post" class="pure-form pure-form-aligned">
+							<table class="table table-hover">
 								<col width="40%"/>
 								<col width="60%"/>
 								<tr style="font-size:14px">
@@ -106,7 +106,7 @@
 											$result2=mysql_query($sql2) or die (mysql_error());
 											if (mysql_num_rows($result2)>0)
 											{?>
-												<table class="table">
+												<table class="table table-hover">
 													<col width="80%"/>
 													<col width="10%"/>
 													<col width="10%"/><?php
@@ -132,11 +132,11 @@
 																			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																			<h4 class="modal-title" id="goal<?php echo $goal_id;?>">Add Strategy</h4>
 																		</div>
-																		<form action="" method="post">
+																		<form action="" method="post" class="pure-form pure-form-aligned">
 																			<div class="modal-body">
 																				<div class="row" style="margin:10px;">
-																					<input type="hidden" name="goal_id" value="<?php echo $goal_id;?>"></input>
-																					<textarea class="form-control" name="strategy_desc" required></textarea>
+																					<input type="hidden" name="goalid" value="<?php echo $goal_id;?>"></input>
+																					<textarea class="form-control" name="strategydesc" required></textarea>
 																				</div>
 																			</div>
 																			<div class="modal-footer">
@@ -160,7 +160,7 @@
 																		$result3=mysql_query($sql3) or die (mysql_error());
 																		if (mysql_num_rows($result3)>0)
 																		{?>
-																			<form action="" method="post">
+																			<form action="" method="post" class="pure-form pure-form-aligned">
 																				<div class="modal-body">
 																					<div class="row" style="margin:10px;"><?php
 																						$no=1;

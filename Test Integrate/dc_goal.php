@@ -35,7 +35,7 @@
 				</div>
 
 						<!--GOAL FORM-->
-							<table class="table" style="margin-top:30px;">
+							<table class="table table-hover" style="margin-top:30px;">
 								<?php
 								$y=1;
 									if(isset($_GET['deletegoal']))
@@ -63,7 +63,7 @@
 																	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																	<h4 class="modal-title" id="myModalLabel4">Edit goal</h4>
 																</div>
-																<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+																<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post" class="pure-form pure-form-aligned">
 																	<div class="modal-body">
 																		<div class="row" style="margin:10px;">
 																				<input type="hidden" name="goal_id" value="<?php echo $goal_id;?>"></input>

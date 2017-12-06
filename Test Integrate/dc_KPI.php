@@ -109,8 +109,8 @@
 							$result = mysql_query($sql) or die(mysql_error());
 							if (mysql_num_rows($results)>0)
 							{ ?>
-								<form action="dc_baseline.php" method="post">
-									<table class="table table-bordered"> 
+								<form action="dc_baseline.php" method="post" class="pure-form pure-form-aligned">
+									<table class="table table-hover"> 
 										<col width="10%">
 										<col width="15%">
 										<col width="15%">
@@ -168,7 +168,7 @@
 																$result6	= mysql_query($sql6) or die(mysql_error());
 																if (mysql_num_rows($result6)>0)
 																{?>
-																	<table class="table">
+																	<table class="table table-hover">
 																		<col width="80%">
 																		<col width="10%">
 																		<col width="10%"><?php
@@ -195,7 +195,7 @@
 																								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																								<h4 class="modal-title" id="action<?php echo $actionplan_id;?>">Add KPI</h4>
 																							</div>
-																							<form action="" method="post">
+																							<form action="" method="post" class="pure-form pure-form-aligned">
 																								<div class="modal-body">
 																									<div class="row" style="margin:10px;">
 																										<input type="hidden" name="actionplan_id" value="<?php echo $actionplan_id;?>"></input>
@@ -225,7 +225,7 @@
 																							$result7	= mysql_query($sql7) or die(mysql_error());
 																							if (mysql_num_rows($result7)>0)
 																							{?>
-																								<form action="" method="post">
+																								<form action="" method="post" class="pure-form pure-form-aligned">
 																									<div class="modal-body">
 																										<div class="row" style="margin:10px;"><?php
 																											$no=1;

@@ -87,8 +87,8 @@
 							$result = mysql_query($sql) or die(mysql_error()); 
 							if (mysql_num_rows($result)>0)
 							{?>
-								<form action="dc_submit.php" method="post">
-									<table id ="maintable" class="table table-bordered"> 
+								<form action="dc_submit.php" method="post" class="pure-form pure-form-aligned">
+									<table id ="maintable" class="table table-hover"> 
 										<tr style="font-size:14px">
 											<th rowspan="2">Key Performance Indicator (KPI)</th>
 											<th colspan="4">References</th>
@@ -143,7 +143,7 @@
 																						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																						<h4 class="modal-title" id="<?php echo $kpi_id;?>">Edit Reference</h4>
 																					</div>
-																					<form action="" method="post">
+																					<form action="" method="post" class="pure-form pure-form-aligned">
 																						<div class="modal-body">
 																							<div class="row" style="margin:10px;">
 																									<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>

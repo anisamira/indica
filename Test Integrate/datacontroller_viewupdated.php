@@ -14,8 +14,8 @@
 
 	<div class="wrapper">
 		<div id="content">
-			<form action="<?php echo($_SERVER['PHP_SELF']);?>" method="post">
-					<table class="table table-bordered"> 
+			<form action="<?php echo($_SERVER['PHP_SELF']);?>" method="post" class="pure-form pure-form-aligned">
+					<table class="table table-hover"> 
 						<tr>
 							<th>Version</th>						
 							<th>Last Updated</th>
@@ -49,7 +49,7 @@
 																<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																<h4 class="modal-title" id="myModalLabel4">Request to edit <?php echo $session_name;?></h4>
 															</div>
-															<form>
+															<form class="pure-form pure-form-aligned">
 																<div class="modal-body">
 																	<div class="row" style="margin:10px;">
 																			<h4></h4>

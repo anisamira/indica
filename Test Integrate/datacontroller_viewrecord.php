@@ -27,7 +27,7 @@
 								$result3 = mysql_query($sql) or die(mysql_error()); 
 								if (mysql_num_rows($result3)>0)
 								{?>
-									<table class="table table-bordered"> 
+									<table class="table table-hover"> 
 										<tr>
 											<th></th>
 											<th colspan="5"> </br> </th>						

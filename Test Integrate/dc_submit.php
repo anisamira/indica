@@ -75,8 +75,8 @@
 											ORDER BY goal_id ASC";
 										$result = mysql_query($sql) or die(mysql_error());?>
 
-											<form action="main_dc.php" method="post">
-												 <table class="table table-bordered">
+											<form action="main_dc.php" method="post" class="pure-form pure-form-aligned">
+												 <table class="table table-hover">
 													<tr style="font-size:14px">
 														<th rowspan="2"></br>Goals</th>  
 														<th rowspan="2"></br>Strategies</th>
