@@ -32,16 +32,26 @@
 							}
 							if (isset($_POST['edit_actionplan']))
 							{
-								$actionplan_id		=$_POST["actionplan_id"];
-								$actionplan_desc	= mysql_real_escape_string($_POST["actionplan_desc"]); 
-								$sql				="UPDATE actionplan
-														SET actionplan_desc='$actionplan_desc'
-														WHERE actionplan_id='$actionplan_id'";
-								$result				=mysql_query($sql) or die (mysql_error());
-								if (false===$result)
+								for($y=1; $y<=50; $y++)
+								{
+									if (empty($_POST["actionplanid".$y]))
 									{
-										echo mysql_error();
+										$error = 1;
 									}
+									else
+									{
+										$actionplan_id		=$_POST["actionplanid".$y];
+										$actionplan_desc	= mysql_real_escape_string($_POST["actionplandesc".$y]); 
+										$sql				="UPDATE actionplan
+																SET actionplan_desc='$actionplan_desc'
+																WHERE actionplan_id='$actionplan_id'";
+										$result				=mysql_query($sql) or die (mysql_error());
+										if (false===$result)
+											{
+												echo mysql_error();
+											}
+									}
+								}
 							}
 							if (isset($_POST['add_actionplan']))
 							{
@@ -146,35 +156,14 @@
 																<tr style="font-size:13px">
 																	<td><?php echo $y.") ".$actionplan_desc;?></td>
 																	<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deleteaction(<?php echo  $actionplan_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
-																	<td><button data-toggle="modal" data-target="#<?php echo $actionplan_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
-																	<div class="modal fade" id="<?php echo $actionplan_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																		<div class="modal-dialog">
-																			<div class="modal-content">
-																				<div class="modal-header">
-																					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-																					<h4 class="modal-title" id="<?php echo $actionplan_id;?>">Edit Action Plan</h4>
-																				</div>
-																				<form action="" method="post">
-																					<div class="modal-body">
-																						<div class="row" style="margin:10px;">
-																								<input type="hidden" name="actionplan_id" value="<?php echo $actionplan_id;?>"></input>
-																								<textarea class="form-control" name="actionplan_desc" required><?php echo $actionplan_desc;?></textarea>
-																						</div>
-																					</div>
-																					<div class="modal-footer">
-																						<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																						<input type="submit" class="btn-u btn-u-primary" name="edit_actionplan" value="Submit"></input>
-																					</div>
-																				</form>
-																			</div>
-																		</div>
-																	</div>
+																	<td></td>
 																</tr><?php
 																$y++;
 															}?>
 															<tr style="font-size:13px">
-																<td colspan="3">
+																<td>
 																	<button data-toggle="modal" data-target="#strategy<?php echo $strategy_id;?>"  type="button">Add Action Plan</button>
+																	<button data-toggle="modal" data-target="#editaction<?php echo $strategy_id;?>"  type="button">Edit Action Plan</button>
 																	<div class="modal fade" id="strategy<?php echo $strategy_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 																		<div class="modal-dialog">
 																			<div class="modal-content">
@@ -194,6 +183,44 @@
 																						<input type="submit" class="btn-u btn-u-primary" name="add_actionplan" value="Submit"></input>
 																					</div>
 																				</form>
+																			</div>
+																		</div>
+																	</div>
+																</td>
+																<td colspan="2">
+																	<div class="modal fade" id="editaction<?php echo $strategy_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																		<div class="modal-dialog">
+																			<div class="modal-content">
+																				<div class="modal-header">
+																					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																					<h4 class="modal-title" id="editaction<?php echo $strategy_id;?>">Edit Action Plan</h4>
+																				</div><?php
+																				$sql6		="SELECT * FROM actionplan 
+																								WHERE strategy_id='$strategy_id'
+																								ORDER BY strategy_id ASC";
+																				$result6 	= mysql_query($sql5) or die(mysql_error());
+																				if (mysql_num_rows($result6)>0)
+																				{?>						
+																					<form action="" method="post">
+																						<div class="modal-body">
+																							<div class="row" style="margin:10px;"><?php
+																								$no=1;
+																								while($row6=mysql_fetch_array($result6))
+																								{
+																									$actionplanid	=$row6['actionplan_id'];
+																									$actionplandesc=$row6['actionplan_desc'];?>
+																									<input type="hidden" name="actionplanid<?php echo $no;?>" value="<?php echo $actionplanid;?>"></input>
+																									<textarea class="form-control" name="actionplandesc<?php echo $no;?>" required><?php echo $actionplandesc;?></textarea><br></br><?php
+																									$no++;
+																								}?>
+																							</div>
+																						</div>
+																						<div class="modal-footer">
+																							<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																							<input type="submit" class="btn-u btn-u-primary" name="edit_actionplan" value="Submit"></input>
+																						</div>
+																					</form><?php
+																				}?>
 																			</div>
 																		</div>
 																	</div>
