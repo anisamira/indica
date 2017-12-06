@@ -1,5 +1,4 @@
 <?php
-	include('style_dc.php');
 	include('sidebar.php');
 	
 	$curyear=date ('Y');
@@ -129,14 +128,6 @@ else
           </ul>
         </div>
 </td>
-<td>		
-	 <div class="dropdown dropdown-inline">
-          <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">ICU Reports <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="icu_reports.php">Generate ICU Reports</a></li>
-          </ul>
-   </div>
-</td>   
 	  
 	   </div>
 </table>	   

@@ -15,77 +15,7 @@
 else
     $quater=2;	
 	
-	
-	$sql			="SELECT * FROM session where session_status='1'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['session_name']	=$row['session_name'];
-							$year1=$row['year1'];
-							$year2=$row['year2'];
-							$year3=$row['year3'];
-							$year4=$row['year4'];
-							$year5=$row['year5'];
-						}
-						$session_name	=$_SESSION['session_name'];
-					}
-					else
-					{
-						echo "no data found";
-					}
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
-						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
-					}
-					else
-					{
-						echo "no data found";
-					}
 
-				
-	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$module_name=$row['module_name'];
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}
-
-
- $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$year= $row['year_name'];
-							$year_id=$row['year_id'];
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}
 
 									
 ?>
@@ -98,7 +28,6 @@ else
 			<div id="content">	
 	<div style="padding-left:16px">
   <br>
-  <br>
     &nbsp&nbspGenerate Yearly Report
   
 	</div>
@@ -108,8 +37,21 @@ else
 // select all
 	
   $x=1;
-  $sql=("SELECT DISTINCT year.year_name,goal.module_id, goal.session_name FROM goal JOIN module on module.module_id=goal.module_id JOIN year ON year.session_name=goal.session_name 
-  WHERE goal.module_id='$module_id' AND goal.session_name='$session_name'
+  $sql=("SELECT DISTINCT year.year_name
+					    FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
+						JOIN evidence ON evidence.ach_id=achievement.ach_id
+						JOIN session ON session.session_name=goal.session_name
+						WHERE form.form_status='approved'
+						AND year.year_name<='$curyear'
 								");
   	
 	$result = mysql_query($sql) or die(mysql_error());
@@ -121,11 +63,11 @@ else
 	  
 	  <div class="table-responsive">  
 		
-								   <table class="table table-hover"> 
+								   <table class="table table-hover" width="50%;"> 
 
 										<tr> 
-											<th>YEAR</th> 
-											<th>Generate</th>  											
+											<th>YEAR</th>
+											<th>Action</th> 											
 										</tr>
 	  
 	  
@@ -138,9 +80,9 @@ else
 ?>	
 <tr>
                          <form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                            <td style="width:50px;"><?php echo $year;?></td>
+                            <td style="width:30px;"><?php echo $year;?></td>
 							<input type="hidden" name="year" value="<?php echo $year;?>"/>
-							<td style="width:15px;"><button type="submit" name="submit" class="btn btn-primary">Go</button></td>
+							<td style="width:5px;"><button type="submit" name="submit" class="btn btn-primary">Generate</button></td>
 						 </form>
 
 </tr>								   
@@ -162,9 +104,9 @@ else
 		
 		?>
 							<div class="alert alert-warning alert-dismissable fade in">
-								<meta http-equiv="refresh" content="1;url=report_tnc.php" />
+								<meta http-equiv="refresh" content="1;url=report_admin.php" />
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-								<strong>No project found</strong> Redirecting in 1 seconds...
+								<strong>No Yearly Report</strong> Redirecting in 1 seconds...
 							</div>
 							<?php
 		
@@ -189,10 +131,8 @@ if (isset($_POST['year']))
 											JOIN reference ON reference.kpi_id=kpi.kpi_id
                                             JOIN form ON form.module_id=goal.module_id
 											JOIN achievement ON achievement.target_id=target.target_id
-											JOIN year ON achievement.year_id=year.year_id											
-											WHERE goal.module_id='$module_id'
-											AND goal.session_name='$session_name'
-											AND form.form_status='approved' 
+											JOIN year ON achievement.year_id=year.year_id
+											WHERE form.form_status='approved' 
 											AND year.year_name='$year'";
 											$result = mysql_query($sql) or die(mysql_error());
 
@@ -279,21 +219,10 @@ else
 {
 	echo "No result";
 }
-
-											
-										
-
-	
 	
 }
 
-
-
-
 ?>		
-
-
-
 
 	
 	<!--END OF DIVISION-->

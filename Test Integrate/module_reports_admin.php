@@ -1,21 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+
 <?php
 	include('sidebar.php');
-	
-	$curyear=date ('Y');
-    $date_now=date ("m/d/Y");
-    $date_q= date ("06/30/Y");
- 
+
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
- 
- if ($date_now<=$date_q)
-{
-	$quater=1;
-}
-else
-    $quater=2;	
-	
-	
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -23,11 +14,6 @@ else
 						while($row=mysql_fetch_array($result))
 						{
 							$_SESSION['session_name']	=$row['session_name'];
-							$year1=$row['year1'];
-							$year2=$row['year2'];
-							$year3=$row['year3'];
-							$year4=$row['year4'];
-							$year5=$row['year5'];
 						}
 						$session_name	=$_SESSION['session_name'];
 					}
@@ -35,6 +21,7 @@ else
 					{
 						echo "no data found";
 					}
+	
 	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -50,9 +37,8 @@ else
 					else
 					{
 						echo "no data found";
-					}
-
-				
+					}			
+	
 	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -67,50 +53,23 @@ else
 					else
 					{
 						echo "no data found";
-					}
+					}	
 
+	
+	?>
 
- $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$year= $row['year_name'];
-							$year_id=$row['year_id'];
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}
-
-									
-?>
-
-		<div class="wrapper">		
-		<!-- !PAGE CONTENT! -->
-
+<div class="wrapper">
 
 
 			<div id="content">	
-	<div style="padding-left:16px">
-  <br>
-  <br>
-    &nbsp&nbspGenerate Yearly Report
-  
-	</div>
-	</br>
+
+
 <?php
 
 // select all
 	
   $x=1;
-  $sql=("SELECT DISTINCT year.year_name,goal.module_id, goal.session_name FROM goal JOIN module on module.module_id=goal.module_id JOIN year ON year.session_name=goal.session_name 
-  WHERE goal.module_id='$module_id' AND goal.session_name='$session_name'
-								");
+  $sql=("SELECT DISTINCT goal.module_id, module.module_name, goal.session_name FROM goal JOIN module ON goal.module_id=module.module_id");
   	
 	$result = mysql_query($sql) or die(mysql_error());
 
@@ -120,28 +79,36 @@ else
 	  ?>
 	  
 	  <div class="table-responsive">  
-		
 								   <table class="table table-hover"> 
 
 										<tr> 
-											<th>YEAR</th> 
-											<th>Generate</th>  											
+											<th>CODE</th>  
+											<th>SESSION</th>  
+											<th>NAME</th>
+										<th></th>
 										</tr>
 	  
 	  
 <?php		
 		while($row=mysql_fetch_array($result))
 		{
+			$name=$row['module_name'];
+			$moduleid=$row['module_id'];
+			$sesi=$row['session_name'];
 			
-			$year=$row['year_name'];
+			
+			
 			
 ?>	
 <tr>
                          <form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                            <td style="width:50px;"><?php echo $year;?></td>
-							<input type="hidden" name="year" value="<?php echo $year;?>"/>
-							<td style="width:15px;"><button type="submit" name="submit" class="btn btn-primary">Go</button></td>
-						 </form>
+                            <td><?php echo $moduleid;?></td>
+								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
+							<td><?php echo $sesi;?></td>
+								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+							<td><?php echo $name;?></td>
+							<td style="width:10%;"><button type="submit" name="submit" class="btn btn-primary">Generate</button></td>
+							</form>
 
 </tr>								   
 												<?php
@@ -158,28 +125,41 @@ else
   else{
  	{
 		//print error message
-		
-		
-		?>
-							<div class="alert alert-warning alert-dismissable fade in">
-								<meta http-equiv="refresh" content="1;url=report_tnc.php" />
-								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-								<strong>No project found</strong> Redirecting in 1 seconds...
-							</div>
-							<?php
-		
+		echo 'No project found';
 	}
 	// once processing is complete
 	// free result set
 	
 }
 
-if (isset($_POST['year']))
-{
-	$year=$_POST['year'];
 
+if (isset($_POST['submit']))
+{
+	$moduleid=$_POST['moduleid'];
+$sesi=$_POST['sesi'];
+
+	
+		$sql		="SELECT * FROM session where session_name='$sesi'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$year1=$row['year1'];
+							$year2=$row['year2'];
+							$year3=$row['year3'];
+							$year4=$row['year4'];
+							$year5=$row['year5'];
+						}
+					}
+					else
+					{
+						echo "no data found";
+					}
+	
+	
 										$x=1;
-										$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* , form.*,achievement.*,year.*
+										$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* , form.*
 											FROM goal 
 											JOIN strategy ON strategy.goal_id=goal.goal_id 
 											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -187,13 +167,10 @@ if (isset($_POST['year']))
 											JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 											JOIN target ON target.kpi_id=kpi.kpi_id 
 											JOIN reference ON reference.kpi_id=kpi.kpi_id
-                                            JOIN form ON form.module_id=goal.module_id
-											JOIN achievement ON achievement.target_id=target.target_id
-											JOIN year ON achievement.year_id=year.year_id											
-											WHERE goal.module_id='$module_id'
-											AND goal.session_name='$session_name'
-											AND form.form_status='approved' 
-											AND year.year_name='$year'";
+                                            JOIN form ON form.module_id=goal.module_id											
+											WHERE goal.module_id='$moduleid'
+											AND goal.session_name='$sesi'
+											AND form.form_status='approved' ";
 											$result = mysql_query($sql) or die(mysql_error());
 
 if (mysql_num_rows($result)>0){				
@@ -203,16 +180,27 @@ if (mysql_num_rows($result)>0){
 
 <div class="table-responsive">  
 								   <table class="table table-hover"> 
-										
+										<tr>
+											<th></th>
+											<th colspan="5"> </br> </th>						
+											<th colspan="2">BASELINE</th>
+											<th colspan="5">TARGET</th>
+											<th colspan="4">REFERENCE</th>
+										</tr>
 										<tr> 
 											<th>No.</th>  
 											<th>Goals</th>  
 											<th>Strategies</th>
 											<th>Action Plan</th>  
 											<th>KPI</th>
-											<th>Operation Definition</th> 
-											<th>Target <?=$year?></th>  
-											<th>Achievement <?=$year?></th>  
+											<th>Operation Definition</th>
+											<th>Achievement 2014</th>  
+											<th>Achievement 2015</th>
+											<th>Target <?=$year1?></th>  
+											<th>Target <?=$year2?></th>  
+											<th>Target <?=$year3?></th>  
+											<th>Target <?=$year4?></th>  
+											<th>Target <?=$year5?></th>
 											<th>Ownership</th> 
 											<th>Data Source</th> 
 											<th>Estimated Cost (RM)</th> 
@@ -230,8 +218,13 @@ if (mysql_num_rows($result)>0){
 												$kpi_desc		=$row['kpi_desc'];
 												$kpi_id			=$row['kpi_id'];
 												$operation_def	=$row['operation_def'];
-												$target=$row['target'];
-												$achievement=$row['ach_desc'];
+												$baseline1		=$row['baseline1'];
+												$baseline2		=$row['baseline2'];
+												$target1		=$row['target1'];
+												$target2		=$row['target2'];
+												$target3		=$row['target3'];
+												$target4		=$row['target4'];
+												$target5		=$row['target5'];
 												$ownership		=$row['ownership'];
 												$data_source	=$row['data_source'];
 												$estimated_cost	=$row['estimated_cost'];
@@ -246,8 +239,13 @@ if (mysql_num_rows($result)>0){
 														<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
 													</td>
 													<td><?php echo $operation_def;?></td>
-													<td><?php echo $target;?></td>
-													<td><?php echo $achievement;?></td>
+													<td><?php echo $baseline1;?></td>
+													<td><?php echo $baseline2;?></td>
+													<td><?php echo $target1;?></td>
+													<td><?php echo $target2;?></td>
+													<td><?php echo $target3;?></td>
+													<td><?php echo $target4;?></td>
+													<td><?php echo $target5;?></td>
 													<td><?php echo $ownership;?></td>
 													<td><?php echo $data_source;?></td>
 													<td><?php echo $estimated_cost;?></td>
@@ -261,10 +259,10 @@ if (mysql_num_rows($result)>0){
 </table>										
 </div>
 	 
- <form class="pure-form pure-form-aligned" action="year_report_generate.php" method="post" name="Export"   
+ <form class="pure-form pure-form-aligned" action="work_view.php" method="post" name="Export"   
                       enctype="multipart/form-data">
-<input type="hidden" name="moduleid" value="<?php echo $module_id;?>"/>
-<input type="hidden" name="sesi" value="<?php echo $session_name;?>"/>
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 <input type="hidden" name="year" value="<?php echo $year;?>"/>
 <input type="hidden" name="module_name" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
@@ -280,23 +278,80 @@ else
 	echo "No result";
 }
 
-											
-										
+											?>
 
-	
-	
+<?php											
 }
-
 
 
 
 ?>		
 
+			</div>
+    </div>
+  
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  }
+}
+</script>
+ 
+</div>
+
+</div>
+    </div>
 
 
+<style>
+body {margin:0;}
 
-	
-	<!--END OF DIVISION-->
-	</div>
-	</div>
-	
+.topnav {
+  overflow: hidden;
+  background-color: #332;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+<script>
+$(document).ready(function() {
+  $("[data-toggle]").click(function() {
+    var toggle_el = $(this).data("toggle");
+    $(toggle_el).toggleClass("open-sidebar");
+  });
+     
+});
+ 
+
+</script>
+</html>
+
+
