@@ -121,7 +121,7 @@ $sql			= "SELECT SUM(reference.estimated_cost) AS cost, SUM(reference.exp_fin_re
 					{
 						echo "no data found";
 					}
-$sql = "SELECT COUNT(goal.goal_id) AS gol, COUNT(kpi.kpi_id) AS kpi
+$sql = "SELECT COUNT(distinct goal.goal_id) AS gol, COUNT(kpi.kpi_id) AS kpi
 										    FROM goal
 											JOIN strategy ON strategy.goal_id=goal.goal_id 
 											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
