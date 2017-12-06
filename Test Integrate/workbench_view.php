@@ -36,13 +36,11 @@ Module Code: <input type="text" name="code">
 </html>        
 <?php
 
-
-
 if(isset($_POST["search"])){
 	$code=$_POST['code'];
 	
   $x=1;
-  $sql=("SELECT goal.*, module.* FROM goal JOIN module ON goal.module_id=module.module_id WHERE module.module_id='$code' GROUP BY module.module_id");
+  $sql=("SELECT DISTINCT goal.module_id,goal.session_name,module.module_name FROM goal JOIN module ON goal.module_id=module.module_id WHERE module.module_id='$code'");
   	
 	$result = mysql_query($sql) or die(mysql_error());
 
@@ -119,7 +117,7 @@ if(isset($_POST["select"])){
 	
 	
   $x=1;
-  $sql=("SELECT goal.*, module.* FROM goal JOIN module ON goal.module_id=module.module_id GROUP BY module.module_id");
+  $sql=("SELECT DISTINCT goal.module_id,goal.session_name,module.module_name FROM goal JOIN module ON goal.module_id=module.module_id");
   	
 	$result = mysql_query($sql) or die(mysql_error());
 

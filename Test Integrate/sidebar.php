@@ -57,6 +57,7 @@ include_once ('connection.php');
                 <li><a href="logtrails.php">Log Trails</a></li>
                 <li><a href="workbench_dash.php">Dashboard</a></li>
 				<li><a href="workbench_view.php">Module Workbench</a></li>
+				<li><a href="report_admin.php">Reporting</a></li>
 				<li><a href="calculation1.php">Calculation</a></li>                
 				
                 <?php }
