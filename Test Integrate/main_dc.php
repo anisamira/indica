@@ -170,14 +170,14 @@
 		<strong>Information</strong> 
 		<ul>
 		<?php if ($form_status=='new')
-					echo"<li>You need to add new records for ". $session_name ."</li>";
+					echo"<li style='color:#000;'>You need to add new records for ". $session_name ."</li>";
 			 elseif ($form_status=='pending')
-					echo "<li>Your records are pending for approval from Data Manager</li>";
+					echo "<li style='color:#000;'>Your records are pending for approval from Data Manager</li>";
 			elseif ($form_status=='approved')
-					echo "<li>Your main records for ".$session_name ." has been approved.</li>";
+					echo "<li style='color:#000;'>Your main records for ".$session_name ." has been approved.</li>";
 			else
-				echo "<li>Your records are rejected. You need to update the records.</li>";?>
-			<li>Check Module Workbench to update achievement.</li>
+				echo "<li style='color:#000;'>Your records are rejected. You need to update the records.</li>";?>
+			<li style='color:#000;'>Check Module Workbench to update achievement.</li>
 		</ul>
 	</div>
 

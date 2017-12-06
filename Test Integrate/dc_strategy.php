@@ -90,7 +90,7 @@
 										</td>
 										<td><?php 
 											$y=1;
-											$sql2	="SELECT * FROM strategy WHERE goal_id='$goal_id'";
+											$sql2	="SELECT * FROM strategy WHERE goal_id='$goal_id' ORDER BY strategy_id ASC";
 											$result2=mysql_query($sql2) or die (mysql_error());
 											if (mysql_num_rows($result2)>0)
 											{?>
@@ -105,13 +105,13 @@
 														<tr style="font-size:13px">
 															<td><?php echo $y.") ".$strategy_desc;?></td>
 															<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletestrategy(<?php echo  $strategy_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
-															<td><button data-toggle="modal" data-target="#<?php echo $strategy_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
-															<div class="modal fade" id="<?php echo $strategy_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+															<td><button data-toggle="modal" data-target="#strategy<?php echo $strategy_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
+															<div class="modal fade" id="strategy<?php echo $strategy_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
 																<div class="modal-dialog">
 																	<div class="modal-content">
 																		<div class="modal-header">
 																			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-																			<h4 class="modal-title" id="<?php echo $strategy_id;?>">Edit Strategy</h4>
+																			<h4 class="modal-title" id="strategy<?php echo $strategy_id;?>">Edit Strategy</h4>
 																		</div>
 																		<form action="" method="post">
 																			<div class="modal-body">
