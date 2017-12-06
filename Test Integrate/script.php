@@ -1,9 +1,5 @@
 <script type="text/javascript">
 		jQuery(document).ready(function() {
-
-
-					
-			
 					var max_fields      = 10; 
 					var wrapper         = $(".input_fields_wrap");
 					var add_button      = $(".add_field_button"); 
