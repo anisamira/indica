@@ -27,7 +27,7 @@ session_start();
 						}elseif(	$_SESSION['role_id']=='R02'){
 						header("location:main_dc.php ");
 						 }elseif(	$_SESSION['role_id']=='R03'){
-						header("location:userb.php ");
+						header("location:main_dm.php ");
 						 }elseif(	$_SESSION['role_id']=='R04'){
 						header("location:main_vc.php ");
 						 }else{
