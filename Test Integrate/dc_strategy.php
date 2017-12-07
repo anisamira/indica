@@ -8,7 +8,6 @@
 	
 		if(isset($_POST['submit_goal']))
 		{	
-			$active=1;
 			foreach ($_POST['goal'] as $key=>$value)
 			{
 				$sql	="INSERT INTO goal (module_id,session_name,goal_desc) VALUES ('$module_id','$session_name','$value')";
@@ -47,7 +46,7 @@
 		if (isset($_POST['add_strategy']))
 		{
 			$goal_id		=$_POST["goalid"];
-			$strategy_desc 	=mysql_real_escape_string($_POST["strategy_desc"]); 
+			$strategy_desc 	=mysql_real_escape_string($_POST["strategydesc"]); 
 			$sql			="INSERT INTO strategy (strategy_desc, goal_id) VALUES ('$strategy_desc','$goal_id')";
 			$result			=mysql_query($sql) or die (mysql_error());
 			if (false===$result)
@@ -132,6 +131,7 @@
 																			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																			<h4 class="modal-title" id="goal<?php echo $goal_id;?>">Add Strategy</h4>
 																		</div>
+																		<form></form>
 																		<form action="" method="post" class="pure-form pure-form-aligned">
 																			<div class="modal-body">
 																				<div class="row" style="margin:10px;">
