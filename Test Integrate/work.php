@@ -207,9 +207,16 @@ if (mysql_num_rows($result)>0){
 
 else
 {
-	
-	echo "No approved of the data yet,";
-	echo "Please contact your Data Manager to approve the data";
+
+?>	
+	<div class="alert alert-info fade in" link rel="stylesheet" type="text/css" href="alert.css" />
+		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+		<strong>Information</strong> 
+		<ul>
+			<li style="color:#000">No approved of the data yet. Please contact your Data Manager to approve the data.</li>
+		</ul>
+	</div>
+<?php	
 }
 											?>
 									</table>								
