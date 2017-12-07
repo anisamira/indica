@@ -3,7 +3,7 @@
 <head>
 
 <?php
-	include('style_dc.php');
+	//include('style_dc.php');
 	include('sidebar.php');
 
 	$module_id		=$_SESSION['module_id'];
