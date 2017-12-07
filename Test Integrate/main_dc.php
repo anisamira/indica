@@ -1,5 +1,3 @@
-
-
 <body>
 <?php
 	include('style_dc.php');
