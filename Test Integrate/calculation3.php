@@ -1,9 +1,15 @@
 <html>
 <?php
-	include('style_dc.php');
 	include('sidebar.php');
+	 
 	
-	if (isset($_POST['calculate'])){
+?>
+
+<div id="content">
+
+<?php	
+	if (isset($_POST['calculate']))
+	{
 	$module_id=$_POST['module_id']; 
 	$sesi=$_POST['sesi']; 
 	$ach_desc=$_POST['ach_desc']; 
@@ -30,7 +36,7 @@
 $result4=mysql_query($query) or die (mysql_error());
 			if (mysql_num_rows($result4)>0)
 			{ ?>
-			<div id="content">
+			
 				<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -38,7 +44,6 @@ $result4=mysql_query($query) or die (mysql_error());
 						<th><center>KPI</th>
 						<th><center>Target</th>
 						<th><center>Achievement</th> 
-						<th><center>Achievement Result</th>
 						<!--<th><center>Action</th>-->
 					</tr>
 				</thead>
@@ -58,7 +63,6 @@ $result4=mysql_query($query) or die (mysql_error());
 						<td><?php echo $kpi_desc;?></td>
 						<td><?php echo $target;?></td>
 						<td><?php echo $ach_desc;?></td>
-						<td><?php echo $ach_result;?></td>
 						<!--<td><a class="btn btn-primary " href="calculation3.php?id='.$row['id'].'" name="calculate">Calculate Result</a></td>;-->
 					</tr><?php $x++; 
 				}
@@ -67,8 +71,8 @@ $result4=mysql_query($query) or die (mysql_error());
 ?>
 				</tbody>
 			</table>
-<?php			
-	}	?>
+
+			
 <head>		
 <style>
 .box
@@ -192,13 +196,15 @@ function e()
     {
       c('Error')
     }
+	
+	return e();
 }
 </script>
 </head>
 <body>
-<form>
+<form action="calculation4.php" method="post">
 <div class="box">
-    <div class="display"><input type="text" readonly size="15.75" id="d"></div> <br>
+    <div class="display"><input type="text" name="varia" readonly size="15.75" id="d"></div> <br>
     <div class="keys">
         <p>
         <input type="button" class="button gray" value="mrc" onclick='c("not defined ")'>
@@ -231,20 +237,19 @@ function e()
         <input type="button" class="button orange" value="=" onclick='e()'>
         </p>
     </div><br><br><br>
-	<form action="" method="post">
-<center><input type = "Submit" name="go">
-<input type="hidden" name="value" value="<?php e();?>"/> 
+<center><input type ="submit" name="go">
+<input type="hidden" name="module_id" value="<?php echo $module_id;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="ach_desc" value="<?php echo $ach_desc;?>"/>  
+<input type="hidden" name="target" value="<?php echo $target;?>"/> 
+<input type="hidden" name="ach_id" value="<?php echo $ach_id;?>"/>    
 </form>
-<?php
-if (isset($_POST['go']))
-{
-	$vali=$_POST['value'];
-	
-	echo $vali;
-}
 
-?>
+</div>
 </div>
 </body>
+<?php
+
+	}
+?>
 </html>
-	</html>
