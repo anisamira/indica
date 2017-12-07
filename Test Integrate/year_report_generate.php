@@ -11,8 +11,8 @@
       header('Content-Type:text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=Yearly_Report '.$year.'_'.$module_name.'_'.$sesi.'.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','Strategies', 'Action Plan', 'KPI','Operation Definition','Target '.$year.'','Achievement '.$year.'','Ownership','Data Source','Estimated Cost','Expected Financial Return'));  
-      $sql = "SELECT goal.module_id,goal.session_name,goal.goal_desc,strategy.strategy_desc,actionplan.actionplan_desc,kpi.kpi_desc,kpi.operation_def,achievement.target,achievement.ach_desc,reference.ownership,reference.data_source,reference.estimated_cost,reference.exp_fin_return
+      fputcsv($output, array('Year','Module ID','Session','Goal','Strategies', 'Action Plan', 'KPI','Operation Definition','Target '.$year.'','Achievement '.$year.'','Ownership','Data Source','Estimated Cost','Expected Financial Return'));  
+      $sql = "SELECT year.year_name, goal.module_id,goal.session_name,goal.goal_desc,strategy.strategy_desc,actionplan.actionplan_desc,kpi.kpi_desc,kpi.operation_def,achievement.target,achievement.ach_desc,reference.ownership,reference.data_source,reference.estimated_cost,reference.exp_fin_return
 	                                        FROM goal 
 											JOIN strategy ON strategy.goal_id=goal.goal_id 
 											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 

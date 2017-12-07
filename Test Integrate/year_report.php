@@ -109,7 +109,7 @@ else
 	
   $x=1;
   $sql=("SELECT DISTINCT year.year_name,goal.module_id, goal.session_name FROM goal JOIN module on module.module_id=goal.module_id JOIN year ON year.session_name=goal.session_name 
-  WHERE goal.module_id='$module_id' AND goal.session_name='$session_name'
+  WHERE goal.module_id='$module_id' AND goal.session_name='$session_name' AND year.year_name<='$curyear'
 								");
   	
 	$result = mysql_query($sql) or die(mysql_error());
