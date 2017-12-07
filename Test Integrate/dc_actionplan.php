@@ -171,6 +171,7 @@
 																					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																					<h4 class="modal-title" id="strategy<?php echo $strategy_id;?>">Add Action Plan</h4>
 																				</div>
+																				<form></form>
 																				<form action="" method="post" class="pure-form pure-form-aligned">
 																					<div class="modal-body">
 																						<div class="row" style="margin:10px;">
