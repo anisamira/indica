@@ -98,8 +98,8 @@ else
           <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">KPI Reports<b class="caret"></b></a>
           <ul class="dropdown-menu dropdownhover-bottom">
             <li><a href="module_reports_admin.php">Module Information</a></li>
-            <li><a href="performance_report.php">Performance Reports</a></li>
-            <li><a href="financial_report.php">Financial Overview</a></li>
+            <li><a href="performance_reports_admin.php">Performance Reports</a></li>
+            <li><a href="financial_reports_admin.php">Financial Overview</a></li>
           </ul>
         </div>
 </td>
