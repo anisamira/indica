@@ -36,7 +36,7 @@ $sql			="SELECT * FROM session where session_status='1'";
  
 
 <div id="content">
-<div	style ="margin-left:300px">
+<div>
 
 	<?php
 	 if(isset($_POST['save']))
@@ -60,7 +60,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 					// {
 						// echo "no data found";
 					// }
-			echo"out222";		
+			
 					
 			$x=1;		
 			$sql3	="SELECT kpi.kpi_id, kpi.kpi_desc, achievement.ach_id, achievement.ach_desc, achievement.target, achievement.ach_result, target.target_id
@@ -76,8 +76,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 						JOIN year ON achievement.year_id=year.year_id
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$sesi'
-						AND form.form_status='approved'
-";
+						AND form.form_status='approved'";
 			$result3=mysql_query($sql3) or die (mysql_error());
 			if (mysql_num_rows($result3)>0)
 			{ ?>
@@ -112,16 +111,20 @@ $sql			="SELECT * FROM session where session_status='1'";
 						<td><?php echo $target;?></td>
 						<td><?php echo $ach_desc;?></td>
 						<td><?php echo $ach_result;?></td>
-						<td><form action="calculation3.php" method="post" name="calc"><button class="btn btn-primary " type="submit" name="calculate">Calculate Result
+						<td><form action="calculation3.php" target="_blank" method="post" name="calc"><button class="btn btn-primary " type="submit" name="calculate">Calculate Result
 						  <input type="hidden" name="module_id" value="<?php echo $module_id;?>"/>
 							<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 							<input type="hidden" name="ach_desc" value="<?php echo $ach_desc;?>"/>  
 							<input type="hidden" name="target" value="<?php echo $target;?>"/> 
 							<input type="hidden" name="ach_id" value="<?php echo $ach_id;?>"/>    						
 						</form>
-						</td>;
+						</td>
 					</tr><?php $x++; 
 				}
+			}
+			else
+			{
+				echo "no module found";
 			}
 			
 ?>
@@ -136,7 +139,13 @@ $sql			="SELECT * FROM session where session_status='1'";
 				echo "out";
 			}
 			
+			
 			?>
+			
+			
+			<form method="post" action="calculation1.php"><input type="Submit" name="Back"></form>
+			
+
 
 
 </div>

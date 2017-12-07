@@ -12,13 +12,25 @@
 	
 
 	$query="SELECT kpi.kpi_id, kpi.kpi_desc, achievement.ach_id, achievement.ach_desc, achievement.target, achievement.ach_result, target.target_id
-FROM kpi
-JOIN target ON target.kpi_id = kpi.kpi_id
-JOIN achievement ON achievement.target_id = target.target_id  where goal.module_id='$module_id' AND goal.session_name='$sesi' AND achievement.ach_id='$ach_id'";
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
+                        WHERE goal.module_id='$module_id'
+						AND goal.session_name='$sesi'
+						AND form.form_status='approved'
+						AND achievement.ach_id='$ach_id'
+						";
 $result4=mysql_query($query) or die (mysql_error());
 			if (mysql_num_rows($result4)>0)
 			{ ?>
-			<div id="container" style="min-width: 310px; height: 400px; margin: 10 auto"></div><div class="control-group">
+			<div id="content">
 				<table class="table table-bordered">
 				<thead>
 					<tr>
@@ -163,7 +175,8 @@ p
 <script>
 function c(val)
 {
-    document.getElementById("d").value=val;
+    document.getElementById("d").value=val;	
+	
 }
 function math(val)
 {
@@ -183,7 +196,7 @@ function e()
 </script>
 </head>
 <body>
-<form><br><br><br>
+<form>
 <div class="box">
     <div class="display"><input type="text" readonly size="15.75" id="d"></div> <br>
     <div class="keys">
@@ -218,9 +231,19 @@ function e()
         <input type="button" class="button orange" value="=" onclick='e()'>
         </p>
     </div><br><br><br>
-	<form action="calculation4.php" method="post">
-<center><input type = "Submit">
+	<form action="" method="post">
+<center><input type = "Submit" name="go">
+<input type="hidden" name="value" value="<?php e();?>"/> 
 </form>
+<?php
+if (isset($_POST['go']))
+{
+	$vali=$_POST['value'];
+	
+	echo $vali;
+}
+
+?>
 </div>
 </body>
 </html>

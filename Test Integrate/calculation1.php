@@ -12,9 +12,8 @@
 <div class="wrapper">
 
 
-		<div class="container content-sm">		
+		<div id="content">		
 		<!-- !PAGE CONTENT! -->
-			<div class="w3-main" style="margin-left:300px;margin-top:43px;">	
 
 
 
@@ -192,7 +191,6 @@ for (i = 0; i < acc.length; i++) {
 
 </div>
     </div>
-</div>
 
 
 <style>
