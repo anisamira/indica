@@ -89,8 +89,18 @@
 
 			while($row2=mysql_fetch_array($resulty))
 			{
-				$user_id=$row2['user_id'];
-				$sqlx       ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user_id', 'u', '$username')";
+				$user		=$row2['user_id'];
+				$query		= "SELECT * FROM notif_user WHERE noti_id='$noti_id' AND user_id='$user_id'";
+				$result_q   =mysql_query($query);
+				if(mysql_num_rows($result_q)>0)
+				{
+					$sqlx   ="UPDATE  notif_user SET noti_status='u' WHERE noti_id='$noti_id' AND user_id='$user'";
+				}
+				else
+				{
+					$sqlx   ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user', 'u', '$username')";
+				}
+				
 				$resultx    =mysql_query($sqlx);
 
 			}
@@ -114,7 +124,47 @@
 		$sql2	="UPDATE master_status
 					SET action_type='pending'
 					WHERE form_id='$form_id'";
-		$result2 = mysql_query($sql2) or die(mysql_error());  
+		$result2 = mysql_query($sql2) or die(mysql_error()); 
+
+			
+			// buat ayat notification
+			$form = $session_name." " .$module_id;
+			$action = $username." has submitted update records of ".$form." for approval";			
+			
+			// masukkan notification dalam table main notification
+		$sql_noti1= "UPDATE notif_main SET noti_action='$action' where form_id='$form_id'";
+		$ressqlnoti1= mysql_query($sql_noti1);
+
+		// tarik specific notification 
+		$sql_noti2   ="SELECT noti_id FROM notif_main WHERE form_id='$form_id'";
+		$ressqlnoti2=mysql_query($sql_noti2);
+		while($row=mysql_fetch_array($ressqlnoti2))
+		{
+			// masukkan data dalam notif_user so each user yang berkaitan dapat notification masing2
+			$noti_id    =$row['noti_id'];
+			// user_id = receiver notification
+			$sqly = "SELECT user_id FROM user WHERE role_id='R03' AND module_id='$module_id'";
+			$resulty    =mysql_query($sqly);
+
+			while($row2=mysql_fetch_array($resulty))
+			{
+				$user		=$row2['user_id'];
+				$query		= "SELECT * FROM notif_user WHERE noti_id='$noti_id' AND user_id='$user_id'";
+				$result_q   =mysql_query($query);
+				if(mysql_num_rows($result_q)>0)
+				{
+					$sqlx   ="UPDATE  notif_user SET noti_status='u' WHERE noti_id='$noti_id' AND user_id='$user'";
+				}
+				else
+				{
+					$sqlx   ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user', 'u', '$username')";
+				}
+				
+				$resultx    =mysql_query($sqlx);
+
+			}
+			
+		}
 
 	}
 	
@@ -126,7 +176,45 @@
 	<div class="wrapper">
 
 
-		<div id="content">		
+		<div id="content">	
+			<!-- NOTIFICATION DISPLAY -->
+
+<?php 
+$get_noti_qwr = "select notif_user.*, notif_main.* from notif_user JOIN notif_main ON notif_main.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";
+$qry = mysql_query($get_noti_qwr, $conn);
+$count=mysql_num_rows($qry);
+
+?>
+
+<form action="" method="POST" >
+		<input style="<?php 
+
+			if($count > 0 ){
+				echo "color: white;border:none;background-color: red;";
+			}
+
+		 ?>" type="submit" name="submit" value="notification<?php echo '('.$count.')' ?>"/>
+	</form>
+	
+
+	<?php
+
+			if(isset($_POST['submit'])){
+				while ($r=mysql_fetch_array($qry))
+				{
+					$noti_action = $r['noti_action'];
+					echo $noti_action;
+				} 
+		
+				$update_query = "update notif_user SET noti_status='s' where user_id='$user_id';";
+				mysql_query($update_query,$conn);
+			}
+
+	?>
+
+<!-- END NOTIFICATION DISPLAY -->
+
+
 		<!-- !PAGE CONTENT! -->
 			<?php 
 
