@@ -69,10 +69,36 @@
 							}
 					}
 			}
-		
-			$action = $username." has submitted ".$form_id." for approval";
-		$sql_noti1= "UPDATE notif_main SET action = $action where form_id = $form_id";
+			
+			// buat ayat notification
+			$form = $session_name." " .$module_id;
+			$action = $username." has submitted ".$form." for approval";			
+			
+			// masukkan notification dalam table main notification
+		$sql_noti1= "UPDATE notif_main SET noti_action='$action' where form_id='$form_id'";
 		$ressqlnoti1= mysql_query($sql_noti1);
+
+		// tarik specific notification 
+		$sql_noti2   ="SELECT noti_id FROM notif_main WHERE form_id='$form_id'";
+		$ressqlnoti2=mysql_query($sql_noti2);
+		while($row=mysql_fetch_array($ressqlnoti2))
+		{
+			// masukkan data dalam notif_user so each user yang berkaitan dapat notification masing2
+			$noti_id    =$row['noti_id'];
+			// user_id = receiver notification
+			$sqly = "SELECT user_id FROM user WHERE role_id='R03' AND module_id='$module_id'";
+			$resulty    =mysql_query($sqly);
+
+			while($row2=mysql_fetch_array($resulty))
+			{
+				$user_id=$row2['user_id'];
+				$sqlx       ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user_id', 'u', '$username')";
+				$resultx    =mysql_query($sqlx);
+
+			}
+			
+		}
+
 	}
 	
 	
