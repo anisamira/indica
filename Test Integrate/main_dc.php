@@ -130,10 +130,11 @@
 		<!-- !PAGE CONTENT! -->
 			<?php 
 
-					$sql2="SELECT module.*, user.* 
+					$sql2="SELECT module.*, user.*, form.* 
 							FROM user 
 							JOIN module 
 							ON module.module_id=user.module_id
+							JOIN form on form.module_id=module.module_id
 							WHERE user.module_id='$module_id' 
 							AND user.user_id='$user_id'";
 					$result2 = mysql_query($sql2) or die(mysql_error());  
@@ -141,6 +142,7 @@
 					{
 						
 						$_SESSION['module_name'] = $row['module_name'];
+						$_SESSION['form_status'] = $row['form_status'];
 					}?>
 			
 		<div class="row" style="margin-bottom:20px">
@@ -152,9 +154,9 @@
 		
 		
 		<div class="row" style="margin:0 auto;">
-		<?php
-		
-			if($form_status!='new' )
+		<?php	
+			$status=$_SESSION['form_status'];
+			if($status!='new' )
 				{ ?>
 					<!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
 						<button class="col-md-4 content-boxes-v6">
@@ -197,14 +199,14 @@
 		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
 		<strong>Information</strong> 
 		<ul>
-		<?php if ($form_status=='new')
-					echo"<li style='color:#000;'>You need to add new records for ". $session_name ."</li>";
-			 elseif ($form_status=='pending')
-					echo "<li style='color:#000;'>Your records are pending for approval from Data Manager</li>";
-			elseif ($form_status=='approved')
-					echo "<li style='color:#000;'>Your main records for ".$session_name ." has been approved.</li>";
+		<?php if ($status=='new')
+					echo"<li style='color:#000;'>You need to <b>add new records</b> for ". $session_name ."</li>";
+			 elseif ($status=='pending')
+					echo "<li style='color:#000;'>Your records are <b>pending</b> for approval from Data Manager</li>";
+			elseif ($status=='approved')
+					echo "<li style='color:#000;'>Your main records for ".$session_name ." has been <b>approved</b></li>";
 			else
-				echo "<li style='color:#000;'>Your records are rejected. You need to update the records.</li>";?>
+				echo "<li style='color:#000;'>Your records are <b>rejected</b>. You need to update the records.</li>";?>
 			<li style='color:#000;'>Check Module Workbench to update achievement.</li>
 		</ul>
 	</div>
