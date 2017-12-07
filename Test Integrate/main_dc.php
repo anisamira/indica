@@ -67,6 +67,10 @@
 							}
 					}
 			}
+		
+			$action = $username." has submitted ".$form_id." for approval";
+		$sql_noti1= "UPDATE notif_main SET action = $action where form_id = $form_id";
+		$ressqlnoti1= mysql_query($sql_noti1);
 	}
 	
 	
