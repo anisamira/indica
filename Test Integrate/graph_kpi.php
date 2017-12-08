@@ -3,7 +3,7 @@
 	include('sidebar.php');
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
-	
+	$username=  $_SESSION['username'];
 	$curyear=date ('Y');
     $date_now=date ("m/d/Y");
     $date_q= date ("06/30/Y");
@@ -14,6 +14,14 @@
 	}
 	else
 		$quater=2;	
+
+	
+if (!isset($_SESSION['username']))
+{
+	 die(header("location: index.php"));
+}
+else
+{	
 	
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
@@ -339,5 +347,7 @@ Highcharts.chart('container2', {
 });
 });
 </script>
-
+<?php
+}
+?>
 

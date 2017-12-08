@@ -6,8 +6,19 @@
 	//include('style_dc.php');
 	include('sidebar.php');
 
-	$module_id		=$_SESSION['module_id'];
+$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
+	$username		=$_SESSION['username'];
+	
+if (!isset($_SESSION['username']))
+{
+	 die(header("location: index.php"));
+}
+else
+{	
+	
+	
+	
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -208,6 +219,10 @@ $(document).ready(function() {
  
 
 </script>
+
+<?php
+}
+?>
 </html>
 
 
