@@ -281,7 +281,7 @@ else
 								$ach_id		=$row5['ach_id'];?>
 								 <tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<td class="cellcolor1">
+									<td>
 					                <?php  echo $ach_result;?></td>
 	</tr><?php
 							}?>
@@ -351,10 +351,6 @@ Highcharts.chart('container2', {
             return '<b>' + this.series.name + '</b><br/>' +
                 this.point.y + ' ' + this.point.name.toLowerCase();
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> 6052d445f8b67580255303c2a06e5746cba96724
 	}
 						
 		});
@@ -372,10 +368,10 @@ Highcharts.chart('container2', {
 			var thisCell = $(this);
 			var cellValue = parseInt(thisCell.text());
 		
-			if (!isNaN(cellValue) && (cellValue <=49)) {
+			if (!isNaN(cellValue) && (cellValue <0)) {
 				thisCell.css("background-color","#FF0000");
 			}
-			else if (!isNaN(cellValue) && (cellValue <=80)) {
+			else if (!isNaN(cellValue) && (cellValue ==0) ) {
 				thisCell.css("background-color","#FFFF00");
 			}
 			else{
