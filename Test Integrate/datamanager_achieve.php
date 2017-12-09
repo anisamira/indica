@@ -168,7 +168,7 @@ else
 								<td><?php echo $target;?></td>
 								<td><?php echo $achievement;?></td>
 								<td><input type="hidden" name="ach_id<?php echo $x;?>" value="<?php echo $ach_id;?>"></input>
-								<label class="radio-inline"><input type="radio" name="approval<?php echo $x;?>" value="approve" required> Approve</input></label>
+								<label class="radio-inline" style="color:#000"><input type="radio" name="approval<?php echo $x;?>" value="approve" required> Approve</input></label>
 								<input type="radio" name="approval<?php echo $x;?>" value="reject"> Reject</input>
 							</td>
 							<td><textarea cols="20" name="action_comment<?php echo $x;?>"></textarea></td>

@@ -21,6 +21,7 @@ else
 	
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
+	$username		=$_SESSION['username'];
 	
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
@@ -253,13 +254,55 @@ $result = mysql_query($sql) or die(mysql_error());
 								}
 
 ?>
-	<div class="alert alert-warning alert-dismissable fade in">
-	 <meta http-equiv="refresh" content="1;url=achieve.php" />
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Insert!</strong> Redirecting in 1 seconds...
-  </div>								
+				?>
+					<div class="alert alert-warning alert-dismissable fade in">
+					 <meta http-equiv="refresh" content="1;url=achieve.php" />
+					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					<strong>Insert!</strong> Redirecting in 1 seconds...
+				  </div>								
+												
+				<?php								
 								
-<?php								
+									// buat ayat notification
+			$form = $session_name." " .$module_id;
+			$action = $username." has submitted achievement of ".$form." year ".$curyear. " Quarter " .$quater ." for approval";			
+			
+			// masukkan notification dalam table main notification
+		$sql_noti1= "UPDATE notif_main SET noti_action='$action' where form_id='$form_id'";
+		$ressqlnoti1= mysql_query($sql_noti1);
+
+		// tarik specific notification 
+		$sql_noti2   ="SELECT noti_id FROM notif_main WHERE form_id='$form_id'";
+		$ressqlnoti2=mysql_query($sql_noti2);
+		while($row=mysql_fetch_array($ressqlnoti2))
+		{
+			// masukkan data dalam notif_user so each user yang berkaitan dapat notification masing2
+			$noti_id    =$row['noti_id'];
+			// user_id = receiver notification
+			$sqly = "SELECT user_id FROM user WHERE role_id='R03' AND module_id='$module_id'";
+			$resulty    =mysql_query($sqly);
+
+			while($row2=mysql_fetch_array($resulty))
+			{
+				$user		=$row2['user_id'];
+				$query		= "SELECT * FROM notif_user WHERE noti_id='$noti_id' AND user_id='$user_id'";
+				$result_q   =mysql_query($query);
+				if(mysql_num_rows($result_q)>0)
+				{
+					$sqlx   ="UPDATE  notif_user SET noti_status='u' WHERE noti_id='$noti_id' AND user_id='$user'";
+				}
+				else
+				{
+					$sqlx   ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user', 'u', '$username')";
+				}
+				
+				$resultx    =mysql_query($sqlx);
+
+			}
+			
+		}
+								
+								
 								
 								
 								}
@@ -420,6 +463,47 @@ $result = mysql_query($sql) or die(mysql_error());
 													echo mysql_error();
 												}							
 }
+
+
+					
+									// buat ayat notification
+			$form = $session_name." " .$module_id;
+			$action = $username." has submitted achievement of ".$form." year ".$curyear. " Quarter " .$quater ." for approval";			
+			
+			// masukkan notification dalam table main notification
+		$sql_noti1= "UPDATE notif_main SET noti_action='$action' where form_id='$form_id'";
+		$ressqlnoti1= mysql_query($sql_noti1);
+
+		// tarik specific notification 
+		$sql_noti2   ="SELECT noti_id FROM notif_main WHERE form_id='$form_id'";
+		$ressqlnoti2=mysql_query($sql_noti2);
+		while($row=mysql_fetch_array($ressqlnoti2))
+		{
+			// masukkan data dalam notif_user so each user yang berkaitan dapat notification masing2
+			$noti_id    =$row['noti_id'];
+			// user_id = receiver notification
+			$sqly = "SELECT user_id FROM user WHERE role_id='R03' AND module_id='$module_id'";
+			$resulty    =mysql_query($sqly);
+
+			while($row2=mysql_fetch_array($resulty))
+			{
+				$user		=$row2['user_id'];
+				$query		= "SELECT * FROM notif_user WHERE noti_id='$noti_id' AND user_id='$user_id'";
+				$result_q   =mysql_query($query);
+				if(mysql_num_rows($result_q)>0)
+				{
+					$sqlx   ="UPDATE  notif_user SET noti_status='u' WHERE noti_id='$noti_id' AND user_id='$user'";
+				}
+				else
+				{
+					$sqlx   ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user', 'u', '$username')";
+				}
+				
+				$resultx    =mysql_query($sqlx);
+
+			}
+			
+		}
 								}
 
 ?>
