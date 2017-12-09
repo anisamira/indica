@@ -253,7 +253,6 @@ $result = mysql_query($sql) or die(mysql_error());
 }
 								}
 
-?>
 				?>
 					<div class="alert alert-warning alert-dismissable fade in">
 					 <meta http-equiv="refresh" content="1;url=achieve.php" />
