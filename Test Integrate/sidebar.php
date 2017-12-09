@@ -1,5 +1,7 @@
 <?php
 include_once ('connection.php');
+include ('navigation.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +46,7 @@ include_once ('connection.php');
 
                 <!-- Menu for ADMIN R01 -->
                 <?php if (($_SESSION['role_id']) == 'R01') {?>
-					<li><a href="main_admin.php">Home</a></li>                
+					<li><a href="main_admin.php"><i class="glyphicon glyphicon-home"></i> Home</a></li>                
                 <li>
                 
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Manage Users</a>

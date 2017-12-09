@@ -4,7 +4,7 @@ include ('sidebar.php');
 
 <!DOCTYPE html>
 <html>
-    <head>
+    <head>z
     </head>
     <body>
         <div class="wrapper">

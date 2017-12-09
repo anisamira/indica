@@ -14,6 +14,7 @@ include ('sidebar.php');
 
             <!-- Page Content Holder -->
             <div id="content">
+            
             <?php 
    if(!empty($_GET['status'])){?>
           <div class="success_alert">

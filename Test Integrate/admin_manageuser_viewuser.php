@@ -8,8 +8,8 @@ include ('sidebar.php');
 <head>
 
 
-<h3>View All Users></h3><hr></div>
-<!-- <link rel="stylesheet" type="text/css" href="table.css" /> -->\
+<!-- <h3>View All Users></h3><hr></div> -->
+<!-- <link rel="stylesheet" type="text/css" href="table.css" /> -->
 <link rel="stylesheet" type="text/css" href="pure-min.css" />
 <link rel="stylesheet" type="text/css" href="alert.css" />
 </head>
@@ -21,7 +21,7 @@ include ('sidebar.php');
     
 <div id="content">
 
-    <br>
+    
     <?php 
    if(!empty($_GET['deleted'])){?>
           <div class="error_alert">
