@@ -1,0 +1,401 @@
+/* MAIN BODY PARTITION */
+body {
+    font-family: "Trebuchet MS", Verdana, sans-serif;
+    font-size: 16px;
+    background-color: dimgrey; 
+    color: #696969;
+    padding: 3px;
+}
+
+div#container {
+	width: 87%;
+	margin: 0px auto;
+	background: #FFFFFF;
+	padding: 0px;
+}
+
+div#header {
+	width: auto;
+	height: 150px;
+	position:relative;
+	background: white;
+	top: 0px;
+}
+
+div#content {
+	width: auto;
+
+	background: lightgrey;
+}
+
+.clearfix:after {content:"."; display:block; height:0; clear:both; visibility:hidden;}
+.clearfix {display:inline-block;}
+/* Hide from IE Mac \*/
+.clearfix {display:block;}
+
+
+div#nav{
+	width: 16%;
+	float: left;
+	background: #333;
+}
+
+div#maincontent {
+	width: 84%;
+	float: left;
+	background: lightgrey;
+	margin-top: 3%;
+	margin-bottom:5%;
+}
+
+
+
+
+
+
+
+/*DEPARTMENTAL MENU*/
+
+ul.tab {
+		list-style-type: none;
+		margin: 9px;
+		padding: 0;
+		overflow: hidden;
+		border: 1px solid #ccc;
+		background-color: #f1f1f1;
+	}
+	ul.tab li {float: left;}
+	ul.tab li a {
+		display: inline-block;
+		color: black;
+		text-align: center;
+		padding: 8px 40px;
+		text-decoration: none;
+		transition: 0.3s;
+		font-size: 17px;
+	}
+	ul.tab li a:hover {
+		background-color: #ddd;
+	}
+	.tabcontent {
+		display: none;
+		padding: 6px 12px;
+		border: 1px solid #ccc;
+		border-top: none;
+		color: black;
+	}
+	.tabcontent1 {
+		display: none;
+		padding: 6px 12px;
+		border: 1px solid #ccc;
+		border-top: none;
+		color: black;
+	}	
+
+
+
+	
+	
+	
+	
+	
+	
+
+/* SIDE NAVIGATION BUTTON */
+.button1 {
+    background-color: #333;
+    width:70%;
+	border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.active.button1 {
+	background-color: #4CAF50;
+    /*background-color: #333;*/
+    width:70%;
+	border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+
+
+
+/* ACCORDION */
+
+button.accordion {
+    background-color: #eee;
+    color: blue;
+    cursor: pointer;
+    padding: 18px;
+    width: 90%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+	margin-left:5%;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    padding: 5 18px;
+    background-color: white;
+    display: none;
+	width: 87%;
+	margin-left: 5%;
+}
+
+/* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
+div.panel.show {
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* table */
+
+table#tablestyle, th, td{
+	border:1px ridge #ddd;
+	border-radius:4px;
+	border-color: lightgrey;
+
+}
+#country_row1 {
+	height:100;
+}
+td{
+	
+	text-align:center;
+}
+#age_row1, #age_row2, #age_row3, #age_row4, #age_row5, #age_row6, #age_row7, #age_row8, #age_row9, #age_row10, #age_row11 {
+	width:80;
+	text-align:center;
+}
+#age_roww2 {
+	width:80;
+	text-align:center;
+}
+#colach {
+	text-align:center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*TOP NAVIGATION*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li#bar{
+    float: left;
+}
+
+li a, .dropbtn{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+	
+}
+
+li a, .dropbtn1{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+	
+}
+
+.dropbtn1{
+	background-color: #4CAF50;
+}
+
+li a:hover, .dropdown:hover .dropbtn{
+    background-color: #111;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.active {
+    background-color: #4CAF50;
+}
+
+
+*/
+
+
+
+
+
+/* MAIN CONTENT */
+#main {
+	position: relative;
+	left: 10px;
+	width:97%;
+    padding: 5px;
+    padding-left:  15px;
+    padding-right: 15px;
+    background-color: #ffffff;
+    border-radius: 0 0 5px 5px;
+}
+
+h1 {
+    font-family: Georgia, serif;
+    border-bottom: 3px solid #cc9900;
+    color: #996600;
+    font-size: 30px;
+}
+
+h2 {
+    font-family: Georgia, serif;
+   padding-top: 0px;
+    color: #996600;
+    font-size: 20px;
+}
+
+ul#menu {
+	background-color: #ffffff;
+    opacity: .;
+	position: relative;
+	width:100%;
+	left: 10px;
+    padding: 0;
+	margin-top:11px;
+    margin-bottom: 11px;
+}
+
+ul#menu li {
+    display: inline;
+    margin-right: 3px;
+	border-right: 1px solid #bbb;
+}
+
+ul#menu li a {
+    background-color: #ffffff;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #696969;
+    border-radius: 4px 4px 0 0;
+}
+
+ul#menu li a:hover {
+    color: white;
+    background-color: black;
+}
+
+ul#menu li a.active {
+    background-color: #4CAF50;
+    color: blue;
+}
+*/
+
+
+
+
+
+
+	th {
+		background-color: #4CAF50;
+		color: white;
+	}
+	tr:nth-child(even){background-color: #f2f2f2}
+
+	body { font-family:Arial, Helvetica, Sans-Serif; font-size:0.8em;}
+	#tablestyle { border-collapse:collapse;}
+	#tablestyle h4 { margin:0px; padding:0px;}
+	#tablestyle img { float:right;}
+	#tablestyle ul { margin:10px 0 10px 40px; padding:0px;}
+	#tablestyle th {  url(header_bkg.png) repeat-x scroll center left; color:#fff; padding:7px 15px; text-align:center;}
+	#tablestyle tr.expand td { background:#C7DDEE none repeat-x scroll center left; color:#000; padding:7px 15px; }
+	#tablestyle tr.parent td {  url(row_bkg.png) repeat-x scroll center left; cursor:pointer; }
+	#tablestyle div.arrow { background:transparent url(arrows.png) no-repeat scroll 0px -16px; width:16px; height:16px; display:block;}
+	#tablestyle div.up { background-position:0px 0px;}
+	<link href="stylesheet.css" rel="stylesheet">
+
+
+div.panel-heading{
+	 color: white; 
+	 width: 50%;
+}

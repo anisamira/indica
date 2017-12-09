@@ -1,6 +1,8 @@
 <?php
 	include('style_dc.php');
 	include('sidebar.php');
+	
+
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	
@@ -58,12 +60,14 @@
 						
 						$_SESSION['module_name'] = $row['module_name'];
 						}?>
+						
 <script src="https://code.highcharts.com/modules/drilldown.js"></script>
 <script type="text/javascript" src="graph.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>					
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
 <!--<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 <div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>-->
 
@@ -169,7 +173,7 @@
 						<thead>
 							<tr>
 								<th>KPI</th>
-								<th>Achievement</th>
+								<th>Indicator</th>
 							</tr>
 						</thead>
 						<tbody><?php
@@ -180,8 +184,9 @@
 								$ach_id		=$row3['ach_id'];?>
 								<tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<td><?php echo $ach_result;?></td>
-								</tr><?php
+									<td class="cellcolor1">
+					                <?php echo $ach_result;?></td>
+								<?php
 							}?>
 						</tbody>
 					</table>
@@ -257,7 +262,7 @@
 						<thead>
 							<tr>
 								<th>KPI</th>
-								<th>Achievement</th>
+								<th>Indicator</th>
 							</tr>
 						</thead>
 						<tbody><?php
@@ -268,8 +273,9 @@
 								$ach_id		=$row5['ach_id'];?>
 								 <tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<td><?php echo $ach_result;?></td>
-								</tr><?php
+									<td class="cellcolor1">
+					                <?php  echo $ach_result;?></td>
+	</tr><?php
 							}?>
 						</tbody>
 					</table>
@@ -285,6 +291,8 @@
 			}
 		}?>
 </div>
+
+
 
 <script>
 $(function () {
@@ -319,7 +327,7 @@ Highcharts.chart('container2', {
         table: 'datatable2'
     },
     chart: {
-        type: 'pie'
+        type: 'column'
     },
     title: {
         text: '<?php echo $_SESSION['module_name'] . " ". $year;?>'
@@ -335,9 +343,56 @@ Highcharts.chart('container2', {
             return '<b>' + this.series.name + '</b><br/>' +
                 this.point.y + ' ' + this.point.name.toLowerCase();
         }
-    }
-});
-});
-</script>
+	}
+						
+		});
+	});
+	</script>
+	
+	 <link href="/assets/stylesheet.css" rel="stylesheet">
+	<script type="text/javascript" src="/assets/jquery.min.js"></script>
+    <script type="text/javascript" src="/assets/jquery.table2excel.min.js"></script>
+    <script type="text/javascript" src="/assets/cellcolor.js"></script>
+	
+	<script>
+	$(document).ready(function(){
+		$("datatable2 td.cellcolor").each( function() {
+			var thisCell = $(this);
+			var cellValue = parseInt(thisCell.text());
+		
+			if (!isNaN(cellValue) && (cellValue <=49)) {
+				thisCell.css("background-color","#FF0000");
+			}
+			else if (!isNaN(cellValue) && (cellValue <=80)) {
+				thisCell.css("background-color","#FFFF00");
+			}
+			else{
+				thisCell.css("background-color","#3CB371");
+			}
+		})
+	})
+	
+	
+	$(document).ready(function(){
+		
+		$("datatable2 tr#row").each( function() {
+			var thisCell = $(this).find("td.percentage");
+			var cellValue = parseInt(thisCell.text());
+		
+			if (!isNaN(cellValue) && (cellValue <=49)) {
+				$(this).find("td.cellcolor1").css("background-color","#FF0000");
+			}
+			else if (!isNaN(cellValue) && (cellValue <=80)) {
+				$(this).find("td.cellcolor1").css("background-color","#FFFF00");
+			}
+			else{
+				$(this).find("td.cellcolor1").css("background-color","#3CB371");
+			}
+		})
+	})
+	</script>
+
+	
+
 
 
