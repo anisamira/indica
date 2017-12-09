@@ -150,13 +150,7 @@ if (mysql_num_rows($result)>0){
 
 <div class="table-responsive">  
 								   <table class="table table-hover"> 
-										<tr>
-											<th></th>
-											<th colspan="5"> </br> </th>						
-											<th colspan="2">BASELINE</th>
-											<th colspan="5">TARGET</th>
-											<th colspan="4">REFERENCE</th>
-										</tr>
+										
 										<tr> 
 											<th>No.</th>  
 											<th>Goals</th>  
@@ -164,17 +158,10 @@ if (mysql_num_rows($result)>0){
 											<th>Action Plan</th>  
 											<th>KPI</th>
 											<th>Operation Definition</th>
-											<th>Achievement 2014</th>  
-											<th>Achievement 2015</th>
-											<th>Target <?=$year1?></th>  
-											<th>Target <?=$year2?></th>  
-											<th>Target <?=$year3?></th>  
-											<th>Target <?=$year4?></th>  
-											<th>Target <?=$year5?></th>
 											<th>Ownership</th> 
 											<th>Data Source</th> 
 											<th>Estimated Cost (RM)</th> 
-											<th>Expected Financial Returns</th> 											
+											<th>Expected Financial Returns(RM)</th> 											
 										</tr>
 
 
@@ -188,13 +175,6 @@ if (mysql_num_rows($result)>0){
 												$kpi_desc		=$row['kpi_desc'];
 												$kpi_id			=$row['kpi_id'];
 												$operation_def	=$row['operation_def'];
-												$baseline1		=$row['baseline1'];
-												$baseline2		=$row['baseline2'];
-												$target1		=$row['target1'];
-												$target2		=$row['target2'];
-												$target3		=$row['target3'];
-												$target4		=$row['target4'];
-												$target5		=$row['target5'];
 												$ownership		=$row['ownership'];
 												$data_source	=$row['data_source'];
 												$estimated_cost	=$row['estimated_cost'];
@@ -222,7 +202,7 @@ if (mysql_num_rows($result)>0){
 </table>										
 </div>
 	 
- <form class="pure-form pure-form-aligned" action="work_view.php" method="post" name="Export"   
+ <form class="pure-form pure-form-aligned" action="financial_generate.php" method="post" name="Export"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>

@@ -93,15 +93,12 @@ else
 		<div class="wrapper">		
 		<!-- !PAGE CONTENT! -->
 
-
-
 			<div id="content">	
-	<div style="padding-left:16px">
+
   <br>
   <br>
     &nbsp&nbspGenerate Yearly Report
   
-	</div>
 	</br>
 <?php
 
@@ -140,7 +137,7 @@ else
                          <form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                             <td style="width:50px;"><?php echo $year;?></td>
 							<input type="hidden" name="year" value="<?php echo $year;?>"/>
-							<td style="width:15px;"><button type="submit" name="submit" class="btn btn-primary">Go</button></td>
+							<td style="width:15px;"><button type="submit" name="submit" class="btn btn-primary">Generate</button></td>
 						 </form>
 
 </tr>								   

@@ -340,7 +340,8 @@ $sql			= "SELECT COUNT(achievement.ach_id) AS takcapai
       </div>
       <div class="card__expander">
         <i class="fa fa-close [ js-collapser ]"></i>
-         Total Expenditure: RM<?=$cost;?>
+         Total Expenditure: 
+		 <br>RM<?=$cost;?>
       </div>
     </div>
 
@@ -351,7 +352,8 @@ $sql			= "SELECT COUNT(achievement.ach_id) AS takcapai
       </div>
       <div class="card__expander">
         <i class="fa fa-close [ js-collapser ]"></i>
-        Return on Investment: RM<?=$income;?>
+        Return on Investment: 
+		<br>RM<?=$income;?>
       </div>
     </div>
 

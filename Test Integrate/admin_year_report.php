@@ -37,22 +37,13 @@ else
 // select all
 	
   $x=1;
-  $sql=("SELECT DISTINCT year.year_name
-					    FROM goal 
-						JOIN strategy ON strategy.goal_id=goal.goal_id 
-						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
-						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
-						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
-						JOIN target ON target.kpi_id=kpi.kpi_id 
-						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						JOIN form ON form.module_id=goal.module_id
-						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN year ON achievement.year_id=year.year_id
-						JOIN evidence ON evidence.ach_id=achievement.ach_id
-						JOIN session ON session.session_name=goal.session_name
-						WHERE form.form_status='approved'
-						AND year.year_name<='$curyear'
+   $sql=("SELECT DISTINCT year.year_name,goal.module_id, goal.session_name 
+   FROM goal 
+   JOIN module ON module.module_id=goal.module_id 
+   JOIN year ON year.session_name=goal.session_name 
+   AND year.year_name<='$curyear'
 								");
+  	
   	
 	$result = mysql_query($sql) or die(mysql_error());
 
@@ -67,6 +58,8 @@ else
 
 										<tr> 
 											<th>YEAR</th>
+											<th>Module</th>
+											<th>Sesi</th>
 											<th>Action</th> 											
 										</tr>
 	  
@@ -76,12 +69,17 @@ else
 		{
 			
 			$year=$row['year_name'];
-			
+			$moduleid=$row['module_id'];
+			$sesi=$row['session_name'];
 ?>	
 <tr>
                          <form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
                             <td style="width:30px;"><?php echo $year;?></td>
 							<input type="hidden" name="year" value="<?php echo $year;?>"/>
+							 <td style="width:30px;"><?php echo $moduleid;?></td>
+							<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+							 <td style="width:30px;"><?php echo $sesi;?></td>
+							<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 							<td style="width:5px;"><button type="submit" name="submit" class="btn btn-primary">Generate</button></td>
 						 </form>
 
@@ -121,7 +119,7 @@ if (isset($_POST['year']))
 	$year=$_POST['year'];
 
 										$x=1;
-										$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* , form.*,achievement.*,year.*
+									$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* , form.*,achievement.*,year.*
 											FROM goal 
 											JOIN strategy ON strategy.goal_id=goal.goal_id 
 											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -131,8 +129,10 @@ if (isset($_POST['year']))
 											JOIN reference ON reference.kpi_id=kpi.kpi_id
                                             JOIN form ON form.module_id=goal.module_id
 											JOIN achievement ON achievement.target_id=target.target_id
-											JOIN year ON achievement.year_id=year.year_id
-											WHERE form.form_status='approved' 
+											JOIN year ON achievement.year_id=year.year_id											
+											WHERE goal.module_id='$moduleid'
+											AND goal.session_name='$sesi'
+											AND form.form_status='approved' 
 											AND year.year_name='$year'";
 											$result = mysql_query($sql) or die(mysql_error());
 

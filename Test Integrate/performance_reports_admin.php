@@ -203,7 +203,7 @@ if (mysql_num_rows($result)>0){
 </table>										
 </div>
 	 
- <form class="pure-form pure-form-aligned" action="performance_generate.php" method="post" name="Export"   
+ <form class="pure-form pure-form-aligned" action="performance_generate_admin.php" method="post" name="Export"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>

@@ -135,7 +135,7 @@
 
 if (isset($_POST['submit']))
 {
-	$moduleid=$_POST['moduleid'];
+$moduleid=$_POST['moduleid'];
 $sesi=$_POST['sesi'];
 
 	
@@ -267,7 +267,7 @@ if (mysql_num_rows($result)>0){
 <input type="hidden" name="module_name" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" name="Export">Download Excel</button>
+								<button type="submit" class="btn btn-primary" name="Exadmin">Download Excel</button>
                             </div>
                    </div>                    
             </form>  
