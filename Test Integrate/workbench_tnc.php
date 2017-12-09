@@ -3,11 +3,22 @@
 <head>
 
 <?php
-	include('style_dc.php');
+	//include('style_dc.php');
 	include('sidebar.php');
 
-	$module_id		=$_SESSION['module_id'];
+$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
+	$username		=$_SESSION['username'];
+	
+if (!isset($_SESSION['username']))
+{
+	 die(header("location: index.php"));
+}
+else
+{	
+	
+	
+	
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -70,7 +81,7 @@
 // select all
 	
   $x=1;
-  $sql=("SELECT goal.*, module.* FROM goal JOIN module ON goal.module_id=module.module_id WHERE goal.module_id='$module_id' GROUP BY module.module_id");
+  $sql=("SELECT DISTINCT goal.module_id,goal.session_name,module.module_name FROM goal JOIN module ON goal.module_id=module.module_id WHERE goal.module_id='$module_id'");
   	
 	$result = mysql_query($sql) or die(mysql_error());
 
@@ -80,12 +91,13 @@
 	  ?>
 	  
 	  <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 
 										<tr> 
 											<th>CODE</th>  
 											<th>SESSION</th>  
 											<th>NAME</th>
+											<th></th>
 										</tr>
 	  
 	  
@@ -103,7 +115,7 @@
 			
 ?>	
 <tr>
-                         <form action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
+                         <form class="pure-form pure-form-aligned" action="work_view22.php?moduleid=$moduleid&sesi=$sesi" method="get">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>
@@ -207,6 +219,10 @@ $(document).ready(function() {
  
 
 </script>
+
+<?php
+}
+?>
 </html>
 
 

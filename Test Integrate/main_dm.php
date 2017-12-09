@@ -1,8 +1,7 @@
-<body>
+<html><body>
 <?php
 	include('sidebar.php');
 	include('style_dc.php');
-	include('script.php');
  $curyear=date ('Y');
  $date_now=date ("m/d/Y");
  $date_q= date ("06/30/Y");
@@ -14,6 +13,7 @@ else
     $quarter=2;	
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
+	$username		=$_SESSION['username'];
 	
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
@@ -36,11 +36,21 @@ else
 						echo "no data found";
 					}
 					
-	$sql			="SELECT form_id FROM form where session_name='$session_name' AND module_id='$module_id'";
-					
-					$result = mysql_query($sql) or die(mysql_error()); 
-					$form_id	=$_SESSION['form_id'];
-					
+				$sql="SELECT form_id FROM form where session_name='$session_name' AND module_id='$module_id'";
+				$result=mysql_query($sql);
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$_SESSION['form_id']		=$row['form_id'];
+						}					
+						$form_id		=$_SESSION['form_id'];
+					}
+					else
+					{
+						echo "no data found";
+					}
+
 					if(isset($_POST['submit_approval']))
 						{
 							for($y=1; $y<=50; $y++)
@@ -65,6 +75,7 @@ else
 								}
 							}
 							
+							$status="";
 							$form_id	=$_POST["form_id"];
 							$sql2		="SELECT * FROM master_status where form_id='$form_id' AND action_type='reject'";
 							$result		=mysql_query($sql2) or die (mysql_error());
@@ -72,13 +83,58 @@ else
 								{
 									$sql		="Update form SET form_status='rejected' WHERE form_id='$form_id'";
 									$result		=mysql_query($sql) or die (mysql_error());
+									$status		='rejected';
 								}
 							else
 									
 								{
 									$sql		="Update form SET form_status='approved' WHERE form_id='$form_id'";
-									$result		=mysql_query($sql) or die (mysql_error());	
+									$result		=mysql_query($sql) or die (mysql_error());
+									$status		='approved';
 								}
+								
+								
+								
+								// buat ayat notification
+							$form = $session_name." " .$module_id;
+							$action = $username." has ".$status ." " .$form;			
+							
+							// masukkan notification dalam table main notification
+							$sql_noti1= "UPDATE notif_main SET noti_action='$action' where form_id='$form_id'";
+							$ressqlnoti1= mysql_query($sql_noti1);
+
+							// tarik specific notification 
+							$sql_noti2   ="SELECT noti_id FROM notif_main WHERE form_id='$form_id'";
+							$ressqlnoti2=mysql_query($sql_noti2);
+							while($row=mysql_fetch_array($ressqlnoti2))
+							{
+								// masukkan data dalam notif_user so each user yang berkaitan dapat notification masing2
+								$noti_id    =$row['noti_id'];
+								// user_id = receiver notification
+								$sqly = "SELECT user_id FROM user WHERE role_id='R02' AND module_id='$module_id'";
+								$resulty    =mysql_query($sqly);
+
+								while($row2=mysql_fetch_array($resulty))
+								{
+									$user=$row2['user_id'];
+									$query		= "SELECT * FROM notif_user WHERE noti_id='$noti_id' AND user_id='$user_id'";
+									$result_q   =mysql_query($query);
+									if(mysql_num_rows($result_q)>0)
+									{
+										$sqlx   ="UPDATE  notif_user SET noti_status='u' WHERE noti_id='$noti_id' AND user_id='$user'";
+									}
+									else
+									{
+										$sqlx   ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user', 'u', '$username')";
+									}
+									
+									$resultx    =mysql_query($sqlx);
+
+								}
+								
+							}	
+							
+							
 						}
 						
 						if(isset($_POST['submit_achievement']))
@@ -110,9 +166,48 @@ else
 	
 ?>
 
-<body>
+
 	<div class="wrapper">
 		<div id="content">
+
+<!-- NOTIFICATION DISPLAY -->
+
+<?php 
+$get_noti_qwr = "select notif_user.*, notif_main.* from notif_user JOIN notif_main ON notif_main.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";
+$qry = mysql_query($get_noti_qwr, $conn);
+$count=mysql_num_rows($qry);
+
+?>
+
+<form action="" method="POST" >
+		<input style="<?php 
+
+			if($count > 0 ){
+				echo "color: white;border:none;background-color: red;";
+			}
+
+		 ?>" type="submit" name="submit" value="notification<?php echo '('.$count.')' ?>"/>
+	</form>
+	
+
+	<?php
+
+			if(isset($_POST['submit'])){
+				while ($r=mysql_fetch_array($qry))
+				{
+					$noti_action = $r['noti_action'];
+					echo $noti_action;
+				} 
+		
+				$update_query = "update notif_user SET noti_status='s' where user_id='$user_id';";
+				mysql_query($update_query,$conn);
+			}
+
+	?>
+
+<!-- END NOTIFICATION DISPLAY -->
+
+
 			<!--<form action="datamanager_review.php" method="post">-->
 				<table class="table table-bordered"> 
 					<tr style="font-size:13px">
@@ -268,13 +363,6 @@ else
 
 		</div>
 	</div>
-
-	
-<!--[if lt IE 9]>
-	<script src="assets/plugins/respond.js"></script>
-	<script src="assets/plugins/html5shiv.js"></script>
-	<script src="assets/plugins/placeholder-IE-fixes.js"></script>
-	<![endif]-->
 
 </body>
 </html>

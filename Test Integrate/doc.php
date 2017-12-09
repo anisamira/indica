@@ -3,7 +3,7 @@
 <head>
 
 <?php
-	include('style_dc.php');
+	//include('style_dc.php');
 	include('sidebar.php');
 	
 	
@@ -167,7 +167,7 @@ body {margin:0;}
  
 
  
-<button class="accordion">Evidence on <?=$year1?></button>
+<button class="accordion">Evidence on <?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -210,7 +210,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -282,7 +282,7 @@ $module_id=$_SESSION['module_id'];
 
 </table> 
 
-<form action="upload.php" method="post" name="addevidence">
+<form class="pure-form pure-form-aligned" action="upload.php" method="post" name="addevidence">
 <input type="hidden" name="year" value="<?php echo $year1;?>"/></td>
 					<input type="submit" name="Evidence" value="Add Evidence">
 					<input type="submit" name="editevidence" value="Edit Evidence">
@@ -292,7 +292,7 @@ $module_id=$_SESSION['module_id'];
 					
 
  
-<button class="accordion">Evidence on <?=$year2?></button>
+<button class="accordion">Evidence on <?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 
 <div class="panel">
  
@@ -336,7 +336,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -408,7 +408,7 @@ $module_id=$_SESSION['module_id'];
 
 </table> 
 
-<form action="upload.php" method="post" name="addevidence">
+<form class="pure-form pure-form-aligned" action="upload.php" method="post" name="addevidence">
 <input type="hidden" name="year" value="<?php echo $year2;?>"/></td>
 					<input type="submit" name="Evidence" value="Add Evidence">
 					<input type="submit" name="editevidence" value="Edit Evidence">
@@ -417,7 +417,7 @@ $module_id=$_SESSION['module_id'];
 </div>					
 
 
-<button class="accordion">Evidence on <?=$year3?></button>
+<button class="accordion">Evidence on <?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -460,7 +460,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -532,7 +532,7 @@ $module_id=$_SESSION['module_id'];
 
 </table> 
 
-<form action="upload.php" method="post" name="addevidence">
+<form class="pure-form pure-form-aligned" action="upload.php" method="post" name="addevidence">
 <input type="hidden" name="year" value="<?php echo $year1;?>"/></td>
 					<input type="submit" name="Evidence" value="Add Evidence">
 					<input type="submit" name="editevidence" value="Edit Evidence">
@@ -540,7 +540,7 @@ $module_id=$_SESSION['module_id'];
 
 </div>
 					
-<button class="accordion">Evidence on <?=$year4?></button>
+<button class="accordion">Evidence on <?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -583,7 +583,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -655,7 +655,7 @@ $module_id=$_SESSION['module_id'];
 
 </table> 
 
-<form action="upload.php" method="post" name="addevidence">
+<form class="pure-form pure-form-aligned" action="upload.php" method="post" name="addevidence">
 <input type="hidden" name="year" value="<?php echo $year1;?>"/></td>
 					<input type="submit" name="Evidence" value="Add Evidence">
 					<input type="submit" name="editevidence" value="Edit Evidence">
@@ -663,7 +663,7 @@ $module_id=$_SESSION['module_id'];
 
 </div>
 					
-<button class="accordion">Evidence on <?=$year5?></button>
+<button class="accordion">Evidence on <?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -706,7 +706,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -778,7 +778,7 @@ $module_id=$_SESSION['module_id'];
 
 </table> 
 
-<form action="upload.php" method="post" name="addevidence">
+<form class="pure-form pure-form-aligned" action="upload.php" method="post" name="addevidence">
 <input type="hidden" name="year" value="<?php echo $year1;?>"/></td>
 					<input type="submit" name="Evidence" value="Add Evidence">
 					<input type="submit" name="editevidence" value="Edit Evidence">

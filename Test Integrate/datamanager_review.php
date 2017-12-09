@@ -113,8 +113,8 @@
 							<td><?php echo $estimated_cost;?></td>
 							<td><?php echo $exp_fin_return;?></td>
 							<td><input type="hidden" name="kpi_id<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
-								<label class="radio-inline"><input type="radio" name="approval<?php echo $x;?>" value="approve" required> Approve</input></label>
-								<input type="radio" name="approval<?php echo $x;?>" value="reject"> Reject</input>
+								<label class="radio-inline" style="color:#000"><input type="radio" name="approval<?php echo $x;?>" value="approve" required> Approve</input>
+								<input type="radio" name="approval<?php echo $x;?>" value="reject"> Reject</input></label>
 							</td>
 							<td><textarea cols="20" name="action_comment<?php echo $x;?>"></textarea></td>
 						</tr>

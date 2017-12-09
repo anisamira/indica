@@ -105,7 +105,7 @@
 									if (mysql_num_rows($result3)>0)
 									{	?>
 					
-										<table class="table table-bordered"> 
+										<table class="table table-hover"> 
 											<tr style="font-size:14px">
 												<th>No.</th>
 												<th>Goals</th>  
@@ -183,7 +183,7 @@
 																					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																					<h4 class="modal-title" id="<?php echo $kpi_id;?>">Edit Target </h4>
 																				</div>
-																				<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post">
+																				<form action="<?php echo ($_SERVER['PHP_SELF']);?>" method="post" class="pure-form pure-form-aligned">
 																					<div class="modal-body">
 																						<div class="row" style="margin:10px;">
 																							<input type="hidden" name="goal_id" value="<?php echo $goal_id;?>"></input>

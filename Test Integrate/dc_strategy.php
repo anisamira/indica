@@ -8,7 +8,6 @@
 	
 		if(isset($_POST['submit_goal']))
 		{	
-			$active=1;
 			foreach ($_POST['goal'] as $key=>$value)
 			{
 				$sql	="INSERT INTO goal (module_id,session_name,goal_desc) VALUES ('$module_id','$session_name','$value')";
@@ -22,22 +21,32 @@
 								
 		if (isset($_POST['edit_strategy']))
 		{
-			$strategy_id	=$_POST["strategy_id"];
-			$strategy_desc 	=mysql_real_escape_string($_POST["strategy_desc"]); 
-			$sql			="UPDATE strategy
-							SET strategy_desc='$strategy_desc'
-							WHERE strategy_id='$strategy_id'";
-			$result			=mysql_query($sql) or die (mysql_error());
-			if (false===$result)
+			for($y=1; $y<=50; $y++)
 			{
-				echo mysql_error();
+				if (empty($_POST["strategyid".$y]))
+				{
+					$error = 1;
+				}
+				else
+				{													
+					$strategy_id	=$_POST["strategyid".$y];
+					$strategy_desc 	=mysql_real_escape_string($_POST["strategydesc".$y]); 
+					$sql			="UPDATE strategy
+									SET strategy_desc='$strategy_desc'
+									WHERE strategy_id='$strategy_id'";
+					$result			=mysql_query($sql) or die (mysql_error());
+					if (false===$result)
+					{
+						echo mysql_error();
+					}
+				}
 			}
 		}
 		
 		if (isset($_POST['add_strategy']))
 		{
-			$goal_id	=$_POST["goal_id"];
-			$strategy_desc 	=mysql_real_escape_string($_POST["strategy_desc"]); 
+			$goal_id		=$_POST["goalid"];
+			$strategy_desc 	=mysql_real_escape_string($_POST["strategydesc"]); 
 			$sql			="INSERT INTO strategy (strategy_desc, goal_id) VALUES ('$strategy_desc','$goal_id')";
 			$result			=mysql_query($sql) or die (mysql_error());
 			if (false===$result)
@@ -45,6 +54,8 @@
 				echo mysql_error();
 			}
 		}?>
+		
+		
 		
 		<div class="wrapper">
 			<div id="content">
@@ -72,8 +83,8 @@
 					$result = mysql_query($sql) or die(mysql_error());
 					if (mysql_num_rows($result)>0)
 					{ ?>
-						<form action="dc_actionplan.php" method="post">
-							<table class="table table-bordered">
+						<form action="dc_actionplan.php" method="post" class="pure-form pure-form-aligned">
+							<table class="table table-hover">
 								<col width="40%"/>
 								<col width="60%"/>
 								<tr style="font-size:14px">
@@ -90,50 +101,29 @@
 										</td>
 										<td><?php 
 											$y=1;
-											$sql2	="SELECT * FROM strategy WHERE goal_id='$goal_id'";
+											$sql2	="SELECT * FROM strategy WHERE goal_id='$goal_id' ORDER BY strategy_id ASC";
 											$result2=mysql_query($sql2) or die (mysql_error());
 											if (mysql_num_rows($result2)>0)
 											{?>
-												<table class="table">
+												<table class="table table-hover">
 													<col width="80%"/>
 													<col width="10%"/>
 													<col width="10%"/><?php
-													while($row=mysql_fetch_array($result2))
+													while($row2=mysql_fetch_array($result2))
 													{									
-														$strategy_id	=$row['strategy_id'];
-														$strategy_desc	=$row['strategy_desc'];?>
+														$strategy_id	=$row2['strategy_id'];
+														$strategy_desc	=$row2['strategy_desc'];?>
 														<tr style="font-size:13px">
 															<td><?php echo $y.") ".$strategy_desc;?></td>
 															<td><button class="btn-u btn-u-red" type="button" onclick="window.location.href='javascript:deletestrategy(<?php echo  $strategy_id; ?>)'" style="float:right"><i class="fa fa-trash-o"/></button></td>
-															<td><button data-toggle="modal" data-target="#<?php echo $strategy_id;?>" class="btn-u btn-u-red" type="button"><i class="fa fa-pencil"/></button></td>
-															<div class="modal fade" id="<?php echo $strategy_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-																<div class="modal-dialog">
-																	<div class="modal-content">
-																		<div class="modal-header">
-																			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-																			<h4 class="modal-title" id="<?php echo $strategy_id;?>">Edit Strategy</h4>
-																		</div>
-																		<form action="" method="post">
-																			<div class="modal-body">
-																				<div class="row" style="margin:10px;">
-																					<input type="hidden" name="strategy_id" value="<?php echo $strategy_id;?>"></input>
-																					<textarea class="form-control" name="strategy_desc" required><?php echo $strategy_desc;?></textarea>
-																				</div>
-																			</div>
-																			<div class="modal-footer">
-																				<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																				<input type="submit" class="btn-u btn-u-primary" name="edit_strategy" value="Submit"></input>
-																			</div>
-																		</form>
-																	</div>
-																</div>
-															</div>
+															<td></td>
 														</tr><?php
 														$y++;
 													}?>
 													<tr style="font-size:13px">
-														<td colspan="3">
+														<td>
 															<button data-toggle="modal" data-target="#goal<?php echo $goal_id;?>"  type="button">Add Strategy</button>
+															<button data-toggle="modal" data-target="#editstrategy<?php echo $goal_id;?>"  type="button">Edit Strategy</button>
 															<div class="modal fade" id="goal<?php echo $goal_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 																<div class="modal-dialog">
 																	<div class="modal-content">
@@ -141,11 +131,12 @@
 																			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																			<h4 class="modal-title" id="goal<?php echo $goal_id;?>">Add Strategy</h4>
 																		</div>
-																		<form action="" method="post">
+																		<form></form>
+																		<form action="" method="post" class="pure-form pure-form-aligned">
 																			<div class="modal-body">
 																				<div class="row" style="margin:10px;">
-																					<input type="hidden" name="goal_id" value="<?php echo $goal_id;?>"></input>
-																					<textarea class="form-control" name="strategy_desc" required></textarea>
+																					<input type="hidden" name="goalid" value="<?php echo $goal_id;?>"></input>
+																					<textarea class="form-control" name="strategydesc" required></textarea>
 																				</div>
 																			</div>
 																			<div class="modal-footer">
@@ -153,6 +144,42 @@
 																				<input type="submit" class="btn-u btn-u-primary" name="add_strategy" value="Submit"></input>
 																			</div>
 																		</form>
+																	</div>
+																</div>
+															</div>
+														</td>
+														<td colspan="2">
+															<div class="modal fade" id="editstrategy<?php echo $goal_id;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+																<div class="modal-dialog">
+																	<div class="modal-content">
+																		<div class="modal-header">
+																			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+																			<h4 class="modal-title" id="editstrategy<?php echo $goal_id;?>">Edit Strategy</h4>
+																		</div><?php
+																		$sql3	="SELECT * FROM strategy WHERE goal_id='$goal_id' ORDER BY strategy_id ASC";
+																		$result3=mysql_query($sql3) or die (mysql_error());
+																		if (mysql_num_rows($result3)>0)
+																		{?>
+																			<form action="" method="post" class="pure-form pure-form-aligned">
+																				<div class="modal-body">
+																					<div class="row" style="margin:10px;"><?php
+																						$no=1;
+																						while($row3=mysql_fetch_array($result3))
+																						{									
+																							$strategyid	=$row3['strategy_id'];
+																							$strategydesc	=$row3['strategy_desc'];?>
+																							<input type="hidden" name="strategyid<?php echo $no;?>" value="<?php echo $strategyid;?>"></input>
+																							<textarea class="form-control" name="strategydesc<?php echo $no;?>" required><?php echo $strategydesc;?></textarea><br></br><?php
+																							$no++;
+																						}?>
+																					</div>
+																				</div>
+																				<div class="modal-footer">
+																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
+																					<input type="submit" class="btn-u btn-u-primary" name="edit_strategy" value="Submit"></input>
+																				</div>
+																			</form><?php
+																		}?>
 																	</div>
 																</div>
 															</div>

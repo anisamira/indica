@@ -3,7 +3,6 @@
 <head>
 
 <?php
-	include('style_dc.php');
 	include('sidebar.php');
 	
 	$curyear=date ('Y');
@@ -156,7 +155,10 @@ $module_id=$_SESSION['module_id'];
 											WHERE goal.module_id='$module_id'
 											AND goal.session_name='$session_name'
 											";
-											$result = mysql_query($sql) or die(mysql_error()); 
+											$result = mysql_query($sql) or die(mysql_error());
+
+if (mysql_num_rows($result)>0)
+					{										
 											while($row=mysql_fetch_array($result))
 											{
 											
@@ -188,7 +190,12 @@ $module_id=$_SESSION['module_id'];
 											}
 						
 
-						
+					}
+
+else
+{
+				echo "No financial is recorded";
+}	
 ?>
 </body>
 

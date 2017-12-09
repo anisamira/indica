@@ -1,5 +1,4 @@
 <?php
-	include('style_dc.php');
 	include('sidebar.php');
 	
 	$curyear=date ('Y');
@@ -17,7 +16,7 @@ else
     $quater=2;	
 	
 	
-	$sql			="SELECT * FROM session where session_status='1'";
+	$sql			="SELECT * FROM session";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
@@ -98,7 +97,6 @@ else
 	
 			<div id="content">	
 	<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
   <br>
     &nbsp&nbspGenerate ICU Report
   <br>
@@ -121,7 +119,7 @@ else
 	  
 	  <div class="table-responsive" style="width:50%">  
 		
-								   <table class="table table-bordered" style="outline:0;"> 
+								   <table class="table table-hover" style="outline:0;"> 
 
 										<tr> 
 											<th>YEAR</th>
@@ -160,7 +158,7 @@ else
 	
 			?>
 							<div class="alert alert-warning alert-dismissable fade in">
-								<meta http-equiv="refresh" content="1;url=report_tnc.php" />
+								<meta http-equiv="refresh" content="1;url=report_admin.php" />
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 								<strong>No project found</strong> Redirecting in 1 seconds...
 							</div>
@@ -199,7 +197,7 @@ $sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, refer
 						$x=1;
 						
 ?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -245,7 +243,7 @@ $sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, refer
 						?>
 						</table>
 						
-						<form class="form-horizontal" action="icu_generate.php" method="post" name="upload_excel"   
+						<form class="pure-form pure-form-aligned" action="icu_generate.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="year" value="<?php echo $icu_year;?>"/>
                   <div class="form-group">

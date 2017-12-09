@@ -95,8 +95,8 @@
 							$result = mysql_query($sql) or die(mysql_error());
 							if (mysql_num_rows($result)>0)
 							{?>
-								<form action="dc_target.php" method="post">
-									<table class="table table-bordered">
+								<form action="dc_target.php" method="post" class="pure-form pure-form-aligned">
+									<table class="table table-hover">
 									<col width="10%">
 									<col width="30%">
 									<col width="25%">
@@ -156,7 +156,8 @@
 																					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 																					<h4 class="modal-title" id="<?php echo $base_id;?>">Edit Baseline & Operation Definition</h4>
 																				</div>
-																				<form action="" method="post">
+																				<form></form>
+																				<form action="" method="post" class="pure-form pure-form-aligned">
 																					<div class="modal-body">
 																						<div class="row" style="margin:10px;">
 																								<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>

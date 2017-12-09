@@ -3,7 +3,6 @@
 <head>
 
 <?php
-	include('style_dc.php');
 	include('sidebar.php');
 						
 	
@@ -29,7 +28,7 @@ else{
 else
     $quater=2;	
 	
-	$sql			="SELECT * FROM session where session_status='1'";
+	$sql			="SELECT * FROM session where session_name='$sesi'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
@@ -197,7 +196,7 @@ if (mysql_num_rows($result)>0){
 
 
 <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 										<tr>
 											<th></th>
 											<th colspan="5"> </br> </th>						
@@ -277,7 +276,7 @@ if (mysql_num_rows($result)>0){
 </table>										
 </div>
 	 
- <form class="form-horizontal" action="work_view.php" method="post" name="Export"   
+ <form class="pure-form pure-form-aligned" action="work_view.php" method="post" name="Export"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -304,7 +303,7 @@ else
 
 <div id="Achievement" class="tabcontent">
 
-<button class="accordion"><?=$year1?></button>
+<button class="accordion"><?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
  <?php
@@ -339,7 +338,7 @@ else
 						$x=1;
 						
 						?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -419,7 +418,7 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
-						<form class="form-horizontal" action="achieve_view2.php" method="post" name="upload_excel"   
+						<form class="pure-form pure-form-aligned" action="achieve_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -451,7 +450,7 @@ elseif 	($year==$year5)
 
  
 
-<button class="accordion"><?=$year2?></button>
+<button class="accordion"><?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -486,7 +485,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -566,7 +565,7 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
-					<form class="form-horizontal" action="achieve_view2.php" method="post" name="upload_excel"   
+					<form class="pure-form pure-form-aligned" action="achieve_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -598,7 +597,7 @@ elseif 	($year==$year5)
 						</div> 
 
 						
-<button class="accordion"><?=$year3?></button>
+<button class="accordion"><?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
  <?php
@@ -633,7 +632,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -713,7 +712,7 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
-					<form class="form-horizontal" action="achieve_view2.php" method="post" name="upload_excel"   
+					<form class="pure-form pure-form-aligned" action="achieve_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -744,7 +743,7 @@ elseif 	($year==$year5)
 </div>
 
 
-<button class="accordion"><?=$year4?></button>
+<button class="accordion"><?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
  <?php
@@ -779,7 +778,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -860,7 +859,7 @@ elseif 	($year==$year5)
 						?>
 						</table>
 						
-						<form class="form-horizontal" action="achieve_view2.php" method="post" name="upload_excel"   
+						<form class="pure-form pure-form-aligned" action="achieve_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -892,7 +891,7 @@ elseif 	($year==$year5)
 </div>
 
 
-<button class="accordion"><?=$year5?></button>
+<button class="accordion"><?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
  <?php
@@ -927,7 +926,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
-						<table class="table table-bordered">
+						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
 									<col width="20%">
@@ -1008,7 +1007,7 @@ elseif 	($year==$year5)
 						?>
 						</table>
 						
-<form class="form-horizontal" action="achieve_view2.php" method="post" name="upload_excel"   
+<form class="pure-form pure-form-aligned" action="achieve_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -1040,7 +1039,7 @@ elseif 	($year==$year5)
 </div>
 
 						
-						<form class="form-horizontal" action="achieve_view2.php" method="post" name="upload_excel"   
+						<form class="pure-form pure-form-aligned" action="achieve_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -1058,7 +1057,7 @@ elseif 	($year==$year5)
 <div id="Deliverables" class="tabcontent">
 
  
-<button class="accordion">Evidence on <?=$year1?></button>
+<button class="accordion">Evidence on <?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -1096,7 +1095,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -1171,7 +1170,7 @@ $module_id=$_SESSION['module_id'];
 					
 
  
-<button class="accordion">Evidence on <?=$year2?></button>
+<button class="accordion">Evidence on <?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 
 <div class="panel">
  
@@ -1210,7 +1209,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -1284,7 +1283,7 @@ $module_id=$_SESSION['module_id'];
 </div>					
 
 
-<button class="accordion">Evidence on <?=$year3?></button>
+<button class="accordion">Evidence on <?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -1322,7 +1321,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -1395,7 +1394,7 @@ $module_id=$_SESSION['module_id'];
 
 </div>
 					
-<button class="accordion">Evidence on <?=$year4?></button>
+<button class="accordion">Evidence on <?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -1433,7 +1432,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -1506,7 +1505,7 @@ $module_id=$_SESSION['module_id'];
 
 </div>
 					
-<button class="accordion">Evidence on <?=$year5?></button>
+<button class="accordion">Evidence on <?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
  
 
@@ -1544,7 +1543,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
-						  <table class="table table-bordered">
+						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
 									<col width="10%">
@@ -1625,7 +1624,7 @@ $module_id=$_SESSION['module_id'];
 
 <div id="Issue" class="tabcontent">
   
-<button class="accordion">ISSUE on <?=$year1?></button>
+<button class="accordion">ISSUE on <?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -1659,7 +1658,7 @@ $module_id=$_SESSION['module_id'];
 					{
 					?>
 <div style="width:100%; overflow:scroll; position:relative;"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -1743,7 +1742,7 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
-<form class="form-horizontal" action="issue_view2.php" method="post" name="upload_excel"   
+<form class="pure-form pure-form-aligned" action="issue_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -1776,7 +1775,7 @@ elseif 	($curyear==$year&&$year==$year5)
 </div>
 					
 
-<button class="accordion">ISSUE on <?=$year2?></button>
+<button class="accordion">ISSUE on <?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -1810,7 +1809,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -1894,7 +1893,7 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
-<form class="form-horizontal" action="issue_view2.php" method="post" name="upload_excel"   
+<form class="pure-form pure-form-aligned" action="issue_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -1927,7 +1926,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 </div>
 					
-<button class="accordion">ISSUE on <?=$year3?></button>
+<button class="accordion">ISSUE on <?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -1961,7 +1960,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -2045,7 +2044,7 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
-<form class="form-horizontal" action="issue_view2.php" method="post" name="upload_excel"   
+<form class="pure-form pure-form-aligned" action="issue_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -2078,7 +2077,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 </div>
 					
-<button class="accordion">ISSUE on <?=$year4?></button>
+<button class="accordion">ISSUE on <?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -2112,7 +2111,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -2196,7 +2195,7 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
-<form class="form-horizontal" action="issue_view2.php" method="post" name="upload_excel"   
+<form class="pure-form pure-form-aligned" action="issue_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -2229,7 +2228,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 </div>
 					
-<button class="accordion">ISSUE on <?=$year5?></button>
+<button class="accordion">ISSUE on <?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
 <div class="panel">
 
 <?php
@@ -2263,7 +2262,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					?>
 <div class="table-responsive"> 					
-						<table class="table table-bordered">
+						<table class="table table-hover">
 									
 									
 									<tr>
@@ -2347,7 +2346,7 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
-<form class="form-horizontal" action="issue_view2.php" method="post" name="upload_excel"   
+<form class="pure-form pure-form-aligned" action="issue_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
@@ -2381,7 +2380,7 @@ elseif 	($curyear==$year&&$year==$year5)
 
 </div>
          
-<form class="form-horizontal" action="issue_view2.php" method="post" name="upload_excel"   
+<form class="pure-form pure-form-aligned" action="issue_view2.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>

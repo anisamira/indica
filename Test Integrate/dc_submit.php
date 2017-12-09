@@ -1,9 +1,9 @@
 
-<body>
+<body style="width:100%; overflow:scroll; position:relative;">
 <?php
 	//include('style_dc.php');
 	include('sidebar.php');
-	include('script.php');
+	//include('script.php');
 	$module_id=$_SESSION['module_id'];
 	$session_name=$_SESSION['session_name'];
 	
@@ -53,7 +53,7 @@
 						
 						<!-- SUBMIT RECORDS-->
 						<br></br>
-							  <div  style="width:100%; overflow:scroll; position:relative;">
+							  <div>
 								<?php
 									$x=1;
 									$que="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
@@ -75,8 +75,8 @@
 											ORDER BY goal_id ASC";
 										$result = mysql_query($sql) or die(mysql_error());?>
 
-											<form action="main_dc.php" method="post">
-												 <table class="table table-bordered">
+											<form action="main_dc.php" method="post" class="pure-form pure-form-aligned">
+												 <table class="table table-hover">
 													<tr style="font-size:14px">
 														<th rowspan="2"></br>Goals</th>  
 														<th rowspan="2"></br>Strategies</th>

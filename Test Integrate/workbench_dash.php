@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" type="text/css" href="pure-min.css" />
 <head>
 
 <?php
-	include('style_dc.php');
+	// include('style_dc.php');
 	include('sidebar.php');
 	
 	
@@ -18,7 +19,7 @@
 
 
 <html>
-<form name="find" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
+<form name="find" class="pure-form pure-form-aligned" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" >
 
 Module Code: <input type="text" name="code"> 
 
@@ -47,12 +48,13 @@ if(isset($_POST["search"])){
 	  ?>
 	  
 	  <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 
 										<tr> 
 											<th>CODE</th>  
 											<th>SESSION</th>  
 											<th>NAME</th>
+											<th> </th>
 										</tr>
 	  
 	  
@@ -118,12 +120,13 @@ if(isset($_POST["select"])){
 	  ?>
 	  
 	  <div class="table-responsive">  
-								   <table class="table table-bordered"> 
+								   <table class="table table-hover"> 
 
 										<tr> 
 											<th>CODE</th>  
 											<th>SESSION</th>  
 											<th>NAME</th>
+											<th> </th>
 										</tr>
 	  
 	  
@@ -141,7 +144,7 @@ if(isset($_POST["select"])){
 			
 ?>	
 <tr>
-                         <form action="dash_view.php" method="post">
+                         <form action="dash_view.php" method="post" class="pure-form pure-form-aligned">
                             <td><?php echo $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
 							<td><?php echo $sesi;?></td>

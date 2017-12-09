@@ -4,68 +4,10 @@
 
 <?php
 	include('sidebar.php');
-	
-	$curyear=date ('Y');
-    $date_now=date ("m/d/Y");
- $date_q= date ("06/30/Y");
- if ($date_now<=$date_q)
-{
-	$quater=1;
-}
-else
-    $quater=2;	
-	
+
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
-	$sql			="SELECT * FROM session where session_status='1'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['session_name']	=$row['session_name'];
-						}
-						$session_name	=$_SESSION['session_name'];
-					}
-					else
-					{
-						echo "no data found";
-					}
-	
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
-						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
-					}
-					else
-					{
-						echo "no data found";
-					}
-		
-  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$year= $row['year_name'];
-							$year_id=$row['year_id'];
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}			
-	
+
 	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -82,32 +24,111 @@ else
 						echo "no data found";
 					}	
 	
+	
 	?>
 
 <div class="wrapper">
 
 
-		<!-- !PAGE CONTENT! -->
 			<div id="content">	
 
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
-  <br>
+
+<?php
+
+// select all
+	
+  $x=1;
+  $sql=("SELECT DISTINCT goal.module_id,goal.session_name,module.module_name FROM goal JOIN module ON goal.module_id=module.module_id WHERE goal.module_id='$module_id'");
+  	
+	$result = mysql_query($sql) or die(mysql_error());
+
+
+ if(mysql_num_rows($result)>0){
+  
+	  ?>
+	  
+	  <div class="table-responsive">  
+								   <table class="table table-hover"> 
+
+										<tr> 
+											<th>CODE</th>  
+											<th>SESSION</th>  
+											<th>NAME</th>
+										<th></th>
+										</tr>
+	  
+	  
+<?php		
+		while($row=mysql_fetch_array($result))
+		{
+			$name=$row['module_name'];
+			$moduleid=$row['module_id'];
+			$sesi=$row['session_name'];
+			
+			
+			
+			
+?>	
+<tr>
+                         <form class="pure-form pure-form-aligned" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+                            <td><?php echo $moduleid;?></td>
+								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
+							<td><?php echo $sesi;?></td>
+								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+							<td><?php echo $name;?></td>
+							<td style="width:10%;"><button type="submit" name="submit" class="btn btn-primary">Generate</button></td>
+							</form>
+
+</tr>								   
+												<?php
+											}
+	$x++;											
+
+											?>
+									</table>								
+
 </div>
 
-<br>
-<div class="topnav">
-  <a class="active" href="work.php">Information</a>
-  <a href="achieve.php">Achievement</a>
-  <a href="doc.php">Deliverables</a>
-  <a href="issue.php">Issue</a>
-  <a href="financial.php">Financial</a>
+<?php		
+ }	 
+  else{
+ 	{
+		//print error message
+		echo 'No project found';
+	}
+	// once processing is complete
+	// free result set
+	
+}
 
-</div>
 
+if (isset($_POST['submit']))
+{  
 
-										<?php
-										$x=1;
+$moduleid=$_POST['moduleid'];
+$sesi=$_POST['sesi'];
+
+	
+		$sql		="SELECT * FROM session where session_name='$sesi'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$year1=$row['year1'];
+							$year2=$row['year2'];
+							$year3=$row['year3'];
+							$year4=$row['year4'];
+							$year5=$row['year5'];
+						}
+					}
+					else
+					{
+						echo "no data found";
+					}
+	
+
+	$x=1;
 										$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* , form.*
 											FROM goal 
 											JOIN strategy ON strategy.goal_id=goal.goal_id 
@@ -117,8 +138,8 @@ else
 											JOIN target ON target.kpi_id=kpi.kpi_id 
 											JOIN reference ON reference.kpi_id=kpi.kpi_id
                                             JOIN form ON form.module_id=goal.module_id											
-											WHERE goal.module_id='$module_id'
-											AND goal.session_name='$session_name'
+											WHERE goal.module_id='$moduleid'
+											AND goal.session_name='$sesi'
 											AND form.form_status='approved' ";
 											$result = mysql_query($sql) or die(mysql_error());
 
@@ -127,7 +148,7 @@ if (mysql_num_rows($result)>0){
 ?>
 
 
-<div style="width:100%; overflow:scroll; position:relative;">  
+<div class="table-responsive">  
 								   <table class="table table-hover"> 
 										<tr>
 											<th></th>
@@ -145,11 +166,11 @@ if (mysql_num_rows($result)>0){
 											<th>Operation Definition</th>
 											<th>Achievement 2014</th>  
 											<th>Achievement 2015</th>
-											<th>Target 2016</th>  
-											<th>Target 2017</th>  
-											<th>Target 2018</th>  
-											<th>Target 2019</th>  
-											<th>Target 2020</th>
+											<th>Target <?=$year1?></th>  
+											<th>Target <?=$year2?></th>  
+											<th>Target <?=$year3?></th>  
+											<th>Target <?=$year4?></th>  
+											<th>Target <?=$year5?></th>
 											<th>Ownership</th> 
 											<th>Data Source</th> 
 											<th>Estimated Cost (RM)</th> 
@@ -188,39 +209,49 @@ if (mysql_num_rows($result)>0){
 														<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
 													</td>
 													<td><?php echo $operation_def;?></td>
-													<td><?php echo $baseline1;?></td>
-													<td><?php echo $baseline2;?></td>
-													<td><?php echo $target1;?></td>
-													<td><?php echo $target2;?></td>
-													<td><?php echo $target3;?></td>
-													<td><?php echo $target4;?></td>
-													<td><?php echo $target5;?></td>
 													<td><?php echo $ownership;?></td>
 													<td><?php echo $data_source;?></td>
 													<td><?php echo $estimated_cost;?></td>
 													<td><?php echo $exp_fin_return;?></td>
+													
 												</tr>
 												<?php $x++;
-											} 
-}
+											}
 
+?>
+</table>										
+</div>
+	 
+ <form class="pure-form pure-form-aligned" action="work_view.php" method="post" name="Export"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year" value="<?php echo $year;?>"/>
+<input type="hidden" name="module_name" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export">Download Excel</button>
+                            </div>
+                   </div>                    
+            </form>  
+<?php
+}
 else
 {
-
-?>	
-	<div class="alert alert-info fade in" link rel="stylesheet" type="text/css" href="alert.css" />
-		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-		<strong>Information</strong> 
-		<ul>
-			<li style="color:#000">No approved of the data yet. Please contact your Data Manager to approve the data.</li>
-		</ul>
-	</div>
-<?php	
+	echo "No result";
 }
-											?>
-									</table>								
 
-</div>
+											?>
+
+<?php											
+}
+
+
+
+?>		
+
+			</div>
+    </div>
   
 <script>
 var acc = document.getElementsByClassName("accordion");
@@ -241,7 +272,7 @@ for (i = 0; i < acc.length; i++) {
  
 </div>
 
-
+</div>
     </div>
 
 

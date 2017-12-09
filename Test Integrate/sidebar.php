@@ -44,17 +44,20 @@ include_once ('connection.php');
 
                 <!-- Menu for ADMIN R01 -->
                 <?php if (($_SESSION['role_id']) == 'R01') {?>
+					<li><a href="main_admin.php">Home</a></li>                
                 <li>
+                
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Manage Users</a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
-                        <li><a href="admin_manageuser_create_new_user.php">Create new user</a></li>
-                        <li><a href="admin_manageuser_viewuser.php">View all user</a></li>
-                        <li><a href="admin_manageuser_edituser.php">Edit users</a></li></ul>
+                        <li><a href="admin_manageuser_create_new_user.php">Create New User</a></li>
+                        <li><a href="admin_manageuser_viewuser.php">View All Users</a></li>
+                        <li><a href="admin_manageuser_edituser.php">Edit User</a></li></ul>
                 </li>
-                <li><a href="admin_create_session.php">Create sessions</a></li>
+                <li><a href="admin_create_session.php">Create Sessions</a></li>
                 <li><a href="logtrails.php">Log Trails</a></li>
                 <li><a href="workbench_dash.php">Dashboard</a></li>
 				<li><a href="workbench_view.php">Module Workbench</a></li>
+				<li><a href="report_admin.php">Reporting</a></li>
 				<li><a href="calculation1.php">Calculation</a></li>                
 				
                 <?php }

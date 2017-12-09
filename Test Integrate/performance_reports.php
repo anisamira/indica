@@ -129,18 +129,22 @@ $sesi=$_POST['sesi'];
 	
 
 	$x=1;
-										$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* , form.*
-											FROM goal 
-											JOIN strategy ON strategy.goal_id=goal.goal_id 
-											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
-											JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
-											JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
-											JOIN target ON target.kpi_id=kpi.kpi_id 
-											JOIN reference ON reference.kpi_id=kpi.kpi_id
-                                            JOIN form ON form.module_id=goal.module_id											
-											WHERE goal.module_id='$moduleid'
-											AND goal.session_name='$sesi'
-											AND form.form_status='approved' ";
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
+						FROM goal 
+						JOIN strategy ON strategy.goal_id=goal.goal_id 
+						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
+						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
+						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
+						JOIN target ON target.kpi_id=kpi.kpi_id 
+						JOIN reference ON reference.kpi_id=kpi.kpi_id 
+						JOIN form ON form.module_id=goal.module_id
+						JOIN achievement ON achievement.target_id=target.target_id
+						JOIN year ON achievement.year_id=year.year_id
+                        WHERE goal.module_id='$moduleid'
+						AND goal.session_name='$sesi'
+						AND form.form_status='approved'
+						AND achievement.ach_status='approve'
+						 ";
 											$result = mysql_query($sql) or die(mysql_error());
 
 if (mysql_num_rows($result)>0){				
@@ -150,13 +154,7 @@ if (mysql_num_rows($result)>0){
 
 <div class="table-responsive">  
 								   <table class="table table-hover"> 
-										<tr>
-											<th></th>
-											<th colspan="5"> </br> </th>						
-											<th colspan="2">BASELINE</th>
-											<th colspan="5">TARGET</th>
-											<th colspan="4">REFERENCE</th>
-										</tr>
+										
 										<tr> 
 											<th>No.</th>  
 											<th>Goals</th>  
@@ -164,17 +162,9 @@ if (mysql_num_rows($result)>0){
 											<th>Action Plan</th>  
 											<th>KPI</th>
 											<th>Operation Definition</th>
-											<th>Achievement 2014</th>  
-											<th>Achievement 2015</th>
-											<th>Target <?=$year1?></th>  
-											<th>Target <?=$year2?></th>  
-											<th>Target <?=$year3?></th>  
-											<th>Target <?=$year4?></th>  
-											<th>Target <?=$year5?></th>
-											<th>Ownership</th> 
-											<th>Data Source</th> 
-											<th>Estimated Cost (RM)</th> 
-											<th>Expected Financial Returns</th> 											
+											<th>Target</th>  
+											<th>Achievement</th> 
+											<th>Achievement Result</th> 
 										</tr>
 
 
@@ -188,17 +178,9 @@ if (mysql_num_rows($result)>0){
 												$kpi_desc		=$row['kpi_desc'];
 												$kpi_id			=$row['kpi_id'];
 												$operation_def	=$row['operation_def'];
-												$baseline1		=$row['baseline1'];
-												$baseline2		=$row['baseline2'];
-												$target1		=$row['target1'];
-												$target2		=$row['target2'];
-												$target3		=$row['target3'];
-												$target4		=$row['target4'];
-												$target5		=$row['target5'];
-												$ownership		=$row['ownership'];
-												$data_source	=$row['data_source'];
-												$estimated_cost	=$row['estimated_cost'];
-												$exp_fin_return	=$row['exp_fin_return'];								
+												$target		=$row['target'];
+												$ach_result	=$row['ach_result'];
+												$ach_desc	=$row['ach_desc'];												
 												?>									
 												<tr>  
 													<td><?php echo $x;?></td>
@@ -209,17 +191,9 @@ if (mysql_num_rows($result)>0){
 														<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
 													</td>
 													<td><?php echo $operation_def;?></td>
-													<td><?php echo $baseline1;?></td>
-													<td><?php echo $baseline2;?></td>
-													<td><?php echo $target1;?></td>
-													<td><?php echo $target2;?></td>
-													<td><?php echo $target3;?></td>
-													<td><?php echo $target4;?></td>
-													<td><?php echo $target5;?></td>
-													<td><?php echo $ownership;?></td>
-													<td><?php echo $data_source;?></td>
-													<td><?php echo $estimated_cost;?></td>
-													<td><?php echo $exp_fin_return;?></td>
+													<td><?php echo $target;?></td>
+													<td><?php echo $ach_desc;?></td>
+													<td><?php echo $ach_result;?></td>
 													
 												</tr>
 												<?php $x++;
@@ -229,7 +203,7 @@ if (mysql_num_rows($result)>0){
 </table>										
 </div>
 	 
- <form class="pure-form pure-form-aligned" action="work_view.php" method="post" name="Export"   
+ <form class="pure-form pure-form-aligned" action="performance_generate.php" method="post" name="Export"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>

@@ -8,7 +8,7 @@
  
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
- 
+    $username		=$_SESSION['username'];
  if ($date_now<=$date_q)
 {
 	$quater=1;
@@ -16,7 +16,13 @@
 else
     $quater=2;	
 	
-	
+
+if (!isset($_SESSION['username']))
+{
+	 die(header("location: index.php"));
+}
+else
+{	
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -121,7 +127,7 @@ $sql			= "SELECT SUM(reference.estimated_cost) AS cost, SUM(reference.exp_fin_re
 					{
 						echo "no data found";
 					}
-$sql = "SELECT COUNT(goal.goal_id) AS gol, COUNT(kpi.kpi_id) AS kpi
+$sql = "SELECT COUNT(distinct goal.goal_id) AS gol, COUNT(kpi.kpi_id) AS kpi
 										    FROM goal
 											JOIN strategy ON strategy.goal_id=goal.goal_id 
 											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -379,5 +385,6 @@ $sql			= "SELECT COUNT(achievement.ach_id) AS takcapai
 		
   </div>
   
-
-
+<?php
+}
+?>
