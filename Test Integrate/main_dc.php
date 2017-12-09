@@ -15,28 +15,30 @@
 							$_SESSION['session_name']	=$row['session_name'];
 						}
 						$session_name	=$_SESSION['session_name'];
+						
+						$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
+						$result = mysql_query($sql) or die(mysql_error()); 
+						if(mysql_num_rows($result)>0)
+						{
+							while($row=mysql_fetch_array($result))
+							{
+								$_SESSION['form_status']	=$row['form_status'];
+								$_SESSION['form_id']		=$row['form_id'];
+							}
+							$form_status	=$_SESSION['form_status'];
+							$form_id		=$_SESSION['form_id'];
+						}
+						else
+						{
+							echo "no data found";
+						}
 					}
 					else
 					{
 						echo "no data found";
 					}
 	
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
-						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
-					}
-					else
-					{
-						echo "no data found";
-					}
+	
 	
 	
 	if(isset($_POST['submit_master']))		
@@ -221,79 +223,91 @@ $count=mysql_num_rows($qry);
 							WHERE user.module_id='$module_id' 
 							AND user.user_id='$user_id'
 							AND form.session_name='$session_name'";
-					$result2 = mysql_query($sql2) or die(mysql_error());  
-					  while($row=mysql_fetch_array($result2))
+					$result2 = mysql_query($sql2) or die(mysql_error()); 
+					if(mysql_num_rows($result2)>0)		
 					{
+						while($row=mysql_fetch_array($result2))
+						{
+							
+							$_SESSION['module_name'] = $row['module_name'];
+							$_SESSION['form_status'] = $row['form_status'];
+						}?>
 						
-						$_SESSION['module_name'] = $row['module_name'];
-						$_SESSION['form_status'] = $row['form_status'];
-					}?>
-			
-		<div class="row" style="margin-bottom:20px">
+						<div class="row" style="margin-bottom:20px">
 		
-		<span style="float: left;"><?php echo $session_name;?></span> 
-      <span style="float: right;"><?php echo $_SESSION['module_name'];?></span>
-	 
-		</div>
-		
-		
-		<div class="row" style="margin:0 auto;">
-		<?php	
-			$status=$_SESSION['form_status'];
-			if($status!='new' )
-				{ ?>
-					<!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
-						<button class="col-md-4 content-boxes-v6">
-							<i class="rounded-x  icon-notebook"></i>
-							<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
-						 </button>
-					</a><?php
-				 }
-			else
-				{?>
-					<a href="dc_goal.php" style="text-decoration:none;">
-						<button class="col-md-4 content-boxes-v6">
-							<i class="rounded-x  icon-notebook"></i>
-							<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
-						</button>
-					</a><?php 
-				} ?>
+						<span style="float: left;"><?php echo $session_name;?></span> 
+					  <span style="float: right;"><?php echo $_SESSION['module_name'];?></span>
+					 
+						</div>
+						
+						
+						<div class="row" style="margin:0 auto;">
+						<?php	
+							$status=$_SESSION['form_status'];
+							if($status!='new' )
+								{ ?>
+									<!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
+										<button class="col-md-4 content-boxes-v6">
+											<i class="rounded-x  icon-notebook"></i>
+											<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
+										 </button>
+									</a><?php
+								 }
+							else
+								{?>
+									<a href="dc_goal.php" style="text-decoration:none;">
+										<button class="col-md-4 content-boxes-v6">
+											<i class="rounded-x  icon-notebook"></i>
+											<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
+										</button>
+									</a><?php 
+								} ?>
 
+									
+						
+						
+						<a href="datacontroller_updaterecord.php" style="text-decoration:none;">
+							<button class="col-md-4 content-boxes-v6">		
+								<i class="rounded-x icon-docs"></i>
+								<h3 class="title-v3-md text-uppercase margin-bottom-10">Update Records</h3>
+								<p></p>
+							</button>
+						</a> 
+						
+						<a href="datacontroller_viewupdated.php" style="text-decoration:none;">
+							<button class="col-md-4 content-boxes-v6">
+								<i class="rounded-x icon-docs"></i>
+								<h3 class="title-v3-md text-uppercase margin-bottom-10">View Status</h3>
+								<p></p>
+							</button>
+						</a>
+					</div>
+					<hr class="margin-bottom-30">
+					<div class="alert alert-info fade in">
+						<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+						<strong>Information</strong> 
+						<ul>
+						<?php if ($status=='new')
+									echo"<li style='color:#000;'>You need to <b>add new records</b> for ". $session_name ."</li>";
+							 elseif ($status=='pending')
+									echo "<li style='color:#000;'>Your records are <b>pending</b> for approval from Data Manager</li>";
+							elseif ($status=='approved')
+									echo "<li style='color:#000;'>Your main records for ".$session_name ." has been <b>approved</b></li>";
+							else
+								echo "<li style='color:#000;'>Your records are <b>rejected</b>. You need to update the records.</li>";?>
+							<li style='color:#000;'>Check Module Workbench to update achievement.</li>
+						</ul>
+					</div><?php
+						
+			
+					}
 					
+					else
+						{
+							echo "no data found";
+						}?>
+					  
 		
-		
-		<a href="datacontroller_updaterecord.php" style="text-decoration:none;">
-			<button class="col-md-4 content-boxes-v6">		
-				<i class="rounded-x icon-docs"></i>
-				<h3 class="title-v3-md text-uppercase margin-bottom-10">Update Records</h3>
-				<p></p>
-			</button>
-		</a> 
-		
-		<a href="datacontroller_viewupdated.php" style="text-decoration:none;">
-			<button class="col-md-4 content-boxes-v6">
-				<i class="rounded-x icon-docs"></i>
-				<h3 class="title-v3-md text-uppercase margin-bottom-10">View Status</h3>
-				<p></p>
-			</button>
-		</a>
-	</div>
-	<hr class="margin-bottom-30">
-	<div class="alert alert-info fade in">
-		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-		<strong>Information</strong> 
-		<ul>
-		<?php if ($status=='new')
-					echo"<li style='color:#000;'>You need to <b>add new records</b> for ". $session_name ."</li>";
-			 elseif ($status=='pending')
-					echo "<li style='color:#000;'>Your records are <b>pending</b> for approval from Data Manager</li>";
-			elseif ($status=='approved')
-					echo "<li style='color:#000;'>Your main records for ".$session_name ." has been <b>approved</b></li>";
-			else
-				echo "<li style='color:#000;'>Your records are <b>rejected</b>. You need to update the records.</li>";?>
-			<li style='color:#000;'>Check Module Workbench to update achievement.</li>
-		</ul>
-	</div>
 
 <!--=== End Service Block ===-->
 
