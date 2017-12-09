@@ -177,6 +177,7 @@ else
 			{?>
 				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 				<div class="control-group">
+				
 					<table class="table table-bordered" id="datatable2">
 						<thead>
 							<tr>
@@ -192,12 +193,12 @@ else
 								$ach_id		=$row3['ach_id'];?>
 								<tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<td class="cellcolor1">
-					                <?php echo $ach_result;?></td>
+									<td><?php echo $ach_result;?></td>
 								<?php
 							}?>
 						</tbody>
 					</table>
+					</body>
 				</div><?php
 			}
 			else
@@ -266,6 +267,7 @@ else
 			{?>
 				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
 				<div class="control-group">
+			
 					<table class="table table-bordered" id="datatable2">
 						<thead>
 							<tr>
@@ -281,12 +283,21 @@ else
 								$ach_id		=$row5['ach_id'];?>
 								 <tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<td>
-					                <?php  echo $ach_result;?></td>
+									<?php if ($ach_result>=0)
+									{
+										echo "<td bgcolor='green'> $ach_result </td>";
+									
+									}
+									else
+									{
+										echo "<td bgcolor='red'> $ach_result </td>";
+									}?>
+									
 	</tr><?php
 							}?>
 						</tbody>
 					</table>
+					</body>
 				</div><?php
 			}
 			else
@@ -357,47 +368,23 @@ Highcharts.chart('container2', {
 	});
 	</script>
 	
-	 <link href="/assets/stylesheet.css" rel="stylesheet">
-	<script type="text/javascript" src="/assets/jquery.min.js"></script>
-    <script type="text/javascript" src="/assets/jquery.table2excel.min.js"></script>
-    <script type="text/javascript" src="/assets/cellcolor.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="js/script.js"></script>
 	
 	<script>
-	$(document).ready(function(){
-		$("datatable2 td.cellcolor").each( function() {
-			var thisCell = $(this);
-			var cellValue = parseInt(thisCell.text());
-		
-			if (!isNaN(cellValue) && (cellValue <0)) {
-				thisCell.css("background-color","#FF0000");
-			}
-			else if (!isNaN(cellValue) && (cellValue ==0) ) {
-				thisCell.css("background-color","#FFFF00");
-			}
-			else{
-				thisCell.css("background-color","#3CB371");
-			}
-		})
-	})
 	
-	
-	$(document).ready(function(){
-		
-		$("datatable2 tr#row").each( function() {
-			var thisCell = $(this).find("td.percentage");
-			var cellValue = parseInt(thisCell.text());
-		
-			if (!isNaN(cellValue) && (cellValue <=49)) {
-				$(this).find("td.cellcolor1").css("background-color","#FF0000");
-			}
-			else if (!isNaN(cellValue) && (cellValue <=80)) {
-				$(this).find("td.cellcolor1").css("background-color","#FFFF00");
-			}
-			else{
-				$(this).find("td.cellcolor1").css("background-color","#3CB371");
-			}
-		})
-	})
+	var cells = document.getElementById("datatable2").getElementsByTagName("td");
+
+cell.each(function() {
+	var table=document.getElementById("datatable2");
+    var cell_value = $(this).html();
+    if (cell_value <= 0) {
+        $(this).css({'background' : '#FF0000'});   
+    } else  {
+        $(this).css({'background' : '#0066CC'});
+    } 
+});
+				
 	</script>
 
 	
