@@ -44,6 +44,7 @@ $result4=mysql_query($query) or die (mysql_error());
 						<th><center>KPI</th>
 						<th><center>Target</th>
 						<th><center>Achievement</th> 
+						<!--<th><center>Indicator</th>-->
 						<!--<th><center>Action</th>-->
 					</tr>
 				</thead>
