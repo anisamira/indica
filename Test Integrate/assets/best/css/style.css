@@ -25,7 +25,7 @@
   }
 }
 .card:hover .card__inner {
-  background-color: #949fb0;
+  background-color: #1abc9c;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
@@ -35,7 +35,7 @@
   position: relative;
   cursor: pointer;
   background-color: #949fb0;
-  color: #999966;
+  color: #eceef1;
   font-size: 1.5em;
   text-transform: uppercase;
   text-align: center;
@@ -53,7 +53,7 @@
 .card__expander {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-  background-color: #d6d6c2;
+  background-color: #333a45;
   width: 100%;
   position: relative;
   display: -webkit-box;

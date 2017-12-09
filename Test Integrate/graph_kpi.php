@@ -351,7 +351,6 @@ Highcharts.chart('container2', {
             return '<b>' + this.series.name + '</b><br/>' +
                 this.point.y + ' ' + this.point.name.toLowerCase();
         }
-<<<<<<< HEAD
 	}
 						
 		});
@@ -412,5 +411,5 @@ Highcharts.chart('container2', {
 <?php
 }
 ?>
->>>>>>> cb379b14846331cb61b61986579b7dbfa26bbfc8
+
 
