@@ -176,7 +176,7 @@
 																				</div>
 																				<div class="modal-footer">
 																					<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																					<input type="submit" class="btn-u btn-u-primary" name="edit_strategy" value="Submit"></input>
+																					<input type="submit" class="btn-u btn-u-primary" name="edit_strategy" value="Save"></input>
 																				</div>
 																			</form><?php
 																		}?>
@@ -189,7 +189,7 @@
 											}
 											else
 											{?>
-												<input class="form-control" type="text" name="strategy<?php echo $x;?>[]" required></input><br></br>
+												<input class="form-control" type="text" name="strategy<?php echo $x;?>[]" required></input><br></br></br>
 												<div class="wrapstrategy<?php echo $x;?>"></div>
 												<button class="btn add_strategy<?php echo $x;?>" style="float: right;"><span class="icon-plus"/></button><?php
 											}?>
