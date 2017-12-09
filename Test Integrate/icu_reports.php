@@ -101,13 +101,39 @@ else
     &nbsp&nbspGenerate ICU Report
   <br>
 	</div>
+<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+				<table class="table" width="20%">
+					<tr>
+						<td>
+							<select class="form-control" name="yearly">
+							<?php
+								$sql=mysql_query("Select year_name from year");
+								$row=mysql_num_rows($sql);
+								while($row = mysql_fetch_array($sql))
+								{
+									$yearly=$row['year_name'];
+
+									?>
+									
+									<option value="<?php  echo $yearly;?>"><?php  echo $yearly;?></option>
+							      <?php
+								}?>	
+							</select> 
+						</td>
+						<div class="form-actions">
+							<td><button type="submit" class ="btn btn-sucess" name="send" value="">Go</button></td>
+						</div>
+					</tr>
+				</table>
+				</form>
 	
 <?php
 
 // select all
-	
+if (isset($_POST['send'])){
+$yearly=$_POST['yearly'];	
   $x=1;
-  $sql= "SELECT * FROM year WHERE year_name<='$curyear'";
+  $sql= "SELECT * FROM year WHERE year_name='$yearly'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 
 	$result = mysql_query($sql) or die(mysql_error());
@@ -168,6 +194,8 @@ else
 	
 }
 
+}
+
 if (isset($_POST['year']))
 {
 	$icu_year=$_POST['year'];
@@ -226,6 +254,7 @@ $sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, refer
 							$quarterq       =$row['quarter'];
 							$yearid         =$row['year_id'];
 							$target			=$row['target'];
+							$resultkpi			=$row['ach_result'];
 
 ?>
 
@@ -235,7 +264,7 @@ $sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, refer
 								<td><?php echo $kpi_desc;?></td>
 								<td><?php echo $target;?></td>
 								<td><?php echo $achievement;?></td>
-								<td><?php echo $target;?></td>
+								<td><?php echo $resultkpi;?></td>
 							</tr>
 							<?php
 						$x++;

@@ -59,16 +59,16 @@
 							</tr>
 							<?php
 							$x=1;
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
+						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*
 							FROM goal 
 							JOIN strategy ON strategy.goal_id=goal.goal_id 
 							JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
 							JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
 							JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 							JOIN target ON target.kpi_id=kpi.kpi_id 
-							JOIN reference ON reference.kpi_id=kpi.kpi_id 
-							WHERE module_id='$module_id'
-							AND goal.session_name='$session_name'";
+							JOIN reference ON reference.kpi_id=kpi.kpi_id
+							JOIN form ON form.session_name=goal.session_name
+							WHERE module_id='$module_id' AND session_name='$session_name'";
 							$result = mysql_query($sql) or die(mysql_error()); 
 							while($row=mysql_fetch_array($result))
 							{

@@ -218,7 +218,7 @@
 																						</div>
 																						<div class="modal-footer">
 																							<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																							<input type="submit" class="btn-u btn-u-primary" name="edit_actionplan" value="Submit"></input>
+																							<input type="submit" class="btn-u btn-u-primary" name="edit_actionplan" value="Save"></input>
 																						</div>
 																					</form><?php
 																				}?>
@@ -231,7 +231,7 @@
 													}
 													else
 													{?>
-														<input class="form-control" type="text"  name="action<?php echo $x;?>[]" required></input></br>
+														<input class="form-control" type="text"  name="action<?php echo $x;?>[]" required></input></br></br>
 														<div class="wrapaction<?php echo $x;?>"></div>
 														<button class="btn add_action<?php echo $x;?>" style="float: right;"><span class="icon-plus"/></button><?php
 													}?>

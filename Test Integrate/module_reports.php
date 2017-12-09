@@ -31,14 +31,40 @@
 
 
 			<div id="content">	
+	<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+				<table class="table" width="20%">
+					<tr>
+						<td>
+							<select class="form-control" name="sesi"><?php
+								$sql=mysql_query("Select session_name from session");
+								$row=mysql_num_rows($sql);
+								while($row = mysql_fetch_array($sql))
+								{
+									$sesi=$row['session_name'];
 
-
+									?>
+									
+									<option value="<?php  echo $sesi;?>"><?php  echo $sesi;?></option>
+							      <?php
+								}?>	
+							</select> 
+						</td>
+						<div class="form-actions">
+							<td><button type="submit" class ="btn btn-sucess" name="send" value="">Go</button></td>
+						</div>
+					</tr>
+				</table>
+				</form>
+	
+	
 <?php
-
-// select all
+if (isset($_POST['send']))
+{
+   $sesi=$_POST['sesi'];
 	
   $x=1;
-  $sql=("SELECT DISTINCT goal.module_id,goal.session_name,module.module_name FROM goal JOIN module ON goal.module_id=module.module_id WHERE goal.module_id='$module_id'");
+  $sql=("SELECT DISTINCT goal.module_id,goal.session_name,module.module_name FROM goal JOIN module ON goal.module_id=module.module_id WHERE goal.module_id='$module_id' 
+  AND goal.session_name='$sesi'");
   	
 	$result = mysql_query($sql) or die(mysql_error());
 
@@ -100,7 +126,7 @@
 	// free result set
 	
 }
-
+}
 
 if (isset($_POST['submit']))
 {  

@@ -12,8 +12,6 @@
 	}
 else
 			$quater=2;	
-	
-  
 $sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -141,9 +139,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 			
 			?>
 			
-			
-			<form method="post" action="calculation1.php"><input type="Submit" name="Back"></form>
-			
+			<form method="post" action="calculation1.php"><input type="Submit" value="Back" name="Back"></form>
 
 
 
