@@ -1,7 +1,7 @@
 
 <body>
 <?php
-	//include('style_dc.php');
+	include('style_dc.php');
 	include('sidebar.php');
 	//include('script.php');
 	$module_id=$_SESSION['module_id'];
