@@ -193,7 +193,20 @@ else
 								$ach_id		=$row3['ach_id'];?>
 								<tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<td><?php echo $ach_result;?></td>
+									<?php if ($ach_result <=49)
+									{
+										echo "<td bgcolor='#FF0000'> $ach_result </td>";
+									
+									}
+									elseif ($ach_result <=80) 
+									{
+										echo "<td bgcolor='#FFFF00'> $ach_result </td>";
+									}
+									else
+									{
+										echo "<td bgcolor='#3CB371'> $ach_result </td>";
+									}
+										?>
 								<?php
 							}?>
 						</tbody>
@@ -283,15 +296,20 @@ else
 								$ach_id		=$row5['ach_id'];?>
 								 <tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<?php if ($ach_result>=0)
+									<?php if ($ach_result <=49)
 									{
-										echo "<td bgcolor='green'> $ach_result </td>";
+										echo "<td bgcolor='#FF0000'> $ach_result </td>";
 									
+									}
+									elseif ($ach_result <=80) 
+									{
+										echo "<td bgcolor='#FFFF00'> $ach_result </td>";
 									}
 									else
 									{
-										echo "<td bgcolor='red'> $ach_result </td>";
-									}?>
+										echo "<td bgcolor='#3CB371'> $ach_result </td>";
+									}
+										?>
 									
 	</tr><?php
 							}?>
@@ -363,6 +381,8 @@ Highcharts.chart('container2', {
                 this.point.y + ' ' + this.point.name.toLowerCase();
         }
 	}
+
+
 						
 		});
 	});
