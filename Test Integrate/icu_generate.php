@@ -12,7 +12,7 @@ if(isset($_POST["Export"]))
       header('Content-Disposition: attachment; filename=ICU Reports_'.$icu_year.'.csv');  
       $output = fopen("php://output", "w"); 
       fputcsv($output, array('Tahun','KPI','Sasaran', 'Pencapaian','KPI %'));
-      $sql = "SELECT year.year_name,kpi.kpi_desc, achievement.ach_desc,achievement.target,achievement.quarter
+      $sql = "SELECT year.year_name,kpi.kpi_desc, achievement.ach_desc,achievement.target,achievement.ach_result
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 

@@ -100,13 +100,43 @@ else
     &nbsp&nbspGenerate Yearly Report
   
 	</br>
+	
+	<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+				<table class="table" width="20%">
+					<tr>
+						<td>
+							<select class="form-control" name="yearly">
+							<?php
+								$sql=mysql_query("Select year_name from year");
+								$row=mysql_num_rows($sql);
+								while($row = mysql_fetch_array($sql))
+								{
+									$yearly=$row['year_name'];
+
+									?>
+									
+									<option value="<?php  echo $yearly;?>"><?php  echo $yearly;?></option>
+							      <?php
+								}?>	
+							</select> 
+						</td>
+						<div class="form-actions">
+							<td><button type="submit" class ="btn btn-sucess" name="send" value="">Go</button></td>
+						</div>
+					</tr>
+				</table>
+				</form>
+	
 <?php
 
 // select all
+if (isset($_POST['send'])){
+$yearly=$_POST['yearly'];	
+
 	
   $x=1;
   $sql=("SELECT DISTINCT year.year_name,goal.module_id, goal.session_name FROM goal JOIN module on module.module_id=goal.module_id JOIN year ON year.session_name=goal.session_name 
-  WHERE goal.module_id='$module_id' AND goal.session_name='$session_name' AND year.year_name<='$curyear'
+  WHERE goal.module_id='$module_id' AND goal.session_name='$session_name' AND year.year_name='$yearly'
 								");
   	
 	$result = mysql_query($sql) or die(mysql_error());
@@ -169,6 +199,7 @@ else
 	// once processing is complete
 	// free result set
 	
+}
 }
 
 if (isset($_POST['year']))
