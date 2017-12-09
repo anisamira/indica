@@ -149,19 +149,14 @@
 			while($row2=mysql_fetch_array($resulty))
 			{
 				$user		=$row2['user_id'];
-				$query		= "SELECT * FROM notif_user WHERE noti_id='$noti_id' AND user_id='$user_id'";
-				$result_q   =mysql_query($query);
-				if(mysql_num_rows($result_q)>0)
-				{
+				
 					$sqlx   ="UPDATE  notif_user SET noti_status='u' WHERE noti_id='$noti_id' AND user_id='$user'";
-				}
-				else
-				{
+				
 					$sqlx   ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user', 'u', '$username')";
-				}
+				
 				
 				$resultx    =mysql_query($sqlx);
-
+				
 			}
 			
 		}

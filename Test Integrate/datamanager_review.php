@@ -68,7 +68,7 @@
 							JOIN target ON target.kpi_id=kpi.kpi_id 
 							JOIN reference ON reference.kpi_id=kpi.kpi_id
 							JOIN form ON form.session_name=goal.session_name
-							WHERE module_id='$module_id' AND session_name='$session_name'";
+							WHERE form.module_id='$module_id' AND form.session_name='$session_name'";
 							$result = mysql_query($sql) or die(mysql_error()); 
 							while($row=mysql_fetch_array($result))
 							{
