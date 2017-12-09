@@ -224,7 +224,8 @@ $count=mysql_num_rows($qry);
 							ON module.module_id=user.module_id
 							JOIN form on form.module_id=module.module_id
 							WHERE user.module_id='$module_id' 
-							AND user.user_id='$user_id'";
+							AND user.user_id='$user_id'
+							AND form.session_name='$session_name'";
 					$result2 = mysql_query($sql2) or die(mysql_error());  
 					  while($row=mysql_fetch_array($result2))
 					{
