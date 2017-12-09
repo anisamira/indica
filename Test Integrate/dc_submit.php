@@ -1,5 +1,5 @@
 
-<body style="width:100%; overflow:scroll; position:relative;">
+<body>
 <?php
 	//include('style_dc.php');
 	include('sidebar.php');
@@ -53,7 +53,7 @@
 						
 						<!-- SUBMIT RECORDS-->
 						<br></br>
-							  <div>
+							  <div class="table-responsive">
 								<?php
 									$x=1;
 									$que="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
