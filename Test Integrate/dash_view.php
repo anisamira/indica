@@ -167,7 +167,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 						WHERE achievement.form_id='$form_id' 
 						AND kpi.session_name='$session_name'
 						AND achievement.quarter='2'
-						AND year.year_name='$year'";
+						AND year.year_name='$curyear'";
 			$result4=mysql_query($sql4) or die (mysql_error());
 			if (mysql_num_rows($result4)>0)
 			{?>
@@ -177,7 +177,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 						<thead>
 							<tr>
 								<th>KPI</th>
-								<th>Achievement</th>
+								<th>Indicator</th>
 							</tr>
 						</thead>
 						<tbody><?php
@@ -199,9 +199,9 @@ $sql			="SELECT * FROM session where session_status='1'";
 			{
 				?>
 							<div class="alert alert-warning alert-dismissable fade in">
-							<meta http-equiv="refresh" content="1;url=workbench_dash.php" /> 
+							<!--<meta http-equiv="refresh" content="1;url=workbench_dash.php" /> -->
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-								<strong>There is no records</strong> Redirecting in 1 seconds...
+								<strong>There is no records</strong> 
 							</div><?php	
 			}
 			
@@ -269,7 +269,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 						<thead>
 							<tr>
 								<th>KPI</th>
-								<th>Achievement</th>
+								<th>Indicator</th>
 							</tr>
 						</thead>
 						<tbody><?php
@@ -291,9 +291,9 @@ $sql			="SELECT * FROM session where session_status='1'";
 			{
 				?>
 							<div class="alert alert-warning alert-dismissable fade in">
-							<meta http-equiv="refresh" content="1;url=workbench_dash.php" />
+							<!--<meta http-equiv="refresh" content="1;url=workbench_dash.php" />-->
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-								<strong>There is no records</strong> Redirecting in 1 seconds...
+								<strong>There is no records</strong> 
 							</div><?php	
 			}
 			

@@ -17,13 +17,6 @@ else
     $quater=2;	
 	
 
-
-if (!isset($_SESSION['username']))
-{
-	 die(header("location: index.php"));
-}
-else
-{	
 	
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
@@ -96,6 +89,8 @@ else
 						echo "no data found";
 					}
 
+
+
 									
 ?>
 
@@ -106,7 +101,19 @@ else
 <link href="assets/hover/css/animate.min.css" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-		<div class="wrapper">		
+	
+<?php
+
+if (!isset($_SESSION['username']))
+{
+	 die(header("location: index.php"));
+	
+}
+else
+{	
+?>	
+
+	<div class="wrapper">		
 		<!-- !PAGE CONTENT! -->
 
 
