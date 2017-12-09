@@ -26,22 +26,66 @@ else
 
 
 			<div id="content">	
-	<div style="padding-left:16px">
+	
   <br>
     &nbsp&nbspGenerate Yearly Report
-  
-	</div>
 	</br>
-<?php
+			<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
+				<table class="table" width="20%">
+					<tr>
+						<td>
+							<select class="form-control" name="module_id">
+							<?php
+								$sql=mysql_query("Select module_id from module");
+								$row=mysql_num_rows($sql);
+								while($row = mysql_fetch_array($sql))
+								{
+									$module_id=$row['module_id'];
 
-// select all
+									?>
+									
+									<option value="<?php  echo $module_id;?>"><?php  echo $module_id;?></option>
+							      <?php
+								}?>	
+							</select> 
+						</td>
+						<td>
+							<select class="form-control" name="year">
+							<?php
+								$sql=mysql_query("Select year_name from year");
+								$row=mysql_num_rows($sql);
+								while($row = mysql_fetch_array($sql))
+								{
+									$year=$row['year_name'];
+
+									?>
+									
+									<option value="<?php  echo $year;?>"><?php  echo $year;?></option>
+							      <?php
+								}?>	
+							</select> 
+						</td>
+						<div class="form-actions">
+							<td><button type="submit" class ="btn btn-sucess" name="send" value="">Go</button></td>
+						</div>
+					</tr>
+				</table>
+				</form>
+	
+	
+<?php
+if (isset($_POST['send']))
+{
+   $module_id=$_POST['module_id'];
+   $year=$_POST['year'];
 	
   $x=1;
    $sql=("SELECT DISTINCT year.year_name,goal.module_id, goal.session_name 
    FROM goal 
    JOIN module ON module.module_id=goal.module_id 
    JOIN year ON year.session_name=goal.session_name 
-   AND year.year_name<='$curyear'
+   WHERE goal.module_id='$module_id'  
+   AND year.year_name='$year'
 								");
   	
   	
@@ -102,7 +146,7 @@ else
 		
 		?>
 							<div class="alert alert-warning alert-dismissable fade in">
-								<meta http-equiv="refresh" content="1;url=report_admin.php" />
+								<meta http-equiv="refresh" content="1;url=admin_year_report.php" />
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 								<strong>No Yearly Report</strong> Redirecting in 1 seconds...
 							</div>
@@ -113,10 +157,12 @@ else
 	// free result set
 	
 }
-
-if (isset($_POST['year']))
+}
+if (isset($_POST['submit']))
 {
 	$year=$_POST['year'];
+	$moduleid=$_POST['moduleid'];
+	$sesi=$_POST['sesi'];
 
 										$x=1;
 									$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* , form.*,achievement.*,year.*
@@ -203,13 +249,13 @@ if (mysql_num_rows($result)>0){
 	 
  <form class="pure-form pure-form-aligned" action="year_report_generate.php" method="post" name="Export"   
                       enctype="multipart/form-data">
-<input type="hidden" name="moduleid" value="<?php echo $module_id;?>"/>
-<input type="hidden" name="sesi" value="<?php echo $session_name;?>"/>
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 <input type="hidden" name="year" value="<?php echo $year;?>"/>
 <input type="hidden" name="module_name" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" name="Export">Download Excel</button>
+								<button type="submit" class="btn btn-primary" name="Exadmin">Download Excel</button>
                             </div>
                    </div>                    
             </form>  
