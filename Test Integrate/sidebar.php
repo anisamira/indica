@@ -1,7 +1,6 @@
 <?php
 include_once ('connection.php');
-include ('navigation.php');
-
+include ('nav-noti.php');
 ?>
 
 <!DOCTYPE html>
