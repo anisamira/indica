@@ -58,7 +58,7 @@
 							{
 								$actionplan_id	=$_POST["actionplan_id"];
 								$kpi_desc 		= mysql_real_escape_string($_POST["kpi_desc"]); 
-								$sql			="INSERT INTO kpi (actionplan_id, kpi_desc) VALUES ('$actionplan_id','$kpi_desc')";
+								$sql			="INSERT INTO kpi (actionplan_id, kpi_desc,session_name) VALUES ('$actionplan_id','$kpi_desc','$session_name')";
 								$result			=mysql_query($sql) or die (mysql_error());
 								if (false===$result)
 									{

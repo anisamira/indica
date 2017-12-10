@@ -6,9 +6,7 @@
     $date_now=date ("m/d/Y");
     $date_q= date ("06/30/Y");
  
-	$module_id		=$_SESSION['module_id'];
-	$user_id		=$_SESSION['user_id'];
-    $username		=$_SESSION['username'];
+
  if ($date_now<=$date_q)
 {
 	$quater=1;
@@ -19,10 +17,20 @@ else
 
 if (!isset($_SESSION['username']))
 {
-	 die(header("location:index.php"));
-}
+	   echo "<h5>Error: You must login to access this page. Redirecting... </h5>";
+    echo "<html>";
+    echo "<script>";
+  echo "window.location.href='index.php'";
+    echo "</script>";
+    echo "</html>";
+    exit;
+ }
 else
 {	
+	$module_id		=$_SESSION['module_id'];
+	$user_id		=$_SESSION['user_id'];
+    $username		=$_SESSION['username'];
+
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -166,14 +174,13 @@ $sql			= "SELECT COUNT(issue.issue_id) AS issue
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN year ON achievement.year_id=year.year_id
-						JOIN evidence ON evidence.ach_id=achievement.ach_id
-						JOIN session ON session.session_name=goal.session_name
 						JOIN issue ON issue.ach_id=achievement.ach_id
+						JOIN year ON achievement.year_id=year.year_id
+						JOIN session ON session.session_name=goal.session_name
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
+						AND form.form_status='approved'
 						AND session.session_status='1'
-						AND year.year_id='$year_id'
 						";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)

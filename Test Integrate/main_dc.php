@@ -44,9 +44,35 @@
 					SET form_status='pending', user='$username', last_updated=now() 
 					WHERE module_id='$module_id' 
 					AND session_name='$session_name'");  
-		if (false === $result3)
+		if (false === $sql3)
 			{
 				echo "Cannot submit records";
+			}
+			for($y=1; $y<=50; $y++)
+			{
+				if (empty($_POST["kpi".$y]))
+					{
+						$error = 1;
+					}
+				else
+					{	$kpi	=$_POST['kpi'.$y];	
+						$sql5	=mysql_query("SELECT kpi_id FROM master_status WHERE kpi_id='$kpi'");
+						if(mysql_num_rows($sql5)>0)
+						{
+							$sql=mysql_query("UPDATE master_status SET action_type='pending' WHERE kpi_id='$kpi'");
+						}
+						else
+						{
+							$sql	="INSERT INTO master_status (kpi_id, form_id,action_type, action_date) VALUES ('$kpi','$form_id', 'pending', Now())";
+							$result = mysql_query($sql) or die(mysql_error());  
+							if (false === $result)
+								{
+									echo mysql_error();
+								}
+						}
+						
+						
+					}
 			}
 			
 			// buat ayat notification
@@ -164,8 +190,8 @@
 			}
 			
 			
-			
-			if(mysql_num_rows($sql)>0)
+			$queries			=mysql_query("SELECT * FROM session where session_status='1'");
+			if(mysql_num_rows($queries)>0)
 			{
 				$sql4=mysql_query("SELECT module.*, user.*, form.* 
 					FROM user 
@@ -234,13 +260,18 @@
 							<strong>Information</strong> 
 							<ul>
 							<?php if ($status=='new')
+									{
 										echo"<li style='color:#000;'>You need to <b>add new records</b> for ". $session_name ."</li>";
+										echo"<li style='color:#000;'>Submit Records after input data.</li>";
+									}
 								 elseif ($status=='pending')
 										echo "<li style='color:#000;'>Your records are <b>pending</b> for approval from Data Manager</li>";
 								elseif ($status=='approved')
 										echo "<li style='color:#000;'>Your main records for ".$session_name ." has been <b>approved</b></li>";
-								else
-									echo "<li style='color:#000;'>Your records are <b>rejected</b>. You need to update the records.</li>";?>
+								elseif($status=='rejected')
+									echo "<li style='color:#000;'>Your records are <b>rejected</b>. You need to update the records.</li>";
+									else
+										echo "<li style='color:#000;'>Your request to edit data has been sent. Contact Admin for any inquiries.</li>";?>
 								<li style='color:#000;'>Check Module Workbench to update achievement.</li>
 							</ul>
 						</div><?php	

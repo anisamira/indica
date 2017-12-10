@@ -17,12 +17,13 @@
 else
     $quater=2;	
 	
-	$module_id		=$_SESSION['module_id'];
+	
 	$user_id		=$_SESSION['user_id'];
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
+						$module_id		=$_SESSION['module_id'];
 						while($row=mysql_fetch_array($result))
 						{
 							$_SESSION['session_name']	=$row['session_name'];
