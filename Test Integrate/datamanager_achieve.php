@@ -82,15 +82,12 @@ else
        <form action="main_dm.php" method="post">		
 		<!-- !PAGE CONTENT! -->
 
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME <?=$module_id;?>
-  
-</div>
+
 <body>
 
 										
 <?php						
-							
+						$x=1;	
 						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
@@ -103,10 +100,10 @@ else
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN year ON achievement.year_id=year.year_id
                         WHERE goal.module_id='$module_id'
-						AND goal.session_name='$session_name'
+					    AND form.module_id='$module_id'
+						AND form.session_name='$session_name'
 						AND achievement.quarter='$quarter'
 						AND achievement.ach_status='pending'
-						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						
 						$result = mysql_query($sql) or die(mysql_error()); 
@@ -115,7 +112,7 @@ else
 						if(mysql_num_rows($result) > 0)
 					{
 						
-						$x=1;
+						
 						
 						?>
 						<table class="table table-bordered">

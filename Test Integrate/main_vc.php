@@ -192,7 +192,7 @@ $sql			= "SELECT COUNT(issue.issue_id) AS issue
 					}					
 
 
-$sql			= "SELECT COUNT(achievement.ach_id) AS capai
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_id) AS capai
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -200,15 +200,13 @@ $sql			= "SELECT COUNT(achievement.ach_id) AS capai
 						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						JOIN form ON form.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN year ON achievement.year_id=year.year_id
 						JOIN session ON session.session_name=goal.session_name
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
-						AND session.session_status='1'
-						AND year.year_id='$year_id'
 						AND achievement.ach_desc>achievement.target
+						AND achievement.ach_status='approved'
 						";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -225,7 +223,7 @@ $sql			= "SELECT COUNT(achievement.ach_id) AS capai
 						echo "no data found";
 					}
 
-$sql			= "SELECT COUNT(achievement.ach_id) AS takcapai
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_id) AS takcapai
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -233,15 +231,14 @@ $sql			= "SELECT COUNT(achievement.ach_id) AS takcapai
 						JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
-						JOIN form ON form.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN year ON achievement.year_id=year.year_id
 						JOIN session ON session.session_name=goal.session_name
                         WHERE goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
-						AND session.session_status='1'
 						AND year.year_id='$year_id'
 						AND achievement.ach_desc<achievement.target
+						AND achievement.ach_status='approved'
 						";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
@@ -258,7 +255,7 @@ $sql			= "SELECT COUNT(achievement.ach_id) AS takcapai
 						echo "no data found";
 					}					
 
-$sql			= "SELECT COUNT(achievement.ach_result) AS resultcapai
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS resultcapai
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -317,7 +314,13 @@ $sql			= "SELECT COUNT(achievement.ach_result) AS resultcapai
       <div class="card__expander">
         <i class="fa fa-close [ js-collapser ]"></i>
         Number of Goal: <?=$goal_num;?>
-        
+		<br>
+<form class="pure-form pure-form-aligned" action="info_tnc.php" method="post" name="Read">		
+<div class="col-md-4 col-md-offset-4">
+		<button type="submit" class="btn btn-primary" name="goal">Read More</button>
+	  </div>
+</form>
+</br>	  
 	  </div>
     </div>
 
@@ -329,6 +332,13 @@ $sql			= "SELECT COUNT(achievement.ach_result) AS resultcapai
       <div class="card__expander">
         <i class="fa fa-close [ js-collapser ]"></i>
       Number of KPI: <?=$kpi_num;?>
+	  <br>
+	  <form class="pure-form pure-form-aligned" action="info_tnc.php" method="post" name="Read">		
+<div class="col-md-4 col-md-offset-4">
+		<button type="submit" class="btn btn-primary" name="goal">Read More</button>
+	  </div>
+</form>	
+</br>
       </div>
     </div>
 
@@ -340,6 +350,11 @@ $sql			= "SELECT COUNT(achievement.ach_result) AS resultcapai
       <div class="card__expander">
         <i class="fa fa-close [ js-collapser ]"></i>
         Number of Achieve Target: <?=$capai;?>
+		<form class="pure-form pure-form-aligned" action="achieve_tnc.php" method="post" name="Read">		
+<div class="col-md-4 col-md-offset-4">
+		<button type="submit" class="btn btn-primary" name="achieve">Read More</button>
+	  </div>
+</form>
       </div>
     </div>
 
@@ -362,6 +377,11 @@ $sql			= "SELECT COUNT(achievement.ach_result) AS resultcapai
       <div class="card__expander">
         <i class="fa fa-close [ js-collapser ]"></i>
          Number of NOT Achieve Target: <?=$takcapai;?>
+		<form class="pure-form pure-form-aligned" action="achieve_tnc.php" method="post" name="Read">		
+<div class="col-md-4 col-md-offset-4">
+		<button type="submit" class="btn btn-primary" name="unachieve">Read More</button>
+	  </div>
+</form>	 
       </div>
     </div>
 
