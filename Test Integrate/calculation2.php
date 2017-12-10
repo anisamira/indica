@@ -81,7 +81,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 				<table class="table table-bordered">
 				<thead>
 					<tr>
-						
+						<th><center>No</th>
 						<th><center>KPI</th>
 						<th><center>Target</th>
 						<th><center>Achievement</th> 
@@ -104,6 +104,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 					?>
 					
 					 <tr style="font-size:13px">
+						<td><?php echo $x;?></td>
 						<td><?php echo $kpi_desc;?></td>
 						<td><?php echo $target;?></td>
 						<td><?php echo $ach_desc;?></td>
@@ -139,7 +140,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 			
 			?>
 			
-			<form method="post" action="calculation1.php"><input type="Submit" value="Back" name="Back"></form>
+			<center><form method="post" action="calculation1.php"><input type="Submit" value="Back" name="Back"></form>
 
 
 
