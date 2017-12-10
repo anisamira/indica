@@ -371,24 +371,26 @@ Highcharts.chart('container', {
 <script>
 $(function () {
 Highcharts.chart('container2', {
-    data: {
+	series:[{
+    data: [
         table: 'datatable2'
-	},
-	color: {
-		function setColor(){
-			var x=document.getElementById("datatable2");
-			if(x.style.color == 0)
-				x.style.color="grey";
-			else if(x.style.color <= 49)
-				x.style.color="red";
-			else if(x.style.color <= 80)
-				x.style.color="yellow";
-			else
-		        x.style.color="green";
-		}
-	},
+	],
+    zones: [{
+		value: 0;
+		color: '#918585'
+	},{
+		value: 49;
+		color: '#FF0000'
+	},{
+		value: 80;
+		color: '#FFFF00'
+	},{
+		color: '#3CB371'
+	}]
+}]	
+	
     chart: {
-        type: 'column'
+        type: 'line'
     },
     title: {
         text: '<?php echo $_SESSION['module_name'] . " ". $year;?>'
@@ -405,9 +407,7 @@ Highcharts.chart('container2', {
                 this.point.y + ' ' + this.point.name.toLowerCase();
         }
 	}
-
-
-						
+					
 		});
 	});
 	</script>
