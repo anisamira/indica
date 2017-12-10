@@ -186,7 +186,7 @@
 																					</div>
 																					<div class="modal-footer">
 																						<button type="button" class="btn-u btn-u-default" data-dismiss="modal">Close</button>
-																						<input type="submit" class="btn-u btn-u-primary" name="edit_opdef" value="Submit"></input>
+																						<input type="submit" class="btn-u btn-u-primary" name="edit_opdef" value="Save"></input>
 																					</div>
 																				</form>
 																			</div>
