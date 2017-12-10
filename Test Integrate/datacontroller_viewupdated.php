@@ -14,8 +14,6 @@
 		$action			=$username ." has request to edit ".$module_id . " " .$session ." . Message as follow :" .$reason;
 		$sql			="INSERT INTO notif_main (noti_action) VALUES ('$action')";
 		$resultx    =mysql_query($sql);
-		$sqlz			="UPDATE form SET form_status='requested' WHERE module_id='$module_id' AND session_name='$session'";
-		$resultz    =mysql_query($sqlz);
 		
 	}				
 					
