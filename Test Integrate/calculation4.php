@@ -1,10 +1,37 @@
 <?php
 	include('sidebar.php');
+	$curyear=date ('Y');
+    $date_now=date ("m/d/Y");
+ $date_q= date ("06/30/Y");
+             if ($date_now<=$date_q)
+	{
+			$quater=1;
+	}
+else
+			$quater=2;	
+$sql			="SELECT * FROM session where session_status='1'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$_SESSION['session_name']	=$row['session_name'];
+						}
+						$session_name	=$_SESSION['session_name'];
+					}
+					else
+					{
+						echo "no data found";
+					}					
+		
+		
 	?>
 
+	
+	
 <div id="content">	
-<?php
 
+<?php
 if (isset($_POST['go']))
 {
 	$vali=mysql_real_escape_string($_POST['varia']);
@@ -41,7 +68,7 @@ $result4=mysql_query($query) or die (mysql_error());
 				<table class="table table-bordered">
 				<thead>
 					<tr>
-						
+						<th><center>No</th>
 						<th><center>KPI</th>
 						<th><center>Target</th>
 						<th><center>Achievement</th>
@@ -62,6 +89,7 @@ $result4=mysql_query($query) or die (mysql_error());
 					$ach_result =$row4['ach_result']?>
 					
 					 <tr style="font-size:13px">
+						<td><?php echo $x;?></td>
 						<td><?php echo $kpi_desc;?></td>
 						<td><?php echo $target;?></td>
 						<td><?php echo $ach_desc;?></td>
@@ -80,19 +108,14 @@ $result4=mysql_query($query) or die (mysql_error());
 			</table>
 			
 <head>		
-
-
-
-</head>
-	<center><form method="post" href="calculation2.php" action="calculation2.php"><input type="submit" value="Submit" name="submit"><br><br>
-	<center><form method="post" action="calculation1.php"><input type="submit" value="Back to calculation page" name="back"></form>
-<!--<center><input type ="submit" name="go">-->
-<!--<input type ="submit" name="edit" value="Edit">-->
+	
+<center><form action="calculation2.php" method="post">
 <input type="hidden" name="module_id" value="<?php echo $module_id;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 <input type="hidden" name="ach_desc" value="<?php echo $ach_desc;?>"/>  
 <input type="hidden" name="target" value="<?php echo $target;?>"/> 
 <input type="hidden" name="ach_id" value="<?php echo $ach_id;?>"/>    
+<input type ="submit" name="submit" value="Back to Main Page">
 </form>			
 			
 <?php

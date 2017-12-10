@@ -56,10 +56,10 @@ include ('nav-noti.php');
                 </li>
                 <li><a href="admin_create_session.php">Create Sessions</a></li>
                 <li><a href="logtrails.php">Log Trails</a></li>
+				<li><a href="calculation1.php">Calculation</a></li>  
                 <li><a href="workbench_dash.php">Dashboard</a></li>
 				<li><a href="workbench_view.php">Module Workbench</a></li>
-				<li><a href="report_admin.php">Reporting</a></li>
-				<li><a href="calculation1.php">Calculation</a></li>                
+				<li><a href="report_admin.php">Reporting</a></li>             
 				
                 <?php }
 				 if (($_SESSION['role_id']) == 'R02') {?>
