@@ -5,8 +5,26 @@
 	include('sidebar.php');
 	include('script.php');
 	$module_id=$_SESSION['module_id'];
-	$session_name=$_SESSION['session_name'];
-
+	$session_name	=$_SESSION['session_name'];
+	$query			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
+						$results = mysql_query($query) or die(mysql_error()); 
+						if(mysql_num_rows($results)>0)
+						{
+							while($rows=mysql_fetch_array($results))
+							{
+								$_SESSION['form_status']	=$rows['form_status'];
+								$_SESSION['form_id']		=$rows['form_id'];
+							}
+							$form_status	=$_SESSION['form_status'];
+							$form_id		=$_SESSION['form_id'];
+						}
+						else
+						{
+							echo "no data found";
+						}
+						
+						
+						
 							if(isset($_POST['submit_kpi']))
 							{
 								for($y=1; $y<=30; $y++)
@@ -26,8 +44,10 @@
 										   
 											if (false === $result) 
 											{
-												echo mysql_error();
+												echo "Data not inserted succesfully";
 											}
+											$sql2	="INSERT INTO master_status (kpi_id, form_id,action_type, action_date) VALUES ('$value','$form_id', 'pending', Now())";
+											$result2 = mysql_query($sql2) or die(mysql_error());  
 										}											
 									}	
 								}		

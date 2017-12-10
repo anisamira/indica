@@ -87,10 +87,11 @@
 							$x = 1;
 							if(isset($_GET['deletekpi']))
 							{
-								$query	=mysql_query("DELETE FROM kpi WHERE kpi_id=".$_GET['deletekpi']);
-								$query	=mysql_query("DELETE FROM baseline WHERE kpi_id=".$_GET['deletekpi']);
-								$query	=mysql_query("DELETE FROM target WHERE kpi_id=".$_GET['deletekpi']);
-								$query	=mysql_query("DELETE FROM reference WHERE kpi_id=".$_GET['deletekpi']);
+								$query1	=mysql_query("DELETE FROM kpi WHERE kpi_id=".$_GET['deletekpi']);
+								$query2	=mysql_query("DELETE FROM kpi WHERE kpi_id=".$_GET['deletekpi']);
+								$query3	=mysql_query("DELETE FROM baseline WHERE kpi_id=".$_GET['deletekpi']);
+								$query4	=mysql_query("DELETE FROM target WHERE kpi_id=".$_GET['deletekpi']);
+								$query5	=mysql_query("DELETE FROM master_status WHERE kpi_id=".$_GET['deletekpi']);
 							}	
 							$que="SELECT goal.*,strategy.*, actionplan.* 
 									FROM goal 
