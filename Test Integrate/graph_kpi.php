@@ -193,19 +193,24 @@ else
 								$ach_id		=$row3['ach_id'];?>
 								<tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<?php if ($ach_result <=49)
+										<?php if ($ach_result == 0)
 									{
-										echo "<td bgcolor='#FF0000'> $ach_result </td>";
+										echo "<td bgcolor='#918585'> $ach_result </td>";
 									
 									}
-									elseif ($ach_result <=80) 
+									elseif ($ach_result <=49) 
+									{
+										echo "<td bgcolor='#FF0000'> $ach_result </td>";
+									}
+									elseif ($ach_result <=80)
 									{
 										echo "<td bgcolor='#FFFF00'> $ach_result </td>";
 									}
-									else
+									else 
 									{
 										echo "<td bgcolor='#3CB371'> $ach_result </td>";
 									}
+										
 										?>
 								<?php
 							}?>
@@ -296,16 +301,20 @@ else
 								$ach_id		=$row5['ach_id'];?>
 								 <tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<?php if ($ach_result <=49)
+										<?php if ($ach_result == 0)
 									{
-										echo "<td bgcolor='#FF0000'> $ach_result </td>";
+										echo "<td bgcolor='#918585'> $ach_result </td>";
 									
 									}
-									elseif ($ach_result <=80) 
+									elseif ($ach_result <=49) 
+									{
+										echo "<td bgcolor='#FF0000'> $ach_result </td>";
+									}
+									elseif ($ach_result <=80)
 									{
 										echo "<td bgcolor='#FFFF00'> $ach_result </td>";
 									}
-									else
+									else 
 									{
 										echo "<td bgcolor='#3CB371'> $ach_result </td>";
 									}
@@ -357,12 +366,27 @@ Highcharts.chart('container', {
     }
 });
 });
+</script>
 
+<script>
 $(function () {
 Highcharts.chart('container2', {
     data: {
         table: 'datatable2'
-    },
+	},
+	color: {
+		function setColor(){
+			var x=document.getElementById("datatable2");
+			if(x.style.color == 0)
+				x.style.color="grey";
+			else if(x.style.color <= 49)
+				x.style.color="red";
+			else if(x.style.color <= 80)
+				x.style.color="yellow";
+			else
+		        x.style.color="green";
+		}
+	},
     chart: {
         type: 'column'
     },
@@ -388,10 +412,10 @@ Highcharts.chart('container2', {
 	});
 	</script>
 	
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script src="js/script.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script src="js/script.js"></script>-->
 	
-	<script>
+	<!--<script>
 	
 	var cells = document.getElementById("datatable2").getElementsByTagName("td");
 
@@ -405,7 +429,7 @@ cell.each(function() {
     } 
 });
 				
-	</script>
+	</script>-->
 
 	
 <?php
