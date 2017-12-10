@@ -26,6 +26,7 @@ if(isset($_POST["Export"]))
 						JOIN issue ON issue.ach_id=achievement.ach_id
 						JOIN year ON achievement.year_id=year.year_id						
                         WHERE goal.module_id='$moduleid'
+						AND form.module_id='$module_id'
 						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
 						HAVING achievement.ach_desc < achievement.target";

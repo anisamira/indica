@@ -238,10 +238,8 @@ else
 									}	
 									else
 									{?>
-										<div class="alert alert-warning alert-dismissable fade in">
-											<meta http-equiv="refresh" content="1;url=dc_reference.php" />
-											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-											<strong>You need to fill in previous page first</strong> Redirecting in 1 seconds...
+									
+											<strong>No record found</strong> 
 										</div><?php	
 									}?>										
  

@@ -120,6 +120,7 @@ if (isset($_POST['Achievement1']))
 						WHERE NOT EXISTS(SELECT achievement.* FROM achievement 
 						WHERE achievement.target_id=target.target_id AND achievement.year_id='$year_id' AND achievement.quarter='$quater') 
 						AND goal.module_id='$module_id'
+						AND form.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='approved'
 						";

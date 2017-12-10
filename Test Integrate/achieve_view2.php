@@ -105,6 +105,7 @@ if(isset($_POST["Export2"]))
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN year ON achievement.year_id=year.year_id
                         WHERE goal.module_id='$moduleid'
+						AND form.module_id='$module_id'
 						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
 						AND year.year_name='$year'
