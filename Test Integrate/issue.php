@@ -5,15 +5,13 @@
 <?php
 	include('sidebar.php');
 	
-	$curyear=date ('Y');
-	
-	$module_id		=$_SESSION['module_id'];
+	$curyear=date ('Y');	
 	$user_id		=$_SESSION['user_id'];
-	$sql			="SELECT * FROM session where session_status='1'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
+	$query			=mysql_query("SELECT * FROM session where session_status='1'");
+					if(mysql_num_rows($query)>0)
 					{
-						while($row=mysql_fetch_array($result))
+						$module_id		=$_SESSION['module_id'];
+						while($row=mysql_fetch_array($query))
 						{
 							$_SESSION['session_name']	=$row['session_name'];
 							$year1=$row['year1'];
@@ -24,28 +22,45 @@
 
 						}
 						$session_name	=$_SESSION['session_name'];
+						$sql			= mysql_query("SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'");
+						if(mysql_num_rows($sql)>0)
+						{
+							while($row1=mysql_fetch_array($sql))
+							{
+								$_SESSION['form_status']	=$row1['form_status'];
+								$_SESSION['form_id']		=$row1['form_id'];
+							}
+							$form_status	=$_SESSION['form_status'];
+							$form_id		=$_SESSION['form_id'];
+						}
+						else
+						{
+							echo "no data found";
+						}
+						
+						 $sql2	= mysql_query("SELECT * FROM module WHERE module_id='$module_id'");
+							if(mysql_num_rows($sql2)>0)
+							{
+								while($row2=mysql_fetch_array($sql2))
+								{
+									$module_name=$row2['module_name'];
+									
+								}
+								
+							}
+						else
+						{
+							echo "";
+						}	
+						
+						
 					}
 					else
 					{
-						echo "no data found";
+						echo "";
 					}
 	
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
-						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
-					}
-					else
-					{
-						echo "no data found";
-					}
+
 	
     $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
 					$result = mysql_query($sql) or die(mysql_error()); 
@@ -63,21 +78,7 @@
 					{
 						echo "no data found";
 					}
-	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$module_name=$row['module_name'];
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}					
+					
 					
 	
 	?>
@@ -135,12 +136,10 @@ body {margin:0;}
 }
 </style>
 <div class="wrapper">
+	<!-- !PAGE CONTENT! -->
+	<div id="content">
 
-
-		<!-- !PAGE CONTENT! -->
-			<div id="content">	
-
-	<div style="padding-left:16px">
+		<div style="padding-left:16px">
   &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
   <br>
 </div>
@@ -857,7 +856,8 @@ elseif 	($curyear==$year&&$year==$year5)
 						?>
 
 </div>
-					
+
+				
 
 
 

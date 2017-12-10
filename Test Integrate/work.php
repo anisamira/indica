@@ -7,105 +7,98 @@
 	
 	$curyear=date ('Y');
     $date_now=date ("m/d/Y");
- $date_q= date ("06/30/Y");
- if ($date_now<=$date_q)
-{
-	$quater=1;
-}
-else
-    $quater=2;	
+	$date_q= date ("06/30/Y");
+	if ($date_now<=$date_q)
+	{
+		$quater=1;
+	}
+	else
+		$quater=2;	
 	
-	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
-	$sql			="SELECT * FROM session where session_status='1'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
+	$sql			=mysql_query("SELECT * FROM session where session_status='1'");
+					if(mysql_num_rows($sql)>0)
 					{
-						while($row=mysql_fetch_array($result))
+						$module_id		=$_SESSION['module_id'];
+						while($row=mysql_fetch_array($sql))
 						{
 							$_SESSION['session_name']	=$row['session_name'];
 						}
 						$session_name	=$_SESSION['session_name'];
+						$sql2			= mysql_query("SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'"); 
+						if(mysql_num_rows($sql2)>0)
+						{
+							while($row2=mysql_fetch_array($sql2))
+							{
+								$_SESSION['form_status']	=$row2['form_status'];
+								$_SESSION['form_id']		=$row2['form_id'];
+							}
+							$form_status	=$_SESSION['form_status'];
+							$form_id		=$_SESSION['form_id'];
+						}
+						else
+						{
+							echo "";
+						}
+
+						$sql3	= mysql_query("SELECT * FROM module WHERE module_id='$module_id'");
+						if(mysql_num_rows($sql3)>0)
+						{
+							while($row3=mysql_fetch_array($sql3))
+							{
+								$module_name=$row3['module_name'];
+								
+							}
+							
+						}
+						else
+						{
+							echo "";
+						}							
 					}
 					else
 					{
-						echo "no data found";
+						echo "";
 					}
 	
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
-						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
-					}
-					else
-					{
-						echo "no data found";
-					}
+	
 		
-  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
+  $sql4			= mysql_query("SELECT * FROM year WHERE year_name='$curyear'");
+
+					if(mysql_num_rows($sql4)>0)
 					{
-						while($row=mysql_fetch_array($result))
+						while($row4=mysql_fetch_array($sql4))
 						{
-							$year= $row['year_name'];
-							$year_id=$row['year_id'];
-							
+							$year= $row4['year_name'];
+							$year_id=$row4['year_id'];		
 						}
 						
 					}
 					else
 					{
-						echo "no data found";
+						echo "";
 					}			
-	
-	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$module_name=$row['module_name'];
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}	
-	
+
 	?>
 
 <div class="wrapper">
+	<!-- !PAGE CONTENT! -->
+	<div id="content">	
 
-
-		<!-- !PAGE CONTENT! -->
-			<div id="content">	
-
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
-  <br>
-</div>
-
-<br>
-<div class="topnav">
-  <a class="active" href="work.php">Information</a>
-  <a href="achieve.php">Achievement</a>
-  <a href="doc.php">Deliverables</a>
-  <a href="issue.php">Issue</a>
-  <a href="financial.php">Financial</a>
-
-</div>
-
- <div class="table-responsive">
+		<div style="padding-left:16px">
+		&nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?><br>
+		</div>
+		
+		<br>
+			<div class="topnav">
+			  <a class="active" href="work.php">Information</a>
+			  <a href="achieve.php">Achievement</a>
+			  <a href="doc.php">Deliverables</a>
+			  <a href="issue.php">Issue</a>
+			  <a href="financial.php">Financial</a>
+			</div>
+			
+			<div class="table-responsive">
 								<?php
 									$x=1;
 									$que="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
@@ -240,23 +233,29 @@ else
 															}
 													}?>
 												</table>
-												
-<?php
+											<?php
 									}
-else
-{
+				else
+				{
 
-?>	
-	<div class="alert alert-info fade in" link rel="stylesheet" type="text/css" href="alert.css" />
-		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-		<strong>Information</strong> 
-		<ul>
-			<li style="color:#000">No approved of the data yet. Please contact your Data Manager to approve the data.</li>
-		</ul>
-	</div>
-<?php	
-}
-?>								
+				?>	
+					<div class="alert alert-info fade in" link rel="stylesheet" type="text/css" href="alert.css" />
+						<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+						<strong>Information</strong> 
+						<ul>
+							<li style="color:#000">No approved of the data yet. Please contact your Data Manager to approve the data.</li>
+						</ul>
+					</div><?php
+						
+		
+		
+		
+				}?>
+				
+		
+  
+</div>
+
 
 </div>
   
