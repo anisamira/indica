@@ -44,7 +44,7 @@ $result4=mysql_query($query) or die (mysql_error());
 						<th><center>KPI</th>
 						<th><center>Target</th>
 						<th><center>Achievement</th> 
-						<!--<th><center>Indicator</th>-->
+						<th><center>Achievement Result (%)</th>
 						<!--<th><center>Action</th>-->
 					</tr>
 				</thead>
@@ -64,6 +64,7 @@ $result4=mysql_query($query) or die (mysql_error());
 						<td><?php echo $kpi_desc;?></td>
 						<td><?php echo $target;?></td>
 						<td><?php echo $ach_desc;?></td>
+						<td><?php echo $ach_result;?></td>
 						<!--<td><a class="btn btn-primary " href="calculation3.php?id='.$row['id'].'" name="calculate">Calculate Result</a></td>;-->
 					</tr><?php $x++; 
 				}
@@ -187,6 +188,12 @@ function math(val)
 {
     document.getElementById("d").value+=val;
 }
+
+function back() {
+    var value = document.getElementById("d").value;
+    document.getElementById("d").value = value.substr(0, value.length - 1);
+}
+
 function e()
 {
     try
@@ -195,7 +202,7 @@ function e()
     }
     catch(e)
     {
-      c('Error')
+      c(val)
     }
 	
 	return e();
@@ -208,7 +215,7 @@ function e()
     <div class="display"><input type="text" name="varia" readonly size="15.75" id="d"></div> <br>
     <div class="keys">
         <p>
-        <input type="button" class="button gray" value="mrc" onclick='c("not defined ")'>
+		<input type="button" class="button gray" value="&#8592" onclick='back()'>
         <input type="button" class="button gray" value="(" onclick='math("(")'>
         <input type="button" class="button gray" value=")" onclick='math(")")'>
         <input type="button" class="button pink" value="/" onclick='math("/")'>
@@ -238,7 +245,7 @@ function e()
         <input type="button" class="button orange" value="=" onclick='e()'>
         </p>
     </div><br><br><br>
-<center><input type ="submit" name="go">
+<center><input type ="Submit" value="Next" name="go">
 <input type="hidden" name="module_id" value="<?php echo $module_id;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 <input type="hidden" name="ach_desc" value="<?php echo $ach_desc;?>"/>  

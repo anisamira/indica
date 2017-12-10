@@ -85,7 +85,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 						<th><center>KPI</th>
 						<th><center>Target</th>
 						<th><center>Achievement</th> 
-						<th><center>Achievement Result</th>
+						<th><center>Achievement Result (%)</th>
 						<th><center>Action</th>
 					</tr>
 				</thead>
