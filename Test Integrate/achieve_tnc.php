@@ -249,7 +249,7 @@ elseif 	($year==$year5)
 						AND form.form_status='approved'
 						AND achievement.ach_status='approve'
 						AND year.year_name='$year'
-						AND achievement.ach_desc > achievement.target
+						AND achievement.ach_desc < achievement.target
 						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						
