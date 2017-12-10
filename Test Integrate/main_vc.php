@@ -273,7 +273,7 @@ $sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS resultcapai
 	<div id="content">	
 
 	<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?>
+  &nbsp&nbspWELCOME TO <? echo $module_name;?> <?=$session_name;?> YEAR <?=$year?>
   <br>
 	</div>
 

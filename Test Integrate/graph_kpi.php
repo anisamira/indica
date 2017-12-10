@@ -373,24 +373,16 @@ $(function () {
 Highcharts.chart('container2', {
     data: {
         table:'datatable2'
-},
-	zones: {
-		value: 0;
-		color: '#918585'
-	},{
-		value: 49;
-		color: '#FF0000'
-	},{
-		value: 80;
-		color: '#FFFF00'
-	},{
-		color: '#3CB371'
-	},
-	
-    chart: {
-        type: 'line'
 	
     },
+	
+    series: [{
+		lineWidth: 1
+	},{
+        type: 'line',
+		color:'#c4392d',
+	
+    }]
 	
     title: {
         text: '<?php echo $_SESSION['module_name'] . " ". $year;?>'

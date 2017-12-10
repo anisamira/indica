@@ -188,16 +188,20 @@ $sql			="SELECT * FROM session where session_status='1'";
 								$ach_id		=$row3['ach_id'];?>
 								<tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<?php if ($ach_result <=49)
+										<?php if ($ach_result == 0)
 									{
-										echo "<td bgcolor='#FF0000'> $ach_result </td>";
+										echo "<td bgcolor='#918585'> $ach_result </td>";
 									
 									}
-									elseif ($ach_result <=80) 
+									elseif ($ach_result <=49) 
+									{
+										echo "<td bgcolor='#FF0000'> $ach_result </td>";
+									}
+									elseif ($ach_result <=80)
 									{
 										echo "<td bgcolor='#FFFF00'> $ach_result </td>";
 									}
-									else
+									else 
 									{
 										echo "<td bgcolor='#3CB371'> $ach_result </td>";
 									}
@@ -293,16 +297,20 @@ $sql			="SELECT * FROM session where session_status='1'";
 								$ach_id		=$row5['ach_id'];?>
 								 <tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<?php if ($ach_result <=49)
+										<?php if ($ach_result == 0)
 									{
-										echo "<td bgcolor='#FF0000'> $ach_result </td>";
+										echo "<td bgcolor='#918585'> $ach_result </td>";
 									
 									}
-									elseif ($ach_result <=80) 
+									elseif ($ach_result <=49) 
+									{
+										echo "<td bgcolor='#FF0000'> $ach_result </td>";
+									}
+									elseif ($ach_result <=80)
 									{
 										echo "<td bgcolor='#FFFF00'> $ach_result </td>";
 									}
-									else
+									else 
 									{
 										echo "<td bgcolor='#3CB371'> $ach_result </td>";
 									}
