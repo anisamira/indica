@@ -371,11 +371,10 @@ Highcharts.chart('container', {
 <script>
 $(function () {
 Highcharts.chart('container2', {
-	series:[{
-    data: [
-        table: 'datatable2'
-	],
-    zones: [{
+    data: {
+        table:'datatable2'
+},
+	zones: {
 		value: 0;
 		color: '#918585'
 	},{
@@ -386,12 +385,13 @@ Highcharts.chart('container2', {
 		color: '#FFFF00'
 	},{
 		color: '#3CB371'
-	}]
-}]	
+	},
 	
     chart: {
         type: 'line'
+	
     },
+	
     title: {
         text: '<?php echo $_SESSION['module_name'] . " ". $year;?>'
     },
