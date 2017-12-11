@@ -20,11 +20,8 @@ include ('nav-noti.php');
     <!-- Page Content Holder -->
     <div id="content">
 
-<<<<<<< HEAD
-=======
   
 
->>>>>>> 1754b9d11c3740b4bfef03c6f89fc6a6588d20cf
 	<style>
 .btnadmin {
     background-color: #4CAF50;
