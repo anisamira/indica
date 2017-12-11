@@ -27,54 +27,58 @@ include ('sidebar.php');
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 14px;
     margin: 4px 2px;
     cursor: pointer;
+	height: 100px;
+	width: 145px;
+	
 }
 </style>
 	
-	
+
+<h3>Click Button below to view the Current Session Workbench</h3>	
 <table>
 <tr>
 <td>
 <form action="" name="Module1" method="post">
-<button type="submit" class="btnadmin" name="go" width="44px;" height="44px;">M01</button>
+<button type="submit" class="btnadmin" name="go" >TNC Academic</button>
 <input type="hidden" name="moduleid" value="M01"/> 
 </form>
 </td>
 <td>
 <form action="" name="Module2" method="post">
-<button type="submit" class="btnadmin" name="go">M02</button>
+<button type="submit" class="btnadmin" name="go">Internalization and Branding TNC</button>
 <input type="hidden" name="moduleid" value="M02"/> 
 </form>
 </td>
 <td>
 <form action="" name="Module3" method="post">
-<button type="submit" class="btnadmin" name="go">M03</button>
+<button type="submit" class="btnadmin" name="go" >Excellent Research TNC</button>
 <input type="hidden" name="moduleid" value="M03"/> 
 </form>
 </td>
 <td>
 <form action="" name="Module4" method="post">
-<button type="submit" class="btnadmin" name="go">M04</button>
+<button type="submit" class="btnadmin" name="go">Student Life TNC</button>
 <input type="hidden" name="moduleid" value="M04"/> 
 </form>
 </td>
 <td>
 <form action="" name="Module5" method="post">
-<button type="submit" class="btnadmin" name="go">M05</button>
+<button type="submit" class="btnadmin" name="go" >Infrastructure Planning and Development</button>
 <input type="hidden" name="moduleid" value="M05"/> 
 </form>
 </td>
 <td>
 <form action="" name="Module6" method="post">
-<button type="submit" class="btnadmin" name="go">M06</button>
+<button type="submit" class="btnadmin" name="go" >Faculty and Staff Requirement</button>
 <input type="hidden" name="moduleid" value="M06"/> 
 </form>
 </td>
 <td>
 <form action="" name="Module7" method="post">
-<button type="submit" class="btnadmin" name="go">M07</button>
+<button type="submit" class="btnadmin" name="go">Financial</button>
 <input type="hidden" name="moduleid" value="M07"/> 
 </form>
 </td>
@@ -365,6 +369,20 @@ div.tab button.active {
 												
 </div>
  
+  <form class="pure-form pure-form-aligned" action="work_view.php" method="post" name="Export"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year" value="<?php echo $year;?>"/>
+<input type="hidden" name="module_name" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="adminview">Download Excel</button>
+                            </div>
+                   </div>                    
+            </form> 
+ 
+ 
 <?php
 }
 else
@@ -495,6 +513,19 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
+				
+						<form class="pure-form pure-form-aligned" action="achieve_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year1" value="<?php echo $year1;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+				   </form> 
 				
 					<?php
 					}	
@@ -631,7 +662,18 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
-			
+								<form class="pure-form pure-form-aligned" action="achieve_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year2" value="<?php echo $year2;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export2" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+				   </form> 	
 					<?php
 					}	
 						else
@@ -767,7 +809,18 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
-			 	
+			 	<form class="pure-form pure-form-aligned" action="achieve_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year3" value="<?php echo $year3;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export3" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+				   </form> 	
 					<?php
 					}	
 						else
@@ -903,7 +956,18 @@ elseif 	($year==$year5)
 						?>
 						</table>
 						
-			
+			<form class="pure-form pure-form-aligned" action="achieve_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year3" value="<?php echo $year4;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export3" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+				   </form> 	
 						
 					<?php
 					}	
@@ -1039,7 +1103,18 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
-
+<form class="pure-form pure-form-aligned" action="achieve_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year3" value="<?php echo $year5;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export3" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+				   </form> 	
 						
 					<?php
 					}	
@@ -1059,6 +1134,18 @@ elseif 	($year==$year5)
 			
 </div>
 
+			<form class="pure-form pure-form-aligned" action="achieve_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year" value="<?php echo $year;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export" value="export to excel">Download All Record:Excel</button>
+                            </div>
+                   </div>                    
+            </form>  
 
 
 </div>
@@ -1751,7 +1838,18 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
- 
+ <form class="pure-form pure-form-aligned" action="issue_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year1" value="<?php echo $year1;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+            </form> 
 <?php					
 					}
 
@@ -1891,7 +1989,18 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
-
+<form class="pure-form pure-form-aligned" action="issue_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year1" value="<?php echo $year2;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+            </form> 
 <?php					
 					}
 
@@ -2031,7 +2140,18 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
-
+<form class="pure-form pure-form-aligned" action="issue_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year1" value="<?php echo $year3;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+            </form> 
 <?php					
 					}
 
@@ -2171,6 +2291,18 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
+<form class="pure-form pure-form-aligned" action="issue_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year1" value="<?php echo $year4;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+            </form> 
 
 <?php					
 					}
@@ -2311,7 +2443,18 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
-
+<form class="pure-form pure-form-aligned" action="issue_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year1" value="<?php echo $year5;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+            </form> 
 
 <?php					
 					}
@@ -2333,7 +2476,18 @@ elseif 	($curyear==$year&&$year==$year5)
 						?>
 
 </div>
- 
+ <form class="pure-form pure-form-aligned" action="issue_view_admin.php" method="post" name="upload_excel"   
+                      enctype="multipart/form-data">
+<input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
+<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+<input type="hidden" name="year1" value="<?php echo $year;?>"/>
+<input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
+                  <div class="form-group">
+                            <div class="col-md-4 col-md-offset-4">
+								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+                            </div>
+                   </div>                    
+            </form> 
 
 </div>
 <div id="Financial" class="tabcontent">

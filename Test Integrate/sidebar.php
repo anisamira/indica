@@ -7,9 +7,8 @@ include ('nav-noti.php');
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>INDICA UM</title>
     
@@ -34,6 +33,7 @@ include ('nav-noti.php');
 <body>
     <div class="wrapper">
         <!-- Sidebar Holder -->
+		 <div class="col-2">
         <nav id="sidebar">
 
             <ul class="list-unstyled components">
@@ -94,6 +94,7 @@ include ('nav-noti.php');
 
 
         </div>
+		</div>
     </div>
 
 

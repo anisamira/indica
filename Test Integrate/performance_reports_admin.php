@@ -49,6 +49,14 @@
 								}?>	
 							</select> 
 						</td>
+						<td>
+							<select class="form-control" name="quarter">
+									
+									<option value="1"><?php  echo 'Quarter 1';?></option>
+									<option value="2"><?php  echo 'Quarter 2';?></option>
+							 	
+							</select> 
+						</td>
 						<div class="form-actions">
 							<td><button type="submit" class ="btn btn-sucess" name="send" value="">Go</button></td>
 						</div>
@@ -60,11 +68,19 @@
 <?php
 if (isset($_POST['send']))
 {
-   $sesi=$_POST['sesi'];
+  $sesi=$_POST['sesi'];
+    $quarter=$_POST['quarter'];
 	
   $x=1;
-  $sql=("SELECT DISTINCT goal.module_id,goal.session_name,module.module_name FROM goal JOIN module ON goal.module_id=module.module_id WHERE goal.session_name='$sesi'");
-  	
+  $sql=("SELECT DISTINCT goal.module_id,goal.session_name,module.module_name,achievement.quarter 
+  FROM goal 
+  JOIN module ON goal.module_id=module.module_id 
+  JOIN form ON form.module_id=goal.module_id
+  JOIN achievement ON achievement.form_id=form.form_id
+  WHERE goal.module_id='$module_id'
+  AND goal.session_name='$sesi'
+  AND achievement.quarter='$quarter'
+  ");	
 	$result = mysql_query($sql) or die(mysql_error());
 
 
@@ -132,6 +148,7 @@ if (isset($_POST['submit']))
 
 $moduleid=$_POST['moduleid'];
 $sesi=$_POST['sesi'];
+$quarter=$_POST['quarter'];
 
 	
 		$sql		="SELECT * FROM session where session_name='$sesi'";
@@ -169,6 +186,7 @@ $sesi=$_POST['sesi'];
 						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
 						AND achievement.ach_status='approve'
+						AND achievement.quarter='$quarter'
 						 ";
 											$result = mysql_query($sql) or die(mysql_error());
 
