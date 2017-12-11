@@ -1,7 +1,26 @@
 <?php
 include ('sidebar.php');
 
+if(isset($_POST['submit'])){
+    
+        // $fname=$_POST['fname'];
+        // $lname=$_POST['lname'];
+        $uname=$_POST['uname'];
+        $password=$_POST['password'];
+        // $cpassword=$_POST['cpassword'];
+        $email=$_POST['email'];
+        $role=$_POST['role'];
+        $module=$_POST['module'];        
+        
+    
+        //insert input data dalam table
+        $sql1 = "INSERT INTO user (username, password, role_id, email, module_id) VALUES ('$uname', '$password', '$role','$email', '$module')";
+        $result1=mysql_query($sql1);
+
 // header('location:admin_manageuser_create_new_user.php?status=created');
+
+}
+        
 
 ?>
 
@@ -29,12 +48,12 @@ include ('sidebar.php');
             <?php if(!empty($_GET['status'])){?>
           <div class="success_alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
-          <strong>You have created a new session</strong> 
+          <strong>You have created a new user</strong> 
           </div>
     <?php }
     ?>
 
-            <form name="" action="register.php" method="post" class="pure-form pure-form-aligned">
+            <form name="" action="" method="post" class="pure-form pure-form-aligned">
             <fieldset>
 
             <!-- <div class="pure-control-group">
@@ -51,34 +70,34 @@ include ('sidebar.php');
 
             <div class="pure-control-group">
                 <label for="uname"><b>Username</b></label>
-                <input name="uname" type="text" placeholder="Username">
+                <input name="uname" type="text" placeholder="Username" required>
                 <span class="pure-form-message-inline"> *This is a required field.</span>
             </div>
 
             <div class="pure-control-group">
                 <label for="password"><b>Password</b></label>
-                <input name="password" type="password" placeholder="Password">
+                <input name="password" type="password" placeholder="Password" required>
                 <span class="pure-form-message-inline">* This is a required field.</span>        
             </div>
 
-            <!-- <div class="pure-control-group">
-                <label for="cpassword"><b>Confirm Password</b></label>
-                <input name="cpassword" type="password" placeholder="Password">
-                <span class="pure-form-message-inline">* This is a required field.</span>
-            </div> -->
-
             <div class="pure-control-group">
-                <label for="email"><b>Email Address</b></label>
-                <input name="email" type="email" placeholder="Email Address">
+                <label for="cpassword"><b>Confirm Password</b></label>
+                <input name="cpassword" type="password" placeholder="Password" required>
                 <span class="pure-form-message-inline">* This is a required field.</span>
             </div>
 
-        <div class="pure-controls">
+            <div class="pure-control-group">
+                <label for="email"><b>Email Address</b></label>
+                <input name="email" type="email" placeholder="Email Address" required>
+                <span class="pure-form-message-inline">* This is a required field.</span>
+            </div>
+
+        <div class="pure-controls" >
                 <label for="cb" class="pure-radio"><b>User Role</b></label>
-                    <label> <input id="cb" type="radio" name="role" value="R01"> Admin</label> <br> 
-                    <label> <input id="cb" type="radio" name="role" value="R02"> Data Manager</label> <br>
-                    <label> <input id="cb" type="radio" name="role" value="R03"> Data Controller</label> <br>
-                    <label> <input id="cb" type="radio" name="role" value="R04"> Deputy Vice Chancellor</label> <br>                    
+                    <label> <input id="cb" type="radio" name="role" value="R01" required> Admin</label> <br> 
+                    <label> <input id="cb" type="radio" name="role" value="R02" required> Data Manager</label> <br>
+                    <label> <input id="cb" type="radio" name="role" value="R03" required> Data Controller</label> <br>
+                    <label> <input id="cb" type="radio" name="role" value="R04" required> Deputy Vice Chancellor</label> <br>                    
                             <!-- <div class="select desc" id="M04">
                             <select>
                             <option>Choose an option</option>
@@ -93,19 +112,18 @@ include ('sidebar.php');
         </div>
 
         <div class="pure-controls">
-                <label for="cb" class="pure-checkbox"><b>Module</b></label>
+                <label for="cb" ><b>Module</b></label>
                 <!-- <div class="select desc" id="M03"> -->
-                <div class="select" id="module">
-                
-                            <select>
+                <div class="select">                
+                            <select name="module">
                             <option>Choose an option</option>
-                            <option value="M01" name="module">Module 1: Academic</option>
-                            <option value="M02" name="module">Module 2: Student Life</option>
-                            <option value="M03" name="module">Module 3: Excellent Research</option> 
-                            <option value="M04" name="module">Module 4: Internalization and Branding</option>
-                            <option value="M05" name="module">Module 5: Infrastructure Planning and Development</option>                    
-                            <option value="M06" name="module">Module 6: Financial Sustainability and Wealth Creation</option>
-                            <option value="M07" name="module">Module 7: Faculty and Staff Recruitment and Development</option>
+                            <option value="M01" required>Module 1: Academic</option>
+                            <option value="M02" required>Module 2: Student Life</option>
+                            <option value="M03" required>Module 3: Excellent Research</option> 
+                            <option value="M04" required>Module 4: Internalization and Branding</option>
+                            <option value="M05" required>Module 5: Infrastructure Planning and Development</option>                    
+                            <option value="M06" required>Module 6: Financial Sustainability and Wealth Creation</option>
+                            <option value="M07" required>Module 7: Faculty and Staff Recruitment and Development</option>
                             </select>
                             </div>
                 <!--  -->

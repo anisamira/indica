@@ -45,7 +45,7 @@ include ('nav-noti.php');
 
                 <!-- Menu for ADMIN R01 -->
                 <?php if (($_SESSION['role_id']) == 'R01') {?>
-					<li><a href="main_admin.php"><i class="glyphicon glyphicon-home"></i> Home</a></li>                
+					<li><a href="main_admin.php"><i class="glyphicon glyphicon-home"></i>  Home</a></li>                
                 <li>
                 
                     <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">Manage Users</a>
@@ -57,7 +57,7 @@ include ('nav-noti.php');
                 <li><a href="admin_create_session.php">Create Sessions</a></li>
                 <li><a href="logtrails.php">Log Trails</a></li>
                 <li><a href="workbench_dash.php">Dashboard</a></li>
-				<li><a href="workbench_view.php">Module Workbench</a></li>
+				<!-- <li><a href="workbench_view.php">Module Workbench</a></li> -->
 				<li><a href="report_admin.php">Reporting</a></li>
 				<li><a href="calculation1.php">Calculation</a></li>                
 				
@@ -82,7 +82,7 @@ include ('nav-noti.php');
 
                 <!-- General menu PART 2 -->
                 <li>
-                    <a href="logout.php">Log Out</a>
+                    <!-- <a href="logout.php">Log Out</a>o -->
                 </li>
             </ul>
 
