@@ -339,7 +339,6 @@ else
 </div>
 
 
-
 <script>
 $(function () {
 Highcharts.chart('container', {
@@ -376,13 +375,9 @@ Highcharts.chart('container2', {
 	
     },
 	
-    series: [{
-		lineWidth: 1
-	},{
-        type: 'line',
-		color:'#c4392d',
-	
-    }]
+    chart: {
+        type: 'column'
+    },
 	
     title: {
         text: '<?php echo $_SESSION['module_name'] . " ". $year;?>'
