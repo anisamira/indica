@@ -2595,10 +2595,6 @@ for (i = 0; i < acc.length; i++) {
 
 
   </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 1754b9d11c3740b4bfef03c6f89fc6a6588d20cf
 </div>
 
 

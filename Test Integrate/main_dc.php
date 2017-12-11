@@ -171,7 +171,8 @@
 			<!-- NOTIFICATION DISPLAY -->
 
 			<?php 
-			$get_noti_qwr 	= "select notif_user.*, notif_main.* from notif_user JOIN notif_main ON notif_main.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";
+			
+			$get_noti_qwr 	= "select notif_user.*, notif_main_r02.* from notif_user JOIN notif_main_r02 ON notif_main_r02.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";
 			$qry 			= mysql_query($get_noti_qwr, $conn);
 			$count			=mysql_num_rows($qry);?>
 
