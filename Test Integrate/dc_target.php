@@ -131,11 +131,11 @@
 													if(mysql_num_rows($result2)===0)
 													{?>
 														<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input></td>
-														<td><input class="form-control" type="number" name="target1<?php echo $x;?>"/></td>
-														<td><input class="form-control" type="number" name="target2<?php echo $x;?>"/></td>
-														<td><input class="form-control" type="number" name="target3<?php echo $x;?>"/></td>
-														<td><input class="form-control" type="number" name="target4<?php echo $x;?>"/></td>
-														<td><input class="form-control" type="number" name="target5<?php echo $x;?>"/></td>
+														<td><input class="form-control" type="text" name="target1<?php echo $x;?>"/></td>
+														<td><input class="form-control" type="text" name="target2<?php echo $x;?>"/></td>
+														<td><input class="form-control" type="text" name="target3<?php echo $x;?>"/></td>
+														<td><input class="form-control" type="text" name="target4<?php echo $x;?>"/></td>
+														<td><input class="form-control" type="text" name="target5<?php echo $x;?>"/></td>
 														<td><button class="btn-u btn-u-red" type="button" style="float:right" disabled><i class="fa fa-trash-o"/></button></td>
 														<td><button class="btn-u btn-u-red" type="button" disabled><i class="fa fa-pencil"/></button></td>
 													</tr><?php
