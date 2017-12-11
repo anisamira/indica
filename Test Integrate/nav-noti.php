@@ -24,7 +24,13 @@ $role_id=$_SESSION['role_id'];
 
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 <title>INDICA UM</title>
+=======
+
+<title>INDICA UM</title>
+
+>>>>>>> 1754b9d11c3740b4bfef03c6f89fc6a6588d20cf
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -51,6 +57,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
 <!-- Navbar -->
 <div class="w3-top">
+<<<<<<< HEAD
   <div class="w3-bar w3-theme-d2 w3-right-align w3-medium">
     <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
         <a href="logout.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white w3-right" title="Log Out"><i class="fa fa-power-off"></i></a>
@@ -66,6 +73,48 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
             <a href="admin_manageuser_edituser.php" style="font-size: 13px;" class="w3-bar-item w3-button">Edit Users</a>
           </div>
     </div>
+=======
+ <div class="w3-bar w3-theme-d2 w3-right-align w3-large">
+
+ <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Account Settings"><i class="fa fa-user"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Messages"><i class="fa fa-envelope"></i></a>
+  <!-- <button class="w3-button w3-padding-large" title="Log Out">  <i class="fa fa-power-off"></i> -->
+  <a href="logout.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-power-off"></i></a>
+  <div class="w3-dropdown-hover w3-hide-small w3-right">
+
+  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" 
+     href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
+
+ <div class="w3-dropdown-hover w3-hide-small w3-right">
+
+    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i>
+    <span class="w3-badge w3-right w3-small w3-green"><?php 
+
+      if ($count>0)
+      {
+        echo $count;
+      }
+      else 
+      {echo 0;}?> 
+      
+
+        </span></button>     
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block " style="width:300px; right:0">
+    <?php 
+    while($row=mysql_fetch_array($qry)){
+      $noti_action = $row['noti_action'];
+      $link = $row['link'];
+
+    ?>  <a href="<?php echo $link;?>" style="font-size: 13px;" class="w3-bar-item w3-button"><?php echo $noti_action; ?></a><?php
+      
+      
+    }
+    
+    ?>
+>>>>>>> 1754b9d11c3740b4bfef03c6f89fc6a6588d20cf
 
     <a href="admin_create_session.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Create Sessions">Create Sessions</a>
     <a href="logtrails.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Log Trails">Log Trails</a>
@@ -89,9 +138,19 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     <a href="report_admin.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Reporting">Reporting</a>
     
   </div>
+<<<<<<< HEAD
+=======
+  
+  <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 2</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 3</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large">My Profile</a>
+>>>>>>> 1754b9d11c3740b4bfef03c6f89fc6a6588d20cf
 
     <?php } ?>
 
+<<<<<<< HEAD
     <!-- R02 -->
     <?php if ($role_id=='R02'){?>
 
@@ -107,6 +166,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     
 
     <?php } ?>
+=======
+
+ </div>
+</div>
+>>>>>>> 1754b9d11c3740b4bfef03c6f89fc6a6588d20cf
 
     <!-- R03 -->
     <?php if ($role_id=='R03'){?>

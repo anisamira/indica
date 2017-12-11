@@ -58,8 +58,19 @@ include ('nav-noti.php');
                 <li><a href="logtrails.php">Log Trails</a></li>
 				<li><a href="calculation1.php">Calculation</a></li>  
                 <li><a href="workbench_dash.php">Dashboard</a></li>
+<<<<<<< HEAD
 				<li><a href="workbench_view.php">Module Workbench</a></li>
 				<li><a href="report_admin.php">Reporting</a></li>             
+=======
+
+				<!-- <li><a href="workbench_view.php">Module Workbench</a></li> -->
+				<li><a href="report_admin.php">Reporting</a></li>
+				<li><a href="calculation1.php">Calculation</a></li>                
+
+				<li><a href="workbench_view.php">Module Workbench</a></li>
+				<li><a href="report_admin.php">Reporting</a></li>             
+
+>>>>>>> 1754b9d11c3740b4bfef03c6f89fc6a6588d20cf
 				
                 <?php }
 				 if (($_SESSION['role_id']) == 'R02') {?>
