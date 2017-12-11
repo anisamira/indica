@@ -2,6 +2,31 @@
 <?php
 	include('sidebar.php');
 	 
+	$curyear=date ('Y');
+    $date_now=date ("m/d/Y");
+ $date_q= date ("06/30/Y");
+             if ($date_now<=$date_q)
+	{
+			$quater=1;
+	}
+else
+			$quater=2;	
+$sql			="SELECT * FROM session where session_status='1'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$_SESSION['session_name']	=$row['session_name'];
+						}
+						$session_name	=$_SESSION['session_name'];
+					}
+					else
+					{
+						echo "no data found";
+					}					
+		
+		
 	
 ?>
 
@@ -40,11 +65,11 @@ $result4=mysql_query($query) or die (mysql_error());
 				<table class="table table-bordered">
 				<thead>
 					<tr>
-						
+						<th><center>No</th>
 						<th><center>KPI</th>
 						<th><center>Target</th>
 						<th><center>Achievement</th> 
-						<!--<th><center>Indicator</th>-->
+						<th><center>Achievement Result (%)</th>
 						<!--<th><center>Action</th>-->
 					</tr>
 				</thead>
@@ -61,9 +86,11 @@ $result4=mysql_query($query) or die (mysql_error());
 					$ach_result =$row4['ach_result']?>
 					
 					 <tr style="font-size:13px">
+						<td><?php echo $x;?></td>
 						<td><?php echo $kpi_desc;?></td>
 						<td><?php echo $target;?></td>
 						<td><?php echo $ach_desc;?></td>
+						<td><?php echo $ach_result;?></td>
 						<!--<td><a class="btn btn-primary " href="calculation3.php?id='.$row['id'].'" name="calculate">Calculate Result</a></td>;-->
 					</tr><?php $x++; 
 				}
@@ -183,10 +210,25 @@ function c(val)
     document.getElementById("d").value=val;	
 	
 }
+
+$('.keyboard').keypress(function(e) 
+{
+if (e.which==13) {
+	alert("enter");
+	return e();
+}	
+});
+
 function math(val)
 {
     document.getElementById("d").value+=val;
 }
+
+function back() {
+    var value = document.getElementById("d").value;
+    document.getElementById("d").value = value.substr(0, value.length - 1);
+}
+
 function e()
 {
     try
@@ -195,7 +237,7 @@ function e()
     }
     catch(e)
     {
-      c('Error')
+      c(val)
     }
 	
 	return e();
@@ -205,10 +247,10 @@ function e()
 <body>
 <form action="calculation4.php" method="post">
 <div class="box">
-    <div class="display"><input type="text" name="varia" readonly size="15.75" id="d"></div> <br>
+    <div class="display"><input type="text" class="keyboard" onclick="this.select()" onKeyDown="if(event.keyCode==13) e()" name="varia" size="15.75" id="d"></div> <br>
     <div class="keys">
         <p>
-        <input type="button" class="button gray" value="mrc" onclick='c("not defined ")'>
+		<input type="button" class="button gray" value="&#8592" onclick='back()'>
         <input type="button" class="button gray" value="(" onclick='math("(")'>
         <input type="button" class="button gray" value=")" onclick='math(")")'>
         <input type="button" class="button pink" value="/" onclick='math("/")'>
@@ -238,7 +280,7 @@ function e()
         <input type="button" class="button orange" value="=" onclick='e()'>
         </p>
     </div><br><br><br>
-<center><input type ="submit" name="go">
+<center><input type ="Submit" value="Submit" name="go">
 <input type="hidden" name="module_id" value="<?php echo $module_id;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 <input type="hidden" name="ach_desc" value="<?php echo $ach_desc;?>"/>  

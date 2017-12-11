@@ -3,44 +3,51 @@
 <head>
 
 <?php
-	include('style_dc.php');
 	include('sidebar.php');
 	
-	
-	$moduleid=$_SESSION['module_id'];
-	$sesi=$_SESSION['session_name'];
-	
 	$curyear=date ('Y');
-    $date_now=date ("m/d/Y");
- $date_q= date ("06/30/Y");
- if ($date_now<=$date_q)
-{
-	$quater=1;
-}
-else
-    $quater=2;	
 	
+	$module_id		=$_SESSION['module_id'];
+	$user_id		=$_SESSION['user_id'];
 	$sql			="SELECT * FROM session where session_status='1'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
 						while($row=mysql_fetch_array($result))
 						{
+							$_SESSION['session_name']	=$row['session_name'];
 							$year1=$row['year1'];
 							$year2=$row['year2'];
 							$year3=$row['year3'];
 							$year4=$row['year4'];
 							$year5=$row['year5'];
+
 						}
+						$session_name	=$_SESSION['session_name'];
 					}
 					else
 					{
 						echo "no data found";
 					}
 	
-
+	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$_SESSION['form_status']	=$row['form_status'];
+							$_SESSION['form_id']		=$row['form_id'];
+						}
+						$form_status	=$_SESSION['form_status'];
+						$form_id		=$_SESSION['form_id'];
+					}
+					else
+					{
+						echo "no data found";
+					}
 	
-  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
+    $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
@@ -56,39 +63,36 @@ else
 					{
 						echo "no data found";
 					}
-	
-if (!isset($_SESSION['module_id'])&&!isset($_SESSION['session_name'])){
-header("location:workbench_view.php");
-}
-else{
-
-	
+	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$module_name=$row['module_name'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}					
+					
 	
 	?>
 
+		
 <div class="wrapper">
 
-
-
+		<!-- !PAGE CONTENT! -->
 			<div id="content">	
-
-
-<div class="topnav">
-  <a href="work_view.php">Information</a>
-  <a href="achieve_view.php">Achievement</a>
-  <a href="doc_view.php">Deliverables</a>
-  <a class="active" href="issue_view.php">Issue</a>
-  <a href="financial_view.php">Financial</a>
-
-</div>
 
 <body>
 
-							
 
 <?php
 
-						
 						$x=1;
 						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, issue.*, year.*
 						FROM goal 
@@ -102,22 +106,20 @@ else{
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN issue ON issue.ach_id=achievement.ach_id
 						JOIN year ON achievement.year_id=year.year_id						
-                        WHERE goal.module_id='$moduleid'
-						AND goal.session_name='$sesi'
-						AND form.module_id='$module_id'
+                        WHERE goal.module_id='$module_id'
+						AND goal.session_name='$session_name'
 						AND form.form_status='approved'
-						HAVING achievement.ach_desc < achievement.target
 						";
 						$result = mysql_query($sql) or die(mysql_error());
 
 						
 ?>
-                     
+                 
 <?php				
 					if (mysql_num_rows($result)>0)
 					{
 					?>
-<div class="table-responsive"> 					
+<div style="width:100%; overflow:scroll; position:relative;"> 					
 						<table class="table table-hover">
 									
 									
@@ -204,76 +206,21 @@ elseif 	($curyear==$year&&$year==$year5)
 </div>
 <?php					
 					}
-						
-?>
 
 
+					
+					else
+					{
+					
+						echo "No issue is recorded";
+							
+						?>
 
-
-
-</body>
-
-
-	</div>
-		</div>
-
-
-<script>
-$(document).ready(function() {
-  $("[data-toggle]").click(function() {
-    var toggle_el = $(this).data("toggle");
-    $(toggle_el).toggleClass("open-sidebar");
-  });
-     
-});
- 
-$(".swipe-area").swipe({
-    swipeStatus:function(event, phase, direction, distance, duration, fingers)
-        {
-            if (phase=="move" && direction =="right") {
-                 $(".container").addClass("open-sidebar");
-                 return false;
-            }
-            if (phase=="move" && direction =="left") {
-                 $(".container").removeClass("open-sidebar");
-                 return false;
-            }
-        }
-});
-</script>
-
-<style>
-body {margin:0;}
-
-.topnav {
-  overflow: hidden;
-  background-color: #332;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-</style>
-
-</html>
 <?php
-// the end
-}
-?>
+					
+					}
+						
+						?>
 
+</div>
+</div>			

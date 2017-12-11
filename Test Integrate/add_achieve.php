@@ -120,6 +120,7 @@ if (isset($_POST['Achievement1']))
 						WHERE NOT EXISTS(SELECT achievement.* FROM achievement 
 						WHERE achievement.target_id=target.target_id AND achievement.year_id='$year_id' AND achievement.quarter='$quater') 
 						AND goal.module_id='$module_id'
+						AND form.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='approved'
 						";
@@ -244,7 +245,7 @@ if (isset($_POST['Insert'])){
 	$targett=$_POST['tar'.$y];
 	$value=$_POST['target'.$y];
 	
-$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc,target,form_id, ach_status) VALUES ('$year_id','$value','$quater','$achievement','$targett','$form_id','pending')";
+$sql="INSERT INTO achievement (year_id,target_id,quarter,ach_desc,target,form_id, ach_status,ach_date) VALUES ('$year_id','$value','$quater','$achievement','$targett','$form_id','pending',Now())";
 $result = mysql_query($sql) or die(mysql_error());  											   
 												if (false === $result) 
 												{

@@ -159,10 +159,11 @@ elseif 	($curyear==$year&&$year==$year5)
 						FROM issue WHERE issue.ach_id=achievement.ach_id)
                         AND goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
+						AND form.module_id='$module_id'
 						AND form.form_status='approved'
 						AND achievement.year_id='$year_id'
 						AND achievement.quarter='2'
-                        HAVING achievement.ach_desc < achievement.target
+                        AND achievement.ach_desc < achievement.target
                         
 						";
 						
@@ -249,15 +250,15 @@ elseif 	($curyear==$year&&$year==$year5)
 								<td><?php echo $yearer;?></td>
 								<td><?php echo $targett;?></td>
 							    <td><?php echo $achievement;?></td>
-								<td><input class="form-control" style="width:156px;" type="text" name="reason<?php echo $x;?>" required/>
+								<td><input class="form-control" style="width:156px;" type="text" name="reason<?php echo $x;?>"/>
 								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
-								 <td><input class="form-control" style="width:156px;" type="text" name="pembetulan<?php echo $x;?>" required/>
+								 <td><input class="form-control" style="width:156px;" type="text" name="pembetulan<?php echo $x;?>"/>
 								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
-								<td><input class="form-control" type="date" name="date_pembetulan<?php echo $x;?>" required/>
+								<td><input class="form-control" type="date" name="date_pembetulan<?php echo $x;?>"/>
 								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>   
-							<td><input class="form-control" style="width:156px;" type="text" name="pencegahan<?php echo $x;?>" required/>
+							<td><input class="form-control" style="width:156px;" type="text" name="pencegahan<?php echo $x;?>"/>
 								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>
-								<td><input class="form-control" type="date" name="date_pencegahan<?php echo $x;?>" required/>
+								<td><input class="form-control" type="date" name="date_pencegahan<?php echo $x;?>"/>
 								   <input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/>   
 							</tr>
 							<?php

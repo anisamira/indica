@@ -1,6 +1,8 @@
 <?php
 
 include 'db.php';
+
+
 if(isset($_POST["Export"]))
 {
 		 
@@ -8,13 +10,14 @@ if(isset($_POST["Export"]))
 	$sesi=$_POST['sesi'];
 	$year=$_POST['year'];
 	$module_name=$_POST['modulename'];
+
 	
       header('Content-Type:text/csv; charset=utf-8');  
-      header('Content-Disposition: attachment; filename=issue_'.$module_name.'_'.$year.'.csv');  
+      header('Content-Disposition: attachment; filename=achievement_view.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Target','Achievement','Punca Tidak Capai','Rancangan','Tarikh Siap','Tindakan','Tarikh Siap'));  
-      $sql = "SELECT goal.module_id,goal.session_name,goal.goal_desc,kpi.kpi_desc,achievement.target,achievement.ach_desc,issue.reason,issue.pembetulan,issue.date_pembetulan,issue.pencegahan,issue.date_pencegahan 
-	                    FROM goal 
+      fputcsv($output, array('Module Name','Session','Goal','KPI', 'Year','Quater','Achievement '.$year.''));  
+      $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
+						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
 						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
@@ -22,14 +25,14 @@ if(isset($_POST["Export"]))
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
+						JOIN module ON module.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN issue ON issue.ach_id=achievement.ach_id
-						JOIN year ON achievement.year_id=year.year_id						
+						JOIN year ON achievement.year_id=year.year_id
                         WHERE goal.module_id='$moduleid'
-						AND form.module_id='$module_id'
 						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
-						HAVING achievement.ach_desc < achievement.target";
+						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
+						";
 
 	$result = mysql_query($sql) or die(mysql_error()); 
 
@@ -46,13 +49,14 @@ if(isset($_POST["Export1"]))
 	$sesi=$_POST['sesi'];
 	$year=$_POST['year1'];
 	$module_name=$_POST['modulename'];
+
 	
       header('Content-Type:text/csv; charset=utf-8');  
-      header('Content-Disposition: attachment; filename=issue_'.$module_name.'_'.$year.'.csv');  
+      header('Content-Disposition: attachment; filename=achievement.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Target','Achievement','Punca Tidak Capai','Rancangan','Tarikh Siap','Tindakan','Tarikh Siap'));  
-      $sql = "SELECT goal.module_id,goal.session_name,goal.goal_desc,kpi.kpi_desc,achievement.target,achievement.ach_desc,issue.reason,issue.pembetulan,issue.date_pembetulan,issue.pencegahan,issue.date_pencegahan 
-	                    FROM goal 
+      fputcsv($output, array('Module Name','Session','Goal','KPI', 'Year','Quater','Achievement '.$year.''));  
+      $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
+						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
 						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
@@ -61,13 +65,14 @@ if(isset($_POST["Export1"]))
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN issue ON issue.ach_id=achievement.ach_id
-						JOIN year ON achievement.year_id=year.year_id						
+						JOIN year ON achievement.year_id=year.year_id
+						JOIN module ON module.module_id=goal.module_id
                         WHERE goal.module_id='$moduleid'
 						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
-						AND year.year_name='$year'												
-						HAVING achievement.ach_desc < achievement.target";
+						AND year.year_name='$year'
+						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
+						";
 
 	$result = mysql_query($sql) or die(mysql_error()); 
 
@@ -76,7 +81,7 @@ if(isset($_POST["Export1"]))
            fputcsv($output, $row);  
       }  
       fclose($output);   
-	}
+	}		
 if(isset($_POST["Export2"]))
 {
 		 
@@ -84,13 +89,14 @@ if(isset($_POST["Export2"]))
 	$sesi=$_POST['sesi'];
 	$year=$_POST['year2'];
 	$module_name=$_POST['modulename'];
+
 	
       header('Content-Type:text/csv; charset=utf-8');  
-      header('Content-Disposition: attachment; filename=issue_'.$module_name.'_'.$year.'.csv');  
+      header('Content-Disposition: attachment; filename=achievement.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Target','Achievement','Punca Tidak Capai','Rancangan','Tarikh Siap','Tindakan','Tarikh Siap'));  
-      $sql = "SELECT goal.module_id,goal.session_name,goal.goal_desc,kpi.kpi_desc,achievement.target,achievement.ach_desc,issue.reason,issue.pembetulan,issue.date_pembetulan,issue.pencegahan,issue.date_pencegahan 
-	                    FROM goal 
+      fputcsv($output, array('Module Name','Session','Goal','KPI', 'Year','Quater','Achievement '.$year.''));  
+      $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
+						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
 						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
@@ -98,14 +104,16 @@ if(isset($_POST["Export2"]))
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
+						JOIN module ON module.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN issue ON issue.ach_id=achievement.ach_id
-						JOIN year ON achievement.year_id=year.year_id						
+						JOIN year ON achievement.year_id=year.year_id
                         WHERE goal.module_id='$moduleid'
+						AND form.module_id='$moduleid'
 						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
-						AND year.year_name='$year'												
-						HAVING achievement.ach_desc < achievement.target";
+						AND year.year_name='$year'
+						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
+						";
 
 	$result = mysql_query($sql) or die(mysql_error()); 
 
@@ -114,7 +122,8 @@ if(isset($_POST["Export2"]))
            fputcsv($output, $row);  
       }  
       fclose($output);   
-	}
+	}	
+	
 if(isset($_POST["Export3"]))
 {
 		 
@@ -122,13 +131,14 @@ if(isset($_POST["Export3"]))
 	$sesi=$_POST['sesi'];
 	$year=$_POST['year3'];
 	$module_name=$_POST['modulename'];
+
 	
       header('Content-Type:text/csv; charset=utf-8');  
-      header('Content-Disposition: attachment; filename=issue_'.$module_name.'_'.$year.'.csv');  
+      header('Content-Disposition: attachment; filename=achievement.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Target','Achievement','Punca Tidak Capai','Rancangan','Tarikh Siap','Tindakan','Tarikh Siap'));  
-      $sql = "SELECT goal.module_id,goal.session_name,goal.goal_desc,kpi.kpi_desc,achievement.target,achievement.ach_desc,issue.reason,issue.pembetulan,issue.date_pembetulan,issue.pencegahan,issue.date_pencegahan 
-	                    FROM goal 
+      fputcsv($output, array('Module Name','Session','Goal','KPI', 'Year','Quater','Achievement '.$year.''));  
+      $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
+						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
 						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
@@ -136,14 +146,15 @@ if(isset($_POST["Export3"]))
 						JOIN target ON target.kpi_id=kpi.kpi_id 
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
+						JOIN module ON module.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN issue ON issue.ach_id=achievement.ach_id
-						JOIN year ON achievement.year_id=year.year_id						
+						JOIN year ON achievement.year_id=year.year_id
                         WHERE goal.module_id='$moduleid'
 						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
-						AND year.year_name='$year'												
-						HAVING achievement.ach_desc < achievement.target";
+						AND year.year_name='$year'
+						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
+						";
 
 	$result = mysql_query($sql) or die(mysql_error()); 
 
@@ -152,8 +163,8 @@ if(isset($_POST["Export3"]))
            fputcsv($output, $row);  
       }  
       fclose($output);   
-	}
-
+	}		
+	
 if(isset($_POST["Export4"]))
 {
 		 
@@ -161,13 +172,14 @@ if(isset($_POST["Export4"]))
 	$sesi=$_POST['sesi'];
 	$year=$_POST['year4'];
 	$module_name=$_POST['modulename'];
+
 	
       header('Content-Type:text/csv; charset=utf-8');  
-      header('Content-Disposition: attachment; filename=issue_'.$module_name.'_'.$year.'.csv');  
+      header('Content-Disposition: attachment; filename=achievement.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Target','Achievement','Punca Tidak Capai','Rancangan','Tarikh Siap','Tindakan','Tarikh Siap'));  
-      $sql = "SELECT goal.module_id,goal.session_name,goal.goal_desc,kpi.kpi_desc,achievement.target,achievement.ach_desc,issue.reason,issue.pembetulan,issue.date_pembetulan,issue.pencegahan,issue.date_pencegahan 
-	                    FROM goal 
+      fputcsv($output, array('Module Name','Session','Goal','KPI', 'Year','Quater ','Achievement '.$year.''));  
+      $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
+						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
 						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
@@ -176,13 +188,14 @@ if(isset($_POST["Export4"]))
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN issue ON issue.ach_id=achievement.ach_id
-						JOIN year ON achievement.year_id=year.year_id						
+						JOIN year ON achievement.year_id=year.year_id
+						JOIN module ON module.module_id=goal.module_id
                         WHERE goal.module_id='$moduleid'
 						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
-						AND year.year_name='$year'												
-						HAVING achievement.ach_desc < achievement.target";
+						AND year.year_name='$year'
+						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
+						";
 
 	$result = mysql_query($sql) or die(mysql_error()); 
 
@@ -191,7 +204,8 @@ if(isset($_POST["Export4"]))
            fputcsv($output, $row);  
       }  
       fclose($output);   
-	}
+	}		
+	
 if(isset($_POST["Export5"]))
 {
 		 
@@ -199,13 +213,14 @@ if(isset($_POST["Export5"]))
 	$sesi=$_POST['sesi'];
 	$year=$_POST['year5'];
 	$module_name=$_POST['modulename'];
+
 	
       header('Content-Type:text/csv; charset=utf-8');  
-      header('Content-Disposition: attachment; filename=issue_'.$module_name.'_'.$year.'.csv');  
+      header('Content-Disposition: attachment; filename=achievement.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Target','Achievement','Punca Tidak Capai','Rancangan','Tarikh Siap','Tindakan','Tarikh Siap'));  
-      $sql = "SELECT goal.module_id,goal.session_name,goal.goal_desc,kpi.kpi_desc,achievement.target,achievement.ach_desc,issue.reason,issue.pembetulan,issue.date_pembetulan,issue.pencegahan,issue.date_pencegahan 
-	                    FROM goal 
+      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Year','Quater','Achievement '.$year.''));  
+      $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
+						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
 						JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
@@ -214,13 +229,14 @@ if(isset($_POST["Export5"]))
 						JOIN reference ON reference.kpi_id=kpi.kpi_id 
 						JOIN form ON form.module_id=goal.module_id
 						JOIN achievement ON achievement.target_id=target.target_id
-						JOIN issue ON issue.ach_id=achievement.ach_id
-						JOIN year ON achievement.year_id=year.year_id						
+						JOIN year ON achievement.year_id=year.year_id
+						JOIN module ON module.module_id=goal.module_id
                         WHERE goal.module_id='$moduleid'
 						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
-						AND year.year_name='$year'												
-						HAVING achievement.ach_desc < achievement.target";
+						AND year.year_name='$year'						
+						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
+						";
 
 	$result = mysql_query($sql) or die(mysql_error()); 
 
@@ -229,6 +245,7 @@ if(isset($_POST["Export5"]))
            fputcsv($output, $row);  
       }  
       fclose($output);   
-	}
+	}	
+	
 
 ?>

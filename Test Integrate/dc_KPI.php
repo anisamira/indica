@@ -58,7 +58,7 @@
 							{
 								$actionplan_id	=$_POST["actionplan_id"];
 								$kpi_desc 		= mysql_real_escape_string($_POST["kpi_desc"]); 
-								$sql			="INSERT INTO kpi (actionplan_id, kpi_desc) VALUES ('$actionplan_id','$kpi_desc')";
+								$sql			="INSERT INTO kpi (actionplan_id, kpi_desc,session_name) VALUES ('$actionplan_id','$kpi_desc','$session_name')";
 								$result			=mysql_query($sql) or die (mysql_error());
 								if (false===$result)
 									{
@@ -87,10 +87,11 @@
 							$x = 1;
 							if(isset($_GET['deletekpi']))
 							{
-								$query	=mysql_query("DELETE FROM kpi WHERE kpi_id=".$_GET['deletekpi']);
-								$query	=mysql_query("DELETE FROM baseline WHERE kpi_id=".$_GET['deletekpi']);
-								$query	=mysql_query("DELETE FROM target WHERE kpi_id=".$_GET['deletekpi']);
-								$query	=mysql_query("DELETE FROM reference WHERE kpi_id=".$_GET['deletekpi']);
+								$query1	=mysql_query("DELETE FROM kpi WHERE kpi_id=".$_GET['deletekpi']);
+								$query2	=mysql_query("DELETE FROM kpi WHERE kpi_id=".$_GET['deletekpi']);
+								$query3	=mysql_query("DELETE FROM baseline WHERE kpi_id=".$_GET['deletekpi']);
+								$query4	=mysql_query("DELETE FROM target WHERE kpi_id=".$_GET['deletekpi']);
+								$query5	=mysql_query("DELETE FROM master_status WHERE kpi_id=".$_GET['deletekpi']);
 							}	
 							$que="SELECT goal.*,strategy.*, actionplan.* 
 									FROM goal 

@@ -188,7 +188,24 @@ $sql			="SELECT * FROM session where session_status='1'";
 								$ach_id		=$row3['ach_id'];?>
 								<tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<td><?php echo $ach_result;?></td>
+										<?php if ($ach_result == 0)
+									{
+										echo "<td bgcolor='#918585'> $ach_result </td>";
+									
+									}
+									elseif ($ach_result <=49) 
+									{
+										echo "<td bgcolor='#FF0000'> $ach_result </td>";
+									}
+									elseif ($ach_result <=80)
+									{
+										echo "<td bgcolor='#FFFF00'> $ach_result </td>";
+									}
+									else 
+									{
+										echo "<td bgcolor='#3CB371'> $ach_result </td>";
+									}
+										?>
 								</tr><?php
 							}?>
 						</tbody>
@@ -280,7 +297,24 @@ $sql			="SELECT * FROM session where session_status='1'";
 								$ach_id		=$row5['ach_id'];?>
 								 <tr style="font-size:13px">
 									<td><?php echo $kpi_desc;?></td>
-									<td><?php echo $ach_result;?></td>
+										<?php if ($ach_result == 0)
+									{
+										echo "<td bgcolor='#918585'> $ach_result </td>";
+									
+									}
+									elseif ($ach_result <=49) 
+									{
+										echo "<td bgcolor='#FF0000'> $ach_result </td>";
+									}
+									elseif ($ach_result <=80)
+									{
+										echo "<td bgcolor='#FFFF00'> $ach_result </td>";
+									}
+									else 
+									{
+										echo "<td bgcolor='#3CB371'> $ach_result </td>";
+									}
+										?>
 								</tr><?php
 							}?>
 						</tbody>
@@ -340,7 +374,7 @@ Highcharts.chart('container2', {
         table: 'datatable2'
     },
     chart: {
-        type: 'pie'
+        type: 'column'
     },
     title: {
         text: '<?php echo $curyear;?>'

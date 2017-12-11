@@ -104,6 +104,7 @@ $year=$_POST['year'];
 						AND goal.module_id='$module_id'
 						AND goal.session_name='$session_name'
 						AND form.form_status='approved'
+						AND form.module_id='$module_id'
 						AND achievement.year_id='$year_id'
 						AND year.year_name='$year'
 						";
@@ -154,9 +155,9 @@ if (mysql_num_rows($result)>0)
 								<td><?php echo $year;?></td>
 								<td><?php echo $quater;?></td>
 								<td><?php echo $achievement;?></td>								
-								<td><input class="form-control" type="text" name="evidence_desc<?php echo $x;?>" required/>
+								<td><input class="form-control" type="text" name="evidence_desc<?php echo $x;?>"/>
 									<input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/></td>
-								<td><input class="form-control" type="file" name="evidence<?php echo $x;?>" required/>
+								<td><input class="form-control" type="file" name="evidence<?php echo $x;?>"/>
 									<input type="hidden" name="ach<?php echo $x;?>" value="<?php echo $ach_id;?>"/></td>
 							</tr>
 							<?php
@@ -252,17 +253,21 @@ if (move_uploaded_file($tmp_name, $path.$name)) {
     </body>
 <?php
 }
-}
-}
- 
-// end of this one 
- 
 $sql="INSERT INTO evidence (desc_file,filename,ach_id) VALUES ('$evidence_desc','$name','$value')";
 $result = mysql_query($sql) or die(mysql_error());  											   
 												if (false === $result) 
 												{
 													echo mysql_error();
-												}							
+												}
+}
+
+							
+
+}
+ 
+// end of this one 
+ 
+
 }
 								}
 
@@ -459,17 +464,19 @@ if (move_uploaded_file($tmp_name, $path.$name)) {
     </body>
 <?php
 }
-}
-}
- 
-// end of this one 
- 
+
 $sql="UPDATE evidence SET desc_file='$evidence_desc', filename='$name' WHERE ach_id='$value'";
 $result = mysql_query($sql) or die(mysql_error());  											   
 												if (false === $result) 
 												{
 													echo mysql_error();
-												}							
+												}
+}
+}
+ 
+// end of this one 
+ 
+							
 }
 								}
 

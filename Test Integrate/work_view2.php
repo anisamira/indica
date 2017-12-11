@@ -188,6 +188,7 @@ div.tab button.active {
 											JOIN reference ON reference.kpi_id=kpi.kpi_id
                                             JOIN form ON form.module_id=goal.module_id											
 											WHERE goal.module_id='$moduleid'
+											AND form.module_id='$module_id'
 											AND goal.session_name='$sesi'
 											AND form.form_status='approved' ";
 											$result = mysql_query($sql) or die(mysql_error());

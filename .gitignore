@@ -1,5 +1,12 @@
 Test Integrate/Uploads/files/ipoh jumaat.pdf
 Test Integrate.zip
 Test Integrate/sidebar.php
+<<<<<<< HEAD
 Test Integrate/nav-noti.php
 Test Integrate/nav-noti.php
+=======
+*.docx
+Test Integrate/Uploads/files/achievement (6).csv
+*.csv
+Test Integrate/Uploads/files/Sungai.txt
+>>>>>>> 2c011049aa007bac200e2fbb91edd10a14c97976

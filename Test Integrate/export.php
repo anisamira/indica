@@ -22,6 +22,7 @@ if(isset($_POST["export"]))
 						JOIN year ON achievement.year_id=year.year_id
 						JOIN evidence ON evidence.ach_id=achievement.ach_id
                         WHERE goal.module_id='$moduleid'
+						AND form.module_id='$module_id'
 						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
 						ORDER BY evidence.ach_id AND achievement.year_id

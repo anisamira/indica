@@ -89,8 +89,22 @@
 						$x=1;
 						if(isset($_GET['deleteaction']))
 							{
-								$query	=mysql_query("DELETE FROM actionplan WHERE actionplan_id=".$_GET['deleteaction']);
-								$query	=mysql_query("DELETE FROM KPI WHERE actionplan_id=".$_GET['deleteaction']);
+								$query1	=mysql_query("DELETE FROM actionplan WHERE actionplan_id=".$_GET['deleteaction']);
+								$query2	=mysql_query("DELETE FROM KPI WHERE actionplan_id=".$_GET['deleteaction']);
+								$query4 ="SELECT kpi.kpi_id, master_status.kpi_id ON master_status.kpi_id=kpi.kpi_id WHERE kpi.actionplan_id=".$_GET['deleteaction'];
+								$resultss = mysql_query($query4) or die(mysql_error());
+								if (mysql_num_rows($resultss)>0)
+								{
+									while($rows=mysql_fetch_array($resultss))
+									{
+										$kpi_id	=$row['kpi_id'];
+										$query3	=mysql_query("DELETE FROM master_status WHERE kpi_id='$kpi_id'");
+										
+									}
+									
+								}
+								
+								
 							}
 						$squery="SELECT goal.*,strategy.* 
 								FROM goal 

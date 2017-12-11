@@ -7,98 +7,98 @@
 	
 	$curyear=date ('Y');
     $date_now=date ("m/d/Y");
-	$date_q= date ("06/30/Y");
-	if ($date_now<=$date_q)
-	{
-		$quater=1;
-	}
-	else
-		$quater=2;	
+ $date_q= date ("06/30/Y");
+ if ($date_now<=$date_q)
+{
+	$quater=1;
+}
+else
+    $quater=2;	
 	
+	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
-	$sql			=mysql_query("SELECT * FROM session where session_status='1'");
-					if(mysql_num_rows($sql)>0)
+	$sql			="SELECT * FROM session where session_status='1'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
 					{
-						$module_id		=$_SESSION['module_id'];
-						while($row=mysql_fetch_array($sql))
+						while($row=mysql_fetch_array($result))
 						{
 							$_SESSION['session_name']	=$row['session_name'];
+							$year1=$row['year1'];
+							$year2=$row['year2'];
+							$year3=$row['year3'];
+							$year4=$row['year4'];
+							$year5=$row['year5'];
 						}
 						$session_name	=$_SESSION['session_name'];
-						$sql2			= mysql_query("SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'"); 
-						if(mysql_num_rows($sql2)>0)
-						{
-							while($row2=mysql_fetch_array($sql2))
-							{
-								$_SESSION['form_status']	=$row2['form_status'];
-								$_SESSION['form_id']		=$row2['form_id'];
-							}
-							$form_status	=$_SESSION['form_status'];
-							$form_id		=$_SESSION['form_id'];
-						}
-						else
-						{
-							echo "";
-						}
-
-						$sql3	= mysql_query("SELECT * FROM module WHERE module_id='$module_id'");
-						if(mysql_num_rows($sql3)>0)
-						{
-							while($row3=mysql_fetch_array($sql3))
-							{
-								$module_name=$row3['module_name'];
-								
-							}
-							
-						}
-						else
-						{
-							echo "";
-						}							
 					}
 					else
 					{
-						echo "";
+						echo "no data found";
 					}
 	
-	
-		
-  $sql4			= mysql_query("SELECT * FROM year WHERE year_name='$curyear'");
-
-					if(mysql_num_rows($sql4)>0)
+	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
 					{
-						while($row4=mysql_fetch_array($sql4))
+						while($row=mysql_fetch_array($result))
 						{
-							$year= $row4['year_name'];
-							$year_id=$row4['year_id'];		
+							$_SESSION['form_status']	=$row['form_status'];
+							$_SESSION['form_id']		=$row['form_id'];
+						}
+						$form_status	=$_SESSION['form_status'];
+						$form_id		=$_SESSION['form_id'];
+					}
+					else
+					{
+						echo "no data found";
+					}
+		
+  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$year= $row['year_name'];
+							$year_id=$row['year_id'];
+							
 						}
 						
 					}
 					else
 					{
-						echo "";
+						echo "no data found";
 					}			
-
+	
+	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$module_name=$row['module_name'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}	
+	
 	?>
 
 <div class="wrapper">
-	<!-- !PAGE CONTENT! -->
-	<div id="content">	
 
-		<div style="padding-left:16px">
-		&nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name;?> YEAR <?=$year?><br>
-		</div>
-		
-		<br>
-			<div class="topnav">
-			  <a class="active" href="work.php">Information</a>
-			  <a href="achieve.php">Achievement</a>
-			  <a href="doc.php">Deliverables</a>
-			  <a href="issue.php">Issue</a>
-			  <a href="financial.php">Financial</a>
-			</div>
-			
-			<div class="table-responsive">
+
+		<!-- !PAGE CONTENT! -->
+			<div id="content">	
+
+
+
+<br>
+ <div class="table-responsive">
 								<?php
 									$x=1;
 									$que="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
@@ -233,48 +233,15 @@
 															}
 													}?>
 												</table>
-											<?php
-									}
-				else
-				{
-
-				?>	
-					<div class="alert alert-info fade in" link rel="stylesheet" type="text/css" href="alert.css" />
-						<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-						<strong>Information</strong> 
-						<ul>
-							<li style="color:#000">No approved of the data yet. Please contact your Data Manager to approve the data.</li>
-						</ul>
-					</div><?php
-						
-		
-		
-		
-				}?>
-				
-		
-  
-</div>
-
-
-</div>
-  
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].onclick = function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight){
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  }
-}
-</script>
+												
+										<?php
+									}	
+									else
+									{?>
+									
+											<strong>No record found</strong> 
+										</div><?php	
+									}?>										
  
 </div>
 
@@ -282,45 +249,4 @@ for (i = 0; i < acc.length; i++) {
     </div>
 
 
-<style>
-body {margin:0;}
-
-.topnav {
-  overflow: hidden;
-  background-color: #332;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-</style>
-<script>
-$(document).ready(function() {
-  $("[data-toggle]").click(function() {
-    var toggle_el = $(this).data("toggle");
-    $(toggle_el).toggleClass("open-sidebar");
-  });
-     
-});
- 
-
-</script>
 </html>
-
-

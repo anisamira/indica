@@ -7,9 +7,8 @@ include ('nav-noti.php');
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>INDICA UM</title>
     
@@ -34,6 +33,7 @@ include ('nav-noti.php');
 <body>
     <div class="wrapper">
         <!-- Sidebar Holder -->
+		 <div class="col-2">
         <nav id="sidebar">
 
             <ul class="list-unstyled components">
@@ -56,21 +56,29 @@ include ('nav-noti.php');
                 </li>
                 <li><a href="admin_create_session.php">Create Sessions</a></li>
                 <li><a href="logtrails.php">Log Trails</a></li>
+				<li><a href="calculation1.php">Calculation</a></li>  
                 <li><a href="workbench_dash.php">Dashboard</a></li>
+<<<<<<< HEAD
 				<!-- <li><a href="workbench_view.php">Module Workbench</a></li> -->
 				<li><a href="report_admin.php">Reporting</a></li>
 				<li><a href="calculation1.php">Calculation</a></li>                
+=======
+				<li><a href="workbench_view.php">Module Workbench</a></li>
+				<li><a href="report_admin.php">Reporting</a></li>             
+>>>>>>> 2c011049aa007bac200e2fbb91edd10a14c97976
 				
                 <?php }
 				 if (($_SESSION['role_id']) == 'R02') {?>
 				 
 					<li><a href="main_dc.php">Home</a></li>
-					<li><a href="work.php">Module Workbench</a></li><?php
+					<li><a href="work.php">Module Workbench</a></li>
+					<li><a href="calculation1.php">Calculation</a></li> <?php
 					
 				 }
 				 
 				  if (($_SESSION['role_id']) == 'R03') {?>
-					<li><a href="main_dm.php">Home</a></li><?php		  
+					<li><a href="main_dm.php">Home</a></li>
+					<li><a href="calculation1.php">Calculation</a></li> <?php		  
 				  }
 				  
 				  if (($_SESSION['role_id']) == 'R04') {?>
@@ -94,6 +102,7 @@ include ('nav-noti.php');
 
 
         </div>
+		</div>
     </div>
 
 

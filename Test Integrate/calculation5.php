@@ -37,10 +37,10 @@ $sql			="SELECT * FROM session where session_status='1'";
 <div>
 
 	<?php
-	 if(isset($_POST['save']))
+	 if(isset($_POST['save']) )
 		{
-			$module_id=$_POST['moduleid'];
-		$sesi=$_POST['sesi']; 
+			$module_id=$_POST['module_id'];
+		$sesi=$_POST['sesi'];
 			// $sql2= "SELECT * FROM form WHERE session_name='$sesi' AND module_id='$module_id'";
 					// $result2 = mysql_query($sql2) or die(mysql_error()); 
 					// if(mysql_num_rows($result2)>0)
@@ -117,6 +117,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 							<input type="hidden" name="ach_id" value="<?php echo $ach_id;?>"/>    						
 						</form>
 						</td>
+						</td>
 					</tr><?php $x++; 
 				}
 			}
@@ -131,17 +132,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 ?>
 				</tbody>
 			</table>
-			<?php
-				
-
 			
-			/*else
-			{
-				echo "out";
-			}*/
-			
-			
-			?>
 			
 			<center><form method="post" action="calculation1.php"><input type="Submit" value="Back" name="Back"></form>
 
