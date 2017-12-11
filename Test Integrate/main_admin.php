@@ -964,7 +964,7 @@ elseif 	($year==$year5)
 <input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" name="Export3" value="export to excel">Download Excel</button>
+								<button type="submit" class="btn btn-primary" name="Export4" value="export to excel">Download Excel</button>
                             </div>
                    </div>                    
 				   </form> 	
@@ -1111,7 +1111,7 @@ elseif 	($year==$year5)
 <input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" name="Export3" value="export to excel">Download Excel</button>
+								<button type="submit" class="btn btn-primary" name="Export5" value="export to excel">Download Excel</button>
                             </div>
                    </div>                    
 				   </form> 	
@@ -1997,7 +1997,7 @@ elseif 	($curyear==$year&&$year==$year5)
 <input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+								<button type="submit" class="btn btn-primary" name="Export2" value="export to excel">Download Excel</button>
                             </div>
                    </div>                    
             </form> 
@@ -2148,7 +2148,7 @@ elseif 	($curyear==$year&&$year==$year5)
 <input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+								<button type="submit" class="btn btn-primary" name="Export3" value="export to excel">Download Excel</button>
                             </div>
                    </div>                    
             </form> 
@@ -2299,7 +2299,7 @@ elseif 	($curyear==$year&&$year==$year5)
 <input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+								<button type="submit" class="btn btn-primary" name="Export4" value="export to excel">Download Excel</button>
                             </div>
                    </div>                    
             </form> 
@@ -2451,7 +2451,7 @@ elseif 	($curyear==$year&&$year==$year5)
 <input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+								<button type="submit" class="btn btn-primary" name="Export5" value="export to excel">Download Excel</button>
                             </div>
                    </div>                    
             </form> 
@@ -2480,11 +2480,11 @@ elseif 	($curyear==$year&&$year==$year5)
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
-<input type="hidden" name="year1" value="<?php echo $year;?>"/>
+<input type="hidden" name="year" value="<?php echo $year;?>"/>
 <input type="hidden" name="modulename" value="<?php echo $module_name;?>"/>
                   <div class="form-group">
                             <div class="col-md-4 col-md-offset-4">
-								<button type="submit" class="btn btn-primary" name="Export1" value="export to excel">Download Excel</button>
+								<button type="submit" class="btn btn-primary" name="Export" value="export to excel">Download Excel</button>
                             </div>
                    </div>                    
             </form> 

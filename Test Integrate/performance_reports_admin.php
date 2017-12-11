@@ -8,22 +8,6 @@
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 
-	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$module_name=$row['module_name'];
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}	
-	
 	
 	?>
 
@@ -50,6 +34,21 @@
 							</select> 
 						</td>
 						<td>
+							<select class="form-control" name="moduleid"><?php
+								$sql=mysql_query("Select module_id from module");
+								$row=mysql_num_rows($sql);
+								while($row = mysql_fetch_array($sql))
+								{
+									$moduleid=$row['module_id'];
+
+									?>
+									
+									<option value="<?php  echo $moduleid?>"><?php  echo $moduleid;?></option>
+							      <?php
+								}?>	
+							</select> 
+						</td>
+						<td>
 							<select class="form-control" name="quarter">
 									
 									<option value="1"><?php  echo 'Quarter 1';?></option>
@@ -70,15 +69,16 @@ if (isset($_POST['send']))
 {
   $sesi=$_POST['sesi'];
     $quarter=$_POST['quarter'];
-	
+	    $moduleid=$_POST['moduleid'];
+		
   $x=1;
   $sql=("SELECT DISTINCT goal.module_id,goal.session_name,module.module_name,achievement.quarter 
   FROM goal 
   JOIN module ON goal.module_id=module.module_id 
   JOIN form ON form.module_id=goal.module_id
   JOIN achievement ON achievement.form_id=form.form_id
-  WHERE goal.module_id='$module_id'
-  AND goal.session_name='$sesi'
+  WHERE goal.session_name='$sesi'
+  AND module.module_id='$moduleid'
   AND achievement.quarter='$quarter'
   ");	
 	$result = mysql_query($sql) or die(mysql_error());
@@ -117,6 +117,7 @@ if (isset($_POST['send']))
 							<td><?php echo $sesi;?></td>
 								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 							<td><?php echo $name;?></td>
+							  <input type="hidden" name="quarter" value="<?php echo $quarter;?>"/>
 							<td style="width:10%;"><button type="submit" name="submit" class="btn btn-primary">Generate</button></td>
 							</form>
 

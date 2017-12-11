@@ -20,7 +20,8 @@
 											JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 											JOIN target ON target.kpi_id=kpi.kpi_id 
 											JOIN reference ON reference.kpi_id=kpi.kpi_id
-                                            JOIN form ON form.module_id=goal.module_id	
+                                            JOIN form ON form.module_id=goal.module_id
+											JOIN module ON module.module_id=goal.module_id											
 											JOIN achievement ON achievement.target_id=target.target_id
 											JOIN year ON achievement.year_id=year.year_id	 
 											WHERE goal.module_id='$moduleid'

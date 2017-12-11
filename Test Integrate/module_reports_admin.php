@@ -21,39 +21,6 @@
 					{
 						echo "no data found";
 					}
-	
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
-						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
-					}
-					else
-					{
-						echo "no data found";
-					}			
-	
-	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$module_name=$row['module_name'];
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}	
 
 	
 	?>
@@ -82,6 +49,21 @@
 								}?>	
 							</select> 
 						</td>
+						<td>
+							<select class="form-control" name="moduleid"><?php
+								$sql=mysql_query("Select module_id from module");
+								$row=mysql_num_rows($sql);
+								while($row = mysql_fetch_array($sql))
+								{
+									$moduleid=$row['module_id'];
+
+									?>
+									
+									<option value="<?php  echo $moduleid?>"><?php  echo $moduleid;?></option>
+							      <?php
+								}?>	
+							</select> 
+							</td>
 						<div class="form-actions">
 							<td><button type="submit" class ="btn btn-sucess" name="send" value="">Go</button></td>
 						</div>
@@ -94,8 +76,14 @@
 if (isset($_POST['send']))
 {	
 $sesi=$_POST['sesi'];
+$moduleid=$_POST['moduleid'];
+
   $x=1;
-  $sql=("SELECT DISTINCT goal.module_id, module.module_name, goal.session_name FROM goal JOIN module ON goal.module_id=module.module_id WHERE goal.session_name='$sesi'");
+  $sql=("SELECT DISTINCT goal.module_id, module.module_name, goal.session_name 
+  FROM goal JOIN module ON goal.module_id=module.module_id 
+  WHERE goal.session_name='$sesi'
+  AND goal.module_id='$moduleid'
+  ");
   	
 	$result = mysql_query($sql) or die(mysql_error());
 

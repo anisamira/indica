@@ -13,9 +13,9 @@ if(isset($_POST["Export"]))
 
 	
       header('Content-Type:text/csv; charset=utf-8');  
-      header('Content-Disposition: attachment; filename=achievement.csv');  
+      header('Content-Disposition: attachment; filename=achievement_view.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Year','Quater','Achievement'));  
+      fputcsv($output, array('Module Name','Session','Goal','KPI', 'Year','Quater','Achievement '.$year.''));  
       $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
@@ -54,7 +54,7 @@ if(isset($_POST["Export1"]))
       header('Content-Type:text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=achievement.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Year','Quater','Achievement'));  
+      fputcsv($output, array('Module Name','Session','Goal','KPI', 'Year','Quater','Achievement '.$year.''));  
       $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
@@ -94,7 +94,7 @@ if(isset($_POST["Export2"]))
       header('Content-Type:text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=achievement.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Year','Quater','Achievement'));  
+      fputcsv($output, array('Module Name','Session','Goal','KPI', 'Year','Quater','Achievement '.$year.''));  
       $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
@@ -136,7 +136,7 @@ if(isset($_POST["Export3"]))
       header('Content-Type:text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=achievement.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Year','Quater','Achievement'));  
+      fputcsv($output, array('Module Name','Session','Goal','KPI', 'Year','Quater','Achievement '.$year.''));  
       $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
@@ -177,7 +177,7 @@ if(isset($_POST["Export4"]))
       header('Content-Type:text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=achievement.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Year','Quater','Achievement'));  
+      fputcsv($output, array('Module Name','Session','Goal','KPI', 'Year','Quater ','Achievement '.$year.''));  
       $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
@@ -218,7 +218,7 @@ if(isset($_POST["Export5"]))
       header('Content-Type:text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=achievement.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Year','Quater','Achievement'));  
+      fputcsv($output, array('Module ID','Session','Goal','KPI', 'Year','Quater','Achievement '.$year.''));  
       $sql = "SELECT module.module_name,goal.session_name,goal.goal_desc,kpi.kpi_desc,year.year_name, achievement.quarter,achievement.ach_desc
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
