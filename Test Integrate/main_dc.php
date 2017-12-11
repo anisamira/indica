@@ -2,7 +2,15 @@
 <?php
 	include('style_dc.php');
 	include('sidebar.php');
-	
+	$curyear=date ('Y');
+	$date_now=date ("m/d/Y");
+	$date_q= date ("06/30/Y");
+	if ($date_now<=$date_q)
+	{
+		$quarter=1;
+	}
+	else
+		$quarter=2;	
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	$username		=$_SESSION['username'];
@@ -271,8 +279,39 @@
 								elseif($status=='rejected')
 									echo "<li style='color:#000;'>Your records are <b>rejected</b>. You need to update the records.</li>";
 									else
-										echo "<li style='color:#000;'>Your request to edit data has been sent. Contact Admin for any inquiries.</li>";?>
-								<li style='color:#000;'>Check Module Workbench to update achievement.</li>
+										echo "<li style='color:#000;'>Your request to edit data has been sent. Contact Admin for any inquiries.</li>";
+								$status="";	
+								$query3=mysql_query("SELECT ach_status FROM achievement where form_id='$form_id' AND quarter='$quarter' AND ach_status='pending'");
+								if(mysql_num_rows($query3)>0)
+								{
+									echo"<li style='color:#000;'>Achievement is <b>pending</b> for approval.</li>";
+									echo"<li style='color:#000;'>Contact Data Manager for an inquiries.</li>";
+									
+								}
+								else
+								{
+									$query4=mysql_query("SELECT ach_status FROM achievement where form_id='$form_id' AND quarter='$quarter' AND ach_status='reject'");
+									if(mysql_num_rows($query4)>0)
+									{
+										echo"<li style='color:#000;'>Achievement results for is <b>rejected</b> Update records in Module Workbench.</li>";
+									}
+									
+									else
+									{
+										$query5=mysql_query("SELECT ach_status FROM achievement where form_id='$form_id' AND quarter='$quarter' AND ach_status='approve'");
+										if(mysql_num_rows($query5)>0)
+										{
+											echo"<li style='color:#000;'>Achievement results are <b>approved</b>.</li>";
+										}
+										else
+										{
+											echo"<li style='color:#000;'>There is no achievement submitted yet.</li>";
+										}
+										
+									}
+									
+								}?>
+								
 							</ul>
 						</div><?php	
 			

@@ -33,7 +33,7 @@
 				
 				
 		<!--<div class="w3-main" style="margin-left:300px;margin-top:43px;">-->
-				<div  style="width:100%; overflow:scroll; position:relative;"> 
+				<div style="width:100%; overflow:scroll; position:relative;"> 
 					<form action="main_dm.php" method="post">
 						<table class="table table-bordered"> 						
 							<tr style="font-size:13px">
@@ -115,8 +115,8 @@
 							<td><?php echo $estimated_cost;?></td>
 							<td><?php echo $exp_fin_return;?></td>
 							<td><input type="hidden" name="kpi_id<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
-								<label class="radio-inline" style="color:#000"><input type="radio" name="approval<?php echo $x;?>" value="approve" required> Approve</input>
-								<input type="radio" name="approval<?php echo $x;?>" value="reject"> Reject</input></label>
+								<label class="radio-inline" style="color:#000"><input type="radio" name="approval<?php echo $x;?>" value="approve" required> Approve</input></label>
+								<input type="radio" name="approval<?php echo $x;?>" value="reject"> Reject</input>
 							</td>
 							<td><textarea cols="20" name="action_comment<?php echo $x;?>"></textarea></td>
 						</tr>

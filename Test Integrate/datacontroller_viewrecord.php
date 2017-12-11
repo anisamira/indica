@@ -13,6 +13,11 @@
 				<div style="width:100%; overflow:scroll; position:relative;"">  
 					
 					<?php
+					if(isset($_POST['submitrecord']))
+					{
+						$moduleID	=$_POST['module_id'];
+						$sessionname=$_POST['session_name'];
+						$formID	=$_POST['form_id'];
 							$x=1;
 							$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
 								FROM goal 
@@ -22,11 +27,11 @@
 								JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 								JOIN target ON target.kpi_id=kpi.kpi_id 
 								JOIN reference ON reference.kpi_id=kpi.kpi_id 
-								WHERE goal.module_id='$module_id'
-								AND goal.session_name='$session_name'";
+								WHERE goal.module_id='$moduleID'
+								AND goal.session_name='$sessionname'";
 								$result3 = mysql_query($sql) or die(mysql_error()); 
 								if (mysql_num_rows($result3)>0)
-								{?>
+								{ ?>
 									<table class="table table-hover"> 
 										<tr>
 											<th></th>
@@ -58,25 +63,25 @@
 											<th>Estimated Cost (RM)</th> 
 											<th>Expected Financial Returns</th> 											
 											</tr><?php
-											while($row=mysql_fetch_array($result3))
+											while($row3=mysql_fetch_array($result3))
 											{
-												$goal_desc		=$row['goal_desc'];
-												$strategy_desc	=$row['strategy_desc'];
-												$actionplan_desc=$row['actionplan_desc'];
-												$kpi_desc		=$row['kpi_desc'];
-												$kpi_id			=$row['kpi_id'];
-												$operation_def	=$row['operation_def'];
-												$baseline1		=$row['baseline1'];
-												$baseline2		=$row['baseline2'];
-												$target1		=$row['target1'];
-												$target2		=$row['target2'];
-												$target3		=$row['target3'];
-												$target4		=$row['target4'];
-												$target5		=$row['target5'];
-												$ownership		=$row['ownership'];
-												$data_source	=$row['data_source'];
-												$estimated_cost	=$row['estimated_cost'];
-												$exp_fin_return	=$row['exp_fin_return'];								
+												$goal_desc		=$row3['goal_desc'];
+												$strategy_desc	=$row3['strategy_desc'];
+												$actionplan_desc=$row3['actionplan_desc'];
+												$kpi_desc		=$row3['kpi_desc'];
+												$kpi_id			=$row3['kpi_id'];
+												$operation_def	=$row3['operation_def'];
+												$baseline1		=$row3['baseline1'];
+												$baseline2		=$row3['baseline2'];
+												$target1		=$row3['target1'];
+												$target2		=$row3['target2'];
+												$target3		=$row3['target3'];
+												$target4		=$row3['target4'];
+												$target5		=$row3['target5'];
+												$ownership		=$row3['ownership'];
+												$data_source	=$row3['data_source'];
+												$estimated_cost	=$row3['estimated_cost'];
+												$exp_fin_return	=$row3['exp_fin_return'];								
 												?>						
 								
 											
@@ -107,6 +112,7 @@
 									<input type="button" VALUE="Back" onClick="history.go(-1);"></input>
 									<?php
 								}
+								
 								else 
 									{ ?>
 										<div class="alert alert-warning alert-dismissable fade in">
@@ -114,7 +120,9 @@
 											<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 											<strong>No records to be viewed</strong> Redirecting in 1 seconds...
 										</div><?php	
-									}?>
+									}
+					}?>
+								
 													
 				</div>
 			</div>
