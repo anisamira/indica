@@ -24,11 +24,9 @@ $role_id=$_SESSION['role_id'];
 
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 
-=======
 <title>INDICA UM</title>
->>>>>>> 2c011049aa007bac200e2fbb91edd10a14c97976
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -46,7 +44,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <!-- Navbar -->
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-right-align w3-large">
-<<<<<<< HEAD
+
  <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
   <a href="#" class="w3-bar-item w3-button w3-padding-large w3-theme-d4"><i class="fa fa-home w3-margin-right"></i>Logo</a>
   <a href="#" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i></a>
@@ -55,12 +53,12 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
   <!-- <button class="w3-button w3-padding-large" title="Log Out">  <i class="fa fa-power-off"></i> -->
   <a href="logout.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-power-off"></i></a>
   <div class="w3-dropdown-hover w3-hide-small w3-right">
-=======
+
   <a class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2" 
      href="javascript:void(0);" onclick="openNav()"><i class="fa fa-bars"></i></a>
 
  <div class="w3-dropdown-hover w3-hide-small w3-right">
->>>>>>> 2c011049aa007bac200e2fbb91edd10a14c97976
+
     <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i>
     <span class="w3-badge w3-right w3-small w3-green"><?php 
 
@@ -89,7 +87,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     
     </div>
   </div>
-<<<<<<< HEAD
   
   <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large">
   <a href="#" class="w3-bar-item w3-button w3-padding-large">Link 1</a>
@@ -99,8 +96,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 
 </div>
 
-=======
->>>>>>> 2c011049aa007bac200e2fbb91edd10a14c97976
+
  </div>
 </div>
 

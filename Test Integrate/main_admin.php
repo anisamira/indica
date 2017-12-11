@@ -20,14 +20,8 @@ include ('sidebar.php');
     <!-- Page Content Holder -->
     <div id="content">
 
-<<<<<<< HEAD
-           
+  
 
-</div>
-</div>
-        
-    </div>
-=======
 	<style>
 .btnadmin {
     background-color: #4CAF50;
@@ -2601,7 +2595,7 @@ for (i = 0; i < acc.length; i++) {
 
 
   </div>
->>>>>>> 2c011049aa007bac200e2fbb91edd10a14c97976
+
 </div>
 
 
