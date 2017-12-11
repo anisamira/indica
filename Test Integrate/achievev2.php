@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+
 
 <?php
 	//include('style_dc.php');
@@ -9,21 +9,21 @@
 	
 	$curyear=date ('Y');
     $date_now=date ("m/d/Y");
- $date_q= date ("06/30/Y");
- if ($date_now<=$date_q)
-{
-	$quater=1;
-}
-else
-    $quater=2;	
+	 $date_q= date ("06/30/Y");
+	 if ($date_now<=$date_q)
+	{
+		$quater=1;
+	}
+	else
+		$quater=2;	
 	
-	$module_id		=$_SESSION['module_id'];
+	
 	$user_id		=$_SESSION['user_id'];
-	$sql			="SELECT * FROM session where session_status='1'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
+	$sql			=mysql_query("SELECT * FROM session where session_status='1'"); 
+					if(mysql_num_rows($sql)>0)
 					{
-						while($row=mysql_fetch_array($result))
+						$module_id		=$_SESSION['module_id'];
+						while($row=mysql_fetch_array($sql))
 						{
 							$_SESSION['session_name']	=$row['session_name'];
 							$year1=$row['year1'];
@@ -32,180 +32,179 @@ else
 							$year4=$row['year4'];
 							$year5=$row['year5'];
 						}
-						$session_name	=$_SESSION['session_name'];
-					}
-					else
-					{
-						echo "no data found";
-					}
-	
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
+						$session_name	=$_SESSION['session_name'];	
+						$sql2			= mysql_query("SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'"); 
+						if(mysql_num_rows($sql2)>0)
 						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
+							while($row2=mysql_fetch_array($sql2))
+							{
+								$_SESSION['form_status']	=$row2['form_status'];
+								$_SESSION['form_id']		=$row2['form_id'];
+							}
+							$form_status	=$_SESSION['form_status'];
+							$form_id		=$_SESSION['form_id'];
 						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
-					}
-					else
-					{
-						echo "no data found";
-					}
-	
-  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
+						else
 						{
-							$year= $row['year_name'];
-							$year_id=$row['year_id'];
+							echo "no data found";
+						}	
+
+						$sql3	= mysql_query("SELECT * FROM module WHERE module_id='$module_id'");
+						if(mysql_num_rows($sql3)>0)
+						{
+							while($row=mysql_fetch_array($sql3))
+							{
+								$module_name=$row['module_name'];		
+							}
 							
 						}
-						
+						else
+						{
+							echo "";
+						}	
 					}
 					else
 					{
-						echo "no data found";
+						echo "";
 					}
+	
+	
+	
+			  $sql4			= mysql_query("SELECT * FROM year WHERE year_name='$curyear'");
+								if(mysql_num_rows($sql4)>0)
+								{
+									while($row4=mysql_fetch_array($sql4))
+									{
+										$year= $row4['year_name'];
+										$year_id=$row4['year_id'];
+									}			
+								}
+								else
+								{
+									echo "";
+								}
 					
-	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$module_name=$row['module_name'];
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}				
+	 				
 
 	?>
 
+	<head>
+		<style>
+		button.accordion {
+			background-color: #eee;
+			color: #444;
+			cursor: pointer;
+			padding: 18px;
+			width: 100%;
+			border: none;
+			text-align: left;
+			outline: none;
+			font-size: 15px;
+			transition: 0.4s;
+		}
 
-<style>
-button.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    transition: 0.4s;
-}
+		button.accordion.active, button.accordion:hover {
+			background-color: #ccc; 
+		}
 
-button.accordion.active, button.accordion:hover {
-    background-color: #ccc; 
-}
+		div.panel {
+			padding: 0 18px;
+			display: none;
+			background-color: white;
+		}
 
-div.panel {
-    padding: 0 18px;
-    display: none;
-    background-color: white;
-}
+		body {margin:0;}
 
-body {margin:0;}
+		.topnav {
+		  overflow: hidden;
+		  background-color: #332;
+		}
 
-.topnav {
-  overflow: hidden;
-  background-color: #332;
-}
+		.topnav a {
+		  float: left;
+		  display: block;
+		  color: #f2f2f2;
+		  text-align: center;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		  font-size: 17px;
+		}
 
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
+		.topnav a:hover {
+		  background-color: #ddd;
+		  color: black;
+		}
 
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
+		.topnav a.active {
+			background-color: #4CAF50;
+			color: white;
+		}
+		</style>
+	</head>
 
-.topnav a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-</style>	
 	
 <div class="wrapper">
+	<!-- !PAGE CONTENT! -->
+	<div id="content">
 
-	
-		<!-- !PAGE CONTENT! -->
-		<div id="content">	
-
-<div style="padding-left:16px">
-  &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name?> YEAR <?=$year?>
-  <br>
-</div>
-			
-<br>			
-<div class="topnav">
-  <a href="work.php">Information</a>
-  <a class="active" href="achieve.php">Achievement</a>
-  <a href="doc.php">Deliverables</a>
-  <a href="issue.php">Issue</a>
-  <a href="financial.php">Financial</a>
-
-</div>
-
-
-</br>
-<table>
-<tr><td>
-				<form class="pure-form pure-form-aligned" action="add_achieve.php" method="post">
-					<input type="submit" name="Achievement1" value="Check for an Achievement" >
-					</form>
-	</td>
-<td>	
-<?php
-$sql="SELECT * 
-		FROM achievement 
-		WHERE form_id='$form_id' AND quarter='$quater' AND ach_status='reject'";
-		$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{	
-?>
+			<div style="padding-left:16px">
+			  &nbsp&nbspWELCOME TO <?=$module_name?> <?=$session_name?> YEAR <?=$year?>
+			  <br>
+			</div>
+			<br>			
+			<div class="topnav">
+			  <a href="work.php">Information</a>
+			  <a class="active" href="achieve.php">Achievement</a>
+			  <a href="doc.php">Deliverables</a>
+			  <a href="issue.php">Issue</a>
+			  <a href="financial.php">Financial</a>
+			</div>
+			</br>
+			<table>
+				<tr>
+					<td>
 						<form class="pure-form pure-form-aligned" action="add_achieve.php" method="post">
-					<input type="submit" name="update" value="Update Records" >
-				</form>	
-		</td>
-		<div class="alert alert-info fade in">
-		<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-		<strong>Information</strong> 
-		<ul>
-			<li style="color:#000">Some of Your achievement are rejected. You need to update the records.</li>
-		</ul>
-	</div>
-		<?php				
-		}
-		
-?>
-	
-</tr>
-</table>		
+							<input type="submit" name="Achievement1" value="Check for an Achievement" >
+						</form>
+					</td>
+					<td>	
+					<?php
+					$sql5=mysql_query("SELECT * 
+										FROM achievement 
+										WHERE form_id='$form_id' AND quarter='$quater' AND ach_status='reject'");
+										if(mysql_num_rows($sql5)>0)
+											{	?>
+												<form class="pure-form pure-form-aligned" action="add_achieve.php" method="post">
+													<input type="submit" name="update" value="Update Records" >
+												</form>	
+												</td>
+												<div class="alert alert-info fade in">
+													<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+													<strong>Information</strong> 
+													<ul>
+														<li style="color:#000">Some of Your achievement are rejected. You need to update the records.</li>
+													</ul>
+												</div><?php				
+											}?>
+							
+										</tr>
+									</table>	
+
+
+									
+
+			
+
+
+
+
+
+					
 <?php
-$sql="SELECT * 
+$sql6=mysql_query("SELECT * 
 		FROM achievement 
-		WHERE form_id='$form_id' AND quarter='$quater' AND ach_status='pending'";
-		$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
+		WHERE form_id='$form_id' AND quarter='$quater' AND ach_status='pending'"); 
+					if(mysql_num_rows($sql6)>0)
 					{	
 ?>
 		<div class="alert alert-info fade in">
@@ -225,7 +224,7 @@ $sql="SELECT *
 <br>
 
 
-<button class="accordion"><?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
+<button class="accordion"><center><?=$year1?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center>
  
 </button>
 <div class="panel">
@@ -233,7 +232,7 @@ $sql="SELECT *
  <?php
 	
 							
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
+						$sql7="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -252,11 +251,11 @@ $sql="SELECT *
 						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						
-						$result = mysql_query($sql) or die(mysql_error()); 
+						$result7 = mysql_query($sql7) or die(mysql_error()); 
 
 						
 						
-						if(mysql_num_rows($result) > 0)
+						if(mysql_num_rows($result7) > 0)
 					{
 						
 						$x=1;
@@ -282,25 +281,25 @@ $sql="SELECT *
 										<th>Achievement</th>
 									</tr>
 <?php					
-						$result = mysql_query($sql) or die(mysql_error()); 
-						while($row=mysql_fetch_array($result))
+						$result7 = mysql_query($sql7) or die(mysql_error()); 
+						while($row=mysql_fetch_array($result7))
 						{
-							$kpi_id			=$row['kpi_id'];
-							$goal_desc		=$row['goal_desc'];
-							$kpi_desc		=$row['kpi_desc'];
-							$target_id		=$row['target_id'];
-							$achievement	=$row['ach_desc'];
-							$year           =$row['year_name'];
-							$quarterq       =$row['quarter'];
-							$yearid         =$row['year_id'];
+							$kpi_id			=$row7['kpi_id'];
+							$goal_desc		=$row7['goal_desc'];
+							$kpi_desc		=$row7['kpi_desc'];
+							$target_id		=$row7['target_id'];
+							$achievement	=$row7['ach_desc'];
+							$year           =$row7['year_name'];
+							$quarterq       =$row7['quarter'];
+							$yearid         =$row7['year_id'];
 							
 							
 							
-							$target1= $row['target1'];
-							$target2= $row['target2'];
-							$target3= $row['target3'];
-							$target4= $row['target4'];
-							$target5= $row['target5'];
+							$target1= $row7['target1'];
+							$target2= $row7['target2'];
+							$target3= $row7['target3'];
+							$target4= $row7['target4'];
+							$target5= $row7['target5'];
 							
 						
 if ($year==$year1)
@@ -360,13 +359,13 @@ elseif 	($year==$year5)
 
  
 
-<button class="accordion"><?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+<button class="accordion"><center><?=$year2?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
 
 <?php
 	
 							
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
+						$sql8="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -385,11 +384,11 @@ elseif 	($year==$year5)
 						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						
-						$result = mysql_query($sql) or die(mysql_error()); 
+						$result8 = mysql_query($sql8) or die(mysql_error()); 
 
 						
 						
-						if(mysql_num_rows($result) > 0)
+						if(mysql_num_rows($result8) > 0)
 					{
 						
 						$x=1;
@@ -418,22 +417,22 @@ elseif 	($year==$year5)
 						$result = mysql_query($sql) or die(mysql_error()); 
 						while($row=mysql_fetch_array($result))
 						{
-							$kpi_id			=$row['kpi_id'];
-							$goal_desc		=$row['goal_desc'];
-							$kpi_desc		=$row['kpi_desc'];
-							$target_id		=$row['target_id'];
-							$achievement	=$row['ach_desc'];
-							$year           =$row['year_name'];
-							$quarterq       =$row['quarter'];
-							$yearid         =$row['year_id'];
+							$kpi_id			=$row8['kpi_id'];
+							$goal_desc		=$row8['goal_desc'];
+							$kpi_desc		=$row8['kpi_desc'];
+							$target_id		=$row8['target_id'];
+							$achievement	=$row8['ach_desc'];
+							$year           =$row8['year_name'];
+							$quarterq       =$row8['quarter'];
+							$yearid         =$row8['year_id'];
 							
 							
 							
-							$target1= $row['target1'];
-							$target2= $row['target2'];
-							$target3= $row['target3'];
-							$target4= $row['target4'];
-							$target5= $row['target5'];
+							$target1= $row8['target1'];
+							$target2= $row8['target2'];
+							$target3= $row8['target3'];
+							$target4= $row8['target4'];
+							$target5= $row8['target5'];
 							
 						
 if ($year==$year1)
@@ -495,13 +494,13 @@ elseif 	($year==$year5)
 						</div> 
 
 						
-<button class="accordion"><?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+<button class="accordion"><center><?=$year3?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
  
  <?php
 	
 							
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
+						$sql9="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -520,11 +519,11 @@ elseif 	($year==$year5)
 						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						
-						$result = mysql_query($sql) or die(mysql_error()); 
+						$result9 = mysql_query($sql9) or die(mysql_error()); 
 
 						
 						
-						if(mysql_num_rows($result) > 0)
+						if(mysql_num_rows($result9) > 0)
 					{
 						
 						$x=1;
@@ -550,25 +549,25 @@ elseif 	($year==$year5)
 										<th>Achievement</th>
 									</tr>
 <?php					
-						$result = mysql_query($sql) or die(mysql_error()); 
-						while($row=mysql_fetch_array($result))
+						$result9 = mysql_query($sql9) or die(mysql_error()); 
+						while($row9=mysql_fetch_array($result9))
 						{
-							$kpi_id			=$row['kpi_id'];
-							$goal_desc		=$row['goal_desc'];
-							$kpi_desc		=$row['kpi_desc'];
-							$target_id		=$row['target_id'];
-							$achievement	=$row['ach_desc'];
-							$year           =$row['year_name'];
-							$quarterq       =$row['quarter'];
-							$yearid         =$row['year_id'];
+							$kpi_id			=$row9['kpi_id'];
+							$goal_desc		=$row9['goal_desc'];
+							$kpi_desc		=$row9['kpi_desc'];
+							$target_id		=$row9['target_id'];
+							$achievement	=$row9['ach_desc'];
+							$year           =$row9['year_name'];
+							$quarterq       =$row9['quarter'];
+							$yearid         =$row9['year_id'];
 							
 							
 							
-							$target1= $row['target1'];
-							$target2= $row['target2'];
-							$target3= $row['target3'];
-							$target4= $row['target4'];
-							$target5= $row['target5'];
+							$target1= $row9['target1'];
+							$target2= $row9['target2'];
+							$target3= $row9['target3'];
+							$target4= $row9['target4'];
+							$target5= $row9['target5'];
 							
 						
 if ($year==$year1)
@@ -629,13 +628,13 @@ elseif 	($year==$year5)
 </div>
 
 
-<button class="accordion"><?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+<button class="accordion"><center><?=$year4?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
  
  <?php
 	
 							
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
+						$sqls="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -654,11 +653,11 @@ elseif 	($year==$year5)
 						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						
-						$result = mysql_query($sql) or die(mysql_error()); 
+						$results = mysql_query($sqls) or die(mysql_error()); 
 
 						
 						
-						if(mysql_num_rows($result) > 0)
+						if(mysql_num_rows($results) > 0)
 					{
 						
 						$x=1;
@@ -684,25 +683,25 @@ elseif 	($year==$year5)
 										<th>Achievement</th>
 									</tr>
 <?php					
-						$result = mysql_query($sql) or die(mysql_error()); 
-						while($row=mysql_fetch_array($result))
+						$results = mysql_query($sqls) or die(mysql_error()); 
+						while($rows=mysql_fetch_array($results))
 						{
-							$kpi_id			=$row['kpi_id'];
-							$goal_desc		=$row['goal_desc'];
-							$kpi_desc		=$row['kpi_desc'];
-							$target_id		=$row['target_id'];
-							$achievement	=$row['ach_desc'];
-							$year           =$row['year_name'];
-							$quarterq       =$row['quarter'];
-							$yearid         =$row['year_id'];
+							$kpi_id			=$rows['kpi_id'];
+							$goal_desc		=$rows['goal_desc'];
+							$kpi_desc		=$rows['kpi_desc'];
+							$target_id		=$rows['target_id'];
+							$achievement	=$rows['ach_desc'];
+							$year           =$rows['year_name'];
+							$quarterq       =$rows['quarter'];
+							$yearid         =$rows['year_id'];
 							
 							
 							
-							$target1= $row['target1'];
-							$target2= $row['target2'];
-							$target3= $row['target3'];
-							$target4= $row['target4'];
-							$target5= $row['target5'];
+							$target1= $rows['target1'];
+							$target2= $rows['target2'];
+							$target3= $rows['target3'];
+							$target4= $rows['target4'];
+							$target5= $rows['target5'];
 							
 						
 if ($year==$year1)
@@ -763,13 +762,13 @@ elseif 	($year==$year5)
 </div>
 
 
-<button class="accordion"><?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></button>
+<button class="accordion"><center><?=$year5?><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></center></button>
 <div class="panel">
  
  <?php
 	
 							
-						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
+						$sqls1="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*,achievement.*,year.*
 						FROM goal 
 						JOIN strategy ON strategy.goal_id=goal.goal_id 
 						JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
@@ -788,11 +787,11 @@ elseif 	($year==$year5)
 						ORDER BY (kpi.kpi_id AND achievement.year_id AND achievement.quarter)
 						";
 						
-						$result = mysql_query($sql) or die(mysql_error()); 
+						$results1 = mysql_query($sqls1) or die(mysql_error()); 
 
 						
 						
-						if(mysql_num_rows($result) > 0)
+						if(mysql_num_rows($results1) > 0)
 					{
 						
 						$x=1;
@@ -818,25 +817,25 @@ elseif 	($year==$year5)
 										<th>Achievement</th>
 									</tr>
 <?php					
-						$result = mysql_query($sql) or die(mysql_error()); 
-						while($row=mysql_fetch_array($result))
+						$results1 = mysql_query($sqls1) or die(mysql_error()); 
+						while($rows1=mysql_fetch_array($results1))
 						{
-							$kpi_id			=$row['kpi_id'];
-							$goal_desc		=$row['goal_desc'];
-							$kpi_desc		=$row['kpi_desc'];
-							$target_id		=$row['target_id'];
-							$achievement	=$row['ach_desc'];
-							$year           =$row['year_name'];
-							$quarterq       =$row['quarter'];
-							$yearid         =$row['year_id'];
+							$kpi_id			=$rows1['kpi_id'];
+							$goal_desc		=$rows1['goal_desc'];
+							$kpi_desc		=$rows1['kpi_desc'];
+							$target_id		=$rows1['target_id'];
+							$achievement	=$rows1['ach_desc'];
+							$year           =$rows1['year_name'];
+							$quarterq       =$rows1['quarter'];
+							$yearid         =$rows1['year_id'];
 							
 							
 							
-							$target1= $row['target1'];
-							$target2= $row['target2'];
-							$target3= $row['target3'];
-							$target4= $row['target4'];
-							$target5= $row['target5'];
+							$target1= $rows1['target1'];
+							$target2= $rows1['target2'];
+							$target3= $rows1['target3'];
+							$target4= $rows1['target4'];
+							$target5= $rows1['target5'];
 							
 						
 if ($year==$year1)
@@ -893,7 +892,10 @@ elseif 	($year==$year5)
 
 
 
-</div>
+			</div>
+														
+
+
 						
 						
 </div>
