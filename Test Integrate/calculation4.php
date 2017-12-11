@@ -107,15 +107,16 @@ $result4=mysql_query($query) or die (mysql_error());
 				</tbody>
 			</table>
 			
+			
 <head>		
 	
-<center><form action="calculation2.php" method="post">
+<center><form action="calculation5.php" method="post">
 <input type="hidden" name="module_id" value="<?php echo $module_id;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 <input type="hidden" name="ach_desc" value="<?php echo $ach_desc;?>"/>  
 <input type="hidden" name="target" value="<?php echo $target;?>"/> 
 <input type="hidden" name="ach_id" value="<?php echo $ach_id;?>"/>    
-<input type ="submit" name="submit" value="Back to Main Page">
+<center><input type ="submit" name="save" value="Back to Main Page">
 </form>			
 			
 <?php

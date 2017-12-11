@@ -88,7 +88,7 @@ if(isset($_POST["search"])){
   else{
  	{
 		//print error message
-		echo 'No code found';
+		echo 'No Code Found';
 	}
 	// once processing is complete
 	// free result set
@@ -156,7 +156,7 @@ if(isset($_POST["select"])){
   else{
  	{
 		//print error message
-		echo 'No code found';
+		echo 'No Code Found';
 	}
 	// once processing is complete
 	// free result set

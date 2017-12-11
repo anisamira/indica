@@ -65,12 +65,14 @@ include ('nav-noti.php');
 				 if (($_SESSION['role_id']) == 'R02') {?>
 				 
 					<li><a href="main_dc.php">Home</a></li>
-					<li><a href="work.php">Module Workbench</a></li><?php
+					<li><a href="work.php">Module Workbench</a></li>
+					<li><a href="calculation1.php">Calculation</a></li> <?php
 					
 				 }
 				 
 				  if (($_SESSION['role_id']) == 'R03') {?>
-					<li><a href="main_dm.php">Home</a></li><?php		  
+					<li><a href="main_dm.php">Home</a></li>
+					<li><a href="calculation1.php">Calculation</a></li> <?php		  
 				  }
 				  
 				  if (($_SESSION['role_id']) == 'R04') {?>
