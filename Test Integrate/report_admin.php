@@ -33,27 +33,9 @@ else
 					}
 					else
 					{
-						echo "no data found";
+						echo "no data found 43";
 					}
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
-						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
-					}
-					else
-					{
-						echo "no data found";
-					}
-
-				
-
+	
 
 
  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
@@ -70,7 +52,7 @@ else
 					}
 					else
 					{
-						echo "no data found";
+						echo "no data found 23";
 					}
 
 									

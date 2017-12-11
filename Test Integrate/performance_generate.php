@@ -11,16 +11,17 @@
       header('Content-Type:text/csv; charset=utf-8');  
       header('Content-Disposition: attachment; filename=Performance_Report '.$module_name.'_'.$sesi.'.csv');  
       $output = fopen("php://output", "w"); 
-      fputcsv($output, array('Year','Module ID','Session','Goal','Strategies', 'Action Plan', 'KPI','Operation Definition','Target','Achievement','Achievement Result'));  
-      $sql = "SELECT year.year_name, goal.module_id,goal.session_name,goal.goal_desc,strategy.strategy_desc,actionplan.actionplan_desc,kpi.kpi_desc,kpi.operation_def,achievement.target,achievement.ach_desc,achievement.ach_result
+      fputcsv($output, array('Year','Module Name','Session','Goal','Strategies', 'Action Plan', 'KPI','Operation Definition','Quarter','Target '.$year.' ','Achievement '.$year.'','Achievement Result'));  
+      $sql = "SELECT year.year_name, module.module_name,goal.session_name,goal.goal_desc,strategy.strategy_desc,actionplan.actionplan_desc,kpi.kpi_desc,kpi.operation_def,achievement.quarter,achievement.target,achievement.ach_desc,achievement.ach_result
 											FROM goal
-											JOIN strategy ON strategy.goal_id=goal.goal_id 
+											JOIN strategy ON strategy.goal_id=goal.goal_id
 											JOIN actionplan ON actionplan.strategy_id=strategy.strategy_id 
 											JOIN kpi ON kpi.actionplan_id=actionplan.actionplan_id 
 											JOIN baseline ON baseline.kpi_id=kpi.kpi_id 
 											JOIN target ON target.kpi_id=kpi.kpi_id 
 											JOIN reference ON reference.kpi_id=kpi.kpi_id
-                                            JOIN form ON form.module_id=goal.module_id	
+                                            JOIN form ON form.module_id=goal.module_id
+											JOIN module ON module.module_id=goal.module_id
 											JOIN achievement ON achievement.target_id=target.target_id
 											JOIN year ON achievement.year_id=year.year_id	 
 											WHERE goal.module_id='$moduleid'

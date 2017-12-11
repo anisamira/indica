@@ -148,8 +148,8 @@
 												{?>
 														<input type="hidden" name="kpi<?php echo $x;?>" value="<?php echo $kpi_id;?>"></input>
 														<td><input class="form-control" type="text" name="operation_def<?php echo $x;?>" required></input></td>
-														<td><input class="form-control" type="number" name="baseline1<?php echo $x;?>" required></input></td>
-														<td><input class="form-control" type="number" name="baseline2<?php echo $x;?>" required></input></td>
+														<td><input class="form-control" type="text" name="baseline1<?php echo $x;?>" required></input></td>
+														<td><input class="form-control" type="text" name="baseline2<?php echo $x;?>" required></input></td>
 														<td><button class="btn-u btn-u-red" type="button" style="float:right" disabled><i class="fa fa-trash-o"/></button></td>
 														<td><button class="btn-u btn-u-red" type="button" disabled><i class="fa fa-pencil"/></button></td>
 													</tr>	<?php										

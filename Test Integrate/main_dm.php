@@ -345,8 +345,23 @@ $count=mysql_num_rows($qry);
 					if(mysql_num_rows($result)>0)
 					{?>
 						<tr style="font-size:13px">  
-								<td>KPI Achievement Quarter <?php echo $quarter;?> Year <?php echo $curyear;?></td>	
-								<td></td>
+								<td>KPI Achievement Quarter <?php echo $quarter;?> Year <?php echo $curyear;?></td>	<?php
+								$sqlz= mysql_query("SELECT distinct DATE_FORMAT(ach_date, '%d-%m-%Y') AS ach_date
+													FROM achievement 
+													WHERE form_id='$form_id' AND quarter='$quarter'");
+								if(mysql_num_rows($sqlz)>0)
+								{
+									while($rowz=mysql_fetch_array($sqlz))
+									{
+										$ach_date= $rowz['ach_date'];
+										echo "<td>".$ach_date."</td>";
+									}
+									
+								}
+								else
+									{
+										echo "<td></td>";
+									}?>
 									<form action="datamanager_achieve.php" method="post"><?php 
 										$query= "SELECT * 
 												FROM achievement 

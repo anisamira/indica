@@ -7,24 +7,8 @@
 
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
-
-	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$module_name=$row['module_name'];
-							
-						}
-						
-					}
-					else
-					{
-						echo "no data found";
-					}	
 	
-	
+		
 	?>
 
 <div class="wrapper">
@@ -50,6 +34,21 @@
 								}?>	
 							</select> 
 						</td>
+						<td>
+							<select class="form-control" name="moduleid"><?php
+								$sql=mysql_query("Select module_id from module");
+								$row=mysql_num_rows($sql);
+								while($row = mysql_fetch_array($sql))
+								{
+									$moduleid=$row['module_id'];
+
+									?>
+									
+									<option value="<?php  echo $moduleid?>"><?php  echo $moduleid;?></option>
+							      <?php
+								}?>	
+							</select> 
+							</td>
 						<div class="form-actions">
 							<td><button type="submit" class ="btn btn-sucess" name="send" value="">Go</button></td>
 						</div>
@@ -62,10 +61,14 @@
 if (isset($_POST['send']))
 {
    $sesi=$_POST['sesi'];
+   $moduleid=$_POST['moduleid'];
 	
   $x=1;
-  $sql=("SELECT DISTINCT goal.module_id,goal.session_name,module.module_name FROM goal JOIN module ON goal.module_id=module.module_id 
-  WHERE goal.session_name='$sesi'");
+  $sql=("SELECT DISTINCT goal.module_id,goal.session_name,module.module_name 
+  FROM goal JOIN module ON goal.module_id=module.module_id 
+  WHERE goal.session_name='$sesi'
+  AND goal.module_id='$moduleid'
+  ");
   	
 	$result = mysql_query($sql) or die(mysql_error());
 

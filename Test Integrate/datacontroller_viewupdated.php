@@ -48,9 +48,17 @@
 									<td>KPI Achievement <?php echo $session_name;?></td>
 									<td><?php echo $last_updated;?></td>
 									<td><?php echo $form_status;?></td>
-									<td>
-									<button onclick="location.href='datacontroller_viewrecord.php'" type="button">View Record</button>
-											<button data-toggle="modal" data-target="#responsive">Request Edit</button>
+									<td><div class="row">
+											<div class="col-md-4">
+												<form action="datacontroller_viewrecord.php" method="post">
+													<input type="hidden" name="module_id" value="<?php echo $module_id;?>"></input>
+													<input type="hidden" name="form_id" value="<?php echo $form_id;?>"></input>
+													<input type="hidden" name="session_name" value="<?php echo $session_name;?>"></input>
+													<input type="submit" name="submitrecord" value="View Record"></input>
+												</form>
+											</div>
+											<div class="col-md-8"><button data-toggle="modal" data-target="#responsive">Request Edit</button></div>
+										</div>	
 												<div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
 														<div class="modal-content">
