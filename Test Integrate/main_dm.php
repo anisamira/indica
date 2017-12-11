@@ -1,7 +1,7 @@
 <html><body>
 <?php
 	include('sidebar.php');
-	include('style_dc.php');
+	// include('style_dc.php');
  $curyear=date ('Y');
  $date_now=date ("m/d/Y");
  $date_q= date ("06/30/Y");
@@ -200,7 +200,7 @@ else
 
 <!-- NOTIFICATION DISPLAY -->
 
-<?php 
+<!-- <?php 
 $get_noti_qwr = "select notif_user.*, notif_main.* from notif_user JOIN notif_main ON notif_main.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";
 $qry = mysql_query($get_noti_qwr);
 $count=mysql_num_rows($qry);
@@ -231,7 +231,7 @@ $count=mysql_num_rows($qry);
 				mysql_query($update_query);
 			}
 
-	?>
+	?> -->
 
 <!-- END NOTIFICATION DISPLAY -->
 

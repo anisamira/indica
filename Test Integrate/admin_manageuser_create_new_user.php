@@ -1,5 +1,5 @@
 <?php
-include ('sidebar.php');
+include ('nav-noti.php');
 
 if(isset($_POST['submit'])){
     
