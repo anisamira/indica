@@ -30,7 +30,9 @@ session_start();
 						header("location:main_dm.php ");
 						 }elseif(	$_SESSION['role_id']=='R04'){
 						header("location:main_vc.php ");
-						 }else{
+						 }elseif(	$_SESSION['role_id']=='R04'){
+						header("location:main_vc.php ");}
+						else{
 							 
 						 }					
 			
