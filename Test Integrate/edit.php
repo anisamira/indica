@@ -11,6 +11,8 @@
     {  
     javascript function to open in the same window   
         echo "<script>window.open('admin_manageuser_view_profileuser.php','_self')</script>";  
+        echo "<script>window.open('$link.php','_self')</script>";   
+        
     }  
       
     ?>  

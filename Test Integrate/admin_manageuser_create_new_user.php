@@ -52,11 +52,11 @@ if(isset($_POST['submit'])){
           </div>
     <?php }
     ?>
-
+            
             <form name="" action="" method="post" class="pure-form pure-form-aligned">
             <fieldset>
 
-            <!-- <div class="pure-control-group">
+            <div class="pure-control-group">
                 <label for="fname"><b>First Name</b></label>
                 <input name="fname" type="text" placeholder="First Name">
                 <span class="pure-form-message-inline">* This is a required field.</span>
@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
                 <label for="lname"><b>Last Name</b></label>
                 <input name="lname" type="text" placeholder="Last Name">
                 <span class="pure-form-message-inline">* This is a required field.</span>
-            </div> -->
+            </div>
 
             <div class="pure-control-group">
                 <label for="uname"><b>Username</b></label>
@@ -141,6 +141,7 @@ if(isset($_POST['submit'])){
             </div>
         </fieldset>
         </form>
+        
 
     </body>
 </html>
