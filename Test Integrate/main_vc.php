@@ -247,7 +247,100 @@ $sql			= "SELECT COUNT(DISTINCT achievement.ach_id) AS takcapai
 						echo "no data found";
 					}					
 
-$sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS resultcapai
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS green
+					FROM achievement 
+					JOIN form ON form.form_id=achievement.form_id 
+					WHERE achievement.ach_result >= 80 
+					AND form.form_id='$form_id' 
+					AND form.module_id='$module_id' 
+					AND form.session_name='$session_name' 
+					AND achievement.year_id='$year_id'
+					AND achievement.quarter='$quater'
+						";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$green= $row['green'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS yellow
+					FROM achievement 
+					JOIN form ON form.form_id=achievement.form_id 
+					WHERE achievement.ach_result BETWEEN 50 AND 79 
+					AND form.form_id='$form_id' 
+					AND form.module_id='$module_id' 
+					AND form.session_name='$session_name' 
+					AND achievement.year_id='$year_id'
+						";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$yellow= $row['yellow'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS red
+					FROM achievement 
+					JOIN form ON form.form_id=achievement.form_id 
+					WHERE achievement.ach_result BETWEEN 1 AND 50 
+					AND form.form_id='$form_id' 
+					AND form.module_id='$module_id' 
+					AND form.session_name='$session_name' 
+					AND achievement.year_id='$year_id'
+						";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$red= $row['red'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS grey
+					FROM achievement 
+					JOIN form ON form.form_id=achievement.form_id 
+					WHERE achievement.ach_result NOT BETWEEN 0 AND 100
+					AND form.form_id='$form_id' 
+					AND form.module_id='$module_id' 
+					AND form.session_name='$session_name' 
+					AND achievement.year_id='$year_id'
+						";
+					$result = mysql_query($sql) or die(mysql_error()); 
+					if(mysql_num_rows($result)>0)
+					{
+						while($row=mysql_fetch_array($result))
+						{
+							$grey= $row['grey'];
+							
+						}
+						
+					}
+					else
+					{
+						echo "no data found";
+					}					
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS resultt
 					FROM achievement 
 					JOIN form ON form.form_id=achievement.form_id 
 					WHERE form.form_id='$form_id' 
@@ -260,7 +353,7 @@ $sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS resultcapai
 					{
 						while($row=mysql_fetch_array($result))
 						{
-							$resultcapai= $row['resultcapai'];
+							$resultt= $row['resultt'];
 							
 						}
 						
@@ -268,7 +361,7 @@ $sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS resultcapai
 					else
 					{
 						echo "no data found";
-					}									
+					}										
 					?>
 	
 
@@ -405,13 +498,13 @@ $sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS resultcapai
         <i class="fa fa-close [ js-collapser ]"></i>
         KPI Health
 		<br>
-		Green:
+		Green:<?=$green;?>
 		<br>
-		Amber:
+		Yellow:<?=$yellow;?>
 		<br>
-		Red:
+		Red:<?=$red;?>
 		<br>
-		Grey:
+		Grey:<?=$grey;?>
 <form class="pure-form pure-form-aligned" action="graph_kpi.php" method="post" target="_blank" name="Read">		
 <div class="col-md-4 col-md-offset-4">
 		<button type="submit" class="btn btn-primary" name="unachieve">Read More</button>
