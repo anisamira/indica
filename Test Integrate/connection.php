@@ -8,7 +8,7 @@ include('db.php');
 	$result = mysql_num_rows($ses_sql);
 	
 	$login_session=$result['username'];	
-	//$myusername = $_SESSION['username'];
+	$myusername = $_SESSION['username'];
 	$mypassword = $_SESSION['password'];
 	$myrole_id = $_SESSION['role_id'];	
 
