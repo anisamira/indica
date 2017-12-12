@@ -140,16 +140,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     <!-- R03 -->
     <?php if ($role_id=='R03'){?>
 
-    <a href="dm_home.php" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 "><i class="fa fa-home w3-margin-right"></i>INDICA UM</a> 
-    <a href="datamanager_review.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Approval">Approval</a>
+    <a href="main_dm.php" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 "><i class="fa fa-home w3-margin-right"></i>INDICA UM</a>        
     <a href="calculation1.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
     
     <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large" >
-	<a href="datamanager_review.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Approval">Approval</a>
-    <a href="calculation1.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
-    <a href="logout.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Logout">Log Out</a>
+      <a href="calculation1.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
+      <a href="logout.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Logout">Log Out</a>
       
-
      </div>
     
     
@@ -194,12 +191,38 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         <?php 
           while($row=mysql_fetch_array($qry))
           {
+            $noti_list_id = $row['noti_list_id'];
             $noti_action = $row['noti_action'];
             $link = $row['link'];?>
 
-            <a href="<?php echo $link;?>" style="font-size: 13px;" class="w3-bar-item w3-button"><?php echo $noti_action; ?></a>
-            <?php
-          }?>    
+            <form method="post" action="">
+            <input style="font-size: 13px; vertical-align:bottom;overflow:visible; font-size:1em; display:inline;  background:#fff; margin:0; padding:0; border:0; cursor:pointer;" 
+            class="w3-bar-item w3-button" name="Submit" type="submit" value="<?php echo $noti_action; ?>"></input>
+            <input type="hidden" value="<?php echo $link;?>" name="link">
+            <input type="hidden" value="<?php echo $noti_list_id;?>" name="list_id">            
+            </form>
+
+        <?php 
+        if (isset($_POST['Submit'])){
+
+          $link = $_POST['link'];
+          $list_id = $_POST['list_id'];
+
+          $update_query = " UPDATE notif_user_r03 
+                            SET noti_status='s' 
+                            where noti_status='u' 
+                            AND noti_list_id='$list_id' ";
+          mysql_query($update_query);
+
+          echo "<script>window.open('$link','_self')</script>";  
+          
+        }
+          
+          
+          }
+          
+          ?>    
+
       </div>
   </div>
 
@@ -208,7 +231,6 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <!-- End Page Container -->
 </div>
 <br>
-<?php echo $user_id;?>
 
 <script>
 // Used to toggle the menu on smaller screens when clicking on the menu button
