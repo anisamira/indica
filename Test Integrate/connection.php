@@ -8,15 +8,19 @@ include('db.php');
 	$result = mysql_num_rows($ses_sql);
 	
 	$login_session=$result['username'];	
-	$myusername = $_SESSION['username'];
+	//$myusername = $_SESSION['username'];
 	$mypassword = $_SESSION['password'];
 	$myrole_id = $_SESSION['role_id'];	
 
 
-	if(!isset($_SESSION['login_user']))
-		{
-			
-			header("location:index.php");
-			echo "Invalid username or password.";
-		}  
+if (!isset($_SESSION['username']))
+{
+     echo "<h5>Error: You must login to access this page. Redirecting... </h5>";
+    echo "<html>";
+    echo "<script>";
+  echo "window.location.href='index.php'";
+    echo "</script>";
+    echo "</html>";
+    exit;
+ }
 ?>
