@@ -22,14 +22,14 @@ include ('nav-noti.php');
 <div id="content">
 
     
-    <?php 
+    <!-- <?php 
    if(!empty($_GET['deleted'])){?>
           <div class="error_alert">
           <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
           <strong>User has been deleted</strong> 
           </div>
   <?php }
-  ?>
+  ?> -->
 
 
  <!-- <strong><center>View All User</strong></center> -->
@@ -84,7 +84,7 @@ include ('nav-noti.php');
                     <td><?php echo $role_name ?> </td>
                     <!-- <td><?php echo $user_status ?></td> -->
                     <!-- <td><a onclick="return confirm('Delete this record?')" href="delete.php?del=<?php echo $user_id ?>"><button class="btn btn-danger">Delete</button></a></td> -->
-                    <td><a onclick="return confirm('Edit this user profile?')" href="edit.php?edit=<?php echo $user_id ?>"><button class="btn btn-danger">Edit User</button></a></td>
+                    <td><a onclick="return confirm('View this user profile?')" href="admin_manageuser_view_profileuser.php?edit=<?php echo $user_id ?>"><button class="btn btn-danger">View This User</button></a></td>
                 </tr>
 
                 
@@ -104,12 +104,12 @@ include ('nav-noti.php');
 </html> 
 <script>
 
-$('a.delete').on('click', function() {
-    var choice = confirm('Do you really want to delete this record?');
-    if(choice === true) {
-        return true;
-    }
-    return false;
-});
+// $('a.delete').on('click', function() {
+//     var choice = confirm('Do you really want to delete this record?');
+//     if(choice === true) {
+//         return true;
+//     }
+//     return false;
+// });
 
 </script>

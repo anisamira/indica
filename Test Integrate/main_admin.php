@@ -24,7 +24,7 @@ include ('nav-noti.php');
 
 	<style>
 .btnadmin {
-    background-color: #4CAF50;
+    background-color: #034f84 ;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -39,6 +39,8 @@ include ('nav-noti.php');
 	
 }
 </style>
+
+
 	
 
 <center><h5>Click Button below to view the Current Session Workbench</h5>	
@@ -82,8 +84,7 @@ include ('nav-noti.php');
 <input type="hidden" name="moduleid" value="M06"/> 
 </form>
 </td>
-</tr>
-<tr>
+
 <td></td>
 <td>
 <form action="" name="Module7" method="post">
@@ -444,6 +445,7 @@ else
 						$x=1;
 						
 						?>
+						 <div class="table-responsive">
 						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
@@ -524,7 +526,7 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
-				
+				</div>
 						<form class="pure-form pure-form-aligned" action="achieve_view_admin.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
@@ -593,6 +595,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
+						 <div class="table-responsive">
 						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
@@ -673,6 +676,7 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
+						</div>
 								<form class="pure-form pure-form-aligned" action="achieve_view_admin.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
@@ -740,6 +744,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
+						 <div class="table-responsive">
 						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
@@ -820,6 +825,7 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
+						</div>
 			 	<form class="pure-form pure-form-aligned" action="achieve_view_admin.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
@@ -886,6 +892,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
+						 <div class="table-responsive">
 						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
@@ -966,6 +973,7 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
+						</div>
 						
 			<form class="pure-form pure-form-aligned" action="achieve_view_admin.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
@@ -1034,6 +1042,7 @@ elseif 	($year==$year5)
 						$x=1;
 						
 						?>
+						 <div class="table-responsive">
 						<table class="table table-hover">
 					                <col width="10%">
 									<col width="20%">
@@ -1114,6 +1123,7 @@ elseif 	($year==$year5)
 						}
 						?>
 						</table>
+						</div>
 <form class="pure-form pure-form-aligned" action="achieve_view_admin.php" method="post" name="upload_excel"   
                       enctype="multipart/form-data">
 <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>
@@ -1202,6 +1212,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
+						 <div class="table-responsive">
 						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
@@ -1271,7 +1282,7 @@ $module_id=$_SESSION['module_id'];
 					
 
 </table> 
-
+</div>
 
 </div>
 					
@@ -1316,6 +1327,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
+						 <div class="table-responsive">
 						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
@@ -1385,7 +1397,7 @@ $module_id=$_SESSION['module_id'];
 					
 
 </table> 
-
+</div>
 
 </div>					
 
@@ -1428,6 +1440,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
+						 <div class="table-responsive">
 						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
@@ -1539,6 +1552,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
+						 <div class="table-responsive">
 						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
@@ -1608,7 +1622,7 @@ $module_id=$_SESSION['module_id'];
 					
 
 </table> 
-
+</div>
 
 </div>
 					
@@ -1650,6 +1664,7 @@ $module_id=$_SESSION['module_id'];
 					if(mysql_num_rows($result) > 0)
 					{
 						?>
+						 <div class="table-responsive">
 						  <table class="table table-hover">
 									<col width="5%">
 									<col width="10%">
@@ -1720,7 +1735,7 @@ $module_id=$_SESSION['module_id'];
 					
 
 </table> 
-
+</div>
 
 
 </div>
