@@ -168,35 +168,7 @@
 
 	<div class="wrapper">
 		<div id="content">	
-			<!-- NOTIFICATION DISPLAY -->
-
-			<?php 
-			
-			$get_noti_qwr 	= "select notif_user.*, notif_main_r02.* from notif_user JOIN notif_main_r02 ON notif_main_r02.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";
-			$qry 			= mysql_query($get_noti_qwr, $conn);
-			$count			=mysql_num_rows($qry);?>
-
-			<form action="" method="POST" >
-				<input style="<?php 
-				if($count > 0 )
-				{
-					echo "color: white;border:none;background-color: red;";
-				}
-
-				?>" type="submit" name="submit" value="notification<?php echo '('.$count.')' ?>"/>
-			</form><?php
-
-			if(isset($_POST['submit']))
-			{
-				while ($r=mysql_fetch_array($qry))
-				{
-					$noti_action = $r['noti_action'];
-					echo $noti_action;
-				} 
-		
-				$update_query = "update notif_user SET noti_status='s' where user_id='$user_id';";
-				mysql_query($update_query,$conn);
-			}
+			<?php
 			
 			
 			$queries			=mysql_query("SELECT * FROM session where session_status='1'");
