@@ -89,7 +89,7 @@ include ('nav-noti.php');
                     <button><?php echo $ses; ?></button></a></td>
                     <td><?php echo $date_created ?></td>
                     <td><?php echo $created_by ?></td>
-                    <td><a onclick="return confirm('Delete this record?')" href="deleteSession.php?del=<?php echo $session_name ?>"><button class="btn btn-danger">Delete</button></a></td>
+                    <td><a onclick="return confirm('WARNING: This action will delete this record permanently. Do you want to proceed?')" href="deleteSession.php?del=<?php echo $session_name ?>"><button class="btn btn-danger">Delete</button></a></td>
 
 
                 </tr>
