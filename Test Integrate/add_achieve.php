@@ -263,47 +263,48 @@ $result = mysql_query($sql) or die(mysql_error());
 												
 				<?php								
 								
-									// buat ayat notification
-			$form = $session_name." " .$module_id;
-			$action = $username." has submitted achievement of ".$form." year ".$curyear. " Quarter " .$quater ." for approval";			
+									// // buat ayat notification
+			// $form = $session_name." " .$module_id;
+			// $action = $username." has submitted achievement of ".$form." year ".$curyear. " Quarter " .$quater ." for approval";			
 			
-			// masukkan notification dalam table main notification
-		$sql_noti1= "UPDATE notif_main SET noti_action='$action' where form_id='$form_id'";
-		$ressqlnoti1= mysql_query($sql_noti1);
+			// // masukkan notification dalam table main notification
+		// $sql_noti1= "UPDATE notif_main SET noti_action='$action' where form_id='$form_id'";
+		// $ressqlnoti1= mysql_query($sql_noti1);
 
-		// tarik specific notification 
-		$sql_noti2   ="SELECT noti_id FROM notif_main WHERE form_id='$form_id'";
-		$ressqlnoti2=mysql_query($sql_noti2);
-		while($row=mysql_fetch_array($ressqlnoti2))
-		{
-			// masukkan data dalam notif_user so each user yang berkaitan dapat notification masing2
-			$noti_id    =$row['noti_id'];
-			// user_id = receiver notification
-			$sqly = "SELECT user_id FROM user WHERE role_id='R03' AND module_id='$module_id'";
-			$resulty    =mysql_query($sqly);
+		// // tarik specific notification 
+		// $sql_noti2   ="SELECT noti_id FROM notif_main WHERE form_id='$form_id'";
+		// $ressqlnoti2=mysql_query($sql_noti2);
+		// while($row=mysql_fetch_array($ressqlnoti2))
+		// {
+			// // masukkan data dalam notif_user so each user yang berkaitan dapat notification masing2
+			// $noti_id    =$row['noti_id'];
+			// // user_id = receiver notification
+			// $sqly = "SELECT user_id FROM user WHERE role_id='R03' AND module_id='$module_id'";
+			// $resulty    =mysql_query($sqly);
 
-			while($row2=mysql_fetch_array($resulty))
-			{
-				$user		=$row2['user_id'];
-				$query		= "SELECT * FROM notif_user WHERE noti_id='$noti_id' AND user_id='$user_id'";
-				$result_q   =mysql_query($query);
-				if(mysql_num_rows($result_q)>0)
-				{
-					$sqlx   ="UPDATE  notif_user SET noti_status='u' WHERE noti_id='$noti_id' AND user_id='$user'";
-				}
-				else
-				{
-					$sqlx   ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user', 'u', '$username')";
-				}
+			// while($row2=mysql_fetch_array($resulty))
+			// {
+				// $user		=$row2['user_id'];
+				// $query		= "SELECT * FROM notif_user WHERE noti_id='$noti_id' AND user_id='$user_id'";
+				// $result_q   =mysql_query($query);
+				// if(mysql_num_rows($result_q)>0)
+				// {
+					// $sqlx   ="UPDATE  notif_user SET noti_status='u' WHERE noti_id='$noti_id' AND user_id='$user'";
+				// }
+				// else
+				// {
+					// $sqlx   ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user', 'u', '$username')";
+				// }
 				
-				$resultx    =mysql_query($sqlx);
+				// $resultx    =mysql_query($sqlx);
 
-			}
+			// }
 			
-		}
-								
-			$form = $session_name." " .$module_id;
-      $action = $username." has submitted achievement data ".$form." for approval";
+		// }
+													
+		
+$form = $session_name." " .$module_id;
+      $action = $username." has submitted achievement of ".$form." year ".$curyear. " Quarter " .$quater ." for approval";
 
       $sqly = "SELECT user_id FROM user WHERE role_id='R03' AND module_id='$module_id'";
       $resulty    =mysql_query($sqly);
@@ -313,8 +314,7 @@ $result = mysql_query($sql) or die(mysql_error());
         $sqlx      ="INSERT INTO notif_user_r03 (user_id, noti_action, noti_status, sender, link) VALUES ('$user', '$action', 'u', '$username', 'main_dm.php')";
         $resultx    =mysql_query($sqlx);
 
-      }					
-								
+      }						
 								
 								}
 ?>
@@ -475,46 +475,7 @@ $result = mysql_query($sql) or die(mysql_error());
 												}							
 }
 
-
-					
-									// buat ayat notification
-			$form = $session_name." " .$module_id;
-			$action = $username." has submitted achievement of ".$form." year ".$curyear. " Quarter " .$quater ." for approval";			
-			
-			// masukkan notification dalam table main notification
-		$sql_noti1= "UPDATE notif_main SET noti_action='$action' where form_id='$form_id'";
-		$ressqlnoti1= mysql_query($sql_noti1);
-
-		// tarik specific notification 
-		$sql_noti2   ="SELECT noti_id FROM notif_main WHERE form_id='$form_id'";
-		$ressqlnoti2=mysql_query($sql_noti2);
-		while($row=mysql_fetch_array($ressqlnoti2))
-		{
-			// masukkan data dalam notif_user so each user yang berkaitan dapat notification masing2
-			$noti_id    =$row['noti_id'];
-			// user_id = receiver notification
-			$sqly = "SELECT user_id FROM user WHERE role_id='R03' AND module_id='$module_id'";
-			$resulty    =mysql_query($sqly);
-
-			while($row2=mysql_fetch_array($resulty))
-			{
-				$user		=$row2['user_id'];
-				$query		= "SELECT * FROM notif_user WHERE noti_id='$noti_id' AND user_id='$user_id'";
-				$result_q   =mysql_query($query);
-				if(mysql_num_rows($result_q)>0)
-				{
-					$sqlx   ="UPDATE  notif_user SET noti_status='u' WHERE noti_id='$noti_id' AND user_id='$user'";
-				}
-				else
-				{
-					$sqlx   ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user', 'u', '$username')";
-				}
-				
-				$resultx    =mysql_query($sqlx);
-
-			}
-			
-		}
+	
 								}
 
 ?>
@@ -525,7 +486,18 @@ $result = mysql_query($sql) or die(mysql_error());
   </div>								
 								
 <?php								
-								
+								$form = $session_name." " .$module_id;
+      $action = $username." has Updated achievement of ".$form." year ".$curyear. " Quarter " .$quater ." for approval";
+
+      $sqly = "SELECT user_id FROM user WHERE role_id='R03' AND module_id='$module_id'";
+      $resulty    =mysql_query($sqly);
+      while($row2=mysql_fetch_array($resulty))
+      {
+        $user  =$row2['user_id'];
+        $sqlx      ="INSERT INTO notif_user_r03 (user_id, noti_action, noti_status, sender, link) VALUES ('$user', '$action', 'u', '$username', 'main_dm.php')";
+        $resultx    =mysql_query($sqlx);
+
+      }			
 								
 								}
 ?>
