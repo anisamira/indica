@@ -13,7 +13,7 @@ include ('nav-noti.php');
 
 </head>
 
-<body>
+<body >
 <div class="wrapper">
     <!-- Sidebar Holder -->
 
