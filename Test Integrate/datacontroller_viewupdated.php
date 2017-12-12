@@ -20,6 +20,8 @@
 				$sqlx  		="INSERT INTO notif_user_r01 (user_id, noti_action, noti_status, sender, link) VALUES ('$user', '$action', 'u', '$username', 'admin_create_session.php')";
 				$resultx    =mysql_query($sqlx);
 			}
+			
+			echo "Your request has been sent";
 		
 	}				
 					
@@ -29,7 +31,6 @@
 
 	<div class="wrapper">
 		<div id="content">
-			<form action="<?php echo($_SERVER['PHP_SELF']);?>" method="post" class="pure-form pure-form-aligned">
 					<table class="table table-hover"> 
 						<tr>
 							<th>Version</th>						
@@ -38,6 +39,7 @@
 							<th>Action</th>						
 						</tr>
 						<?php
+						$count=1;
 						$sql= "SELECT form_id, session_name, module_id, form_status,  DATE_FORMAT(last_updated, '%d-%m-%Y') AS last_updated
 							FROM form 
 							WHERE module_id='$module_id'";
@@ -63,14 +65,14 @@
 													<input type="submit" name="submitrecord" value="View Record"></input>
 												</form>
 											</div>
-											<div class="col-md-8"><button data-toggle="modal" data-target="#responsive">Request Edit</button></div>
+											<div class="col-md-8"><button data-toggle="modal" data-target="#<?php echo $count;?>">Request Edit</button></div>
 										</div>	
-												<div class="modal fade" id="responsive" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+												<div class="modal fade" id="<?php echo $count;?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 													<div class="modal-dialog">
 														<div class="modal-content">
 															<div class="modal-header">
 																<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-																<h4 class="modal-title" id="myModalLabel4">Request to edit <?php echo $session_name;?></h4>
+																<h4 class="modal-title" id="<?php echo $count;?>">Request to edit <?php echo $session_name;?></h4>
 															</div>
 															<?php
 															$sql3="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.* 
@@ -118,7 +120,8 @@
 													</div>
 												</div>
 									</td>
-								</tr><?php
+								</tr>
+								<?php $count++;
 								
 							}
 						}
@@ -130,7 +133,7 @@
 						
 					</table>
 
-			</form>
+		
 		</div>
 	</div>
 
