@@ -87,6 +87,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     <a href="workbench_dash.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Dashboard">Dashboard</a>
     <a href="workbench_view.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Module Workbench">Module Workbench</a>
     <a href="report_admin.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Reporting">Reporting</a>
+    <a href="logout.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Logout">Log Out</a>
     
   </div>
 
@@ -102,6 +103,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large" >
       <a href="work.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
       <a href="calculation1.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Module Workbench">Module Workbench</a> 
+      <a href="logout.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Logout">Log Out</a>
+      
      </div>
     
     
@@ -116,6 +119,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     
     <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large" >
       <a href="calculation1.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
+      <a href="logout.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Logout">Log Out</a>
+      
      </div>
     
     
@@ -133,13 +138,16 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     <a href="graph_kpi.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Dashboard">Dashboard</a>
     <a href="workbench_tnc.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Module Workbench">Module Workbench</a>
     <a href="report_tnc.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Reporting">Reporting</a>
+    <a href="logout.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Logout">Log Out</a>
+    
+    
     </div>
     
     <?php } ?>
 
 <!-- NOTIFICATIONS BUTTON -->
 
-    <div class="w3-dropdown-hover w3-hide-small  w3-right">
+    <div class="w3-dropdown-hover w3-right">
       <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i>
       <span class="w3-badge w3-right w3-small w3-green"><?php 
 
