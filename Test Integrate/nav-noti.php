@@ -110,7 +110,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     <a href="admin_create_session.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Create Sessions">Create Sessions</a>
     <a href="admin_requestedit.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Request Edit">Request Edit</a>
     
-    <a href="logtrails.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Log Trails">Log Trails</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+        <button class="w3-button w3-padding-large" style="font-size: 13px;" title="Manage User">View Log</button>     
+          <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+            <a href="logtrails.php" style="font-size: 13px;" class="w3-bar-item w3-button">Log Trails</a>
+            <a href="logtrails_noti.php" style="font-size: 13px;" class="w3-bar-item w3-button">User Trails</a>
+          </div>
+    </div>
+    
     <a href="calculation1.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
     <a href="workbench_dash.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Dashboard">Dashboard</a>
     <a href="workbench_view.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Module Workbench">Module Workbench</a>
@@ -124,7 +131,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
             <a href="admin_manageuser_edituser.php" style="font-size: 13px;" class="w3-bar-item w3-button">Edit User</a>
           </div>
     <a href="admin_create_session.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Create Sessions">Create Sessions</a>
+    <a href="admin_requestedit.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Request Edit">Request Edit</a>    
     <a href="logtrails.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Log Trails">Log Trails</a>
+    <a href="logtrails_noti.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="User Trails">User Trails</a>    
     <a href="calculation1.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
     <a href="workbench_dash.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Dashboard">Dashboard</a>
     <a href="workbench_view.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Module Workbench">Module Workbench</a>
