@@ -52,11 +52,11 @@ if(isset($_POST['submit'])){
           </div>
     <?php }
     ?>
-
+            
             <form name="" action="" method="post" class="pure-form pure-form-aligned">
             <fieldset>
 
-            <!-- <div class="pure-control-group">
+            <div class="pure-control-group">
                 <label for="fname"><b>First Name</b></label>
                 <input name="fname" type="text" placeholder="First Name">
                 <span class="pure-form-message-inline">* This is a required field.</span>
@@ -66,7 +66,7 @@ if(isset($_POST['submit'])){
                 <label for="lname"><b>Last Name</b></label>
                 <input name="lname" type="text" placeholder="Last Name">
                 <span class="pure-form-message-inline">* This is a required field.</span>
-            </div> -->
+            </div>
 
             <div class="pure-control-group">
                 <label for="uname"><b>Username</b></label>
@@ -97,7 +97,9 @@ if(isset($_POST['submit'])){
                     <label> <input id="cb" type="radio" name="role" value="R01" required> Admin</label> <br> 
                     <label> <input id="cb" type="radio" name="role" value="R02" required> Data Manager</label> <br>
                     <label> <input id="cb" type="radio" name="role" value="R03" required> Data Controller</label> <br>
-                    <label> <input id="cb" type="radio" name="role" value="R04" required> Deputy Vice Chancellor</label> <br>                    
+                    <label> <input id="cb" type="radio" name="role" value="R04" required> Deputy Vice Chancellor</label> <br>  
+                    <label> <input id="cb" type="radio" name="role" value="R05" required> Vice Chancellor</label> <br>                    
+                                      
                             <!-- <div class="select desc" id="M04">
                             <select>
                             <option>Choose an option</option>
@@ -139,6 +141,7 @@ if(isset($_POST['submit'])){
             </div>
         </fieldset>
         </form>
+        
 
     </body>
 </html>

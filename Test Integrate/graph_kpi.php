@@ -224,7 +224,7 @@ else
 			{
 				?>
 							<div class="alert alert-warning alert-dismissable fade in">
-							<meta http-equiv="refresh" content="1;url=main_vc.php" />
+							<meta http-equiv="refresh" content="1;url=main_tnc.php" />
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 								<strong>There is no records</strong> Redirecting in 1 seconds...
 							</div><?php	
@@ -333,7 +333,7 @@ else
 			else
 			{?>
 				<div class="alert alert-warning alert-dismissable fade in">
-				<meta http-equiv="refresh" content="1;url=main_vc.php" />
+				<meta http-equiv="refresh" content="1;url=main_tnc.php" />
 					<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 					<strong>There is no records</strong> Redirecting in 1 seconds...
 				</div><?php	

@@ -87,7 +87,8 @@ include ('nav-noti.php');
                     <td><a onclick="return confirm('View this user profile?')" href="admin_manageuser_view_profileuser.php?edit=<?php echo $user_id ?>"><button class="btn btn-danger">View This User</button></a></td>
                 </tr>
 
-                
+                asdad.php?get=3;
+
             <?php $x++; } ?>
             </table>
             

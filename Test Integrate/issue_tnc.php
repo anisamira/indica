@@ -221,6 +221,7 @@ elseif 	($curyear==$year&&$year==$year5)
 					}
 						
 						?>
+						<form method="post" action="graph_kpi.php"><input type="Submit" value="Back" name="Back"></form>
 
 </div>
 </div>			
