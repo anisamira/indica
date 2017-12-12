@@ -31,7 +31,10 @@
 
 
 			<div id="content">	
-
+  <br>
+    &nbsp&nbspGenerate Financial Report
+  
+	</br>
 	<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 				<table class="table" width="20%">
 					<tr>

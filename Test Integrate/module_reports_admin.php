@@ -29,7 +29,10 @@
 
 
 			<div id="content">	
-
+  <br>
+    &nbsp&nbspGenerate Module Report
+  
+	</br>
 
 				<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 				<table class="table" width="20%">
