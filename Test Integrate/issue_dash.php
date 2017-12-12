@@ -3,51 +3,48 @@
 <head>
 
 <?php
-		include('nav-noti.php');
+	include('nav-noti.php');
+						
 	
+if (isset($_POST['go'])){
+
+	
+	$moduleid=$_POST['moduleid'];
+	$sesi=$_POST['sesi'];
+
 	$curyear=date ('Y');
+    $date_now=date ("m/d/Y");
+ $date_q= date ("06/30/Y");
+ 
+ 
+ if ($date_now<=$date_q)
+{
+	$quater=1;
+}
+else
+    $quater=2;	
 	
-	$module_id		=$_SESSION['module_id'];
-	$user_id		=$_SESSION['user_id'];
-	$sql			="SELECT * FROM session where session_status='1'";
+	$sql			="SELECT * FROM session where session_name='$sesi'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
 						while($row=mysql_fetch_array($result))
 						{
-							$_SESSION['session_name']	=$row['session_name'];
 							$year1=$row['year1'];
 							$year2=$row['year2'];
 							$year3=$row['year3'];
 							$year4=$row['year4'];
 							$year5=$row['year5'];
+						}
+					}
+					else
+					{
+						echo "no data found";
+					}
+	
 
-						}
-						$session_name	=$_SESSION['session_name'];
-					}
-					else
-					{
-						echo "no data found";
-					}
 	
-	$sql			= "SELECT * FROM form WHERE session_name='$session_name' AND module_id='$module_id'";
-					$result = mysql_query($sql) or die(mysql_error()); 
-					if(mysql_num_rows($result)>0)
-					{
-						while($row=mysql_fetch_array($result))
-						{
-							$_SESSION['form_status']	=$row['form_status'];
-							$_SESSION['form_id']		=$row['form_id'];
-						}
-						$form_status	=$_SESSION['form_status'];
-						$form_id		=$_SESSION['form_id'];
-					}
-					else
-					{
-						echo "no data found";
-					}
-	
-    $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
+  $sql			= "SELECT * FROM year WHERE year_name='$curyear'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
@@ -63,7 +60,9 @@
 					{
 						echo "no data found";
 					}
-	 $sql			= "SELECT * FROM module WHERE module_id='$module_id'";
+	
+				
+	 $sql			= "SELECT * FROM module WHERE module_id='$moduleid'";
 					$result = mysql_query($sql) or die(mysql_error()); 
 					if(mysql_num_rows($result)>0)
 					{
@@ -77,13 +76,11 @@
 					else
 					{
 						echo "no data found";
-					}					
-					
+					}
 	
 	?>
-
-		
-<div class="wrapper">
+	
+	<div class="wrapper">
 
 		<!-- !PAGE CONTENT! -->
 			<div id="content">	
@@ -92,6 +89,7 @@
 
 
 <?php
+
 
 						$x=1;
 						$sql="SELECT goal.*,strategy.*, actionplan.*, kpi.*, baseline.*, target.*, reference.*, form.*, achievement.*, issue.*, year.*
@@ -106,8 +104,8 @@
 						JOIN achievement ON achievement.target_id=target.target_id
 						JOIN issue ON issue.ach_id=achievement.ach_id
 						JOIN year ON achievement.year_id=year.year_id						
-                        WHERE goal.module_id='$module_id'
-						AND goal.session_name='$session_name'
+                        WHERE goal.module_id='$moduleid'
+						AND goal.session_name='$sesi'
 						AND form.form_status='approved'
 						";
 						$result = mysql_query($sql) or die(mysql_error());
@@ -204,6 +202,13 @@ elseif 	($curyear==$year&&$year==$year5)
 ?>
 		</table>
 </div>
+                            <form action="dash_view.php" method="post">
+                            <td><?php echo $moduleid;?></td>
+								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
+							<td><?php echo $sesi;?></td>
+								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+							<td><?php echo $module_name;?></td><br>
+							<td><button type="submit" class="btn btn-primary" name="save">Back</button></td>
 <?php					
 					}
 
@@ -213,16 +218,26 @@ elseif 	($curyear==$year&&$year==$year5)
 					{
 					
 						echo "No issue is recorded";
-						
-						
+							
 						?>
-						
+						 <form action="dash_view.php" method="post">
+                            <td><?php echo $moduleid;?></td>
+								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
+							<td><?php echo $sesi;?></td>
+								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+							<td><?php echo $module_name;?></td><br>
+							<td><button type="submit" class="btn btn-primary" name="save">Back</button></td>
 
 <?php
 					
 					}
 						
 						?>
+						
 
 </div>
 </div>			
+<?php
+
+}
+?>
