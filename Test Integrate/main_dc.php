@@ -192,8 +192,8 @@
 						}?>
 						
 						<div class="row" style="margin-bottom:20px">
-							<span style="float: left;"><?php echo $session_name;?></span> 
-							<span style="float: right;"><?php echo $_SESSION['module_name'];?></span>					 
+							<span style="float: left;">Session : <?php echo $session_name;?></span> 
+							<span style="float: right;">Module : <?php echo $_SESSION['module_name'];?></span>					 
 						</div>
 						
 						<div class="row" style="margin:0 auto;"><?php	
