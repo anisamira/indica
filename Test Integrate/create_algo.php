@@ -37,17 +37,7 @@ if(isset($_POST['create'])){
         $sql6 = "INSERT INTO form (session_name, module_id, form_status) VALUES ('$session_name', '$m_id', 'new')";
         $result6 = mysql_query($sql6,$conn);
     }
-    
-    
-    $sql7   ="SELECT * FROM form WHERE session_name='$session_name'";
-    $result7=mysql_query($sql7,$conn);
-    while($row=mysql_fetch_array($result7))
-    {
-        $form_id    =$row['form_id'];
-        $sql8       ="INSERT INTO notif_main (form_id) VALUES ('$form_id')";
-        $result8    =mysql_query($sql8,$conn);
-    }
-    
+        
 }
 
 header('location:admin_create_session.php?status=created');
