@@ -178,7 +178,8 @@ else
 				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div><br>
 				<div class="control-group">
 				<div class="row"></div>
-				<a href="issue_tnc.php" style="color:#FF0000" >Click Here to View Issue</a><br><br>
+				<form action ="issue_tnc.php" method="post">
+				<button type="submit" class="btn btn-primary" name="go">Click to view issue</button><br><br>
 					<table class="table table-bordered" id="datatable2">
 						<thead>
 							<tr>
@@ -287,7 +288,8 @@ else
 				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div><br>
 				<div class="control-group">
 			    <div class="row"></div>
-				<a href="issue_tnc.php" style="color:#FF0000" >Click Here to View Issue</a><br><br>
+				<form action ="issue_tnc.php" method="post">
+				<button type="submit" class="btn btn-primary" name="go">Click to view issue</button><br><br>
 				
 					<table class="table table-bordered" id="datatable2">
 						<thead>
@@ -352,13 +354,13 @@ Highcharts.chart('container', {
         type: 'column'
     },
     title: {
-        text: '<?php echo $_SESSION['module_name'] . " ". $year;?>'
+        text: 'Target and Achievement for <?php echo $_SESSION['module_name'] . " ". $year;?>'
     },
     yAxis: {
         allowDecimals: false,
         title: {
             text: 'Number'
-        }
+        } 
     },
     tooltip: {
         formatter: function () {
@@ -383,7 +385,7 @@ Highcharts.chart('container2', {
     },
 	
     title: {
-        text: '<?php echo $_SESSION['module_name'] . " ". $year;?>'
+        text: 'Indicator Achievement for <?php echo $_SESSION['module_name'] . " ". $year;?>'
     },
     yAxis: {
         allowDecimals: false,

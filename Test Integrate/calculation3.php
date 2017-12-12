@@ -205,6 +205,14 @@ p
 }
 </style>
 <script>
+function isNumberKey(evt)
+      {
+         var charCode = (evt.which) ? evt.which : event.keyCode
+         if (charCode > 31 && (charCode < 48 || charCode > 57))
+            return false;
+
+         return true;
+      }
 function c(val)
 {
     document.getElementById("d").value=val;	
@@ -214,7 +222,7 @@ function c(val)
 $('.keyboard').keypress(function(e) 
 {
 if (e.which==13) {
-	alert("enter");
+	//alert("enter");
 	return e();
 }	
 });
@@ -242,12 +250,13 @@ function e()
 	
 	return e();
 }
+
 </script>
 </head>
 <body>
 <form action="calculation4.php" method="post">
 <div class="box">
-    <div class="display"><input type="text" class="keyboard" onclick="this.select()" onKeyDown="if(event.keyCode==13) e()" name="varia" size="17" id="d"></div> <br>
+    <div class="display"><input type="text" class="number" class="keyboard" onkeypress="return isNumberKey(event)" onclick="this.select()" onKeyDown="if(event.keyCode==13) e()" name="varia" size="17" id="d"></div> <br>
     <div class="keys">
         <p>
 		<input type="button" class="button gray" value="&#8592" onclick='back()'>
@@ -280,6 +289,7 @@ function e()
         <input type="button" class="button orange" value="=" onclick='e()'>
         </p>
     </div><br><br><br>
+
 <center><input type ="Submit" value="Submit" name="go">
 <input type="hidden" name="module_id" value="<?php echo $module_id;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
