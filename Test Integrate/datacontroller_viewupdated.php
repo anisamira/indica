@@ -12,8 +12,14 @@
 		$session		=$_POST["session"];
 		$reason		= mysql_real_escape_string($_POST["reason"]); 
 		$action			=$username ." has request to edit ".$module_id . " " .$session ." . Message as follow :" .$reason;
-		$sql			="INSERT INTO notif_main (noti_action) VALUES ('$action')";
-		$resultx    =mysql_query($sql);
+		$sqly = "SELECT user_id FROM user WHERE role_id='R01'";
+			$resulty    =mysql_query($sqly);
+			while($row2=mysql_fetch_array($resulty))
+			{
+				$user	=$row2['user_id'];
+				$sqlx  		="INSERT INTO notif_user_r01 (user_id, noti_action, noti_status, sender, link) VALUES ('$user', '$action', 'u', '$username', 'admin_create_session.php')";
+				$resultx    =mysql_query($sqlx);
+			}
 		
 	}				
 					

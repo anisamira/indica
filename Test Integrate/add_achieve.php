@@ -302,7 +302,18 @@ $result = mysql_query($sql) or die(mysql_error());
 			
 		}
 								
-								
+			$form = $session_name." " .$module_id;
+      $action = $username." has submitted achievement data ".$form." for approval";
+
+      $sqly = "SELECT user_id FROM user WHERE role_id='R03' AND module_id='$module_id'";
+      $resulty    =mysql_query($sqly);
+      while($row2=mysql_fetch_array($resulty))
+      {
+        $user  =$row2['user_id'];
+        $sqlx      ="INSERT INTO notif_user_r03 (user_id, noti_action, noti_status, sender, link) VALUES ('$user', '$action', 'u', '$username', 'main_dm.php')";
+        $resultx    =mysql_query($sqlx);
+
+      }					
 								
 								
 								}

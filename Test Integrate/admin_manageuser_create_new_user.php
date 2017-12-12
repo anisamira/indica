@@ -97,7 +97,9 @@ if(isset($_POST['submit'])){
                     <label> <input id="cb" type="radio" name="role" value="R01" required> Admin</label> <br> 
                     <label> <input id="cb" type="radio" name="role" value="R02" required> Data Manager</label> <br>
                     <label> <input id="cb" type="radio" name="role" value="R03" required> Data Controller</label> <br>
-                    <label> <input id="cb" type="radio" name="role" value="R04" required> Deputy Vice Chancellor</label> <br>                    
+                    <label> <input id="cb" type="radio" name="role" value="R04" required> Deputy Vice Chancellor</label> <br>  
+                    <label> <input id="cb" type="radio" name="role" value="R05" required> Vice Chancellor</label> <br>                    
+                                      
                             <!-- <div class="select desc" id="M04">
                             <select>
                             <option>Choose an option</option>
