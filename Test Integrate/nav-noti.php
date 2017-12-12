@@ -108,6 +108,8 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     </div>
 
     <a href="admin_create_session.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Create Sessions">Create Sessions</a>
+    <a href="admin_requestedit.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Request Edit">Request Edit</a>
+    
     <a href="logtrails.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Log Trails">Log Trails</a>
     <a href="calculation1.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
     <a href="workbench_dash.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Dashboard">Dashboard</a>
