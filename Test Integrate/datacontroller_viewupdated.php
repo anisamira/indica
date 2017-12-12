@@ -1,6 +1,6 @@
 
 <?php
-	include('sidebar.php');
+	include('nav-noti.php');
 	//include('style_dc.php');
 	include('script.php');
 	$module_id		=$_SESSION['module_id'];

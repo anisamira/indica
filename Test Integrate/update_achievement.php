@@ -47,7 +47,7 @@
 
 <body>
 <?php
-	include('sidebar.php');
+	include('nav-noti.php');
 ?>
 
 

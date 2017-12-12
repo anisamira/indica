@@ -32,7 +32,7 @@
 
 <body>
 <?php
-	include('sidebar.php');
+	include('nav-noti.php');
 ?>
 	<div class="wrapper">
 		<div class="container content-sm">

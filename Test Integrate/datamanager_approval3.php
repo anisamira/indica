@@ -39,7 +39,7 @@
 
 
 <?php
-include  ('sidebar.php')
+	include('nav-noti.php');
 
 if ($_GET['id']) {
 

@@ -2,7 +2,7 @@
 <body>
 <?php
 	include('style_dc.php');
-	include('sidebar.php');
+	include('nav-noti.php');
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	$sql			="SELECT * FROM session where session_status='1'";

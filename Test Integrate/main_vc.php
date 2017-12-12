@@ -285,11 +285,6 @@ $sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS resultcapai
 	</div>
 
  	<link rel="stylesheet" href="assets/best/css/style.css">
-<link rel="stylesheet" href="assets/plugins/line-icons/line-icons.css">
-	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="assets/css/style.css">
-	<link rel="stylesheet" href="assets/css/custom.css">
-	<link rel="stylesheet" type="text/css" href="pure-min.css">
 
   <div class="cards">
 
@@ -442,9 +437,9 @@ $sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS resultcapai
 </div>
 
 	
-		
+		<script type="text/javascript" src="assets/best/js/index.js"></script>
   </div>
-  <script type="text/javascript" src="assets/best/js/index.js"></script>
+  
 <?php
 }
 ?>
