@@ -30,7 +30,11 @@
 <div class="wrapper">
 
 
-			<div id="content">	
+			<div id="content">
+  <br>
+    &nbsp&nbspGenerate Performance Report
+  
+	</br>			
 	<form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
 				<table class="table" width="20%">
 					<tr>
