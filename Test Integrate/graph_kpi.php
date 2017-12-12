@@ -175,9 +175,10 @@ else
 			$result3=mysql_query($sql3) or die (mysql_error());
 			if (mysql_num_rows($result3)>0)
 			{?>
-				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div><br>
 				<div class="control-group">
-				
+				<div class="row"></div>
+				<a href="issue_tnc.php" style="color:#FF0000" >Click Here to View Issue</a><br><br>
 					<table class="table table-bordered" id="datatable2">
 						<thead>
 							<tr>
@@ -283,9 +284,11 @@ else
 			$result5=mysql_query($sql5) or die (mysql_error());
 			if (mysql_num_rows($result5)>0)
 			{?>
-				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div><br>
 				<div class="control-group">
-			
+			    <div class="row"></div>
+				<a href="issue_tnc.php" style="color:#FF0000" >Click Here to View Issue</a><br><br>
+				
 					<table class="table table-bordered" id="datatable2">
 						<thead>
 							<tr>
@@ -393,7 +396,19 @@ Highcharts.chart('container2', {
             return '<b>' + this.series.name + '</b><br/>' +
                 this.point.y + ' ' + this.point.name.toLowerCase();
         }
-	}
+	},
+	  legend: {
+        enabled: false
+    },
+	plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.1f}%'
+            }
+        }
+    },
 					
 		});
 	});

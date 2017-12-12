@@ -39,6 +39,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>					
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
 
@@ -171,8 +172,10 @@ $sql			="SELECT * FROM session where session_status='1'";
 			$result4=mysql_query($sql4) or die (mysql_error());
 			if (mysql_num_rows($result4)>0)
 			{?>
-				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div><br>
 				<div class="control-group">
+				<div class="row"></div>
+				<a href="issue_tnc.php" style="color:#FF0000" >Click Here to View Issue</a><br><br>
 					<table class="table table-bordered" id="datatable2">
 						<thead>
 							<tr>
@@ -280,8 +283,10 @@ $sql			="SELECT * FROM session where session_status='1'";
 			$result6=mysql_query($sql6) or die (mysql_error());
 			if (mysql_num_rows($result6)>0)
 			{?>
-				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div><br>
 				<div class="control-group">
+				<div class="row"></div>
+				<a href="issue_tnc.php" style="color:#FF0000" >Click Here to View Issue</a><br><br>
 					<table class="table table-bordered" id="datatable2">
 						<thead>
 							<tr>
@@ -345,7 +350,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 $(function () {
 Highcharts.chart('container', {
     data: {
-        table: 'datatable'
+        table: 'datatable',
     },
     chart: {
         type: 'column'
@@ -371,7 +376,8 @@ Highcharts.chart('container', {
 $(function () {
 Highcharts.chart('container2', {
     data: {
-        table: 'datatable2'
+        table: 'datatable2',
+		drilldown: 'datatable2'
     },
     chart: {
         type: 'column'
@@ -390,7 +396,20 @@ Highcharts.chart('container2', {
             return '<b>' + this.series.name + '</b><br/>' +
                 this.point.y + ' ' + this.point.name.toLowerCase();
         }
-    }
+    },
+	  legend: {
+        enabled: false
+    },
+	plotOptions: {
+        series: {
+            borderWidth: 0,
+            dataLabels: {
+                enabled: true,
+                format: '{point.y:.1f}%'
+            }
+        }
+    },
+	       
 });
 });
 
