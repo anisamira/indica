@@ -303,7 +303,7 @@ $result = mysql_query($sql) or die(mysql_error());
 		}
 								
 			$form = $session_name." " .$module_id;
-      $action = $username." has submitted ".$form." for approval";
+      $action = $username." has submitted achievement data ".$form." for approval";
 
       $sqly = "SELECT user_id FROM user WHERE role_id='R03' AND module_id='$module_id'";
       $resulty    =mysql_query($sqly);
