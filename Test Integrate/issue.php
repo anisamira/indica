@@ -3,7 +3,7 @@
 <head>
 
 <?php
-	include('sidebar.php');
+	include('nav-noti.php');
 	
 	$curyear=date ('Y');	
 	$user_id		=$_SESSION['user_id'];

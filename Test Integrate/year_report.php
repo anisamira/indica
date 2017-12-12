@@ -1,6 +1,5 @@
 <?php
-	include('sidebar.php');
-	
+	include('nav-noti.php');	
 	$curyear=date ('Y');
     $date_now=date ("m/d/Y");
     $date_q= date ("06/30/Y");

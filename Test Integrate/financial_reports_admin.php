@@ -3,7 +3,7 @@
 <head>
 
 <?php
-	include('sidebar.php');
+	include('nav-noti.php');
 
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
