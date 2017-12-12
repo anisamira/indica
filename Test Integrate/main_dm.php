@@ -93,39 +93,19 @@ else
 									$status		='approved';
 								}
 								
-								
-								
-								// buat ayat notification
-							$form = $session_name." " .$module_id;
-							$action = $username." has ".$status ." " .$form;			
+											$form = $session_name." " .$module_id;
+      $action = $username." has Approve Information of ".$form." Approval";
+
+      $sqly = "SELECT user_id FROM user WHERE role_id='R02' AND module_id='$module_id'";
+      $resulty    =mysql_query($sqly);
+      while($row2=mysql_fetch_array($resulty))
+      {
+        $user  =$row2['user_id'];
+        $sqlx      ="INSERT INTO notif_user_r02 (user_id, noti_action, noti_status, sender, link) VALUES ('$user', '$action', 'u', '$username', 'achieve.php')";
+        $resultx    =mysql_query($sqlx);
+
+      }	
 							
-							// masukkan notification dalam table main notification
-							$sql_noti1= "UPDATE notif_main SET noti_action='$action' where form_id='$form_id'";
-							$ressqlnoti1= mysql_query($sql_noti1);
-
-							// tarik specific notification 
-							$sql_noti2   ="SELECT noti_id FROM notif_main WHERE form_id='$form_id'";
-							$ressqlnoti2=mysql_query($sql_noti2);
-							while($row=mysql_fetch_array($ressqlnoti2))
-							{
-								// masukkan data dalam notif_user so each user yang berkaitan dapat notification masing2
-								$noti_id    =$row['noti_id'];
-								// user_id = receiver notification
-								$sqly = "SELECT user_id FROM user WHERE role_id='R02' AND module_id='$module_id'";
-								$resulty    =mysql_query($sqly);
-
-								while($row2=mysql_fetch_array($resulty))
-								{
-									$user=$row2['user_id'];
-									
-										$sqlx   ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user', 'u', '$username')";
-									
-									
-									$resultx    =mysql_query($sqlx);
-
-								}
-								
-							}	
 							
 							
 						}
@@ -154,39 +134,7 @@ else
 								}
 							}
 							
-							
 								
-								// // buat ayat notification
-							// $form = $session_name." " .$module_id;
-							// $action = $username." has approve / reject achievement Year " .$curyear. " Quarter ".$form;			
-							
-							// // masukkan notification dalam table main notification
-							// $sql_noti1= "UPDATE notif_main SET noti_action='$action' where form_id='$form_id'";
-							// $ressqlnoti1= mysql_query($sql_noti1);
-
-							// // tarik specific notification 
-							// $sql_noti2   ="SELECT noti_id FROM notif_main WHERE form_id='$form_id'";
-							// $ressqlnoti2=mysql_query($sql_noti2);
-							// while($row=mysql_fetch_array($ressqlnoti2))
-							// {
-								// // masukkan data dalam notif_user so each user yang berkaitan dapat notification masing2
-								// $noti_id    =$row['noti_id'];
-								// // user_id = receiver notification
-								// $sqly = "SELECT user_id FROM user WHERE role_id='R02' AND module_id='$module_id'";
-								// $resulty    =mysql_query($sqly);
-
-								// while($row2=mysql_fetch_array($resulty))
-								// {
-									// $user=$row2['user_id'];
-									
-										// $sqlx   ="INSERT INTO notif_user (noti_id, user_id, noti_status, sender) VALUES ('$noti_id', '$user', 'u', '$username')";
-									
-									
-									// $resultx    =mysql_query($sqlx);
-
-								// }
-								
-							// }	
 							
 							$form = $session_name." " .$module_id;
       $action = $username." has Approve achievement of ".$form." year ".$curyear. " Quarter " .$quarter ."";
@@ -211,42 +159,6 @@ else
 	<div class="wrapper">
 		<div id="content">
 
-<!-- NOTIFICATION DISPLAY -->
-
-<!-- <?php 
-$get_noti_qwr = "select notif_user.*, notif_main.* from notif_user JOIN notif_main ON notif_main.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";
-$qry = mysql_query($get_noti_qwr);
-$count=mysql_num_rows($qry);
-
-?>
-
-<form action="" method="POST" >
-		<input style="<?php 
-
-			if($count > 0 ){
-				echo "color: white;border:none;background-color: red;";
-			}
-
-		 ?>" type="submit" name="submit" value="notification<?php echo '('.$count.')' ?>"/>
-	</form>
-	
-
-	<?php
-
-			if(isset($_POST['submit'])){
-				while ($r=mysql_fetch_array($qry))
-				{
-					$noti_action = $r['noti_action'];
-					echo $noti_action;
-				} 
-		
-				$update_query = "update notif_user SET noti_status='s' where user_id='$user_id';";
-				mysql_query($update_query);
-			}
-
-	?> -->
-
-<!-- END NOTIFICATION DISPLAY -->
 
 
 			<!--<form action="datamanager_review.php" method="post">-->

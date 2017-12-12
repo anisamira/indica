@@ -173,24 +173,25 @@
 						
 						<div class="row" style="margin:0 auto;"><?php	
 							$status=$_SESSION['form_status'];
-							if($status!='new' || $status!='edit' )
+							if($status=='new'||$status=='edit')
 								{ ?>
-									<!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
+									<a href="dc_goal.php" style="text-decoration:none;">
 										<button class="col-md-4 content-boxes-v6">
 											<i class="rounded-x  icon-notebook"></i>
-											<h3 class="title-v3-md text-uppercase margin-bottom-10">Add Records</h3>
+											<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
 										 </button>
 									</a><?php
 								 }
 							else
-								{?>
-									<a href="dc_goal.php" style="text-decoration:none;">
+								{ ?>
+									<!--<a href="datacontroller_goal.php" style="text-decoration:none;">-->
 										<button class="col-md-4 content-boxes-v6">
 											<i class="rounded-x  icon-notebook"></i>
-											<h3 class="title-v3-md text-uppercase margin-bottom-10">Add Records</h3>
-										</button>
-									</a><?php 
-								} ?>
+											<h3 class="title-v3-md text-uppercase margin-bottom-10">New Records</h3>
+										 </button>
+									</a><?php
+								 }?>
+
 
 							<a href="datacontroller_updaterecord.php" style="text-decoration:none;">
 								<button class="col-md-4 content-boxes-v6">		
@@ -220,14 +221,14 @@
 										echo"<li style='color:#000;'>You need to <b>add new records</b> for ". $session_name ."</li>";
 										echo"<li style='color:#000;'>Submit Records after input data.</li>";
 									}
-									 elseif ($status=='edit')
-										echo "<li style='color:#000;'>Admin has approve your request to edit. you can now edit master copy.</li>";
 								 elseif ($status=='pending')
-										echo "<li style='color:#000;'>Your records are <b>pending</b> for approval from Data Manager</li>";
+									echo "<li style='color:#000;'>Your records are <b>pending</b> for approval from Data Manager</li>";
 								elseif ($status=='approved')
-										echo "<li style='color:#000;'>Your main records for ".$session_name ." has been <b>approved</b></li>";
-								elseif($status=='rejected')
-									echo "<li style='color:#000;'>Your records are <b>rejected</b>. You need to update the records.</li>";
+									echo "<li style='color:#000;'>Your main records for ".$session_name ." has been <b>approved</b></li>";
+								elseif($status=='edit')
+									echo "<li style='color:#000;'>Admin has approve your request edit. You can now edit master copy. </li>";
+								 elseif ($status=='pending')
+									echo "<li style='color:#000;'>Your records are <b>pending</b> for approval from Data Manager</li>";	
 									else
 										echo "<li style='color:#000;'>Your request to edit data has been sent. Contact Admin for any inquiries.</li>";
 								$status="";	
