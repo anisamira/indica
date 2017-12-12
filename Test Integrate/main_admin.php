@@ -24,7 +24,7 @@ include ('nav-noti.php');
 
 	<style>
 .btnadmin {
-    background-color: #4CAF50;
+    background-color: #034f84 ;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -39,6 +39,8 @@ include ('nav-noti.php');
 	
 }
 </style>
+
+
 	
 
 <center><h5>Click Button below to view the Current Session Workbench</h5>	
@@ -82,8 +84,7 @@ include ('nav-noti.php');
 <input type="hidden" name="moduleid" value="M06"/> 
 </form>
 </td>
-</tr>
-<tr>
+
 <td></td>
 <td>
 <form action="" name="Module7" method="post">

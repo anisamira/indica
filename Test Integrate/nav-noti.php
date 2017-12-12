@@ -4,21 +4,25 @@ $user_id=$_SESSION['user_id'];
 $role_id=$_SESSION['role_id'];
 
   if($role_id=='R01'){
-  $get_noti_qwr = "select notif_user.*, notif_main_r01.* from notif_user JOIN notif_main_r01 ON notif_main_r01.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";
+  $get_noti_qwr = "SELECT * FROM notif_user_r01 WHERE noti_status = 'u' AND user_id='$user_id'";
   }
   else if ($role_id=='R02'){
-    $get_noti_qwr = "select notif_user.*, notif_main_r02.* from notif_user JOIN notif_main_r02 ON notif_main_r02.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";  
+    $get_noti_qwr = "SELECT * FROM notif_user_r02 WHERE noti_status = 'u' AND user_id='$user_id'";
   }
   else if ($role_id=='R03'){
-    $get_noti_qwr = "select notif_user.*, notif_main_r03.* from notif_user JOIN notif_main_r03 ON notif_main_r03.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";
+    $get_noti_qwr = "SELECT * FROM notif_user_r03 WHERE noti_status = 'u' AND user_id='$user_id'";
   }
   else if ($role_id=='R04'){
-    $get_noti_qwr = "select notif_user.*, notif_main_r04.* from notif_user JOIN notif_main_r04 ON notif_main_r04.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";
+    $get_noti_qwr = "SELECT * FROM notif_user_r04 WHERE noti_status = 'u' AND user_id='$user_id'";
   }
 
-  $count =0;
+  // $count =0;
   $qry = mysql_query($get_noti_qwr);
-  $count=mysql_num_rows($qry);
+
+  // if (mysql_num_rows($qry)>0){
+    $count=mysql_num_rows($qry);
+  // }
+  
 
 ?>
 
@@ -28,7 +32,6 @@ $role_id=$_SESSION['role_id'];
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-green.css">
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- Bootstrap CSS CDN -->
@@ -45,8 +48,29 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
         label {
         font-weight: normal !important;
     }
-    
 
+    .w3-theme-l5 {color:#000 !important; background-color:#e9f5ff !important}
+    .w3-theme-l4 {color:#000 !important; background-color:#b5dffd !important}
+    .w3-theme-l3 {color:#000 !important; background-color:#6bc0fc !important}
+    .w3-theme-l2 {color:#fff !important; background-color:#21a0fa !important}
+    .w3-theme-l1 {color:#fff !important; background-color:#0479cc !important}
+    .w3-theme-d1 {color:#fff !important; background-color:#024575 !important}
+    .w3-theme-d2 {color:#fff !important; background-color:#023e68 !important}
+    .w3-theme-d3 {color:#fff !important; background-color:#02365b !important}
+    .w3-theme-d4 {color:#fff !important; background-color:#022e4e !important}
+    .w3-theme-d5 {color:#fff !important; background-color:#012641 !important}
+    
+    .w3-theme-light {color:#000 !important; background-color:#e9f5ff !important}
+    .w3-theme-dark {color:#fff !important; background-color:#012641 !important}
+    .w3-theme-action {color:#fff !important; background-color:#012641 !important}
+    
+    .w3-theme {color:#fff !important; background-color:#034f84 !important}
+    .w3-text-theme {color:#034f84 !important}
+    .w3-border-theme {border-color:#034f84 !important}
+    
+    .w3-hover-theme:hover {color:#fff !important; background-color:#034f84 !important}
+    .w3-hover-text-theme {color:#034f84 !important}
+    .w3-hover-border-theme:hover {border-color:#034f84 !important}
 
 </style>
 <body class="w3-theme-l5">
@@ -163,6 +187,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
       </span>
       </button>     
       <div class="w3-dropdown-content w3-card-4 w3-bar-block " style="width:200px; right:0">
+        
         <?php 
           while($row=mysql_fetch_array($qry))
           {
@@ -180,6 +205,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
 <!-- End Page Container -->
 </div>
 <br>
+<?php echo $user_id;?>
 
 <script>
 // Used to toggle the menu on smaller screens when clicking on the menu button
