@@ -5,18 +5,28 @@ $role_id=$_SESSION['role_id'];
 
   if($role_id=='R01'){
   $get_noti_qwr = "SELECT * FROM notif_user_r01 WHERE noti_status = 'u' AND user_id='$user_id'";
+  $table= 'notif_user_r01';
+  
   }
   else if ($role_id=='R02'){
     $get_noti_qwr = "SELECT * FROM notif_user_r02 WHERE noti_status = 'u' AND user_id='$user_id'";
+  $table= 'notif_user_r02';
+  
   }
   else if ($role_id=='R03'){
     $get_noti_qwr = "SELECT * FROM notif_user_r03 WHERE noti_status = 'u' AND user_id='$user_id'";
+  $table= 'notif_user_r03';
+  
   }
   else if ($role_id=='R04'){
     $get_noti_qwr = "SELECT * FROM notif_user_r04 WHERE noti_status = 'u' AND user_id='$user_id'";
+  $table= 'notif_user_r04';
+  
   }
   else if ($role_id=='R05'){
     $get_noti_qwr = "SELECT * FROM notif_user_r05 WHERE noti_status = 'u' AND user_id='$user_id'";
+  $table= 'notif_user_r05';
+  
   }
   // $count =0;
   $qry = mysql_query($get_noti_qwr);
@@ -24,6 +34,8 @@ $role_id=$_SESSION['role_id'];
   // if (mysql_num_rows($qry)>0){
     $count=mysql_num_rows($qry);
   // }
+
+  
   
 
 ?>
@@ -228,7 +240,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
           $link = $_POST['link'];
           $list_id = $_POST['list_id'];
 
-          $update_query = " UPDATE notif_user_r03 
+          $update_query = " UPDATE $table
                             SET noti_status='s' 
                             where noti_status='u' 
                             AND noti_list_id='$list_id' ";

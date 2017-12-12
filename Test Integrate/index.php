@@ -46,42 +46,6 @@ session_start();
       }
    }
 
-
-		// 	$myusername=mysql_real_escape_string($_POST['username'],$conn);
-		// 	$mypassword=mysql_real_escape_string($_POST['password'],$conn);
-		// 	$sql="SELECT * from user WHERE username='$myusername' AND password='$mypassword'";
-		// 	$result=mysql_query($sql,$conn);
-		// 	$row=mysql_fetch_array($result,MYSQL_ASSOC);		
-		// 	if(is_array($row)) 
-		// 	{
-		// 		$_SESSION['user_id'] 	= $row['user_id'];
-		// 		$_SESSION['username'] 	= $row['username'];
-		// 		$_SESSION['password'] = $row['password'];
-		// 		$_SESSION['module_id'] = $row['module_id'];
-		// 		$_SESSION['role_id']	=$row['role_id'];
-		// 		$_SESSION['login_user']=$myusername;	
-
-		// 		$sql= mysql_query("UPDATE user SET login_time=now() WHERE username = '$myusername' AND password ='$mypassword'");
-				
-
-		// 		// admin=1, data_controller=2, data_manager=3, tnc=4
-
-		// 				if(	$_SESSION['role_id']=='R01'){     
-		// 				header("location:main_admin.php ");
-		// 				}elseif(	$_SESSION['role_id']=='R02'){
-		// 				header("location:main_dc.php ");
-		// 				 }elseif(	$_SESSION['role_id']=='R03'){
-		// 				header("location:main_dm.php ");
-		// 				 }elseif(	$_SESSION['role_id']=='R04'){
-		// 				header("location:main_vc.php ");
-		// 				 }elseif(	$_SESSION['role_id']=='R04'){
-		// 				header("location:main_vc.php ");}
-		// 				else{
-							 
-		// 				 }					
-			
-		// 	} 
-		// }
 ?>
 
 <html>
