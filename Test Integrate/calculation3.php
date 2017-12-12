@@ -247,7 +247,7 @@ function e()
 <body>
 <form action="calculation4.php" method="post">
 <div class="box">
-    <div class="display"><input type="text" class="keyboard" onclick="this.select()" onKeyDown="if(event.keyCode==13) e()" name="varia" size="15.75" id="d"></div> <br>
+    <div class="display"><input type="text" class="keyboard" onclick="this.select()" onKeyDown="if(event.keyCode==13) e()" name="varia" size="17" id="d"></div> <br>
     <div class="keys">
         <p>
 		<input type="button" class="button gray" value="&#8592" onclick='back()'>

@@ -1,6 +1,6 @@
 <?php
 	include('style_dc.php');
-	include('sidebar.php');
+	include('nav-noti.php');
 	
 	$curyear=date ('Y');
     $date_now=date ("m/d/Y");
