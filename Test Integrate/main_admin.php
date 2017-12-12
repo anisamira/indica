@@ -13,7 +13,7 @@ include ('nav-noti.php');
 
 </head>
 
-<body>
+<body >
 <div class="wrapper">
     <!-- Sidebar Holder -->
 
@@ -41,7 +41,7 @@ include ('nav-noti.php');
 </style>
 	
 
-<h3>Click Button below to view the Current Session Workbench</h3>	
+<center><h5>Click Button below to view the Current Session Workbench</h5>	
 <table>
 <tr>
 <td>
@@ -62,6 +62,8 @@ include ('nav-noti.php');
 <input type="hidden" name="moduleid" value="M03"/> 
 </form>
 </td>
+</tr>
+<tr>
 <td>
 <form action="" name="Module4" method="post">
 <button type="submit" class="btnadmin" name="go">Student Life TNC</button>
@@ -80,14 +82,19 @@ include ('nav-noti.php');
 <input type="hidden" name="moduleid" value="M06"/> 
 </form>
 </td>
+</tr>
+<tr>
+<td></td>
 <td>
 <form action="" name="Module7" method="post">
 <button type="submit" class="btnadmin" name="go">Financial</button>
 <input type="hidden" name="moduleid" value="M07"/> 
 </form>
 </td>
+<td></td>
 </tr>
 </table>
+</center>
   
   
 <?php

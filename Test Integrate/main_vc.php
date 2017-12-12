@@ -247,7 +247,7 @@ $sql			= "SELECT COUNT(DISTINCT achievement.ach_id) AS takcapai
 						echo "no data found";
 					}					
 
-$sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS green
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_id) AS green
 					FROM achievement 
 					JOIN form ON form.form_id=achievement.form_id 
 					WHERE achievement.ach_result >= 80 
@@ -271,7 +271,7 @@ $sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS green
 					{
 						echo "no data found";
 					}
-$sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS yellow
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_id) AS yellow
 					FROM achievement 
 					JOIN form ON form.form_id=achievement.form_id 
 					WHERE achievement.ach_result BETWEEN 50 AND 79 
@@ -294,7 +294,7 @@ $sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS yellow
 					{
 						echo "no data found";
 					}
-$sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS red
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_id) AS red
 					FROM achievement 
 					JOIN form ON form.form_id=achievement.form_id 
 					WHERE achievement.ach_result BETWEEN 1 AND 50 
@@ -317,10 +317,10 @@ $sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS red
 					{
 						echo "no data found";
 					}
-$sql			= "SELECT COUNT(DISTINCT achievement.ach_result) AS grey
+$sql			= "SELECT COUNT(DISTINCT achievement.ach_id) AS grey
 					FROM achievement 
 					JOIN form ON form.form_id=achievement.form_id 
-					WHERE achievement.ach_result NOT BETWEEN 0 AND 100
+					WHERE achievement.ach_result=''
 					AND form.form_id='$form_id' 
 					AND form.module_id='$module_id' 
 					AND form.session_name='$session_name' 
