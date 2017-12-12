@@ -94,6 +94,7 @@
 				$user	=$row2['user_id'];
 				$sqlx  		="INSERT INTO notif_user_r03 (user_id, noti_action, noti_status, sender, link) VALUES ('$user', '$action', 'u', '$username', 'main_dm.php')";
 				$resultx    =mysql_query($sqlx);
+
 			}
 			
 			
