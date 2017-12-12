@@ -175,7 +175,12 @@ $sql			="SELECT * FROM session where session_status='1'";
 				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div><br>
 				<div class="control-group">
 				<div class="row"></div>
-				<a href="issue_tnc.php" style="color:#FF0000" >Click Here to View Issue</a><br><br>
+				<form action ="issue_dash.php" method="post">
+				<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+				<input type="hidden" name="moduleid" value="<?php echo $module_id;?>"/>
+				<button type="submit" class="btn btn-primary" name="go">Click to view issue</button><br><br>
+				
+				</form>
 					<table class="table table-bordered" id="datatable2">
 						<thead>
 							<tr>
@@ -222,6 +227,7 @@ $sql			="SELECT * FROM session where session_status='1'";
 							<!--<meta http-equiv="refresh" content="1;url=workbench_dash.php" /> -->
 								<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 								<strong>There is no records</strong> 
+								<form method="post" action="dash_view.php"><input type="Submit" value="Back" name="Back"></form>
 							</div><?php	
 			}
 			
@@ -286,7 +292,12 @@ $sql			="SELECT * FROM session where session_status='1'";
 				<div id="container2" style="min-width: 310px; height: 400px; margin: 0 auto"></div><br>
 				<div class="control-group">
 				<div class="row"></div>
-				<a href="issue_tnc.php" style="color:#FF0000" >Click Here to View Issue</a><br><br>
+				<form action ="issue_dash.php" method="post">
+				<input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
+				<input type="hidden" name="moduleid" value="<?php echo $module_id;?>"/>
+				<button type="submit" class="btn btn-primary" name="go">Click to view issue</button><br><br>
+				
+				</form>
 					<table class="table table-bordered" id="datatable2">
 						<thead>
 							<tr>

@@ -333,20 +333,6 @@ $result = mysql_query($sql) or die(mysql_error());
 								
 <?php								
 								
-							
-
-	  $form = $session_name." " .$module_id;
-      $action = $username." has submitt ".$form." for approval";
-
-      $sqly = "SELECT user_id FROM user WHERE role_id='R04' AND module_id='$module_id'";
-      $resulty    =mysql_query($sqly);
-      while($row2=mysql_fetch_array($resulty))
-      {
-        $user  =$row2['user_id'];
-        $sqlx      ="INSERT INTO notif_user_r04 (user_id, noti_action, noti_status, sender, link) VALUES ('$user', '$action', 'u', '$username', 'main_vc.php')";
-        $resultx    =mysql_query($sqlx);
-
-      }
 
 							
 								}
