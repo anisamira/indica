@@ -24,7 +24,7 @@ include ('nav-noti.php');
 
 	<style>
 .btnadmin {
-    background-color: #4CAF50;
+    background-color: #034f84;
     border: none;
     color: white;
     padding: 15px 32px;
