@@ -211,42 +211,6 @@ else
 	<div class="wrapper">
 		<div id="content">
 
-<!-- NOTIFICATION DISPLAY -->
-
-<!-- <?php 
-$get_noti_qwr = "select notif_user.*, notif_main.* from notif_user JOIN notif_main ON notif_main.noti_id=notif_user.noti_id where notif_user.noti_status = 'u' AND notif_user.user_id='$user_id'";
-$qry = mysql_query($get_noti_qwr);
-$count=mysql_num_rows($qry);
-
-?>
-
-<form action="" method="POST" >
-		<input style="<?php 
-
-			if($count > 0 ){
-				echo "color: white;border:none;background-color: red;";
-			}
-
-		 ?>" type="submit" name="submit" value="notification<?php echo '('.$count.')' ?>"/>
-	</form>
-	
-
-	<?php
-
-			if(isset($_POST['submit'])){
-				while ($r=mysql_fetch_array($qry))
-				{
-					$noti_action = $r['noti_action'];
-					echo $noti_action;
-				} 
-		
-				$update_query = "update notif_user SET noti_status='s' where user_id='$user_id';";
-				mysql_query($update_query);
-			}
-
-	?> -->
-
-<!-- END NOTIFICATION DISPLAY -->
 
 
 			<!--<form action="datamanager_review.php" method="post">-->
