@@ -203,11 +203,11 @@ elseif 	($curyear==$year&&$year==$year5)
 		</table>
 </div>
                             <form action="dash_view.php" method="post">
-                            <td><?php echo $moduleid;?></td>
+                            <td><?php  $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
-							<td><?php echo $sesi;?></td>
+							<td><?php  $sesi;?></td>
 								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
-							<td><?php echo $module_name;?></td><br>
+							<td><?php  $module_name;?></td><br>
 							<td><button type="submit" class="btn btn-primary" name="save">Back</button></td>
 <?php					
 					}
@@ -221,11 +221,11 @@ elseif 	($curyear==$year&&$year==$year5)
 							
 						?>
 						 <form action="dash_view.php" method="post">
-                            <td><?php echo $moduleid;?></td>
+                            <td><?php  $moduleid;?></td>
 								   <input type="hidden" name="moduleid" value="<?php echo $moduleid;?>"/>   
-							<td><?php echo $sesi;?></td>
+							<td><?php  $sesi;?></td>
 								   <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
-							<td><?php echo $module_name;?></td><br>
+							<td><?php  $module_name;?></td><br>
 							<td><button type="submit" class="btn btn-primary" name="save">Back</button></td>
 
 <?php
