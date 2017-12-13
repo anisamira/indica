@@ -148,10 +148,10 @@
 																						<div class="modal-body">
 																							<div class="row" style="margin:10px;">
 																									<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>
-																									Ownership :<textarea class="form-control" name="ownership" required><?php echo $ownership;?></textarea></br>
-																									Data Source : <textarea class="form-control" name="data_source" required><?php echo $data_source;?></textarea></br>
-																									Estimated Cost :<textarea class="form-control" name="estimated_cost" required><?php echo $estimated_cost;?></textarea>
-																									Expected Financial Return :<textarea class="form-control" name="exp_fin_return" required><?php echo $exp_fin_return;?></textarea>
+																									Ownership :<textarea class="form-control" name="ownership"><?php echo $ownership;?></textarea></br>
+																									Data Source : <textarea class="form-control" name="data_source"><?php echo $data_source;?></textarea></br>
+																									Estimated Cost :<textarea class="form-control" name="estimated_cost"><?php echo $estimated_cost;?></textarea>
+																									Expected Financial Return :<textarea class="form-control" name="exp_fin_return"><?php echo $exp_fin_return;?></textarea>
 																							</div>
 																						</div>
 																						<div class="modal-footer">
