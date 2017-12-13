@@ -5,12 +5,19 @@
 <?php
 	include('style_dc.php');
 	include('nav-noti.php');
-	
-	$curyear=date ('Y');
+
 	$module_id		=$_SESSION['module_id'];
 	$user_id		=$_SESSION['user_id'];
 	
-					
+		$curyear=date ('Y');
+    $date_now=date ("m/d/Y");
+	$date_q= date ("06/30/Y");
+	if ($date_now<=$date_q)
+	{
+		$quater=1;
+	}
+	else
+		$quater=2;				
 				
 
 	?>
@@ -162,7 +169,7 @@ elseif 	($curyear==$year&&$year==$year5)
 						AND form.module_id='$module_id'
 						AND form.form_status='approved'
 						AND achievement.year_id='$year_id'
-						AND achievement.quarter='2'
+						AND achievement.quarter='$quater'
                         AND achievement.ach_desc < achievement.target
                         
 						";

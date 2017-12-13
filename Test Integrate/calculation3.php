@@ -208,16 +208,21 @@ p
 function isNumberKey(evt)
       {
          var charCode = (evt.which) ? evt.which : event.keyCode
-         if (charCode > 31 && (charCode < 48 || charCode > 57))
+          if (charCode > 31 && (charCode < 48 || charCode > 57))
+			// (alert("Only numbers are allowed"))
             return false;
 
          return true;
       }
+	  
+	  
+	  
 function c(val)
 {
     document.getElementById("d").value=val;	
 	
 }
+
 
 $('.keyboard').keypress(function(e) 
 {
@@ -256,7 +261,7 @@ function e()
 <body>
 <form action="calculation4.php" method="post">
 <div class="box">
-    <div class="display"><input type="text" class="number" class="keyboard" onkeypress="return isNumberKey(event)" onclick="this.select()" onKeyDown="if(event.keyCode==13) e()" name="varia" size="17" id="d"></div> <br>
+    <div class="display"><input type="text" class="keyboard" onclick="this.select()" onkeypress="return isNumberKey(event)" onKeyDown="if(event.keyCode==13) e()" name="varia" size="17" id="d"></div> <br>
     <div class="keys">
         <p>
 		<input type="button" class="button gray" value="&#8592" onclick='back()'>
