@@ -152,7 +152,7 @@ function finishAjax(id, response){
                 <div class="pure-controls">
                         <label for="cb" ><b>Module</b></label>
 
-                        <div class="select desc" id="R02">
+
                         <div class="select">                
                                     <select name="module">
                                     <option>Choose an option</option>
@@ -166,47 +166,6 @@ function finishAjax(id, response){
                                     </select>
                         </div></div>
 
-                        <div class="select desc" id="R03">
-                        <div class="select">                
-                                    <select name="module">
-                                    <option>Choose an option</option>
-                                    <option value="M01" required>Module 1: Academic</option>
-                                    <option value="M02" required>Module 2: Student Life</option>
-                                    <option value="M03" required>Module 3: Excellent Research</option> 
-                                    <option value="M04" required>Module 4: Internalization and Branding</option>
-                                    <option value="M05" required>Module 5: Infrastructure Planning and Development</option>                    
-                                    <option value="M06" required>Module 6: Financial Sustainability and Wealth Creation</option>
-                                    <option value="M07" required>Module 7: Faculty and Staff Recruitment and Development</option>
-                                    </select>
-                        </div></div>
-
-                        <div class="select desc" id="R04">
-                        <div class="select">                
-                                    <select name="module">
-                                    <option>Choose an option</option>
-                                    <option value="M01" required>Module 1: Academic</option>
-                                    <option value="M02" required>Module 2: Student Life</option>
-                                    <option value="M03" required>Module 3: Excellent Research</option> 
-                                    <option value="M04" required>Module 4: Internalization and Branding</option>
-                                    <option value="M05" required>Module 5: Infrastructure Planning and Development</option>                    
-                                    <option value="M06" required>Module 6: Financial Sustainability and Wealth Creation</option>
-                                    <option value="M07" required>Module 7: Faculty and Staff Recruitment and Development</option>
-                                    </select>
-                        </div></div>
-
-                        <div class="select desc" id="R05">
-                        <div class="select">                
-                                    <select name="module">
-                                    <option>Choose an option</option>
-                                    <option value="M01" required>Module 1: Academic</option>
-                                    <option value="M02" required>Module 2: Student Life</option>
-                                    <option value="M03" required>Module 3: Excellent Research</option> 
-                                    <option value="M04" required>Module 4: Internalization and Branding</option>
-                                    <option value="M05" required>Module 5: Infrastructure Planning and Development</option>                    
-                                    <option value="M06" required>Module 6: Financial Sustainability and Wealth Creation</option>
-                                    <option value="M07" required>Module 7: Faculty and Staff Recruitment and Development</option>
-                                    </select>
-                        </div></div>
                 </div>
 
                         

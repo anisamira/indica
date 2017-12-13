@@ -1,6 +1,7 @@
 <?php
 include ('nav-noti.php');
 
+
 $check=$_GET['view'];
 
 // $query = mysql_query("SELECT user.*, roles.* FROM user JOIN roles ON user.role_id = roles.role_id AND user.user_id='$check'");
