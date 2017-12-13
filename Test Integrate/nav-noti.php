@@ -110,7 +110,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     <a href="admin_create_session.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Create Sessions">Create Sessions</a>
     <a href="admin_requestedit.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Request Edit">Request Edit</a>
     
-    <a href="logtrails.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Log Trails">Log Trails</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+        <button class="w3-button w3-padding-large" style="font-size: 13px;" title="Manage User">View Log</button>     
+          <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+            <a href="logtrails.php" style="font-size: 13px;" class="w3-bar-item w3-button">Log Trails</a>
+            <a href="logtrails_noti.php" style="font-size: 13px;" class="w3-bar-item w3-button">User Trails</a>
+          </div>
+    </div>
+    
     <a href="calculation1.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
     <a href="workbench_dash.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Dashboard">Dashboard</a>
     <a href="workbench_view.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Module Workbench">Module Workbench</a>
@@ -124,7 +131,9 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
             <a href="admin_manageuser_edituser.php" style="font-size: 13px;" class="w3-bar-item w3-button">Edit User</a>
           </div>
     <a href="admin_create_session.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Create Sessions">Create Sessions</a>
+    <a href="admin_requestedit.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Request Edit">Request Edit</a>    
     <a href="logtrails.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Log Trails">Log Trails</a>
+    <a href="logtrails_noti.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="User Trails">User Trails</a>    
     <a href="calculation1.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
     <a href="workbench_dash.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Dashboard">Dashboard</a>
     <a href="workbench_view.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Module Workbench">Module Workbench</a>
@@ -133,17 +142,15 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     
   </div>
 
-    <?php } ?>
+    <?php }
 
-    <!-- R02 -->
-    <?php if ($role_id=='R02'){?>
+    // R02
+    if ($role_id=='R02'){?>
 
     <a href="main_dc.php" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 "><i class="fa fa-home w3-margin-right"></i>INDICA UM</a>        
-    <a href="calculation1.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
     <a href="work.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Module Workbench">Module Workbench</a>
     
     <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large" >
-      <a href="work.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
       <a href="calculation1.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Module Workbench">Module Workbench</a> 
       <a href="logout.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Logout">Log Out</a>
       
@@ -151,25 +158,27 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     
     
 
-    <?php } ?>
+    <?php } 
 
-    <!-- R03 -->
-    <?php if ($role_id=='R03'){?>
+    // R03
+    if ($role_id=='R03'){?>
 
     <a href="dm_home.php" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 "><i class="fa fa-home w3-margin-right"></i>INDICA UM</a>        
     <a href="calculation1.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
+     <a href="main_dm.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Approval">Approval</a>
     
     <div id="navDemo" class="w3-bar-block w3-theme-d2 w3-hide w3-hide-large w3-hide-medium w3-large" >
       <a href="calculation1.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Calculation">KPI Calculation</a>
+	        <a href="main_dm.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Approval">Approval</a>
       <a href="logout.php" class="w3-bar-item w3-button w3-padding-large" style="font-size: 13px;" title="Logout">Log Out</a>
       
      </div>
     
     
-    <?php } ?>
+    <?php } 
 
-    <!-- R04 -->
-    <?php if ($role_id=='R04'){?>
+    // R04
+    if ($role_id=='R04'){?>
 
       <a href="main_tnc.php" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 "><i class="fa fa-home w3-margin-right"></i>INDICA UM</a>        
       <a href="graph_kpi.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Dashboard">Dashboard</a>
@@ -185,11 +194,11 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Open Sans", sans-serif}
     
     </div>
     
-    <?php } ?>
+    <?php }
 
 	
-	 <!-- R05 -->
-    <?php if ($role_id=='R05'){?>
+	//  <!-- R05 -->
+    if ($role_id=='R05'){?>
 
       <a href="workbench_dash.php" class="w3-bar-item w3-button w3-padding-large w3-theme-d4 "><i class="fa fa-home w3-margin-right"></i>INDICA UM</a>        
       <a href="workbench_view.php" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" style="font-size: 13px;" title="Module Workbench">Module Workbench</a>
