@@ -190,7 +190,6 @@ $result4=mysql_query($query) or die (mysql_error());
 .black:active
 {
  
- 
      border-top:black 2px solid;
     border-bottom:#303030 2px solid;
 }
@@ -205,18 +204,21 @@ p
 }
 </style>
 <script>
-function isNumberKey(evt)
-      {
-         var charCode = (evt.which) ? evt.which : event.keyCode
-          if (charCode > 31 && (charCode < 48 || charCode > 57))
-			// (alert("Only numbers are allowed"))
-            return false;
+	  
+	  function validate(evt) {
+  var theEvent = evt || window.event;
+  var key = theEvent.keyCode || theEvent.which;
+  key = String.fromCharCode( key );
+  var regex = /[0-9]|\./;
+  var format = /^[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]*$/;
+  if( !regex.test(key) && !format.test(key) ) {
+    theEvent.returnValue = false;
+    if(theEvent.preventDefault) theEvent.preventDefault();
+  }
+}
 
-         return true;
-      }
 	  
-	  
-	  
+ 
 function c(val)
 {
     document.getElementById("d").value=val;	
@@ -256,12 +258,22 @@ function e()
 	return e();
 }
 
+//function check()
+//{	
+//var input = $("#d").val();
+	//if (input == '')
+	//{
+		//alert("Please enter value");
+		
+	//}
+//}
+
 </script>
 </head>
 <body>
 <form action="calculation4.php" method="post">
 <div class="box">
-    <div class="display"><input type="text" class="keyboard" onclick="this.select()" onkeypress="return isNumberKey(event)" onKeyDown="if(event.keyCode==13) e()" name="varia" size="17" id="d"></div> <br>
+    <div class="display"><input type="text" class="keyboard" onclick="this.select()" onkeypress="validate(event)" onKeyDown="if(event.keyCode==13) e()" name="varia" size="17" id="d"></div> <br>
     <div class="keys">
         <p>
 		<input type="button" class="button gray" value="&#8592" onclick='back()'>
@@ -295,7 +307,7 @@ function e()
         </p>
     </div><br><br><br>
 
-<center><input type ="Submit" value="Submit" name="go">
+<center><input type ="Submit" value="Submit" name="go" id="Submit" onclick="check()">
 <input type="hidden" name="module_id" value="<?php echo $module_id;?>"/>
 <input type="hidden" name="sesi" value="<?php echo $sesi;?>"/>
 <input type="hidden" name="ach_desc" value="<?php echo $ach_desc;?>"/>  
