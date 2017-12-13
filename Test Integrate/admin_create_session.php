@@ -88,10 +88,10 @@ th, td {
 
                 if($session_status==0){
                   $ses_stat = "OFF";
-                  $ses= "ON";
+                  $ses= "In Operation";
                 }
                 else {
-                  $ses_stat = "ON";
+                  $ses_stat = "In Operation";
                   $ses= "OFF";
                 }
 
@@ -101,8 +101,8 @@ th, td {
                     <td><strong><?php echo $x ?></strong></td>
                     <td><?php echo $session_name ?></td>
                     <td><?php echo $ses_stat ?></td>
-                    <td><a onclick="return confirm('Turn <?php echo $ses?> this form?')" href="handler.php?stat=<?php echo $session_name ?>&check=<?php echo $session_status ?>">
-                    <button><?php echo $ses; ?></button></a></td>
+                    <td><a onclick="return confirm('Change this form status?')" href="handler.php?stat=<?php echo $session_name ?>&check=<?php echo $session_status ?>">
+                    <button>Modify</button></a></td>
                     <td><?php echo $date_created ?></td>
                     <td><?php echo $created_by ?></td>
                     <td><a onclick="return confirm('WARNING: This action will delete this record permanently. Do you want to proceed?')" href="deleteSession.php?del=<?php echo $session_name ?>"><button class="btn btn-danger">Delete</button></a></td>

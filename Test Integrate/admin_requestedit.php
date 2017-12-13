@@ -88,7 +88,7 @@ include ('nav-noti.php');
                     <th><?php echo $form_status ?></th>                    
                     
                     <td><a onclick="return confirm('Change this form status?')" href="handleredit.php?stat=<?php echo $session_name ?>&module=<?php echo $module_id?>">
-                    <button>Change</button></a></td>
+                    <button>Modify</button></a></td>
                 </tr>
                 
                 
