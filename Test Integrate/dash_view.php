@@ -367,7 +367,7 @@ Highcharts.chart('container', {
         type: 'column'
     },
     title: {
-        text: '<?php echo $curyear;?>'
+        text: 'Target and Achievement for <?php echo $curyear;?>'
     },
     yAxis: {
         allowDecimals: false,
@@ -394,7 +394,7 @@ Highcharts.chart('container2', {
         type: 'column'
     },
     title: {
-        text: '<?php echo $curyear;?>'
+        text: 'Indicator Achievement <?php echo $curyear;?>'
     },
     yAxis: {
         allowDecimals: false,
