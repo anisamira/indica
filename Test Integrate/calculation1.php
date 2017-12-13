@@ -29,8 +29,15 @@ Module Code: <input type="text" name="code">
 <html>
 <center><h4>Please Select Module To Calculate Result</h4><br>
 <?php
-	
-	
+$sql			=mysql_query("SELECT * FROM session where session_status='1'");
+					if(mysql_num_rows($sql)>0)
+					{
+						while($row=mysql_fetch_array($sql))
+						{
+							$_SESSION['session_name']	=$row['session_name'];
+						}
+
+	$module_id		=$_SESSION['module_id'];
   $x=1;
   $sql=("SELECT goal.*, module.* FROM goal JOIN module ON goal.module_id=module.module_id GROUP BY module.module_id");
   	
@@ -161,3 +168,6 @@ $(document).ready(function() {
  
 </script>
 </html>
+<?php
+					}
+					?>
