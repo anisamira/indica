@@ -1,10 +1,10 @@
 <?php
 include ('nav-noti.php');
 
-$check=$_GET['view'];
+$check = $_SESSION['username'];
 
 // $query = mysql_query("SELECT user.*, roles.* FROM user JOIN roles ON user.role_id = roles.role_id AND user.user_id='$check'");
-$query= mysql_query(" SELECT user.*, roles.*, module.* FROM module JOIN user ON user.module_id = module.module_id JOIN roles ON roles.role_id=user.role_id WHERE user.user_id='$check' ");
+$query= mysql_query(" SELECT user.*, roles.*, module.* FROM module JOIN user ON user.module_id = module.module_id JOIN roles ON roles.role_id=user.role_id WHERE user.username='$check' ");
 
 // $query= mysql_query("SELECT * FROM user WHERE user_id='$check'");
 
@@ -40,15 +40,7 @@ $query= mysql_query(" SELECT user.*, roles.*, module.* FROM module JOIN user ON 
   <!-- Page Content Holder -->
   <div id="content">
 
-      <center>
-        <button onclick="goBack()">Return to Users List</button>
-
-      <script>
-      function goBack() {
-          window.history.back();
-      }
-      </script> 
-      </center>
+      <center><h3>Your Profile</h3></center>
             
       <div class="row">
       <div class="col-md-5  toppad  pull-right col-md-offset-3 ">

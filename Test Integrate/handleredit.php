@@ -7,7 +7,6 @@
     $stat=$_GET['stat'];
     $module=$_GET['module'];
     
-    
     $stat_query= "UPDATE form SET form_status='edit' WHERE session_name='$stat' AND module_id='$module'" ;
     
     $run=mysql_query($stat_query);  
