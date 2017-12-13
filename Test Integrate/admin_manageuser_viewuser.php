@@ -68,11 +68,6 @@ th, td {
             <?php  
             
             $result = mysql_query("SELECT user.*, roles.* FROM user JOIN roles ON user.role_id = roles.role_id");
-            $result1 = mysql_query("SELECT user.*, module.* FROM user JOIN module ON user.module_id = module.module_id");
-            
-            
-            // $result = mysql_query("SELECT user.*, roles.*, module.* FROM user JOIN roles ON user.role_id = roles.role_id JOIN module ON user.module_id = module.module_id");
-            // $result = mysql_query("SELECT logtrails.*, user.* FROM logtrails JOIN user ON logtrails.user_id = user.user_id");
             
             $x = 1;
             while($row = mysql_fetch_assoc($result))//while look to fetch the result and store in a array $row.  
@@ -84,7 +79,7 @@ th, td {
                 $module_id=$row['module_id'];
                 $role_id=$row['role_id'];
                 $role_name=$row['role_name'];
-                // $user_status=$row['user_status'];
+                
                 ?>
 
                 
@@ -98,7 +93,7 @@ th, td {
                     <td><?php echo $role_name ?> </td>
                     <!-- <td><?php echo $user_status ?></td> -->
                     <!-- <td><a onclick="return confirm('Delete this record?')" href="delete.php?del=<?php echo $user_id ?>"><button class="btn btn-danger">Delete</button></a></td> -->
-                    <td><a onclick="return confirm('View this user profile?')" href="admin_manageuser_view_profileuser.php?edit=<?php echo $user_id ?>"><button class="btn btn-danger">View This User</button></a></td>
+                    <td><a onclick="return confirm('View this user profile?')" href="admin_manageuser_view_profileuser.php?view=<?php echo $user_id ?>"><button class="btn btn-danger">View This User</button></a></td>
                 </tr>
 
 
