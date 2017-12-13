@@ -179,9 +179,9 @@
 																					<div class="modal-body">
 																						<div class="row" style="margin:10px;">
 																								<input type="hidden" name="kpi_id" value="<?php echo $kpi_id;?>"></input>
-																								Operation Definition :<textarea class="form-control" name="operation_def" required><?php echo $operation_def;?></textarea></br>
-																								Achievement Year ? : <textarea class="form-control" name="baseline1" required><?php echo $baseline1;?></textarea></br>
-																								Achievement Year ? :<textarea class="form-control" name="baseline2" required><?php echo $baseline2;?></textarea>
+																								Operation Definition :<textarea class="form-control" name="operation_def"><?php echo $operation_def;?></textarea></br>
+																								Achievement Year 2014 : <textarea class="form-control" name="baseline1"><?php echo $baseline1;?></textarea></br>
+																								Achievement Year 2015 :<textarea class="form-control" name="baseline2"><?php echo $baseline2;?></textarea>
 																						</div>
 																					</div>
 																					<div class="modal-footer">
